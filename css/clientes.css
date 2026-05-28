@@ -1,0 +1,113 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    padding: 24px;
+    background-color: #0f0f12;
+    color: #f1f1f4;
+    font-family: sans-serif;
+}
+
+.header{
+    margin-bottom: 32px;
+}
+
+.header h2{
+    font-size: 28px;
+    margin-bottom: 5px;
+    color: #f1f1f4
+}
+
+.formulario-cliente-vehiculo{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.formulario{
+    background-color: #18181f;
+    border: 1px solid #262633;
+    padding: 24px;
+    border-radius: 8px;
+}
+
+.formulario h3{
+    font-size: 18px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #262633;
+    padding-bottom: 0%;
+    color: #f1f1f4;
+}
+
+.datos{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+    gap: 16px;  
+}
+
+.datos label{
+    font-size: 14px;
+    color: #8a8a9e;
+}
+
+.datos input, .datos select{
+    width: 100%;
+    padding: 10px 12px;
+    background-color: #0f0f12;
+    border: 1px solid #262633;
+    border-radius: 5px;
+    color: #f1f1f4;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.datos input:focus, .datos select:focus{
+    border-color: #6f42c1;
+    outline: none;
+}
+
+.mayusculas{
+    text-transform: uppercase;
+}
+
+.botones{
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+    grid-column: 1 / -1;
+}
+
+.btnRegistrar{
+    background-color: #6f42c1;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btnRegistrar:hover{
+    background-color: #5a32a3;
+}
+
+.btnLimpiar{
+    background-color: transparent;
+    color: #8a8a9e;
+    padding: 10px 16px;
+    border: 1px solid #262633;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btnLimpiar:hover{
+    background-color: #262633;
+    color: #fff;
+}
