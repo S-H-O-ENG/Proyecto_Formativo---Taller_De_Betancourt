@@ -1,79 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dancing+Script:wght@400..700&family=Oswald:wght@200..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Courgette&family=Dancing+Script:wght@400..700&family=Oswald:wght@200..700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0%;
+    box-sizing: border-box;
+}
 
 body{
-    background: #000000;
+    min-height: 100vh;
+    background: linear-gradient(to bottom,  #360d5d 0%,  #1c0833 40%, #030914 100%);
+    font-family: Bebas Neue;
+    background-size: cover ;
+    background-attachment: fixed;
+    color: aliceblue;
 }
 
 header{
-    background-color: #000000;
     display: flex;
-    text-align: left;
-    color: #610101;
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    background: rgba(255,255, 255, 0.1);
+    border: 1px solid rgba(255,255,255, 0.4);
+    box-shadow: 0 25px 45px rgba(0,0,0, 0.4);
     justify-content: space-between; 
-    padding: auto;
+    padding: 20px;
 }
 
-header:hover{
-     background: #610101;
-    border-radius: 30px;
-    color: #070707;
-}
-
-.items{
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-.items img {
-    display: flex;
-    height: 120px;
-    width: auto;
-    border-radius: 15px;
-}
-
-button{
-    margin: 50px;
-    border-radius: 15px;
-    border: solid;
-    border-color: #610101;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #020202;
-    height: 100px;
-    width: 150px;
-    font-family: bebas Neue;
-    font-size: 20px;
-    color: #610101;
-    transition: transform 0.5, background 0.5;
-}
-
-button:hover{
-    transform: scale(1.1);   
-    background: #610101;
-    color: #000000;
-    border-color: #000000;
-}
-
-
-h1{
-    font-family: Bebas Neue;
-    text-align: left;
-    flex-grow: 1;
-    margin-left: 50px;
-    font-size: 65px;
-}
 
 .navegar{
     position: relative;
     padding: 10px 20px;
-    background: #000000;
-    border-radius: 60px;
+    background: rgba(255,255,255, 0.4);
+    border: 1px solid rgba(255,255, 255, 0.1);
     backdrop-filter: blur(15px);
-    box-shadow: #aac7ca;
-    border: 0.5px solid #610101;
+    box-shadow: #aac7ca;  
 }
+
 .navegar ul{
     display: flex;
     justify-content: space-around;
@@ -85,7 +47,7 @@ h1{
 }
 
 .navegar ul li a{
-    color: #610101;
+    color: #303030;
     text-decoration: none;
     font-size: 40px;
     font-family: Bebas Neue;
@@ -94,85 +56,40 @@ h1{
 }
 
 .navegar ul li a:hover{
-    background: #610101;
+    background: rgba(255,255, 255, 0.1);
     border-radius: 30px;
-    color: #000000;
+    color: #ffffff;
 }
 
-.Encuentranos{
-  background-color: #000000;
+.nosotros{
+    background: rgba(255,255,255, 0.4);
     display: flex;  
     text-align: left;
     padding: 5px;
     font-size: 30px;
     flex-direction: column;
-    color: #610101;
-    border: solid;
-    border-color: #610101;
+    color: #888888;
+    border:ridge;
+    border-radius: 10px;
+    border-color: #2d185f;
 }
-.nosotros{
-    border-radius: 0%;
-    border: solid;
-    border-color: #610101;
-    background: #000000;
-    padding: 5px;
+
+aside img{
+    mix-blend-mode: multiply;
+    width: 350px;
+    height: 250px;
     display: flex;
-    flex-direction: column;
-    text-align: left;
-    font-size: 30px;
-    color: #610101;
+    justify-self: flex-end;
+    flex-direction: row;
+    animation: moverAuto  1.0s ease-in-out infinite alternate;
 }
-h2{
-    text-align: left;
-    font-size: 35px;
-    font-family: Bebas Neue ;
-}
-h3{
-    font-size: 30px;
-    font-family: Bebas Neue;
+@keyframes moverAuto {
+  0% {
+    transform: translateX(0); 
+  }
+  100% {
+    transform: translateX(-80px); 
+  }
 }
 
-h1{
-    font-size: 30px;
-    font-family: Bebas Neue;
-    text-align: center;
-}
-
-.mapa{
-    display: flex;
-    justify-content: flex-end;
-    align-items: end;
-}
-
-.productos{
-    font-size: 25px;
-    background: #000000;
-    color: #610101;
-    border-radius: 0%;
-    border-color: #610101;
-    border: solid;
-}
-
-.cita{
-    font-size: 25px;
-    border: solid;
-    flex-direction: column;
-    background: #000000;
-    color: #610101;
-    border-radius: 0%;
-    border-color: #610101;
-}
-
-.formulario{
-    font-size: 25px;
-    font-family: Bebas Neue;
-    margin: 10%;
-    padding: 20%;
-    border: solid;
-    display: flex;
-    flex-direction: column;
-    color: #610101;
-    border-radius: 0%;
-    border-color: #610101;
-}
 
