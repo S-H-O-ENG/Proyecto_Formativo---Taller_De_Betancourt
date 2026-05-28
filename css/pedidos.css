@@ -1,3 +1,71 @@
 *{
-    background: url(../img/fondo-pedidos.png)
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header{
+    border: solid 3px black ;
+    width: 80%;
+    padding: 50px;
+    display: flex;
+    align-items: center;
+}
+header img{
+    width: 5%;
+}
+header h1{
+    font-size: 50px;
+    margin-left: 20px;
+}
+
+.uno{
+    padding: 50px;
+}
+
+section h2{
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+section{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    /* align-items: center; */
+}
+section div{ 
+    border: solid 3px black;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 20px;
+}
+section div label{
+    font-size: 25px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+section div input{
+    padding: 10px;
+    font-size: 20px;
+}
+section div select{
+    padding: 10px;
+    font-size: 20px;
+}
+section div button{
+    font-size: 20px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+section aside{
+    border: solid 3px black;
+    width: 15%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    
+
+    
 }
