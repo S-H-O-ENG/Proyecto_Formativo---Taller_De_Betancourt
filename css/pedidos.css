@@ -1,71 +1,63 @@
 *{
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
-header{
-    border: solid 3px black ;
-    width: 80%;
-    padding: 50px;
+.contenedor{
+    display: flex;
+    flex-direction: column;
+}
+
+.head{  
+    display: flex;
+    border: solid yellow;
+}
+
+.icon{
+    border: solid red;
+    width: 15%;
+    text-align: end;
+    min-height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 40px;
+
+}
+.head header{
+    border: solid;
+    width: 75%;
+    min-height: 20vh;
     display: flex;
     align-items: center;
+    font-size: 70px;
+    justify-content: center;
 }
-header img{
-    width: 5%;
+.logo{
+    border: solid violet;
+    width: 10%;
+    padding: 5px;
 }
-header h1{
-    font-size: 50px;
-    margin-left: 20px;
-}
-
-.uno{
-    padding: 50px;
-}
-
-section h2{
-    font-size: 40px;
-    margin-bottom: 20px;
-}
-section{
+.cuerpo{
+    border: solid;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    /* align-items: center; */
+    min-height: 79vh;
 }
-section div{ 
-    border: solid 3px black;
-    width: 80%;
+.izq{
+    border: solid blue;
+    width: 20%;
     display: flex;
     flex-direction: column;
-    padding: 20px;
-    border-radius: 20px;
+    align-items: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    gap: 15px;
 }
-section div label{
+.izq input, select, button{
     font-size: 25px;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    width: 100%;
 }
-section div input{
-    padding: 10px;
-    font-size: 20px;
-}
-section div select{
-    padding: 10px;
-    font-size: 20px;
-}
-section div button{
-    font-size: 20px;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-section aside{
-    border: solid 3px black;
-    width: 15%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    
-
-    
+.izq label{
+    font-size: 30px;
 }

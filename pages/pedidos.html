@@ -8,64 +8,64 @@
 </head>
 <body>
     <div class="contenedor">
-        <header>
-            <img src="../img/logo.png" alt="">
-            <h1>SOLICITUD DE PEDIDOS</h1>
-        </header>
-        <div class="uno">
-            <section>
-                <div>
-                    <h2>Formulario de Solicitud de Pedidos - Taller De Betancourt</h2> <br>
-                        <label for="nombre">Nombre</label>
-                        <input type="text" name="nombre" id="nombre" placeholder="Ingrese su nombre" required>
-                        <label for="apellido">Apellido</label>
-                        <input type="text" name="apellido" id="apellido" placeholder="Ingrese su apellido" required>
-                        <label for="nombrerepuesto">Nombre del Repuesto Requerido</label>
-                        <input type="text" name="nombrerepuesto" id="nombrerepuesto" placeholder="Ingrese el nombre del repuesto requerido" required >
-                        <label for="proveedor">Proveedor</label>
-                        <select name="proveedor" id="proveedor" required>
-                            <option value="" selected disabled>Seleccione un proveedor</option>
-                            <option value="p1">Proveedor 1</option>
-                            <option value="p2">Proveedor 2</option>
-                            <option value="p3">Proveedor 3</option>
-                        </select>
-                        <label for="metodopago">Método de Pago</label>
-                        <select name="metodopago" id="metodopago" required>
-                            <option value="" selected disabled>Seleccione un método de pago</option>
-                            <option value="efectivo">Efectivo</option>
-                            <option value="tarjeta">Transferencia</option>
-                        </select>
-                        <label for="Rol">Rol dentro del taller</label>
-                        <select name="rol" id="rol" required>
-                            <option value="" disabled selected>Seleccione su rol dentro del taller</option>
-                            <option value="mecanico">Jefe del taller</option> 
-                        </select> 
-                        <label for="cantidad">Digite la cantidad de repuestos que requiere</label>
-                        <input type="number" name="cantidad" id="cantidad" placeholder="Ingrese la cantidad" required>
-                        <label for="importancia">Importancia del pedido</label>
-                        <select name="importancia" id="importancia" required>
-                            <option value="" selected disabled>Seleccione una opcion</option>
-                            <option value="alta">Alta</option>
-                            <option value="media">Media</option>
-                            <option value="baja">Baja</option>
-                        </select> <br> <br>
-
-                        <button type="submit">Cancelar</button>
-                        <button type="submit">Enviar Solicitud</button>
-                </div>          
-                    <aside>
-                        <a href="index.html">Inicio</a></li>
-                        <a href="pedidos.html">Solicitar Pedido</a></li>
-                        <a href="contacto.html">Contacto</a></li>
-                    </aside>
-                
-            </section>
+        <div class="head">
+            <img src="../img/logo.png" alt="" class="logo">
+            <header>
+                SOLICITUD DE PEDIDOS
+            </header>
+            <div class="icon">
+                <nav>
+                    <a href="">xx</a> <br>
+                    <a href="">xx</a>
+                </nav>
+            </div>
         </div>
+
+        <div class="cuerpo">
+            <div class="izq">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="label">
+                <label for="apellido">Apellido</label>
+                <input type="text" id="apellido"> 
+                <label for="rol">Rol</label>
+                <select id="rol">
+                    <option value="" disabled selected>Seleccione una opcion</option>
+                    <option value="">Jefe del taller</option>
+                </select>
+                <label for="proveedor">Proveedor</label>
+                <input type="text" id="proveedor">
+                <label for="cantidad">Cantidad</label>
+                <input type="number" id="cantidad">
+                <label for="importancia">Importancia del pedido</label>
+                <select id="importancia">
+                    <option value="" disabled selected>Seleccione una opcion</option>
+                    <option value="">Alta</option>
+                    <option value="">Media</option>
+                    <option value="">Baja</option>
+                </select>
+                <label for="metodo">Metodo de pago</label>
+                <select id="metodo">
+                    <option value="" disabled selected>Seleccione una opcion</option>
+                    <option value="">Transferencia</option>
+                    <option value="">Efectivo</option>
+                </select>
+                
+                <button>Continuar</button>
+                <button>Cancelar</button>
+
+            </div>
+
+
+        </div>
+        
+        
+            
 
 
 
 
 
     </div>
+    
 </body>
 </html>
