@@ -23,6 +23,11 @@ body{
     justify-self: center;
     padding: 0;
     width: 60%;
+    gap: 30px;
+    max-width: 1000px;
+    margin: auto;
+    display: flex;
+    align-items: center; 
 }
 .encabezado{
     display: flex;
@@ -42,11 +47,17 @@ body{
 .encabezado h5{
     margin: 0;
 }
+
+
 .contenedor-cards{
     gap: 30px;
     max-width: 1000px;
     margin: auto;
+    flex-wrap: wrap; 
     display: flex;
+    align-items: center; 
+    gap: 30px; 
+    padding: 20px;
 }
 
 .card{
@@ -55,7 +66,8 @@ body{
     border-radius: 15px;
     padding: 22px;
     color: white;
-    width: 100%;
+    width: 40%;
+    
 }
 
 .header{
