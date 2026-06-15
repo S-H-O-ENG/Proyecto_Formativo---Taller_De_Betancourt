@@ -1,71 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/pedidos.css">
-    <title>Pedidos</title>
+    <title>Pedidos Taller De Betancourt</title>
 </head>
 <body>
-    <div class="contenedor">
+    <div class="Container">
         <div class="head">
-            <img src="../img/logo.png" alt="" class="logo">
-            <header>
-                SOLICITUD DE PEDIDOS
-            </header>
-            <div class="icon">
-                <nav>
-                    <a href="">xx</a> <br>
-                    <a href="">xx</a>
-                </nav>
-            </div>
+
+            <img src="../img/logo.png" alt="Logo" class="logo">
+            <h1 class="titulo">Gestion de pedidos - Taller De Betancourt</h1>
         </div>
 
-        <div class="cuerpo">
-            <div class="izq">
-                <label for="nombre">Nombre</label>
-                <input type="text" id="label">
-                <label for="apellido">Apellido</label>
-                <input type="text" id="apellido"> 
-                <label for="rol">Rol</label>
-                <select id="rol">
-                    <option value="" disabled selected>Seleccione una opcion</option>
-                    <option value="">Jefe del taller</option>
-                </select>
-                <label for="proveedor">Proveedor</label>
-                <input type="text" id="proveedor">
-                <label for="cantidad">Cantidad</label>
-                <input type="number" id="cantidad">
-                <label for="importancia">Importancia del pedido</label>
-                <select id="importancia">
-                    <option value="" disabled selected>Seleccione una opcion</option>
-                    <option value="">Alta</option>
-                    <option value="">Media</option>
-                    <option value="">Baja</option>
-                </select>
-                <label for="metodo">Metodo de pago</label>
-                <select id="metodo">
-                    <option value="" disabled selected>Seleccione una opcion</option>
-                    <option value="">Transferencia</option>
-                    <option value="">Efectivo</option>
-                </select>
-                
-                <button>Continuar</button>
-                <button>Cancelar</button>
+        <div class="body">
+            <label for="Nombre" id="nombre">Nombre/s</label>
+            <input type="text" name="" id="inputnombre" required placeholder="Ingrese sus nombres" > <br>
+            <label for="apellido">Apellido/s</label>
+            <input type="text" name="" id="inputapellido" required placeholder="Ingrese sus apellidos"><br>
 
-            </div>
-
-
-        </div>
-        
-        
+            <label for="rol" id="rol">Cargo</label>
+            <select name="" id="" class="rol" required>
+                <option value="" disabled selected>Seleccione una opcion</option>
+                <option value="">Jefe del taller</option>
+            </select><br>
             
+            <label for="proveedor" id="proveedor">Proveedor</label>
+            <select name="" id="" class="proveedor" required>
+                <option value="" disabled selected>Seleccione un proveedor</option>
+                <option value="">Proveedor 1</option>
+                <option value="">Proveedor 2</option>
+                <option value="">Proveedor 3</option>
+                <option value="">Proveedor 4</option>
+                <option value="">Proveedor 5</option>
+            </select><br>
 
+            <label for="cantid">Ingrese la cantidad requerida</label>
+            <input type="number" name="cantidad" id="cantidad" class="cantidad" required placeholder="Ingrese la cantidad requerida"><br>
 
+            <label for="importancia">Importancia del pedido</label>
+            <select name="impor" id="impor" class="importancia">
+                <option value="" disabled selected>Seleccione una opcion </option>
+                <option value="baja">Baja</option>
+                <option value="media">Media</option>
+                <option value="alta">Alta</option>
+            </select><br>
 
+            <label for="metodo">Metodo de pago</label>
+            <select name="metodo" id="metodo" class="metodo">
+                <option value="" selected disabled>Seleccione un    a opcion</option>
+                <option value="transferencia">Transferencia</option>
+                <option value="efectivo">Efectivo</option>
+            </select><br>
+        </div>
 
-
+        <div class="final">
+            <button class="rpedido">Realizar Pedido</button>
+        </div>
     </div>
-    
 </body>
 </html>
