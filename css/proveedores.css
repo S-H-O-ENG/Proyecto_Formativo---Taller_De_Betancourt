@@ -124,6 +124,22 @@ body{
     width: 80%;
     height: 30%;
     border-collapse: collapse;
+    border-radius: 15px;
+}
+.buscr th:first-child{
+    border-top-left-radius: 15px;
+}
+
+.buscr th:last-child{
+    border-top-right-radius: 15px;
+}
+
+.buscr tr:last-child td:first-child{
+    border-bottom-left-radius: 15px;
+}
+
+.buscr tr:last-child td:last-child{
+    border-bottom-right-radius: 15px;
 }
 
 .buscr th{
@@ -140,13 +156,15 @@ body{
     font-size: 20PX;
     border: 4px solid #5f1ed7;
     padding: 10px;
+    background-color: #0f0f12;
+    color: white;
 }
 
 .table-responsive{
     width: 100%;
 }
 
-.tabla .a{
+.buscr .a{
     font-size: 25PX;
     text-align: center;
     color: rgb(106, 212, 0);
