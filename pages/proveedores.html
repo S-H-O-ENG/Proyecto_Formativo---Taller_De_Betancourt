@@ -11,19 +11,19 @@
     <link rel="stylesheet" href="../css/proveedores.css">
 </head>
 <body>
-    <div class="contenedor">
-        <div class="morado">
-            <button ><a href="../pages/proveedores.html">Proveedores</a></button>
-            <button> <a href="../pages/Pro_Calificacion.html">Clasificacion </a></button>
-            <button> <a href="./Pro_Facturas.html">Factura y Pagos </a></button>
-            <button> <a href="./Pro_Informes.html">Informes</a></button>
+    <div class="contenedor container-fluid">
+        <div class="morado d-flex justify-content-center gap-3 flex-wrap">
+            <button class="btn p-0" ><a href="../pages/proveedores.html" >Proveedores</a></button>
+            <button class="btn p-0"> <a href="../pages/Pro_Calificacion.html">Clasificacion </a></button>
+            <button class="btn p-0"> <a href="./Pro_Facturas.html">Factura y Pagos </a></button>
+            <button class="btn p-0"> <a href="./Pro_Informes.html">Informes</a></button>
         </div>
         <br><br>
 
     <div class="cuadros">
 
-        <div class="encabezado">
-            <img src="../img/logo.png" alt="logo" class="logo">
+        <div class="encabezado shadow">
+            <img src="../img/logo.png" alt="logo" class="logo img-fluid">
 
             <div>
                 <h2>PROVEEDORES</h2>
@@ -37,7 +37,7 @@
 <div class="busquedar">
 <div class="contenedor-cards">
 
-    <div class="card">
+    <div class="card-shadow">
         <div class="header">
             <span>Total proveedores</span>
             <i class="fa-solid fa-users"></i>
@@ -48,7 +48,7 @@
 
     <br>
 
-    <div class="card">
+    <div class="card-shadow">
         <div class="header">
             <span>Activos</span>
             <i class="fa-solid fa-circle-check"></i>
@@ -57,7 +57,7 @@
         <p>________</p>
     </div>
     <br>
-    <div class="card">
+    <div class="card-shadow">
         <div class="header">
             <span>En revisión</span>
             <i class="fa-solid fa-circle-exclamation"></i>
@@ -68,7 +68,7 @@
 
     <br>
 
-    <div class="card">
+    <div class="card-shadow">
         <div class="header">
             <span>Gastion total</span>
             <i class="fa-solid fa-arrow-trend-up"></i>
@@ -79,13 +79,23 @@
     </div>
 
 <div class="bus">
-    <table class="buscr">
+    <div class="table-responsive"> 
+        <div class="mb-3">
+
+    <input type="text"
+           class="form-control"
+           placeholder="Buscar proveedor">
+
+</div>
+    <table class="buscr table table-bordered table-hover">
+    <thead>
     <tr>
         <th>Proveedor</th>
         <th>Categoria</th>
         <th>Estado</th>
     </tr>
-
+    </thead>
+    <tbody>
     <tr>
         <td>Nombre</td>
         <td>Electronica</td>
@@ -127,7 +137,9 @@
         <td>Electronica</td>
         <td class="a">Activo</td>
     </tr>
+    </tbody>
 </table>
+</div>
 </div>
 </div>
 
