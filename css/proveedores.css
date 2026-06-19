@@ -253,18 +253,21 @@ h2{
 
 .grid{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap:10px;
     margin-bottom:25px;
     margin-top: 20px;
 }
 
 .card{
     background:#12121f;
-    border:1px solid #2b2152;
-    border-radius:18px;
+    border:1px solid var(--morado1);
+    border-radius:20px;
     padding:25px;
-    height: 100%;
+    min-width: 0;
+    width: 280px;
+    height: 250px;
+    justify-self: center;
 }
 
 .card h3{
