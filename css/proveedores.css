@@ -4,6 +4,14 @@
     margin: 0;
     padding: 0;
 }
+
+:root{
+    --negro: #0f0f12;
+    --morado1: #5f1ed7;
+    --morado2: #6f42c1;
+    --blanco: #ffffff;
+}
+
 body{
     padding: 24px;
     background-color: #0f0f12;
@@ -16,8 +24,8 @@ body{
     text-align: center;
     color: #ffffff;
     font-size: 20px;
-    background-color: #5f1ed7;
-    border: 2px solid #f1f1f4;
+    background-color: var(--morado1);
+    border: 2px solid var(--blanco);
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 8px;
@@ -40,7 +48,7 @@ body{
     display: flex;
     align-items: center;
     gap: 15px;
-    border: 3px solid #5f1ed7;
+    border: 3px solid var(--morado1);
     padding: 25px;
 }
 
@@ -59,14 +67,14 @@ body{
     padding: 5px;
     flex-direction: column;
     display: flex;
-    border: 4px #4c1d95;
+    border: 4px var(--morado1);
     border-radius: 15px;
     width: 30%;
 }
 
 .card{
     background: #12121a;
-    border: 5px solid #2d1b69;
+    border: 5px solid var(--morado1);
     border-radius: 15px;
     padding: 22px;
     color: white;
@@ -78,13 +86,13 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #b9a7ff;
+    color: var(--morado2);
     margin-bottom: 20px;
 }
 
 .header i{
     background: #ffffff;
-    color: #b388ff;
+    color: var(--morado1);
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -143,28 +151,42 @@ body{
 }
 
 .buscr th{
-    border: 4px solid #5f1ed7;
+    border: 4px solid var(--morado1);
     padding: 5px;
     text-align: center;
-    background-color: #916fcf;
-    color: rgb(0, 0, 0);
+    background-color: var(--morado2);
+    color: var(--negro);
     font-family: 'Times New Roman', Times, serif;
     font-size: 25PX;
 }
 .buscr td{
     font-family: 'Times New Roman', Times, serif;
     font-size: 20PX;
-    border: 4px solid #5f1ed7;
+    border: 4px solid var(--morado1);
     padding: 10px;
     background-color: #0f0f12;
-    color: white;
+    color: var(--blanco);
 }
 
 .table-responsive{
     width: 100%;
 }
 
-.buscr .a{
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.tabla {
+    min-width: 900px; /* ajusta según necesites */
+}
+
+.progress {
+    height: 8px;
+    min-width: 170px;
+}
+
+.a{
     font-size: 25PX;
     text-align: center;
     color: rgb(106, 212, 0);
@@ -196,7 +218,7 @@ h2{
 }
 
 .btn{
-    background:#7c3aed;
+    background: var(--morado2);
     border:none;
     color:white;
     padding:12px 22px;
@@ -211,7 +233,7 @@ h2{
 
 .mini-btn{
     background:transparent;
-    border:1px solid #7c3aed;
+    border:1px solid var(--morado2);
     color:white;
     padding:8px 14px;
     border-radius:8px;

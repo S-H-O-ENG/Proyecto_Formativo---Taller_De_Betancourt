@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="es">
+<div lang="es">
 <head>
 <meta charset="UTF-8">
 <title>Clasificación</title>
 <link rel="stylesheet" href="../css/proveedores.css">
 </head>
-<body>
+<div>
 
-<div class="top-bar">
+<div class="container-fluid"></div>
+
+<div class="top-bar d-flex justify-content-between align-items-center flex-wrap">
     <div>
         <h1>Clasificación</h1>
         <p class="subtitulo">
@@ -16,38 +18,47 @@
         </p>
     </div>
 
-    <button class="btn">+ Nueva evaluación</button>
+    <button class="btn shadow">+ Nueva evaluación</button>
+</div>
 </div>
 
-<div class="resumen">
+<div class="resumen row g-4">
 
-    <div class="resumen-card">
+<div class="col-md-4">
+    <div class="resumen-card h-100 shadow">
         <p>Tiempo de entrega</p>
         <h2>8.5 /10</h2>
     </div>
+</div>
 
-    <div class="resumen-card">
+<div class="col-md-4">
+    <div class="resumen-card h-100 shadow">
         <p>Calidad del producto</p>
         <h2>8.7 /10</h2>
     </div>
+</div>
 
-    <div class="resumen-card">
+
+<div class="col-md-4">
+    <div class="resumen-card  h-100 shadow">
         <p>Cumplimiento</p>
         <h2>8.5 /10</h2>
     </div>
-
+</div>
 </div>
 
-<table class="tabla">
+<div class="table-responsive mt-4">
 
-<thead>
-<tr>
-<th>Proveedor</th>
-<th>Tiempo de entrega</th>
-<th>Calidad</th>
-<th>Cumplimiento</th>
-<th>Precio</th>
-<th>Total</th>
+<table class="tabla table align-middle">
+
+    <thead>
+    <tr>
+        <th>Proveedor</th>
+        <th>Tiempo de entrega</th>
+        <th>Calidad</th>
+        <th>Cumplimiento</th>
+        <th>Precio</th>
+        <th>Total</th>
 </tr>
 </thead>
 
@@ -127,6 +138,11 @@
 </tbody>
 
 </table>
+
+
+</div>
+</div>
+
 
 </body>
 </html>
