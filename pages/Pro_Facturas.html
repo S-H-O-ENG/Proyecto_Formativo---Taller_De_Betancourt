@@ -34,59 +34,67 @@
     <button class="btn">+ Registrar factura</button>
 </div>
 
-<table class="tabla">
+<div class="table-responsive mt-4">
 
-<thead>
-<tr>
-<th>N° Factura</th>
-<th>Proveedor</th>
-<th>Orden</th>
-<th>Fecha</th>
-<th>Monto</th>
-<th>Verificación</th>
-<th>Pago</th>
-<th>Acciones</th>
-</tr>
-</thead>
+    <table class="table table-dark table-hover align-middle tabla">
 
-<tbody>
+        <thead>
+            <tr>
+                <th>N° Factura</th>
+                <th>Proveedor</th>
+                <th>Orden</th>
+                <th>Fecha</th>
+                <th>Monto</th>
+                <th>Verificación</th>
+                <th>Pago</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
 
-<tr>
-<td>FAC-0581</td>
-<td>TechCore Components</td>
-<td>OC-2399</td>
-<td>2026-06-09</td>
-<td>$4.200</td>
-<td><span >Verificada</span></td>
-<td><span >Pagada</span></td>
-<td>👁</td>
-</tr>
+        <tbody>
 
-<tr>
-<td>FAC-0580</td>
-<td>Nordic Logistics AB</td>
-<td>OC-2398</td>
-<td>2026-06-08</td>
-<td>$3.800</td>
-<td><span >Verificada</span></td>
-<td><span >Pendiente</span></td>
-<td><button>Registrar pago</button></td>
-</tr>
+            <tr>
+                <td>FAC-0581</td>
+                <td>TechCore Components</td>
+                <td>OC-2399</td>
+                <td>2026-06-09</td>
+                <td>$4.200</td>
+                <td><span class="badge bg-success">Verificada</span></td>
+                <td><span class="badge bg-success">Pagada</span></td>
+                <td>👁</td>
+            </tr>
 
-<tr>
-<td>FAC-0579</td>
-<td>Textiles Orient</td>
-<td>OC-2397</td>
-<td>2026-06-06</td>
-<td>$11.500</td>
-<td><span >Pendiente</span></td>
-<td><span >Pendiente</span></td>
-<td>👁</td>
-</tr>
+            <tr>
+                <td>FAC-0580</td>
+                <td>Nordic Logistics AB</td>
+                <td>OC-2398</td>
+                <td>2026-06-08</td>
+                <td>$3.800</td>
+                <td><span class="badge bg-success">Verificada</span></td>
+                <td><span class="badge bg-warning text-dark">Pendiente</span></td>
+                <td>
+                    <button class="btn btn-primary btn-sm">
+                        Registrar pago
+                    </button>
+                </td>
+            </tr>
 
-</tbody>
+            <tr>
+                <td>FAC-0579</td>
+                <td>Textiles Orient</td>
+                <td>OC-2397</td>
+                <td>2026-06-06</td>
+                <td>$11.500</td>
+                <td><span class="badge bg-warning text-dark">Pendiente</span></td>
+                <td><span class="badge bg-warning text-dark">Pendiente</span></td>
+                <td>👁</td>
+            </tr>
 
-</table>
+        </tbody>
+
+    </table>
+
+</div>
 
 </body>
 </html>

@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container py-4">
 
     <div class="top-bar">
         <div>
@@ -18,9 +18,9 @@
         <button class="btn">Actualizar</button>
     </div>
 
-    <div class="grid">
+    <div class="grid  row g-4">
 
-        <div class="card">
+        <div class="card  col-lg-3 col-md-6 col-12">
             <h3>Desempeño de proveedores</h3>
             <p>Evaluaciones consolidadas por proveedor y período.</p>
 
@@ -29,7 +29,7 @@
             <button class="mini-btn">CSV</button>
         </div>
 
-        <div class="card">
+        <div class="card  col-lg-3 col-md-6 col-12">
             <h3>Estado de pedidos</h3>
             <p>Resumen de órdenes pendientes, en tránsito y entregadas.</p>
 
@@ -38,7 +38,7 @@
             <button class="mini-btn">CSV</button>
         </div>
 
-        <div class="card">
+        <div class="card  col-lg-3 col-md-6 col-12">
             <h3>Análisis de gasto</h3>
             <p>Distribución del gasto por proveedor y categoría.</p>
 
@@ -47,7 +47,7 @@
             <button class="mini-btn">CSV</button>
         </div>
 
-        <div class="card">
+        <div class="card  col-lg-3 col-md-6 col-12">
             <h3>Estado de acuerdos</h3>
             <p>Contratos vigentes, vencidos y próximos a renovar.</p>
 
@@ -62,17 +62,17 @@
 
         <h2>Solicitar estado y acuerdo</h2>
 
-        <div class="form-row">
+        <div class="form-row  row g-3">
 
-            <select>
+            <select class="col-md-4 form-select">
                 <option>TechCore Components</option>
             </select>
 
-            <select>
+            <select class="col-md-4 form-select">
                 <option>Estado actual</option>
             </select>
 
-            <input type="month">
+            <input type="month" class="col-md-4 form-control">
 
         </div>
 
