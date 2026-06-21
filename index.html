@@ -4,86 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/index.css">
-    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>index</title>
 </head>
 <body>
-  
-  <header><h1>TALLER DE BETANCOURT</h1></header>
-     <nav class="navegar">
-        <ul>
-           <li> <a href=#sobrenosotros>Sobre Nosotros</a></li>
-           <li> <a href=#donde>Encuentranos</a></li>
-           <li> <a href=#nuestrosProductos>Nuestros Productos</a></li>
-           <li> <a href=#agendacita>Agenta tu Cita</a></li>
-        </ul>
-     </nav>
-        <div class="nosotros">
-          <section id="Nosotros">
-            <h2>¿Quienes somos?</h2>
-         <br>
-         <p>
-            somos un taller automotiz...........
-         </p>
-         <aside>
-          <img src="/img/suprs.png" alt="supra">
-         </aside>
-          </section>
-        </div>
 
-    <br><br>
-        <div class="Encuentranos">  
-          <div class="donde">
-              <div class="texto">
-                <h2>Encuentranos</h2>
-                <p>nos ubicamos en venecia en</p>
-              </div>
-            <div class="mapa">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.991557826495!2d-74.14539982618336!3d4.595534342562692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9edc64b2c5bf%3A0x47856432068447bc!2sTransmilenio%20-%20Estaci%C3%B3n%20Venecia!5e0!3m2!1ses-419!2sco!4v1779564026074!5m2!1ses-419!2sco" 
-              style="border:0;" 
-              allowfullscreen="" 
-              loading="lazy">
-              ></iframe>
-            </div>
+    <header>
+
+      <nav class="navbar navbar-expand-lg navbar-Betancourt">
+        <div class="container">
+          <a href="#" class="navbar-brand d-flex align-items-lg-center gap-2">
+            <img src="/img/logo.png" alt="logo taller" class="logo">
+            <span class="Nombre">TALLER DE BETANCOURT</span>
+          </a>
+
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#index">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="index" >
+            <ul class="navbar-nav ms-auto aling-items-lg-center gap-3">
+              <li class="nav-item"><a class="nav-link opcion-menu" href="#">INICIO</a></li>
+              <li class="nav-item"><a class="nav-link opcion-menu" href="#">SERVICIOS</a></li>
+              <li class="nav-item"><a class="nav-link opcion-menu" href="#">NOSOTROS</a></li>
+              
+              <li class="nav-item">
+                <button class="btn-login-nav" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+              </li>
+              
+              <li class="nav-item">
+                <button class="btn-contactenos-nav" data-bs-toggle="modal" data-bs-target="#contactenosModal">Contactenos</button>
+              </li>  
+            </ul>
+
           </div>
         </div>
-    <br><br>
+      </nav>
+    </header>
 
-        <div class="productos">
-          <section id="nuestrosProductos">
-            <h2>Productos</h2>
-             <p> En nuestro taller manejamos una gran variedad de productos automotrices diseñados para garantizar el óptimo funcionamiento y rendimiento de tu vehículo. Trabajamos con repuestos y componentes de calidad para brindar seguridad, durabilidad y confianza a nuestros clientes</p>
-          </section>
+    <div class="modal fade" id="loginModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-login">
+          <div class="modal-header border-0">
+            <h2 class="modal-title w-100 text-center">Iniciar Sesion</h2>
+            <button type="button" class="btn-close" data-bs-dimiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <form action="">
+              <div class="mb-3">
+                <label for="email" class="form-label">Usuario</label>
+                <input type="email" class="form-control" id="email" placeholder="Ingrese su Usuario" required>
+                <br>
+              <div class="mb-4">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="password" placeholder="Ingrese su Contraseña" required>
+              </div>  
+              <button type="submit" class="btn btn-login w-100">Ingresar</button>
+              <div class="d-flex justify-content-between mt-3">
+                <a href="#" class="link-login">¿Olvido Su Contraseña?</a>
+              </div>
+            </div>
+            </form>
+          </div>
         </div>
-    <br><br>
-
-        <div class="cita">
-           <section id="agendacita">
-             <h2>Agenda tu cita</h2>
-              <p>
-            contamos con una gran disponibilidad en el taller con una gran capacidad de mecanicos y una experiencia inolvidable
-              </p>
-             <h3>que esperas para agendar</h3>
-               <p>pide tu cita al numero +573000000000</p>
-               <p>o agenda a travez de este formulario</p>
-         <div class="formulario">
-             <h1>AGENDA YA </h1>
-               <label for="nombre">Nombres</label>
-                 <input type="text"> <br>
-               <label for="apellidos">Apellidos</label>
-                 <input type="text"> <br>
-               <label for="numero">Numero</label>
-                 <input type="number"> <br>
-               <label for="correo">Correo</label>
-                 <input type="email"> <br>
-               <label for="fecha">Seleccione una Fecha</label>
-                 <input type="datetime-local"> <br>
-               <label for="privacidad">Autoriza Tratamiento de datos</label>
-                 <input type="checkbox"><br>
-               <button>Solicitar</button>
-
-        </div>
-    </section>
+      </div>
     </div>
-        <footer>Taller de Betancourt-trimestre III-3315796-ADSO</footer>
+
+    <div class="modal fade" id="contactenosModal">
+    
+    </div>
+
+    <section></section>
+
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
