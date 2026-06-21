@@ -1,193 +1,99 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dancing+Script:wght@400..700&family=Oswald:wght@200..700&display=swap');
-
 *{
     margin: 0;
-    padding: 0%;
+    padding: 0;
     box-sizing: border-box;
+    font-family: sans-serif;
+
+}
+
+:root{
+    --moradoB: #0f0f12;
+    --moradoW:#18181f;
+    --morado: #6f42c1;
+    --letra: #8a8a9e;
+    --titulos: #d7ccff;
+    --border: #262633;
 }
 
 body{
     min-height: 100vh;
-    background: linear-gradient(to bottom,  #360d5d 0%,  #1c0833 40%, #030914 100%);
-    font-family: Bebas Neue;
-    background-size: cover ;
-    background-attachment: fixed;
-    color: aliceblue;
+}
+.navbar-Betancourt{
+    background-color: #0f0f12;
+    color: var(--letra);
+    padding: 10px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.005);
+    top: 0;
+    z-index: 1000;
+
 }
 
-header{
-    display: flex;
-    border-radius: 20px;
-    backdrop-filter: blur(15px);
-    background: rgba(255,255, 255, 0.1);
-    border: 1px solid rgba(255,255,255, 0.4);
-    box-shadow: 0 25px 45px rgba(0,0,0, 0.4);
-    justify-content: space-between; 
-    padding: 20px;
+.Nombre{
+    color: #8a8a9e;
 }
 
+.nav-item{
+    color: var(--letra);
+}
 
-.navegar{
+.logo{
+    width:105px;
+}
+
+.opcion-menu{
+    color: var(--letra);
+    font-weight: 700;
+    font-size: 29%;
     position: relative;
-    padding: 10px 20px;
-    background: rgba(141, 141, 141, 0.356);
-    border: 1px solid rgba(255,255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    box-shadow: #aac7ca;  
 }
 
-.navegar ul{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    height: 40px;
+.opcion-menu::after{
+    content: "";
+    width: 0;
+    height: 3px;
+    background-color: var(--letra);
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    transition: 0.3s ease;
 }
 
-.navegar ul li a{
-    color: #303030;
-    text-decoration: none;
-    font-size: 40px;
-    font-family: Bebas Neue;
-    padding: 8px;
-    transition: all 0.3s ease;
+.opcion-menu:hover{
+    color: var(--morado);
 }
 
-.navegar ul li a:hover{
-    background: rgba(255,255, 255, 0.1);
-    border-radius: 30px;
-    color: #ffffff;
+.opcion-menu:hover::after{
+    width: 100%;
 }
 
-.nosotros{
-    background: rgba(78, 78, 78, 0.411);
-    display: flex;  
-    text-align: left;
-    padding: 5px;
-    font-size: 30px;
-    flex-direction: column;
-    color: #888888;
-    border:ridge;
+.btn-login-nav{
+    background-color: var(--morado);
+    color: var(--letra);
     border-radius: 10px;
-    border-color: #2d185f;
+    padding-bottom: 8px 30px;
+    font-weight: 700;
 }
 
-aside img{
-    mix-blend-mode: multiply;
-    width: 550px;
-    height: 350px;
-    display: flex;
-    justify-self: flex-end;
-    flex-direction: row;
-    animation: moverAuto  1.0s ease-in-out forwards;
-}
-@keyframes moverAuto {
-  0% {
-    transform: translateX(0); 
-  }
-  100% {
-    transform: translateX(-150px); 
-  }
+.btn-login-nav:hover{
+    background-color: var(--letra);
+    color: var(--morado);
+    border-radius: 10px;
+    padding-bottom: 8px 30px;
+    font-weight: 700;
 }
 
-.Encuentranos{
-    display: flex;
-    background: rgba(255,255, 255, 0.1);
-    border-radius: 15px;
-    padding: 20px;
-    width: 100%;
+.btn-contactenos-nav{
+    background-color: var(--morado);
+    color: var(--letra);
+    border-radius: 10px;
+    padding-bottom: 8px 30px;
+    font-weight: 700;
 }
 
-.donde{
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start; 
-    width: 100%;
-}
-
-.texto {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    min-width: 200px;
-}
-.mapa {
-    display:flex;
-    justify-content: flex-end;
-    flex: 1;
-    margin-left: auto;
-}
-
-.mapa iframe {
-    width: 400px;
-    height: 300px;
-    border: none;
-}
-
-.productos{
-    display: flex;
-    background: rgba(255,255, 255, 0.1);
-    border-radius: 15px;
-    padding: 20px;
-    width: 100%;
-}
-
-.cita{
-    background: rgba(255,255, 255, 0.1);
-    border-radius: 15px;
-    padding: 20px;
-    width: 100%;
-}
-
-.formulario{
-    background: rgba(255,255, 255, 0.1);
-    border-radius: 15px;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px;
-    width: 100%;
-}
-
-label{
-    display: flex;
-    justify-content: center;
-    font-size: 20px;
-}
-
-input{
-    display: flex;
-    justify-self: center;
-    align-items: center;
-    border-radius: 8px;
-    background: rgba(0, 0, 0, 0.295);
-    box-shadow: 0 25px 45px rgba(0,0,0, 0.4);
-    border: none;
-    height: 30px;
-}
-
-    button{
-    display: flex;
-    justify-self: center;
-    align-items: center;
-    width: 120px;
-    height: 25px;
-    background-color: rgba(201, 198, 198, 0.342);
-    border: none;
-    border-radius: 20px;
-    font-family: Bebas Neue;
-    text-align: center;
-}
-
-footer{
-    display: flex;
-    background: rgba(68, 68, 68, 0.226);
-    border-radius: 15px;
-    justify-content: center;
-    align-items: center;
-    height: 40pxS;
-    width: auto;
+.btn-contactenos-nav:hover{
+    background-color: var(--letra);
+    color: var(--morado);
+    border-color: 10px;
+    padding-bottom: 8px 30px;
+    font-weight: 700;
 }
