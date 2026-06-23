@@ -18,13 +18,13 @@ body{
     --blaco: #f1f1f4;
 }
 
-.morado button{
+.morado a{
     text-align: center;
     color: #ffffff;
     width: 20%;
     width: 16%;
     font-size: 18px;
-    background-color: var(--morado2);
+    background-color: var(--morado1);
     border: 2px solid #f1f1f4;
     padding: 10px;
 }
