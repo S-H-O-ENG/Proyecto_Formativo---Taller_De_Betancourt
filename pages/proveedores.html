@@ -10,14 +10,21 @@
 
     <link rel="stylesheet" href="../css/proveedores.css">
     <script src="https://kit.fontawesome.com/a0994db117.js" crossorigin="Anonymous"></script>
+
+    <link href="https://cdn.datatables.net/v/dt/dt-2.3.8/datatables.min.css" rel="stylesheet" integrity="sha384-1BvCnyKidMPIGQGjvMn+w+90hHBhYJtF+R7os4NX2Abe7tSxWQadHRTSH5qb559A" crossorigin="anonymous">
+ 
+    <script src="https://cdn.datatables.net/v/dt/dt-2.3.8/datatables.min.js" integrity="sha384-kjkli48Tmhwhaghq0IIRm8gFmMdnihfu1ywAOyyGWYMsoZZi/6AX2fWzpsqahoFw" crossorigin="anonymous"></script>
+        <link href="https://cdn.datatables.net/2.3.2/css/dataTables.bootstrap5.css" rel="stylesheet">
+
+
 </head>
 <body>
     <div class="contenedor">
         <div class="morado">
             <button><i class="fa-solid fa-people-line"></i> Proveedores</button>
-            <button>Clasificacion</button>
-            <button>Factura y Pagos</button>
-            <button>Reportes</button>
+            <button><i class="fa-solid fa-clipboard-list"></i> Clasificacion</button>
+            <button><i class="fa-solid fa-file-invoice"></i> Factura y Pagos</button>
+            <button><i class="fa-solid fa-chart-area"></i> Reportes</button>
         </div>
         <br><br>
 
@@ -79,74 +86,95 @@
     </div>
     </div>
 
-<div class="bus">
-    <div class="table-responsive"> 
-        <div class="mb-3">
+<div class="container mt-5">
 
-            <input type="text" class="form-control" placeholder="Buscar proveedor">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Gestión de Proveedores</h3>
         </div>
 
-    <table class="buscr table table-bordered table-hover">
-    <thead>
-    <tr>
-        <th>Proveedor</th>
-        <th>Categoria</th>
-        <th>Estado</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>Nombre</td>
-        <td>Electronica</td>
-        <td class="a">Activo</td>
-    </tr>
+        <div class="card-body">
 
-    <tr>
-        <td>Nombre</td>
-        <td>Electronica</td>
-        <td class="a">Activo</td>
-    </tr>
+            <table id="tablaProveedores" class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Proveedor</th>
+                        <th>Teléfono</th>
+                        <th>Correo</th>
+                        <th>Ciudad</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
 
-    <tr>
-        <td>Nombre</td>
-        <td>Electronica</td>
-        <td class="a">Activo</td>
-    </tr>
+                <tbody>
+                    <tr>
+                        <td>001</td>
+                        <td>Distribuciones Andina SAS</td>
+                        <td>310 4567890</td>
+                        <td>contacto@andina.com</td>
+                        <td>Bogotá</td>
+                        <td><span class="badge bg-success">Activo</span></td>
+                    </tr>
 
-    <tr>
-        <td>Nombre</td>
-        <td>Electronica</td>
-        <td class="a">Activo</td>
-    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>Suministros Betancourth</td>
+                        <td>320 1234567</td>
+                        <td>ventas@betancourth.com</td>
+                        <td>Medellín</td>
+                        <td><span class="badge bg-success">Activo</span></td>
+                    </tr>
 
-    <tr>
-        <td>Nombre</td>
-        <td>Electronica</td>
-        <td class="a">Activo</td>
-    </tr>
+                    <tr>
+                        <td>003</td>
+                        <td>Repuestos Industriales SAS</td>
+                        <td>315 9876543</td>
+                        <td>info@repuestos.com</td>
+                        <td>Cali</td>
+                        <td><span class="badge bg-danger">Inactivo</span></td>
+                    </tr>
 
-    <tr>
-        <td>Nombre</td>
-        <td>Electronica</td>
-        <td class="a">Activo</td>
-    </tr>
+                    <tr>
+                        <td>004</td>
+                        <td>Ferretería Central</td>
+                        <td>301 4567890</td>
+                        <td>central@gmail.com</td>
+                        <td>Barranquilla</td>
+                        <td><span class="badge bg-success">Activo</span></td>
+                    </tr>
 
-    <tr>
-        <td>Nombre</td>
-        <td>Electronica</td>
-        <td class="a">Activo</td>
-    </tr>
-    </tbody>
-</table>
-</div>
+                    <tr>
+                        <td>005</td>
+                        <td>Materiales del Norte</td>
+                        <td>311 2345678</td>
+                        <td>materiales@norte.com</td>
+                        <td>Bucaramanga</td>
+                        <td><span class="badge bg-warning text-dark">Pendiente</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
 </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
+<script src="../js/proveedores.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.3.2/js/dataTables.bootstrap5.js"></script>
     
 </body>
 </html>

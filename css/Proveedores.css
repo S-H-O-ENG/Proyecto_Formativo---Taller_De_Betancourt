@@ -104,11 +104,16 @@ body{
     align-items: flex-start;
     padding: 2%;
 }
-.bus{
+.container{
     display: flex;
     flex: content;
     justify-content: flex-end;
     width: 80px;
+}
+
+.tablaProveedores {
+    width: 100%;
+    border-collapse: collapse;
 }
 
 table{
