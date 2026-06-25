@@ -6,13 +6,26 @@
 
 body{
     padding: 24px;
-    background-color: #0f0f12;
+    background: linear-gradient(135deg, #0f0f12 0%, #1a122c 50%, #251244 100%);
     color: #f1f1f4;
     font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.contenedor-principal{
+    width: 100%;
+    max-width: 900px;
 }
 
 .header{
     margin-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .header h2{
@@ -110,4 +123,18 @@ body{
 .btnLimpiar:hover{
     background-color: #262633;
     color: #fff;
+}
+
+.carro{
+    width: 150px;
+    height: 100px;
+    animation: moverAuto  2.0s ease-in-out infinite alternate;
+}
+@keyframes moverAuto {
+  0% {
+    transform: translateX(0); 
+  }
+  100% {
+    transform: translateX(-80px); 
+  }
 }
