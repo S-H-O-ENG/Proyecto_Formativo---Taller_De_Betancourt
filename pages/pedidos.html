@@ -1,63 +1,120 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/pedidos.css">
+    <link rel="icon" href="../img/logo.png">
     <title>Pedidos Taller De Betancourt</title>
 </head>
+
 <body>
-    <div class="Container">
-        <div class="head">
+    <header class="encabezado navbar navbar-expand-lg">
+        <div class="container-fluid ms-auto">
 
-            <img src="../img/logo.png" alt="Logo" class="logo">
-            <h1 class="titulo">Gestion de pedidos - Taller De Betancourt</h1>
+            <div class="izq">
+                <img src="../img/logo.png" alt="Logo" class="logo">
+                <a class="navbar-brand" href="#">Gestion de pedidos - Taller de Betancourt</a>
+            </div>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span></button>
+
+
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link active" aria-current="page" href="#">Pedidos</a>
+                    <a class="nav-link" href="#">Proveedores</a>
+                    <a class="nav-link" href="#">Clientes</a>
+                    <a class="nav-link" href="#">Inventario</a>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <div class="container">
+
+        <div class="formulario">
+            <div class="input-group">
+                <span class="input-group-text">Nombres y apellidos</span>
+                <input type="text" aria-label="First name" class="form-control">
+                <input type="text" aria-label="Last name" class="form-control">
+            </div>
+
+            <div class="rol">
+                <label for="">Seleccione su rol en el taller</label>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected disabled>Seleccione una opcion</option>
+                    <option value="1">Jefe del taller</option>
+                </select>
+            </div>
+
+            <div class="proveedor">
+                <label for="">Seleccione un proveedor </label>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected disabled>Seleccione una opcion</option>
+                    <option value="1">Proveedor 1</option>
+                    <option value="2">Proveedor 2</option>
+                    <option value="3">Proveedor 3</option>
+                </select>
+            </div>
+
+            <label for="range4" class="form-label">Cantidad de repuestos requerida</label>
+            <input type="range" class="form-range" min="0" max="100" value="50" id="range4">
+            <output for="range4" id="rangeValue" aria-hidden="true"></output>
+
+            <div class="importancia">
+                <label for="">Seleccione la importancia del pedido</label> <br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="alta" value="option1">
+                    <label class="form-check-label" for="inlineRadio1">Alta</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="media" value="option2">
+                    <label class="form-check-label" for="inlineRadio2">Media</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="baja" value="option2">
+                    <label class="form-check-label" for="inlineRadio2">Baja</label>
+                </div>
+            </div>
+
+            <div class="pagom">
+                <label for="">Seleccione un metodo de pago</label>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected disabled>Seleccione una opcion</option>
+                    <option value="transferencia">Transferencia</option>
+                    <option value="efectivo">Efectivo</option>
+                </select>
+            </div>
+
+            <button class="btn-enviar">Solicitar Pedido</button>
         </div>
 
-        <div class="body">
-            <label for="Nombre" id="nombre">Nombre/s</label>
-            <input type="text" name="" id="inputnombre" required placeholder="Ingrese sus nombres" > <br>
-            <label for="apellido">Apellido/s</label>
-            <input type="text" name="" id="inputapellido" required placeholder="Ingrese sus apellidos"><br>
 
-            <label for="rol" id="rol">Cargo</label>
-            <select name="" id="" class="rol" required>
-                <option value="" disabled selected>Seleccione una opcion</option>
-                <option value="">Jefe del taller</option>
-            </select><br>
-            
-            <label for="proveedor" id="proveedor">Proveedor</label>
-            <select name="" id="" class="proveedor" required>
-                <option value="" disabled selected>Seleccione un proveedor</option>
-                <option value="">Proveedor 1</option>
-                <option value="">Proveedor 2</option>
-                <option value="">Proveedor 3</option>
-                <option value="">Proveedor 4</option>
-                <option value="">Proveedor 5</option>
-            </select><br>
 
-            <label for="cantid">Ingrese la cantidad requerida</label>
-            <input type="number" name="cantidad" id="cantidad" class="cantidad" required placeholder="Ingrese la cantidad requerida"><br>
-
-            <label for="importancia">Importancia del pedido</label>
-            <select name="impor" id="impor" class="importancia">
-                <option value="" disabled selected>Seleccione una opcion </option>
-                <option value="baja">Baja</option>
-                <option value="media">Media</option>
-                <option value="alta">Alta</option>
-            </select><br>
-
-            <label for="metodo">Metodo de pago</label>
-            <select name="metodo" id="metodo" class="metodo">
-                <option value="" selected disabled>Seleccione un    a opcion</option>
-                <option value="transferencia">Transferencia</option>
-                <option value="efectivo">Efectivo</option>
-            </select><br>
-        </div>
-
-        <div class="final">
-            <button class="rpedido">Realizar Pedido</button>
-        </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script>
+        // This is an example script, please modify as needed
+        const rangeInput = document.getElementById('range4');
+        const rangeOutput = document.getElementById('rangeValue');
+
+        // Set initial value
+        rangeOutput.textContent = rangeInput.value;
+
+        rangeInput.addEventListener('input', function () {
+            rangeOutput.textContent = this.value;
+        });
+    </script>
 </body>
+
 </html>
