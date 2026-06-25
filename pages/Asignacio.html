@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/CSS/stilo.css">
+    <title>Asignar Servicios</title>
+</head>
+<body>
+
+    <div class="encabezado">
+        <a href="../index.html">Inicio</a>
+
+    </div>
+
+    <div class="modulo">
+        <img src="/IMG/logotaller.jpeg" alt="">
+        <div class="textmodulo">
+        <h2>ASIGNAR SERVICIOS</h2>
+        <p>Gestión y asignación de trabajos a empleados</p>
+        </div>
+    </div>
+
+    <div class="contenedor">
+
+        <div class="panel-izquierdo">
+
+           <div class="card">
+    <h3>Servicios Pendientes</h3>
+    <span id="pendientes">0</span>
+</div>
+
+<div class="card">
+    <h3>Asignados</h3>
+    <span id="asignados">0</span>
+</div>
+
+<div class="card">
+    <h3>Finalizados</h3>
+    <span id="finalizados">0</span>
+</div>
+
+        </div>
+
+        <div class="panel-derecho">
+
+            <div class="formulario">
+                
+                <input type="text" id="servicio" placeholder="Nombre del servicio">
+
+<input type="text" id="descripcion" placeholder="Descripción del servicio">
+
+<select id="trabajador">
+    <option value="">Seleccionar trabajador</option>
+    <option>trabajador 1</option>
+    <option>trabajador 2</option>
+    <option>trabajador 3</option>
+</select>
+
+<input type="date" id="fecha">
+
+<button class="asignar" onclick="asignarServicio()">
+    Asignar Servicio
+</button>
+            </div>
+<div class="tabla-responsive">
+            <table>
+                <thead>
+    <tr>
+        <th>Servicio</th>
+        <th>Descripción</th>
+        <th>Trabajador</th>
+        <th>Fecha</th>
+        <th>Estado</th>
+    </tr>
+</thead>
+<tbody id="tablaServicios">
+    
+</tbody>
+            </table>
+            </div>
+
+        </div>
+
+    </div>
+<script src="/JS/logica.js"></script>
+</body>
+</html>
