@@ -1,67 +1,305 @@
+:root {
+    --oscuro-fondo: #0f0f12;
+    --morado-principal: #5f1ed7;
+    --morado-clarito: #6f42c1;
+    --blanco-suave: #f1f1f4;
+    --gris-texto: #a3a3b8;
+    --fuente-titulos: 'Bebas Neue', sans-serif;
+    --fuente-textos: 'Lato', sans-serif;
+}
+
 *{
-    margin: 0%;
-    padding: 0%;
-    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body{
-    background-color: #0f0f12;
-    color: #f1f1f4;
+    font-family: 'lato', sans-serif;
+    background-color: var(--oscuro-fondo);
+    color: var(--gris-texto);
 }
 
-header{
-    text-align: center;
-}
 
-.botones{
+.dashboard-layout{
     display: flex;
-    justify-content: flex-end;
-    gap: 10px;
+    min-height: 100vh;
 }
 
-button{
-    font-family: sans-serif;
-    color: #f1f1f4;
-    background-color: #1f1f30;
-    border-radius: 0%;
-    border: solid;
-    border-color: #18181f;
-    height: 35px;
+.sidebar{
+    width: 270px;
+    background-color: #14141a;
+    border-right: 1px solid rgba(0,0,0,.08);
+    padding: 30px 30px;
+}
+
+.sidebar-logo{
+    text-align: center;
+    margin-bottom: 38px;
+}
+
+.sidebar-logo img{
+    width: 85px;
+}
+
+.sidebar-logo h2{
+    color: var(--gris-texto);
+    font-size: 38px;
+    font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.sidebar-logo p{
+    color: var(--gris-texto);
+    font-size: 16px;
 }
 
 
-.contenedor{
-    background-color: #18181f;
-    border: 1px solid #262633;
-    border-radius: 8px;
-    justify-self: space-between;   
-    margin: 10px;
+.sidebar-menu{
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.sidebar-menu a{
+    text-decoration: none;
+    color: var(--blanco-suave);
+    padding: 14px 18px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+    transition: .3s;
+}
+
+.sidebar-menu a:hover{
+    background-color: #7e4add;
+    color: var(--oscuro-fondo);
+}
+
+.dashboard-main{
+    flex: 1;
+    padding: 35px;
+}
+
+.topbar{
+   background-color: #14141a;
+    border-radius: 24px;
+    padding: 24px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.06);
+    border-top: 2px solid var(--morado-clarito);      
+}
+
+.topbar h1{
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.topbar p{
+    margin: 0;
+    color: var(--gris-texto);
+}
+
+.inventario-info{
+    color: var(--blanco-suave);
+    font-size: 34px;
+}
+
+.card-resumen{
+    background-color:#14141a ;
+    border-radius: 24px;
+    min-height: 125px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.06);
+    transition: .3s;
+    border-left: 3px solid var(--morado-clarito);
+ 
+}
+
+span{
+    color: var(--blanco-suave);
+    font-weight: 700;
+    font-size: 40px;
+}
+
+.card-resumen:hover{
+    background-color: #191931;
+    color: #a3a3b8;
+    box-shadow: 0 14px 30px rgba(0,0,0,.10);
+}
+
+.card-resumen i{
+    color: var(--gris-texto);
+    font-size: 40px;
+}
+
+.card-resumen p{
+    margin: 0;
+    color: var(--gris-texto);
+}
+
+.panel-table{
+    background-color: #14141a;
+    display: flex;
+    flex-direction: row;
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.06);
+    border-top: 2px solid var(--morado-clarito);
+    width: 100%;
+}
+
+.cabecera-tabla{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.cabecera-tabla h2{
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.cabecera-tabla p{
+    color: var(--gris-texto);
+    margin: 0;
+    width: 100%;
 }
 
 
 table{
-    margin: 10px;
-    width: 98%;
-    border-collapse: separate;
-    border-spacing: 0px 0px;
-    background-color: #18181f;
-    border: 1px solid #262633;
-    border-radius: 8px;
+    margin-top: 15px;
 }
 
-.tablacontenido {
-    height: 40px;
-}
-td{
-    background-color: #0f0f12;
-    border: 1px solid #262633;
+.table thead th{
+    background-color: #191931 ;
+    color: var(--gris-texto);
     text-align: center;
+    vertical-align: middle;
 }
 
-th{
-    background-color: #0f0f12;
-    border: 1px solid #262633;
+.table td{
+    text-align: center;
+    vertical-align: middle;
 }
-a{
-    
+
+.table tbody tr:hover{
+    background-color: #0f0f12;
+}
+
+.btn-inventario{
+    width: 250px;
+    height: 40px;
+    font-size: 30px;
+    background-color: var(--morado-principal);
+    color: var(--blanco-suave);
+    border-radius: 10px;
+    font-weight: 300vh;
+    border-top: 3px solid #191931;
+}
+
+.btn-inventario:hover{
+    background-color: #191931;
+    color: var(--gris-texto);
+}
+
+.btn-solicitar{
+    background-color: var(--morado-principal);
+    color: var(--blanco-suave);
+    border-radius: 15px;
+    font-weight: 500vh;
+    border-top: 3px solid #191931;
+}
+
+.btn-solicitar:hover{
+    background-color: #191931;
+    color: var(--gris-texto);
+}
+
+.panel-table{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.cabecera-tabla{
+    width: 100%;
+}
+.tabla-inventario td{
+    width: 25%;
+    background-color: #14141a;
+    padding: 10px;
+}
+.tabla-inventario th{
+    width: 25%;
+    background-color: #191931;
+    color: white;
+    padding: 10px;
+}
+
+
+
+@media screen and (max-width: 992px) {
+
+
+    .dashboard-layout {
+        flex-direction: column;
+    }
+
+
+    .sidebar {
+        width: 100%;
+            box-shadow: 4px 0 18px rgba(0,0,0,.04);
+    }
+
+
+    .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+
+    .cabecera-tabla {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+
+
+    .dashboard-main {
+        padding: 20px;
+    }
+
+
+    .topbar h1 {
+        font-size: 34px;
+    }
+
+
+    .cabecera-tabla h2 {
+        font-size: 32px;
+    }
+
+
+    .card-resumen h3 {
+        font-size: 30px;
+    }
 }

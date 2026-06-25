@@ -5,76 +5,253 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/inventario.css">
     <link rel="stylesheet" href="/pages/">
+    <linkhref="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"/>
+    <scriptsrc="https://kit.fontawesome.com/a0994db117.js"
+    crossorigin="anonymous"></script>
     <title>inventario</title>
 </head>
 <body>
-    <header>
-        <H1>GESTION DE INVENTARIOS</H1>
-        <div class="botones">
-            <a href="/pages/clientes.html"><button>Clientes</button></a>
-            <a href="/pages/pedidos.html"><button>Pedidos</button></a>
-            <a href="/pages/proveedores.html"><button>provedores</button></a>
-        </div>    
-    </header>
 
-    <div class="contenedor">
-        <table class="tablaprincipal">
-            <thead>
-            <th>Nombre</th> 
-            <th>ID</th> 
-            <th>Cantidad</th> 
-            <th>Estado</th>
-            </thead>      
+    <div class="dashboard-layout">
+    
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <img src="../img/logo.png" alt="">
+                <h2> Taller De Betancourt</h2>
+
+                <p>Gestion De inventarios</p>
+            </div>
+
+            <nav class="sidebar-menu">
+                
+                <a href="/pages/proveedores.html">
+                    <i class="fa-solid fa-users"></i>
+                    Proveedores
+                </a>
+
+                <a href="/pages/clientes.html">
+                    <i class="fa-solid"></i>
+                    Clientes
+                </a>
+
+                <a href="/pages/pedidos.html">
+                <i class="fa-solid"></i>
+                pedidos
+                </a>
+
+                <a href="../index.html">
+                <i class="fa-solid"></i>
+                salir
+                </a>
+            </nav>    
+        </aside>
     </div>
-    <tbody>
-            <tr class="tablacontenido"></tr>
-            <tr>
-                <td>Bujias</td>
-                <td>0001</td>
-                <td>41</td>
-                    <div class="estado">
-                <th>en stock</th>
-                    </div>
-            </tr>        
+    
+    <main class="dashboard-main">
 
-            <tr>
-                <td>Frenos</td>
-                <td>0002</td>
-                <td>30</td>
-                    <div class="estado">
-                <th>stock bajo</th>
-                    </div>
-            </tr>
+        <header class="topbar">
+            <div>
+                
+                <p>Bienvenido</p>
+            </div>
 
-            <tr>
-                <td>Control Para Llaves</td>
-                <td>0003</td>
-                <td>7</td>
-                    <div class="estado">
-                <th>alerta</th>
-                    </div>
-            </tr>
+            <div class="inventario-info">
+                <i class="fa-solid"></i>
 
-            <tr>
-                <td>limpia parabrisas</td>
-                <td>0004</td>
-                <td>55</td>
-                    <div class="estado">
-                <th>en stock</th>
-                    </div>
-            </tr>
+                <span>Gestion Inventario</span>
+            </div>
+        </header>
 
-            <tr>
-                <td>aceite</td>
-                <td>0005</td>
-                <td>44</td>
-                    <div class="estado">
-                <th>en stock</th>
-                    </div>         
-            </tr> 
-        </tbody>
-    </table> 
-    </div>
-    <a href=""></a>
+        <section class="row g-4 mb-4">
+            <div class="col-lg-4" col-md-6>
+                <div class="card-resumen">
+                    <i class="fa-solid fa-users"></i>
+
+                  <div>
+                    <h3>10</h3>
+                    <p>Productos registrados</p>
+                 </div>    
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4">
+                <div class="card-resumen">
+                    <i class="fa-solid"></i>
+
+                    <div>
+                        <h3>8</h3>
+                        <p>Productos activos</p>
+                    </div>
+                </div>
+            </div>
+            
+
+            
+            <div class="col-lg-4 col-md-4">
+                <div class="card-resumen">
+                    <i class="fa-solid"></i>
+
+                    <div>
+                        <h3>4</h3>
+                        <p>Productos Con bajo Stock</p>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="col-lg-4 col-md-4">
+                <div class="card-resumen">
+                    <i class="fa-solid"></i>
+
+                    <div>
+                        <h3>2</h3>
+                        <p>Productos Sin Stock</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel-table">
+            <div class="cabecera-tabla">
+                <div><span>Productos</span>
+                </div>
+            <button class="btn btn-inventario" data-bs-toggle="modal" data-bs-target="#modalProducto">
+                <i class="fa-solid"></i>
+                Agregar
+            </button>
+             </div>
+        </section>
+
+        <div class="tabla-inventario">
+            <table id="tablaProductos" class="table-aling-middle">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre Producto</th>
+                        <th>Cantidad</th>
+                        <th>Estado</th>
+                        <th>Solicitar</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>0001</td>
+                        <td>Bujias</td>
+                        <td>6</td>
+                        <td>Bajo Stock</td>
+                        <td>
+                            <button class="btn btn-sm btn-solicitar">
+                                <i class="fa-solid"></i>Solicitar
+                            </button>
+                        </td>
+                    </tr>
+
+                     <tr>
+                        <td>0001</td>
+                        <td>Bujias</td>
+                        <td>6</td>
+                        <td>Bajo Stock</td>
+                        <td>
+                            <button class="btn btn-sm btn-solicitar">
+                                <i class="fa-solid"></i>Solicitar
+                            </button>
+                        </td>
+                    </tr>
+
+                     <tr>
+                        <td>0001</td>
+                        <td>Bujias</td>
+                        <td>6</td>
+                        <td>Bajo Stock</td>
+                        <td>
+                            <button class="btn btn-sm btn-solicitar">
+                                <i class="fa-solid"></i>Solicitar
+                            </button>
+                        </td>
+                    </tr>
+
+                     <tr>
+                        <td>0001</td>
+                        <td>Bujias</td>
+                        <td>6</td>
+                        <td>Bajo Stock</td>
+                        <td>
+                            <button class="btn btn-sm btn-solicitar">
+                                <i class="fa-solid"></i>Solicitar
+                            </button>
+                        </td>
+                    </tr>
+
+                     <tr>
+                        <td>0001</td>
+                        <td>Bujias</td>
+                        <td>6</td>
+                        <td>Bajo Stock</td>
+                        <td>
+                            <button class="btn btn-sm btn-solicitar">
+                                <i class="fa-solid"></i>Solicitar
+                            </button>
+                        </td>
+                    </tr>
+
+                     <tr>
+                        <td>0001</td>
+                        <td>Bujias</td>
+                        <td>6</td>
+                        <td>Bajo Stock</td>
+                        <td>
+                            <button class="btn btn-sm btn-solicitar">
+                                <i class="fa-solid"></i>Solicitar
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="modal fade" id="modalProducto" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content modal-login">
+                    <div class="modal-header" border-0>
+                        <h2 class="modal-tittle w-100 text-center">Nuevo Producto</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" id="formProducto">
+                            <input type="number" class="form-control mb-3" placeholder="ID" required>
+                            <input type="text" class="form-control mb-3" placeholder="Nombre" minlength="3" maxlength="20" required>
+                            <input type="email" class="form-control mb-3" placeholder="Ingrese Su Usuario" required>
+
+                            <select name="" id="" class="form-select mb-4" required>
+                                <option value="">Seleccione su Cargo</option>
+                                <option value="Jefe">Jefe De Taller</option>
+                                <option value="Mecanico">Mecanico</option>
+                                <option value="Asistente">Asistente General</option>
+                                <option value="Auxiliar">Auxiliar Servicio Al Cliente</option>
+                            </select>
+
+                            <button type="submit" class="btn btn-guardad w-100">
+                                Guardar Producto
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+  
+    <script src="https://code.google.com/p/jquery-ui/"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+   
+
 </body>
 </html>

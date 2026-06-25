@@ -1,82 +1,144 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller de Betancourt</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="shortcut icon" href="/img/icono.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/index.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <title>index</title>
 </head>
 <body>
+  
+    <header class="header-principal navbar navbar-expand-lg">
+        <div class="container-fluid container-header">
+            
+            <div class="logo-marca-wrapper d-flex align-items-center">
+                <img src="/img/logo.png" alt="Logo Taller" class="logo-header me-2">
+                <h1 class="marca m-0">TALLER DE BETANCOURT</h1>
+            </div>
+            
+            <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <nav class="collapse navbar-collapse navegar" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#Nosotros">Sobre Nosotros</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#donde">Encuéntranos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#nuestrosProductos">Productos</a></li>
+                    <li class="nav-item"><a class="nav-link btn-cita-nav" href="#agendacita">Agenda tu Cita</a></li>
+                
+                    <li class="nav-item">
+                            <button class="btn btn-login-nav" data-bs-toggle="modal" data-bs-target="#loginModal">Login
+                            </button>
+                    </li>
+                </ul>
+            </nav>
 
-    <header>
-
-      <nav class="navbar navbar-expand-lg navbar-Betancourt">
-        <div class="container">
-          <a href="#" class="navbar-brand d-flex align-items-lg-center gap-2">
-            <img src="/img/logo.png" alt="logo taller" class="logo">
-            <span class="Nombre">TALLER DE BETANCOURT</span>
-          </a>
-
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#index">
-          <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="index" >
-            <ul class="navbar-nav ms-auto aling-items-lg-center gap-3">
-              <li class="nav-item"><a class="nav-link opcion-menu" href="#">INICIO</a></li>
-              <li class="nav-item"><a class="nav-link opcion-menu" href="#">SERVICIOS</a></li>
-              <li class="nav-item"><a class="nav-link opcion-menu" href="#">NOSOTROS</a></li>
-              
-              <li class="nav-item">
-                <button class="btn-login-nav" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-              </li>
-              
-              <li class="nav-item">
-                <button class="btn-contactenos-nav" data-bs-toggle="modal" data-bs-target="#contactenosModal">Contactenos</button>
-              </li>  
-            </ul>
-
-          </div>
         </div>
-      </nav>
+
     </header>
 
-    <div class="modal fade" id="loginModal" tabindex="-1">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content modal-login">
-          <div class="modal-header border-0">
-            <h2 class="modal-title w-100 text-center">Iniciar Sesion</h2>
-            <button type="button" class="btn-close" data-bs-dimiss="modal"></button>
-          </div>
-          <div class="modal-body">
-            <form action="">
-              <div class="mb-3">
-                <label for="email" class="form-label">Usuario</label>
-                <input type="email" class="form-control" id="email" placeholder="Ingrese su Usuario" required>
-                <br>
-              <div class="mb-4">
-                <label for="password" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="password" placeholder="Ingrese su Contraseña" required>
-              </div>  
-              <button type="submit" class="btn btn-login w-100">Ingresar</button>
-              <div class="d-flex justify-content-between mt-3">
-                <a href="#" class="link-login">¿Olvido Su Contraseña?</a>
-              </div>
+      <div class="modal fade" id="loginModal" tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered">
+             <div class="modal-content modal-login">
+                  <div class="modal-header border-0">
+                    <h2 class="modal-title w-100 text-center">Iniciar Sesión</h2>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+                <div class="modal-body">
+                    <form action="">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Correo Electrónico:</label>
+                            <input type="email" class="form-control" id="email" placeholder="Ingresa tu correo"
+                                required>
+                        </div>
+
+
+                        <div class="mb-4">
+                            <label for="password" class="form-label">Contraseña:</label>
+                            <input type="password" class="form-control" id="password"
+                                placeholder="Ingresa tu contraseña" required>
+                        </div>
+                        <button type="submit" class="btn btn-login btn-ingresar w-100">Ingresar</button>
+
+
+                        <div class="d-flex justify-content-between mt-3">
+                            <a href="#" class="link-login">¿Olvidaste tu contraseña?</a>
+                        </div>
+                    </form>
+                </div>
+
+
             </div>
-            </form>
-          </div>
         </div>
-      </div>
     </div>
 
-    <div class="modal fade" id="contactenosModal">
-    
-    </div>
+    <section class="banner-taller text-center d-flex flex-column justify-content-center align-items-center">
+        <img src="/img/suprs.png" alt="supra" class="carro-animado">
+        <h1>Potencia y Rendimiento</h1>
+        <p>Tu vehículo en manos de verdaderos profesionales</p>
+    </section>
 
-    <section>a</section>
+    <main class="container my-5 contenido-principal">
+        
+        <section class="seccion-contenedor p-4 mb-5 text-center" id="Nosotros" style="background: rgba(24, 24, 31, 0.6); border-radius: 8px;">
+            <h2>¿Quiénes somos?</h2>
+            <p class="mx-auto mt-3 text-secondary" style="max-width: 800px; font-family: 'Lato', sans-serif; line-height: 1.6;">
+                Somos un taller automotriz comprometido con la excelencia mecánica. Contamos con tecnología de vanguardia y un equipo de técnicos altamente calificados para ofrecerte soluciones confiables y seguras.
+            </p>
+        </section>
 
+        <section class="seccion-contenedor p-4 mb-5 text-center" id="donde" style="background: rgba(24, 24, 31, 0.6); border-radius: 8px;">
+            <h2 class="mb-4">Encuéntranos</h2>
+            <div class="ratio ratio-21x9 mx-auto" style="max-width: 1000px; border-radius: 8px; overflow: hidden;">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.974443187212!2d-74.093416!3d4.60001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNC淡MzYnMDAuMCJOIDc0wrA1NSczNi4zIlc!5e0!3m2!1ses!2sco!4v1700000000000!5m2!1ses!2sco" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </section>
 
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+        <section class="seccion-contenedor p-4 mb-5" id="agendacita" style="background: rgba(24, 24, 31, 0.6); border-radius: 8px;">
+            <h2 class="text-center mb-4">Agenda tu Cita</h2>
+            
+            <form action="#" method="POST" class="mx-auto" style="max-width: 600px;">
+                <div class="mb-3">
+                    <label for="nombreCita" class="form-label text-secondary">Nombre Completo:</label>
+                    <input type="text" id="nombreCita" class="form-control bg-dark text-white border-secondary" placeholder="Ingrese su nombre" required>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        <label for="telefonoCita" class="form-label text-secondary">Teléfono de Contacto:</label>
+                        <input type="tel" id="telefonoCita" class="form-control bg-dark text-white border-secondary" placeholder="Ingrese numero telefonico" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="fechaCita" class="form-label text-secondary">Fecha Solicitada:</label>
+                        <input type="date" id="fechaCita" class="form-control bg-dark text-white border-secondary" required>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="motivoCita" class="form-label text-secondary">Motivo del Servicio / Falla del Vehículo:</label>
+                    <textarea id="motivoCita" class="form-control bg-dark text-white border-secondary" rows="4" placeholder="Ej: Cambio de aceite, ruido en la suspensión..." required></textarea>
+                </div>
+                
+                <div class="text-center">
+                    <button type="submit" class="btn px-5 py-2 text-white border-0" style="background-color: #5f1ed7;">Enviar Solicitud</button>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
