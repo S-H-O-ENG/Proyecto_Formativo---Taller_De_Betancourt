@@ -13,7 +13,15 @@ a{
     cursor: pointer;
     
 }
-
+button{
+    border: 1px solid white;
+    background: #5f1ed7;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    
+}
 .encabezado{
     display: flex;
     justify-content: center;
