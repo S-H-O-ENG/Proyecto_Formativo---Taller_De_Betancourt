@@ -1,10 +1,32 @@
 body{
-    background-color: #0f0f12;
+    background-color: var(--oscuro-fondo);
     color: white;
     margin: 0;
     padding: 20px;
 }
 
+:root {
+    --oscuro-fondo: #0f0f12;
+    --morado-principal: #5f1ed7;
+    --morado-clarito: #6f42c1;
+    --blanco-suave: #f1f1f4;
+    --gris-texto: #a3a3b8;
+    --fuente-titulos: 'Bebas Neue', sans-serif;
+    --fuente-textos: 'Lato', sans-serif;
+}
+
+h1{
+    color: var(--gris-texto);
+    font-size: 50px;
+    text-align: center;
+    font-family: var(--fuente-titulos);
+}
+
+p{
+    font-size: 20px;
+    color: var(--blanco-suave);
+    font-family: var(--fuente-textos);
+}
 
 .top-bar{
     margin-bottom: 30px;
@@ -27,7 +49,7 @@ body{
 
 .resumen-card{
     background-color: #12121a;
-    border: 2px solid #5f1ed7;
+    border: 2px solid var(--morado-clarito);
     border-radius: 15px;
     padding: 20px;
     text-align: center;
@@ -37,14 +59,21 @@ body{
     color: #6f42c1;
 }
 
-.tabla{
+#tablaEvaluaciones{
     background-color: #12121a;
+    color: white;
+    border: 4px solid var(--oscuro-fondo);
+}
+
+#tablaEvaluaciones th{
+    background-color: var(--morado-principal);
     color: white;
 }
 
-.tabla th{
-    background-color: #5f1ed7;
+#tablaEvaluaciones td{
+    background-color: var(--morado-principal);
     color: white;
+    border-color: var(--oscuro-fondo);
 }
 
 .progress{
@@ -65,4 +94,8 @@ body{
     background-color: #0f0f12;
     min-height: auto;
     padding: 20px;
+}
+
+#tablaEvaluaciones button{
+    background-color: var(--gris-texto);
 }
