@@ -24,7 +24,7 @@ if(email === 'Jefe@tallerbetancourt.com' && password === '12345'){
         text: 'Bienvenido Jefe',
         confirmButtonColor: '#5f1ed7'
     }).then(() =>{
-        window.location.href='../pages/proveedores.html';
+        window.location.href='./pages/proveedores.html';
     });
  
 }else if(email==='mecanico@tallerbetancourt.com' && password === '123456'){
@@ -34,7 +34,7 @@ if(email === 'Jefe@tallerbetancourt.com' && password === '12345'){
         text: 'Bienvenido Mecanico',
         confirmButtonColor: '#5f1ed7'
     }).then(() =>{
-    window.location.href='../pages/inventario.html';})
+    window.location.href='./pages/inventario.html';})
 
     }else if(email==='asistente@tallerbetancourt.com' && password === '12345'){
     Swal.fire({
@@ -43,7 +43,7 @@ if(email === 'Jefe@tallerbetancourt.com' && password === '12345'){
         text: 'Bienvenido Asistente',
         confirmButtonColor: '#5f1ed7'
     }).then(() =>{
-    window.location.href='../pages/clientes.html';})
+    window.location.href='./pages/clientes.html';})
 
     }else if(email==='auxiliar@tallerbetancourt.com' && password === '12345'){
     Swal.fire({
@@ -52,7 +52,7 @@ if(email === 'Jefe@tallerbetancourt.com' && password === '12345'){
         text: 'Bienvenido Auxiliar',
         confirmButtonColor: '#5f1ed7'
     }).then(() =>{
-    window.location.href='../pages/pedidos.html';})
+    window.location.href='./pages/pedidos.html';})
 
 }else if(email==='Trabajador@tallerbetancourt.com' && password === '98765'){
     Swal.fire({
@@ -61,7 +61,7 @@ if(email === 'Jefe@tallerbetancourt.com' && password === '12345'){
         text: 'Bienvenido Auxiliar',
         confirmButtonColor: '#5f1ed7'
     }).then(() =>{
-    window.location.href='../pages/trabajador.html';})
+    window.location.href='./pages/trabajador.html';})
 
 }
 else{

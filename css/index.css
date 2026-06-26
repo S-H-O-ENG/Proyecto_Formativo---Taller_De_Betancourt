@@ -130,9 +130,7 @@ body {
     padding: 6px 10px;
 }
 
-.custom-toggler .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(241, 241, 244, 0.95)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-}
+
 
 .banner-taller {
     min-height: 450px; 
@@ -246,7 +244,8 @@ footer {
 }
 
 .modal-login{
-    background-image: url(/img/background_login.jpg);
+    background-image: url(../img/background_login.jpg
+    );
     color: #F1EAFF;
 }
 
@@ -256,6 +255,7 @@ footer {
 
 .modal-login button{
     background-color: #ff005577;
+    color: white;
 }
 
 .link-login{
