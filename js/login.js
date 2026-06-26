@@ -27,7 +27,7 @@ if(email === 'Jefe@tallerbetancourt.com' && password === '12345'){
         window.location.href='../pages/proveedores.html';
     });
  
-}else if(email==='mecanico@tallerbetancourt.com' && password === '12345'){
+}else if(email==='mecanico@tallerbetancourt.com' && password === '123456'){
     Swal.fire({
         icon:'success',
         title:'Inicio Exitoso',
