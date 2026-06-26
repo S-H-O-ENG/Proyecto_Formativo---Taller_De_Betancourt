@@ -14,25 +14,26 @@
 
     <div class="resumen-card">
         <p>Por pagar</p>
-        <h2>$__________</h2>
+        <h2>$0</h2>
     </div>
 
     <div class="resumen-card">
         <p>Pagadas</p>
-        <h2 style="color:#4ade80">$_______</h2>
+        <h2 style="color:#4ade80">$0</h2>
     </div>
 
     <div class="resumen-card">
         <p>Total facturas</p>
-        <h2>___</h2>
+        <h2>0</h2>
     </div>
 
 </div>
 
 <div class="top-bar">
     <h3>Registro de facturas y pagos</h3>
-    <button class="btn">+ Registrar factura</button>
+    <button class="btn" id="abrirModal">+ Registrar factura</button>
 </div>
+
 
 <div class="table-responsive mt-4">
 
@@ -45,7 +46,6 @@
                 <th>Orden</th>
                 <th>Fecha</th>
                 <th>Monto</th>
-                <th>Verificación</th>
                 <th>Pago</th>
                 <th>Acciones</th>
             </tr>
@@ -53,48 +53,47 @@
 
         <tbody>
 
-            <tr>
-                <td>FAC-0581</td>
-                <td>TechCore Components</td>
-                <td>OC-2399</td>
-                <td>2026-06-09</td>
-                <td>$4.200</td>
-                <td><span class="badge bg-success">Verificada</span></td>
-                <td><span class="badge bg-success">Pagada</span></td>
-                <td>👁</td>
-            </tr>
-
-            <tr>
-                <td>FAC-0580</td>
-                <td>Nordic Logistics AB</td>
-                <td>OC-2398</td>
-                <td>2026-06-08</td>
-                <td>$3.800</td>
-                <td><span class="badge bg-success">Verificada</span></td>
-                <td><span class="badge bg-warning text-dark">Pendiente</span></td>
-                <td>
-                    <button class="btn btn-primary btn-sm">
-                        Registrar pago
-                    </button>
-                </td>
-            </tr>
-
-            <tr>
-                <td>FAC-0579</td>
-                <td>Textiles Orient</td>
-                <td>OC-2397</td>
-                <td>2026-06-06</td>
-                <td>$11.500</td>
-                <td><span class="badge bg-warning text-dark">Pendiente</span></td>
-                <td><span class="badge bg-warning text-dark">Pendiente</span></td>
-                <td>👁</td>
-            </tr>
+            
 
         </tbody>
 
     </table>
 
 </div>
+
+<div id="modalFactura" class="modal">
+
+    <div class="contenido-modal">
+
+        <span id="cerrar">&times;</span>
+
+        <h2>Registrar Factura</h2>
+
+        <form id="formFactura">
+
+            <input type="text" id="numero" placeholder="Número de factura" required>
+
+            <input type="text" id="proveedor" placeholder="Proveedor" required>
+
+            <input type="text" id="orden" placeholder="Orden de compra" required>
+
+            <input type="date" id="fecha" required>
+
+            <input type="number" id="monto" placeholder="Monto" required>
+
+            <button type="submit">
+                Guardar Factura
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<script src="../js/Pro_Facturas.js"></script>
 
 </body>
 </html>
