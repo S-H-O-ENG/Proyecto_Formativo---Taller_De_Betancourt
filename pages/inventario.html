@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"/>
     <link rel="stylesheet" href="/css/inventario.css">
     <link rel="stylesheet" href="/pages/">
-    <linkhref="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    rel="stylesheet"/>
-    <scriptsrc="https://kit.fontawesome.com/a0994db117.js"
+    <script src="https://kit.fontawesome.com/a0994db117.js"
     crossorigin="anonymous"></script>
     <title>inventario</title>
 </head>
@@ -15,38 +15,38 @@
 
     <div class="dashboard-layout">
     
-        <aside class="sidebar">
+        <aside class="sidebar offcanvas offcanvas-start show" tabindex="-1" id="sidebarMenu">
+            
             <div class="sidebar-logo">
                 <img src="../img/logo.png" alt="">
                 <h2> Taller De Betancourt</h2>
 
                 <p>Gestion De inventarios</p>
             </div>
-
             <nav class="sidebar-menu">
                 
                 <a href="/pages/proveedores.html">
-                    <i class="fa-solid fa-users"></i>
+                    <i class="fa-solid fa-truck"></i>
                     Proveedores
                 </a>
 
                 <a href="/pages/clientes.html">
-                    <i class="fa-solid"></i>
+                    <i class="fa-regular fa-user"></i>
                     Clientes
                 </a>
 
                 <a href="/pages/pedidos.html">
-                <i class="fa-solid"></i>
+                <i class="fa-solid fa-semibold fa-clipboard-list"></i>
                 pedidos
                 </a>
 
                 <a href="../index.html">
-                <i class="fa-solid"></i>
-                salir
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    salir
                 </a>
             </nav>    
         </aside>
-    </div>
+    
     
     <main class="dashboard-main">
 
@@ -57,16 +57,16 @@
             </div>
 
             <div class="inventario-info">
-                <i class="fa-solid"></i>
+                <i class="fa-solid fa-boxes-stacked"></i>
 
                 <span>Gestion Inventario</span>
             </div>
         </header>
 
         <section class="row g-4 mb-4">
-            <div class="col-lg-4" col-md-6>
+            <div class="col-lg-4 col-md-6">
                 <div class="card-resumen">
-                    <i class="fa-solid fa-users"></i>
+                    <i class="fa-solid fa-boxes-stacked"></i>
 
                   <div>
                     <h3>10</h3>
@@ -77,8 +77,7 @@
 
             <div class="col-lg-4 col-md-4">
                 <div class="card-resumen">
-                    <i class="fa-solid"></i>
-
+                    <i class="fa-solid fa-check-to-slot"></i>
                     <div>
                         <h3>8</h3>
                         <p>Productos activos</p>
@@ -90,7 +89,7 @@
             
             <div class="col-lg-4 col-md-4">
                 <div class="card-resumen">
-                    <i class="fa-solid"></i>
+                    <i class="fa-solid fa-triangle-exclamation"></i>
 
                     <div>
                         <h3>4</h3>
@@ -102,7 +101,7 @@
             
             <div class="col-lg-4 col-md-4">
                 <div class="card-resumen">
-                    <i class="fa-solid"></i>
+                   <i class="fa-solid fa-ban"></i>
 
                     <div>
                         <h3>2</h3>
@@ -111,18 +110,18 @@
                 </div>
             </div>
         </section>
-
-        <section class="panel-table">
-            <div class="cabecera-tabla">
+        <br>
+        <section class="panel-table container-fluid">
+            <div class="cabecera-tabla d-flex justify-content-between align-items-center mb-3"">
                 <div><span>Productos</span>
                 </div>
             <button class="btn btn-inventario" data-bs-toggle="modal" data-bs-target="#modalProducto">
-                <i class="fa-solid"></i>
-                Agregar
+                <i class="fa-solid fa-plus"></i>Agregar
             </button>
+
              </div>
         </section>
-
+        <br>
         <div class="tabla-inventario">
             <table id="tablaProductos" class="table-aling-middle">
                 <thead>
@@ -141,10 +140,22 @@
                         <td>Bujias</td>
                         <td>6</td>
                         <td>Bajo Stock</td>
-                        <td>
-                            <button class="btn btn-sm btn-solicitar">
-                                <i class="fa-solid"></i>Solicitar
-                            </button>
+                       <td>
+                         <a href="/pages/pedidos.html" class="btn btn-sm btn-solicitar">
+                             <i class="fa-solid fa-cart-plus me-1"></i> Solicitar
+                         </a>
+                        </td>
+                    </tr>
+
+                     <tr>
+                        <td>0001</td>
+                        <td>Bujias</td>
+                        <td>6</td>
+                        <td>Bajo Stock</td>
+                       <td>
+                         <a href="/pages/pedidos.html" class="btn btn-sm btn-solicitar">
+                             <i class="fa-solid fa-cart-plus me-1"></i> Solicitar
+                         </a>
                         </td>
                     </tr>
 
@@ -154,9 +165,21 @@
                         <td>6</td>
                         <td>Bajo Stock</td>
                         <td>
-                            <button class="btn btn-sm btn-solicitar">
-                                <i class="fa-solid"></i>Solicitar
-                            </button>
+                         <a href="/pages/pedidos.html" class="btn btn-sm btn-solicitar">
+                             <i class="fa-solid fa-cart-plus me-1"></i> Solicitar
+                         </a>
+                        </td>
+                    </tr>
+
+                     <tr>
+                        <td>0001</td>
+                        <td>Bujias</td>
+                        <td>6</td>
+                        <td>Bajo Stock</td>
+                       <td>
+                         <a href="/pages/pedidos.html" class="btn btn-sm btn-solicitar">
+                             <i class="fa-solid fa-cart-plus me-1"></i> Solicitar
+                         </a>
                         </td>
                     </tr>
 
@@ -166,9 +189,9 @@
                         <td>6</td>
                         <td>Bajo Stock</td>
                         <td>
-                            <button class="btn btn-sm btn-solicitar">
-                                <i class="fa-solid"></i>Solicitar
-                            </button>
+                         <a href="/pages/pedidos.html" class="btn btn-sm btn-solicitar">
+                             <i class="fa-solid fa-cart-plus me-1"></i> Solicitar
+                         </a>
                         </td>
                     </tr>
 
@@ -178,51 +201,36 @@
                         <td>6</td>
                         <td>Bajo Stock</td>
                         <td>
-                            <button class="btn btn-sm btn-solicitar">
-                                <i class="fa-solid"></i>Solicitar
-                            </button>
-                        </td>
-                    </tr>
-
-                     <tr>
-                        <td>0001</td>
-                        <td>Bujias</td>
-                        <td>6</td>
-                        <td>Bajo Stock</td>
-                        <td>
-                            <button class="btn btn-sm btn-solicitar">
-                                <i class="fa-solid"></i>Solicitar
-                            </button>
-                        </td>
-                    </tr>
-
-                     <tr>
-                        <td>0001</td>
-                        <td>Bujias</td>
-                        <td>6</td>
-                        <td>Bajo Stock</td>
-                        <td>
-                            <button class="btn btn-sm btn-solicitar">
-                                <i class="fa-solid"></i>Solicitar
-                            </button>
+                         <a href="/pages/pedidos.html" class="btn btn-sm btn-solicitar">
+                             <i class="fa-solid fa-cart-plus me-1"></i> Solicitar
+                         </a>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <div class="modal fade" id="modalProducto" tabindex="-1">
+        <div class="modal fade" id="modalProducto" tabindex="-1" aria-labelledby="modalProductoLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content modal-login">
-                    <div class="modal-header" border-0>
-                        <h2 class="modal-tittle w-100 text-center">Nuevo Producto</h2>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <div class="modal-header border-0">
+                        <h2 class="modal-title w-100 text-center" id="modalProductoLabel">Nuevo Producto</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form action="" id="formProducto">
                             <input type="number" class="form-control mb-3" placeholder="ID" required>
                             <input type="text" class="form-control mb-3" placeholder="Nombre" minlength="3" maxlength="20" required>
                             <input type="email" class="form-control mb-3" placeholder="Ingrese Su Usuario" required>
+
+                            <select name="" id="" class="form-select mb-4" required>
+                                <option value="">Seleccione Categoria del Producto</option>
+                                <option value="Motor">Motor/Bujias</option>
+                                <option value="Frenos">Sistema de Frenos</option>
+                                <option value="electrico">Sistema Electrico</option>
+                                <option value="Aceite">Aceites y filtros</option>
+                            </select>
+
 
                             <select name="" id="" class="form-select mb-4" required>
                                 <option value="">Seleccione su Cargo</option>
@@ -232,7 +240,7 @@
                                 <option value="Auxiliar">Auxiliar Servicio Al Cliente</option>
                             </select>
 
-                            <button type="submit" class="btn btn-guardad w-100">
+                            <button type="submit" class="btn btn-guardar w-100">
                                 Guardar Producto
                             </button>
                         </form>
@@ -241,7 +249,10 @@
             </div>
         </div>
     </main>
-  
+    </div>
+
+    <script src="../js/login.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.google.com/p/jquery-ui/"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
@@ -249,7 +260,7 @@
 
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+   
 
    
 
