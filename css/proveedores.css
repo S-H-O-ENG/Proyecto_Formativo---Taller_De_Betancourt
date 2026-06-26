@@ -1,3 +1,4 @@
+
 *{
     box-sizing: border-box;
     margin: 0;
@@ -19,6 +20,7 @@ body{
     border: 2px solid #f1f1f4;
     padding: 10px;
 }
+
 .morado{
     justify-content: center;
     gap: 30px;
@@ -51,9 +53,11 @@ body{
     padding: 5px;
     border: 4px #4c1d95;
     border-radius: 15px;
-    width: 30%;
     flex-wrap: wrap;
+    width: 25%;
+    min-width: 250px;
 }
+
 
 .card{
     background: #12121a;
@@ -61,22 +65,20 @@ body{
     border-radius: 15px;
     padding: 20px;
     color: white;
-    width: 120%;
-    flex-wrap: wrap;
-    display: inline-flexbox;
+    width: 100%;
 }
 
 .header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #b9a7ff;
+    color: var(--blanco-suave);
     margin-bottom: 20px;
 }
 
 .header i{
     background: #ffffff;
-    color: #b388ff;
+    color: var(--morado-clarito);
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -90,7 +92,7 @@ body{
 }
 
 .card p{
-    color: #a0a0b0;
+    color: var(--gris-texto);
     margin-top: 8px;
 }
 .header span{
@@ -101,13 +103,29 @@ body{
     display: flex;
     gap: 0;
     align-items: flex-start;
-    padding: 2%;
+    gap: 20px;
 }
 .bus{
     display: flex;
     flex: content;
     justify-content: flex-end;
-    width: 80px;
+    width: 75%;
+    margin-top: 0;
+}
+
+.tabla-contenedor{
+    width: 75%;
+    overflow-x: auto;
+    min-width: 0;
+}
+
+.tabla-contenedor table{
+    width: 100%;
+}
+
+.tablaProveedores {
+    width: 100%;
+    border-collapse: collapse;
 }
 
 table{
@@ -116,20 +134,24 @@ table{
     border-collapse: collapse;
 }
 
-th{
-    border: 4px solid #5f1ed7;
+#tablaProveedores th{
+    border: 4px solid var(--morado-principal);
     padding: 5px;
     text-align: center;
     background-color: #916fcf;
     color: rgb(0, 0, 0);
     font-family: 'Times New Roman', Times, serif;
-    font-size: 25PX;
+    font-size: 16px;
+    white-space: nowrap;
 }
 td{
     font-family: 'Times New Roman', Times, serif;
     font-size: 20PX;
     border: 4px solid #5f1ed7;
     padding: 10px;
+    white-space: nowrap;
+    background-color: var(--negro);
+    color: var(--blaco);
 }
 
 .tabla .a{
