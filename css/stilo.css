@@ -11,7 +11,7 @@ a{
     padding: 8px 12px;
     border-radius: 5px;
     cursor: pointer;
-    
+    text-decoration: none;
 }
 button{
     border: 1px solid white;

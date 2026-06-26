@@ -1,0 +1,383 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+
+    background:#0f0f12;
+    color:white;
+
+}
+
+/*=========================
+        NAVBAR
+==========================*/
+
+header{
+
+    width:100%;
+    background:#141418;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:15px 40px;
+
+    border-bottom:2px solid #5f1ed7;
+
+}
+
+.logo{
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+.logo img{
+    width:55px;
+    height:55px;
+
+    border-radius:8px;
+}
+
+.logo span{
+
+    color:#6f42c1;
+}
+
+nav{
+
+    display:flex;
+    align-items:center;
+    gap:30px;
+}
+
+nav a{
+
+    color:white;
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+nav a:hover{
+
+    color:#6f42c1;
+
+}
+
+nav button{
+
+    background:#5f1ed7;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 25px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+nav button:hover{
+
+    background:#6f42c1;
+
+}
+
+.contenedor{
+
+    width:90%;
+    margin:40px auto;
+
+}
+
+
+.perfil{
+
+    display:flex;
+    gap:40px;
+
+    background:#18181d;
+
+    border:1px solid #5f1ed7;
+
+    border-radius:15px;
+
+    padding:30px;
+
+    margin-bottom:30px;
+
+}
+
+.foto img{
+
+    width:220px;
+    height:220px;
+
+    object-fit:cover;
+
+    border-radius:15px;
+
+    border:3px solid #6f42c1;
+
+}
+
+.datos{
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+}
+
+.datos h1{
+
+    font-size:38px;
+
+    margin-bottom:10px;
+
+}
+
+.datos h3{
+
+    color:#6f42c1;
+
+    margin-bottom:15px;
+
+}
+
+.activo{
+
+    background:#1d8b38;
+
+    width:120px;
+
+    padding:8px;
+
+    text-align:center;
+
+    border-radius:20px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.info{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:25px;
+
+    margin-bottom:30px;
+
+}
+
+.card{
+
+    background:#18181d;
+
+    border:1px solid #5f1ed7;
+
+    border-radius:15px;
+
+    padding:25px;
+
+}
+
+.card h2{
+
+    color:#6f42c1;
+
+    margin-bottom:20px;
+
+}
+
+.card p{
+
+    margin:15px 0;
+
+}
+
+.card ul{
+
+    padding-left:20px;
+
+}
+
+.card li{
+
+    margin:12px 0;
+
+}
+
+
+
+.horario{
+
+    background:#18181d;
+
+    border:1px solid #5f1ed7;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    margin-bottom:35px;
+
+}
+
+.horario h2{
+
+    color:#6f42c1;
+
+    margin-bottom:20px;
+
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+thead{
+
+    background:#5f1ed7;
+
+}
+
+th{
+
+    padding:15px;
+
+}
+
+td{
+
+    padding:15px;
+
+    text-align:center;
+
+    border-bottom:1px solid #2f2f38;
+
+}
+
+tbody tr:hover{
+
+    background:#202027;
+
+}
+
+
+.estadisticas{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
+}
+
+.stat{
+
+    background:#18181d;
+
+    border:1px solid #5f1ed7;
+
+    border-radius:15px;
+
+    padding:30px;
+
+    text-align:center;
+
+}
+
+.stat h3{
+
+    color:#6f42c1;
+
+    margin-bottom:15px;
+
+}
+
+.stat h1{
+
+    font-size:55px;
+
+}
+
+
+
+@media(max-width:900px){
+
+header{
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+nav{
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+}
+.perfil{
+
+    flex-direction:column;
+
+    align-items:center;
+
+    text-align:center;
+}
+.info{
+
+    grid-template-columns:1fr;
+
+}
+
+.estadisticas{
+
+    grid-template-columns:1fr;
+
+}
+
+.foto img{
+
+    width:180px;
+    height:180px;
+
+}
+
+.datos h1{
+
+    font-size:30px;
+
+}
+
+}
+img{
+    display: flex;
+    width: 90px;
+    height: px;
+}
