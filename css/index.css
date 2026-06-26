@@ -116,6 +116,15 @@ body {
     box-shadow: 0 0 15px rgba(111, 66, 193, 0.6);
 }
 
+.btn-login-nav{
+    background-color: var(--morado-principal);
+    padding: 8px 20px !important;
+    border-radius: 25px;
+    font-weight: 700 !important;
+    color: white !important;
+    box-shadow: 0 4px 10px rgba(95, 30, 215, 0.3);
+}
+
 .custom-toggler.navbar-toggler {
     border-color: rgba(111, 66, 193, 0.4);
     padding: 6px 10px;
@@ -234,4 +243,21 @@ footer {
         flex-direction: column;
         gap: 15px;
     }
+}
+
+.modal-login{
+    background-image: url(/img/background_login.jpg);
+    color: #F1EAFF;
+}
+
+.modal-login ::placeholder{
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.modal-login button{
+    background-color: #ff005577;
+}
+
+.link-login{
+    color: #FF007F;
 }
