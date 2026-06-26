@@ -18,6 +18,8 @@ body{
     font-family: 'lato', sans-serif;
     background-color: var(--oscuro-fondo);
     color: var(--gris-texto);
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
 }
 
 
@@ -26,11 +28,48 @@ body{
     min-height: 100vh;
 }
 
-.sidebar{
-    width: 270px;
+.dashboard-main {
+    flex-grow: 1;
+    padding-left: 25px;
+    transition: padding 0.35s ease-in-out;
+    width: 100%;
+}
+
+.dashboard-layout:has(.sidebar:hover) .dashboard-main {
+    padding-left: 285px; 
+}
+
+.sidebar.offcanvas{
+    width: 65px;
     background-color: #14141a;
     border-right: 1px solid rgba(0,0,0,.08);
+    padding: 30px 0px;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
+    transform: none !important;
+    visibility: visible !important;
+    transition: transform 0.35s ease-in-out !important;
+   
+}
+
+.offcanvas-backdrop {
+    display: none !important;
+}
+
+.sidebar.offcanvas:hover{
+    width: 270px;
     padding: 30px 30px;
+    transform: translateX(0) !important;
+}
+
+.sidebar.offcanvas:not(:hover) .sidebar-logo h2,
+.sidebar.offcanvas:not(:hover) .sidebar-logo p {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .sidebar-logo{
@@ -39,7 +78,7 @@ body{
 }
 
 .sidebar-logo img{
-    width: 85px;
+    width: 65px;
 }
 
 .sidebar-logo h2{
@@ -48,11 +87,14 @@ body{
     font-weight: 700;
     margin-top: 10px;
     margin-bottom: 5px;
+    transition: opacity 0.2s ease-in-out;
+
 }
 
 .sidebar-logo p{
     color: var(--gris-texto);
     font-size: 16px;
+    transition: opacity 0.2s ease-in-out;
 }
 
 
@@ -66,13 +108,20 @@ body{
 .sidebar-menu a{
     text-decoration: none;
     color: var(--blanco-suave);
-    padding: 14px 18px;
+    padding: 14px 28px;
     border-radius: 15px;
     display: flex;
     align-items: center;
     gap: 12px;
     font-weight: 700;
     transition: .3s;
+    white-space: nowrap;
+}
+
+.sidebar-menu a i{
+    width: 24px;
+    text-align: center;
+    flex-shrink: 0;
 }
 
 .sidebar-menu a:hover{
@@ -80,9 +129,16 @@ body{
     color: var(--oscuro-fondo);
 }
 
+.card-resumen i{
+    font-size: 2rem;
+    color: var(--blanco-suave);
+}
+
 .dashboard-main{
-    flex: 1;
-    padding: 35px;
+    flex-grow: 1;
+    padding-left: 100px;
+    transition: padding-left 0.3s ease-in-out;
+    width: 100%;
 }
 
 .topbar{
@@ -203,7 +259,6 @@ table{
 
 .btn-inventario{
     width: 250px;
-    height: 40px;
     font-size: 30px;
     background-color: var(--morado-principal);
     color: var(--blanco-suave);
@@ -248,6 +303,38 @@ table{
     background-color: #191931;
     color: white;
     padding: 10px;
+}
+
+.modal{
+    z-index: 1060 !important;
+   
+}
+
+.modal-backdrop{
+    z-index: 1050 !important;
+}
+
+.modal-login{
+    background-color: #191931 !important;
+    border: 1px solid rgba(0,0,0,.04);
+    color: var(--blanco-suave);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-login .form-control, .modal-login .form-select{
+    background-color: #14141a;
+    border: 1px solid rgba(0,0,0,.08);
+    color: var(--blanco-suave)
+}
+
+.modal-login .form-control:focus, 
+.modal-login .form-select:focus {
+    background-color: #14141a;
+    color: #fff;
+    border-color: #7e4add;
+    box-shadow: 0 0 0 0.25rem rgba(126, 74, 221, 0.25);
 }
 
 
