@@ -21,6 +21,7 @@ body{
     --fuente-textos: 'Lato', sans-serif;
 }
 
+
 .morado a{
     text-align: center;
     color: #ffffff;
@@ -153,6 +154,7 @@ table{
     font-size: 16px;
     white-space: nowrap;
 }
+
 
 #tablaProveedores td{
     font-family: 'Times New Roman', Times, serif;
