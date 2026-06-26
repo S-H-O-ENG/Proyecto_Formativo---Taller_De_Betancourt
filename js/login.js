@@ -54,7 +54,17 @@ if(email === 'Jefe@tallerbetancourt.com' && password === '12345'){
     }).then(() =>{
     window.location.href='../pages/pedidos.html';})
 
-}else{
+}else if(email==='Trabajador@tallerbetancourt.com' && password === '98765'){
+    Swal.fire({
+        icon:'success',
+        title:'Inicio Exitoso',
+        text: 'Bienvenido Auxiliar',
+        confirmButtonColor: '#5f1ed7'
+    }).then(() =>{
+    window.location.href='../pages/trabajador.html';})
+
+}
+else{
       Swal.fire({
         icon:"error",
         title: "Credenciales incorrectas",
