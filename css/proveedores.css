@@ -10,7 +10,19 @@ body{
     color: #f1f1f4;
     font-family: sans-serif;
 }
-.morado button{
+
+:root{
+    --oscuro-fondo: #0f0f12;
+    --morado-principal: #5f1ed7;
+    --morado-clarito: #6f42c1;
+    --blanco-suave: #f1f1f4;
+    --gris-texto: #a3a3b8;
+    --fuente-titulos: 'Bebas Neue', sans-serif;
+    --fuente-textos: 'Lato', sans-serif;
+}
+
+
+.morado a{
     text-align: center;
     color: #ffffff;
     width: 20%;
@@ -144,7 +156,9 @@ table{
     font-size: 16px;
     white-space: nowrap;
 }
-td{
+
+
+#tablaProveedores td{
     font-family: 'Times New Roman', Times, serif;
     font-size: 20PX;
     border: 4px solid #5f1ed7;
