@@ -6,7 +6,7 @@
 }
 body{
     padding: 24px;
-    background-color: #0f0f12;
+    background-color: var(--oscuro-fondo);
     color: #f1f1f4;
     font-family: sans-serif;
 }
@@ -16,6 +16,7 @@ body{
     --morado1: #5f1ed7;
     --morado2: #6f42c1;
     --blaco: #f1f1f4;
+    --oscuro-fondo: #0f0f12;
 }
 
 .morado a{
@@ -28,6 +29,7 @@ body{
     border: 2px solid #f1f1f4;
     padding: 10px;
 }
+
 .morado{
     justify-content: center;
     gap: 30px;
