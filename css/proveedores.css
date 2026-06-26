@@ -175,3 +175,42 @@ table{
 }
 
 
+
+.btn-registrar:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(111,66,193,.6);
+    color: white;
+}
+
+
+@media (max-width: 992px){
+    .busquedar{
+        flex-direction: column;
+    }
+
+    .contenedor-cards,
+    .tabla-contenedor{
+        width: 100%;
+        flex: none;
+    }
+}
+
+.modal-header{
+    background-color: var(--morado-principal);
+    color: var(--blanco-suave);
+    border-color: var(--oscuro-fondo);
+}
+
+.modal-body{
+    background-color: var(--morado-principal);
+    border-color: var(--oscuro-fondo);
+}
+
+.modal-footer{
+    background-color: var(--morado-principal);
+    border-color: var(--oscuro-fondo);
+}
+
+.modal-footer button{
+    background-color: var(--gris-texto);
+}

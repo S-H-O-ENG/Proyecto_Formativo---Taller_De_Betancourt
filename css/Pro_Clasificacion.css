@@ -97,5 +97,27 @@ p{
 }
 
 #tablaEvaluaciones button{
+    background-color: var(--oscuro-fondo);
+}
+
+.modal-body{
+    background-color: var(--morado-principal);
+    color: var(--blanco-suave);
+    border: 2px solid var(--blanco-suave);
+}
+
+.modal-header{
+    background-color: var(--morado-principal);
+    border: 2px solid var(--blanco-suave);
+    color: var(--blanco-suave);
+}
+
+.modal-footer{
+    background-color: var(--morado-principal);
+    border: 2px solid var(--blanco-suave);
+}
+
+.modal-footer button{
     background-color: var(--gris-texto);
+    color: var(--oscuro-fondo);
 }
