@@ -200,3 +200,23 @@ table{
         flex: none;
     }
 }
+
+.modal-header{
+    background-color: var(--morado-principal);
+    color: var(--blanco-suave);
+    border-color: var(--oscuro-fondo);
+}
+
+.modal-body{
+    background-color: var(--morado-principal);
+    border-color: var(--oscuro-fondo);
+}
+
+.modal-footer{
+    background-color: var(--morado-principal);
+    border-color: var(--oscuro-fondo);
+}
+
+.modal-footer button{
+    background-color: var(--gris-texto);
+}
