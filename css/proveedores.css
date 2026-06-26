@@ -6,7 +6,7 @@
 }
 body{
     padding: 24px;
-    background-color: #0f0f12;
+    background-color: var(--oscuro-fondo);
     color: #f1f1f4;
     font-family: sans-serif;
 }
@@ -28,7 +28,7 @@ body{
     width: 20%;
     width: 16%;
     font-size: 18px;
-    background-color: #5f1ed7;
+    background-color: var(--morado-principal);
     border: 2px solid #f1f1f4;
     padding: 10px;
 }
@@ -45,7 +45,7 @@ body{
     display: flex;
     align-items: center;
     gap: 15px;
-    border: 3px solid #5f1ed7;
+    border: 3px solid var(--morado-clarito);
     padding: 25px;
 
 }
@@ -113,11 +113,10 @@ body{
 
 .busquedar{
     display: flex;
-    gap: 0;
     align-items: flex-start;
     gap: 20px;
 }
-.bus{
+.container{
     display: flex;
     flex: content;
     justify-content: flex-end;
@@ -141,7 +140,7 @@ body{
 }
 
 table{
-    width: 80%;
+    width: 100%;
     height: 30%;
     border-collapse: collapse;
 }
@@ -150,8 +149,7 @@ table{
     border: 4px solid var(--morado-principal);
     padding: 5px;
     text-align: center;
-    background-color: #916fcf;
-    color: rgb(0, 0, 0);
+    background-color: var(--morado-principal);
     font-family: 'Times New Roman', Times, serif;
     font-size: 16px;
     white-space: nowrap;
@@ -160,7 +158,7 @@ table{
 
 #tablaProveedores td{
     font-family: 'Times New Roman', Times, serif;
-    font-size: 20PX;
+    font-size: 14px;
     border: 4px solid #5f1ed7;
     padding: 10px;
     white-space: nowrap;
@@ -174,7 +172,15 @@ table{
     color: rgb(106, 212, 0);
 }
 
-
+.btn-registrar{
+    background: linear-gradient(135deg,#5f1ed7,#6f42c1);
+    color: white;
+    border: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: .3s;
+}
 
 .btn-registrar:hover{
     transform: translateY(-2px);
@@ -213,4 +219,8 @@ table{
 
 .modal-footer button{
     background-color: var(--gris-texto);
+}
+
+.btn-registrar{
+    background-color: var(--blanco-suave);
 }
