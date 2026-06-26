@@ -220,3 +220,7 @@ table{
 .modal-footer button{
     background-color: var(--gris-texto);
 }
+
+.btn-registrar{
+    background-color: var(--blanco-suave);
+}
