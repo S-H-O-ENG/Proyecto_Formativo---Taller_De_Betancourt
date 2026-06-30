@@ -1,4 +1,6 @@
 let tabla;
+let contador = 6;
+let filaEditar = null;
 
 $(document).ready(function () {
 
@@ -35,7 +37,6 @@ function actualizarContadores() {
         const estado = fila.cells[5].textContent.trim();
 
         if (estado === "Activo") activos++;
-
         if (estado === "Pendiente") revision++;
 
     });
@@ -45,7 +46,34 @@ function actualizarContadores() {
     document.getElementById("revicion").textContent = revision;
 }
 
-let contador = 6;
+$("#tablaProveedores tbody").on("click", ".btn-eliminar", function () {
+
+    if (confirm("¿Desea eliminar este proveedor?")) {
+
+        tabla.row($(this).parents("tr")).remove().draw();
+
+        actualizarContadores();
+    }
+
+});
+
+$("#tablaProveedores tbody").on("click", ".btn-editar", function () {
+
+    filaEditar = tabla.row($(this).parents("tr"));
+
+    let datos = filaEditar.data();
+
+    $("#proveedor").val(datos[1]);
+    $("#telefono").val(datos[2]);
+    $("#correo").val(datos[3]);
+    $("#ciudad").val(datos[4]);
+
+    let estado = $(datos[5]).text().trim();
+    $("#estado").val(estado);
+
+    new bootstrap.Modal(document.getElementById("modalProveedor")).show();
+
+});
 
 document.getElementById("guardarProveedor").addEventListener("click", () => {
 
@@ -65,8 +93,8 @@ document.getElementById("guardarProveedor").addEventListener("click", () => {
         badge = '<span class="badge bg-warning text-dark">Pendiente</span>';
     }
 
-    tabla.row.add([
-        String(contador).padStart(3, "0"),
+    const nuevaFila = [
+        filaEditar ? filaEditar.data()[0] : String(contador).padStart(3, "0"),
         proveedor,
         telefono,
         correo,
@@ -81,9 +109,19 @@ document.getElementById("guardarProveedor").addEventListener("click", () => {
             <i class="fa-solid fa-trash"></i>
         </button>
         `
-    ]).draw(false);
+    ];
 
-    contador++;
+    if (filaEditar) {
+
+        filaEditar.data(nuevaFila).draw(false);
+        filaEditar = null;
+
+    } else {
+
+        tabla.row.add(nuevaFila).draw(false);
+        contador++;
+
+    }
 
     actualizarContadores();
 
@@ -91,4 +129,10 @@ document.getElementById("guardarProveedor").addEventListener("click", () => {
         document.getElementById("modalProveedor")
     ).hide();
 
+    
+    document.getElementById("proveedor").value = "";
+    document.getElementById("telefono").value = "";
+    document.getElementById("correo").value = "";
+    document.getElementById("ciudad").value = "";
+    document.getElementById("estado").value = "Activo";
 });
