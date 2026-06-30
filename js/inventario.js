@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <td><span class="badge ${claseBadge}">${estado}</span></td>
             <td>
             <a href="/pages/pedidos.html" class="btn btn-sm btn-solicitar">
-                    <i class="fa-solid fa-plus me-1"></i>Solicitar   
+                    <i class="fa-solid fa-plus me-1"></i>Solicitar
             <a/>
             </td>
         `;
