@@ -92,7 +92,7 @@ body{
 }
 
 .sidebar-logo p{
-    color: var(--gris-texto);
+    color: var(--blanco-suave);
     font-size: 16px;
     transition: opacity 0.2s ease-in-out;
 }
@@ -131,7 +131,7 @@ body{
 
 .card-resumen i{
     font-size: 2rem;
-    color: var(--blanco-suave);
+    color: var(--gris-texto);
 }
 
 .dashboard-main{
@@ -161,7 +161,7 @@ body{
 
 .topbar p{
     margin: 0;
-    color: var(--gris-texto);
+    color: var(--blanco-suave);
 }
 
 .inventario-info{
@@ -202,7 +202,7 @@ span{
 
 .card-resumen p{
     margin: 0;
-    color: var(--gris-texto);
+    color: var(--blanco-suave);
 }
 
 .panel-table{
@@ -231,7 +231,7 @@ span{
 }
 
 .cabecera-tabla p{
-    color: var(--gris-texto);
+    color: var(--blanco-suave);
     margin: 0;
     width: 100%;
 }
@@ -323,11 +323,25 @@ table{
     flex-direction: column;
 }
 
+.modal-login ::placeholder{
+    color: var(--blanco-suave);
+    text-shadow: #f1f1f4;
+}
+
+.modal-login button{
+    background-color: #5f1ed7;
+    border: 1px solid rgba(0,0,0,.04);
+    color: #f1f1f4;
+}
+
 .modal-login .form-control, .modal-login .form-select{
     background-color: #14141a;
     border: 1px solid rgba(0,0,0,.08);
-    color: var(--blanco-suave)
+    color: var(--blanco-suave);
+    text-shadow: #f1f1f4;
 }
+
+
 
 .modal-login .form-control:focus, 
 .modal-login .form-select:focus {
