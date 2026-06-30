@@ -1,0 +1,188 @@
+body{
+    background: #0f0f12;
+    margin: 18px;
+    font-family: Arial, sans-serif;
+}
+
+a{
+    border: 1px solid white;
+    background: #5f1ed7;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+button{
+    border: 1px solid white;
+    background: #5f1ed7;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    
+}
+.encabezado{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+}
+
+.modulo{
+    display: flex;
+    
+    border: 2px solid #6f42c1;
+    color: white;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+img{
+    display: flex;
+    width: 90px;
+    height: px;
+}
+.modulo p{
+    color: #cfcfcf;
+}
+
+.contenedor{
+    display: flex;
+    gap: 20px;
+}
+
+.panel-izquierdo{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card{
+    border: 2px solid #6f42c1;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.card h3{
+    color: #6f42c1;
+}
+
+.card span{
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.panel-derecho{
+    width: 70%;
+}
+
+.formulario{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.formulario input,
+.formulario select{
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #6f42c1;
+    border-radius: 5px;
+    background: #1a1a1f;
+    color: white;
+}
+
+.asignar{
+    background: #5f1ed7;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+}
+
+th{
+    background: #6f42c1;
+    padding: 12px;
+}
+
+td{
+    border: 1px solid #6f42c1;
+    padding: 10px;
+    text-align: center;
+}
+
+tr:hover{
+    background: #1d1d25;
+}
+
+@media (max-width: 768px) {
+
+    .contenedor{
+        flex-direction: column;
+    }
+
+    .panel-izquierdo,
+    .panel-derecho{
+        width: 100%;
+    }
+
+    .formulario{
+        flex-direction: column;
+    }
+
+    .formulario input,
+    .formulario select,
+    .formulario button{
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .modulo{
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .encabezado{
+        flex-wrap: wrap;
+    }
+}
+
+/* Celulares */
+@media (max-width: 480px) {
+
+    body{
+        margin: 10px;
+    }
+
+    .encabezado{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .encabezado button{
+        width: 100%;
+        max-width: 300px;
+    }
+
+    img{
+        width: 70px;
+        height: auto;
+    }
+
+    .card span{
+        font-size: 24px;
+    }
+
+    table{
+        font-size: 12px;
+    }
+
+    th, td{
+        padding: 6px;
+    }
+}
