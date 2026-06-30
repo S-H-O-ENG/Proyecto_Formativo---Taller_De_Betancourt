@@ -37,10 +37,10 @@
                     <li class="nav-item"><a class="nav-link" href="#donde">Encuéntranos</a></li>
                     <li class="nav-item"><a class="nav-link" href="#nuestrosProductos">Productos</a></li>
                     <li class="nav-item"><a class="nav-link btn-cita-nav" href="#agendacita">Agenda tu Cita</a></li>
-                
+
                     <li class="nav-item">
-                            <button class="btn btn-login-nav" data-bs-toggle="modal" data-bs-target="#loginModal">Login
-                            </button>
+                        <button class="btn btn-login-nav" data-bs-toggle="modal" data-bs-target="#loginModal">Login
+                        </button>
                     </li>
                 </ul>
             </nav>
@@ -49,13 +49,13 @@
 
     </header>
 
-      <div class="modal fade" id="loginModal" tabindex="-1">
-          <div class="modal-dialog modal-dialog-centered">
-             <div class="modal-content modal-login">
-                  <div class="modal-header border-0">
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-login">
+                <div class="modal-header border-0">
                     <h2 class="modal-title w-100 text-center">Iniciar Sesión</h2>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                  </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
                 <div class="modal-body">
                     <form action="">
                         <div class="mb-3">
@@ -117,48 +117,48 @@
             style="background: rgba(24, 24, 31, 0.6); border-radius: 8px;">
             <h2 class="text-center mb-4">Agenda tu Cita</h2>
 
-            <form action="#" method="POST" class="mx-auto" style="max-width: 600px;">
-                <div class="mb-3">
-                    <label for="nombreCita" class="form-label text-secondary">Nombre Completo:</label>
-                    <input type="text" id="nombreCita" class="form-control bg-dark text-white border-secondary"
-                        placeholder="Ingrese su nombre" required>
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col-md-6 mb-3 mb-md-0">
-                        <label for="telefonoCita" class="form-label text-secondary">Teléfono de Contacto:</label>
-                        <input type="tel" id="telefonoCita" class="form-control bg-dark text-white border-secondary"
-                            placeholder="Ingrese numero telefonico" required>
+            <div class="cita">
+                <form action="#" method="POST" class="mx-auto" style="max-width: 600px;">
+                    <div class="mb-3">
+                        <label for="nombreCita" class="form-label text-secondary">Nombre Completo:</label>
+                        <input type="text" id="nombreCita" class="form-control bg-dark text-white border-secondary"
+                            placeholder="Ingrese su nombre" required>
                     </div>
-                    <div class="col-md-6">
-                        <label for="fechaCita" class="form-label text-secondary">Fecha Solicitada:</label>
-                        <input type="date" id="fechaCita" class="form-control bg-dark text-white border-secondary"
-                            required>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6 mb-3 mb-md-0">
+                            <label for="telefonoCita" class="form-label text-secondary">Teléfono de Contacto:</label>
+                            <input type="tel" id="telefonoCita" class="form-control bg-dark text-white border-secondary"
+                                placeholder="Ingrese numero telefonico" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="fechaCita" class="form-label text-secondary">Fecha Solicitada:</label>
+                            <input type="date" id="fechaCita" class="form-control bg-dark text-white border-secondary"
+                                required>
+                        </div>
                     </div>
-                </div>
 
-                <div class="mb-4">
-                    <label for="motivoCita" class="form-label text-secondary">Motivo del Servicio / Falla del
-                        Vehículo:</label>
-                    <textarea id="motivoCita" class="form-control bg-dark text-white border-secondary" rows="4"
-                        placeholder="Ej: Cambio de aceite, ruido en la suspensión..." required></textarea>
-                </div>
+                    <div class="mb-4">
+                        <label for="motivoCita" class="form-label text-secondary">Motivo del Servicio / Falla del
+                            Vehículo:</label>
+                        <textarea id="motivoCita" class="form-control text-white border-secondary" rows="4"
+                            placeholder="Ej: Cambio de aceite, ruido en la suspensión..." required></textarea>
+                    </div>
 
-                <div class="text-center">
-                    <button type="submit" class="btn px-5 py-2 text-white border-0"
-                        style="background-color: #5f1ed7;">Enviar Solicitud</button>
-                </div>
-            </form>
+                    <div class="text-center">
+                        <button type="submit" class="btn px-5 py-2 border-0 btn-enviarS">Enviar Solicitud</button>
+                    </div>
+                </form>
+            </div>
         </section>
 
     </main>
     <!-- scripts -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-        <script src="./js/login.js"></script>
+    <script src="./js/login.js"></script>
 </body>
 
 </html>
