@@ -1,3 +1,11 @@
+:root {
+    --oscuro-fondo: #0f0f12;
+    --morado-principal: #5f1ed7;
+    --morado-clarito: #6f42c1;
+    --blanco-suave: #f1f1f4;
+    --gris-texto: #a3a3b8;
+}
+
 body {
     background-color: #0b0713 !important;
     color: #ffffff !important;
@@ -11,25 +19,139 @@ body {
     border-bottom: 1px solid rgba(111, 54, 255, 0.2);
 }
 
-.izq .navbar-brand {
-    color: #ffffff !important;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-size: 1.1rem;
+.dashboard-layout {
+    display: flex;
+    min-height: 100vh;
 }
 
-.navbar-nav .nav-link {
-    color: rgba(255, 255, 255, 0.6) !important;
-    font-weight: 500;
-    font-size: 0.95rem;
-    margin-left: 15px;
+.dashboard-main {
+    flex-grow: 1;
+    padding-left: 25px;
+    transition: padding 0.35s ease-in-out;
+    width: 100%;
 }
 
-.navbar-nav .nav-link:hover,
-.navbar-nav .nav-link.active {
-    color: #6f36ff !important;
+.dashboard-layout:has(.sidebar:hover) .dashboard-main {
+    padding-left: 285px;
+}
+
+.sidebar.offcanvas {
+    width: 65px;
+    background-color: #14141a;
+    border-right: 1px solid rgba(0, 0, 0, .08);
+    padding: 30px 0px;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
+    transform: none !important;
+    visibility: visible !important;
+    transition: transform 0.35s ease-in-out !important;
+
+}
+
+.offcanvas-backdrop {
+    display: none !important;
+}
+
+.sidebar.offcanvas:hover {
+    width: 270px;
+    padding: 30px 30px;
+    transform: translateX(0) !important;
+}
+
+.sidebar.offcanvas:not(:hover) .sidebar-logo h2,
+.sidebar.offcanvas:not(:hover) .sidebar-logo p {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sidebar-logo {
+    text-align: center;
+    margin-bottom: 38px;
+}
+
+.sidebar-logo img {
+    width: 65px;
+}
+
+.sidebar-logo h2 {
+    color: var(--gris-texto);
+    font-size: 38px;
     font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    transition: opacity 0.2s ease-in-out;
+
+}
+
+.sidebar-logo p {
+    color: var(--blanco-suave);
+    font-size: 16px;
+    transition: opacity 0.2s ease-in-out;
+}
+
+
+.sidebar-menu {
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.sidebar-menu a {
+    text-decoration: none;
+    color: var(--blanco-suave);
+    padding: 14px 28px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+    transition: .3s;
+    white-space: nowrap;
+}
+
+.sidebar-menu a i {
+    width: 24px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.sidebar-menu a:hover {
+    background-color: #7e4add;
+    color: var(--oscuro-fondo);
+}
+
+.card-resumen i {
+    font-size: 2rem;
+    color: var(--gris-texto);
+}
+
+.dashboard-main {
+    flex-grow: 1;
+    padding-left: 100px;
+    transition: padding-left 0.3s ease-in-out;
+    width: 100%;
+}
+
+.topbar {
+    background-color: #14141a;
+    border-radius: 24px;
+    padding: 24px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .06);
+    border-top: 2px solid var(--morado-clarito);
+}
+
+.topbar p {
+    margin: 0;
+    color: var(--blanco-suave);
 }
 
 .formulario {
@@ -66,7 +188,7 @@ body {
 .input-group-text {
     background-color: rgba(111, 54, 255, 0.1) !important;
     border: 1px solid rgba(111, 54, 255, 0.3) !important;
-    color: #6f36ff !important;
+    color: var(--blanco-suave);
     font-weight: 600;
     font-size: 0.90rem;
     text-transform: uppercase;
@@ -75,7 +197,7 @@ body {
 
 .formulario label,
 .formulario .form-label {
-    color: #6f36ff !important;
+    color: var(--blanco-suave);
     font-weight: 600;
     font-size: 0.90rem;
     text-transform: uppercase;
@@ -128,7 +250,7 @@ body {
 
 .btn-enviar {
     background-color: #6f36ff !important;
-    color: #ffffff !important;
+    color: var(--blanco-suave);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -137,10 +259,12 @@ body {
     border-radius: 4px;
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(111, 54, 255, 0.4);
+    transition: 0.3s;
 }
 
 .btn-enviar:hover {
-    background-color: #7b42ff !important;
+    background-color: #ffffff !important;
+    color: black;
 }
 
 .logo {
