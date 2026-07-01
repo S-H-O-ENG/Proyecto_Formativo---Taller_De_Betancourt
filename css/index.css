@@ -252,6 +252,18 @@ footer {
     color: rgba(255, 255, 255, 0.4);
 }
 
+.cita input::placeholder{
+    color: var(--blanco-suave);
+    opacity: 0.6;
+    text-shadow: 0 0 6px rgba(95, 30, 215, 0.8);
+}
+
+.cita textarea.form-control::placeholder{
+    color: var(--blanco-suave);
+    opacity: 0.6;
+    text-shadow: 0 0 6px rgba(95, 30, 215, 0.8);
+}
+
 .modal-login button{
     background-color: #ff005577;
     color: white;
@@ -260,3 +272,17 @@ footer {
 .link-login{
     color: #FF007F;
 }
+
+.btn-enviarS{
+    background-color: #5f1ed7;
+    color: white;
+    box-shadow: 0 4px 14px rgba(95, 30, 215, 0.4);
+    transition: 0.3s;
+}
+
+.btn-enviarS:hover{
+    background-color: var(--blanco-suave);
+    color: var(--morado-clarito);
+    box-shadow: 0 6px 20px rgba(95, 30, 215, 0.7);
+}
+
