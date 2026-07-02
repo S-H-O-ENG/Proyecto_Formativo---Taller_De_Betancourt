@@ -8,7 +8,6 @@ body{
     padding: 24px;
     background-color: var(--oscuro-fondo);
     color: #f1f1f4;
-    font-family: sans-serif;
 }
 
 :root{
@@ -223,4 +222,35 @@ table{
 
 .btn-registrar{
     background-color: var(--blanco-suave);
+}
+
+.sidebar{
+    width:250px;
+    min-height:100vh;
+    background:#1f2937;
+    position:fixed;
+    left:0;
+    top:0;
+    padding:20px;
+    color:#fff;
+}
+
+.sidebar a{
+    display:block;
+    color:white;
+    text-decoration:none;
+    padding:12px;
+    margin:8px 0;
+    border-radius:8px;
+}
+
+.sidebar a:hover,
+.sidebar .activo{
+    background:#2563eb;
+}
+
+.contenido{
+    margin-left:250px;
+    width:calc(100% - 250px);
+    padding:25px;
 }
