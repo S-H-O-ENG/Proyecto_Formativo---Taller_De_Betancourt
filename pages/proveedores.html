@@ -1,237 +1,187 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>Gestión Proveedores</title>
 
-    <script src="https://kit.fontawesome.com/a0994db117.js" crossorigin="Anonymous"></script>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="../css/Proveedores.css">
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/a0994db117.js" crossorigin="anonymous"></script>
+
+    <!-- DataTables -->
     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.4/css/dataTables.bootstrap5.min.css">
 
+    <!-- CSS propio -->
+    <link rel="stylesheet" href="../css/Proveedores.css">
 </head>
+
 <body>
+    <!-- NAVBAR -->
 
-    <button class="btn btn-dark m-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
-    <i class="fa-solid fa-bars"></i>
-</button>
+    <nav class="navbar navbar-dark px-3">
 
-    <aside class="sidebar offcanvas offcanvas-start" data-bs-backdrop="false" tabindex="-1" id="sidebarMenu">
-        <div class="sidebar-logo">
-            <img src="../img/logo.png" alt="Logo Taller">
-            <br><br>
-            <h2>Taller De Betancourt</h2>
+        <button class="btn btn-outline-light"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#sidebar">
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+        <span class="fw-bold text-white">
+            GESTION DE PROVEEDORES
+        </span>
+
+    </nav>
+
+    <div class="offcanvas offcanvas-start text-bg-dark"
+        tabindex="-1"
+        id="sidebar">
+
+        <div class="offcanvas-header">
+
+            <h5>Menú Principal</h5>
+
+            <button class="btn-close btn-close-white"
+                data-bs-dismiss="offcanvas">
+
+            </button>
+
         </div>
-        <nav class="sidebar-menu">
-            <a href="proveedores.html">
+
+        <div class="offcanvas-body">
+
+            <a href="#" class="nav-link text-white mb-2">
                 <i class="fa-solid fa-truck"></i>
                 Proveedores
             </a>
-            <a href="clientes.html" class="active">
-                <i class="fa-regular fa-user"></i>
-                Clasificacion
+
+            <a href="#" class="nav-link text-white mb-2">
+                <i class="fa-solid fa-users"></i>
+                Clacificacion
             </a>
-            <a href="pedidos.html">
-                <i class="fa-solid fa-clipboard-list"></i>
-                Factura
+
+            <a href="#" class="nav-link text-white mb-2">
+                <i class="fa-solid fa-box"></i>
+                Facturas
             </a>
-            <a href="../index.html">
-                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+
+
+            <a href="#" class="nav-link text-danger mt-4">
+                <i class="fa-solid fa-right-from-bracket"></i>
                 Salir
             </a>
-        </nav>    
-    </aside>
 
-    <div class="cuadros">
+        </div>
 
-        <div class="encabezado shadow">
-            <div>
-                <h2>Gestión de Proveedores</h2>
-                <h5>Registro y validación de proveedores</h5>
+    </div>
+
+
+    <div class="container py-4">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <h2>Gestión de Proveedores</h2>
+
+            <button class="btn btn-registrar"
+                data-bs-toggle="modal"
+                data-bs-target="#modalProveedor">
+
+                <i class="fa-solid fa-plus"></i>
+
+                Registrar proveedor
+
+            </button>
+
+        </div>
+
+        <div class="row g-3 mb-4">
+
+            <div class="col-md-4">
+
+                <div class="card p-3 text-white">
+
+                    <h5>Total proveedores</h5>
+
+                    <h2 id="total">0</h2>
+
+                </div>
+
             </div>
-        </div>
-    </div>
 
-<br><br>
+            <div class="col-md-4">
 
-<div class="busquedar">
-<div class="contenedor-cards">
+                <div class="card p-3 text-white">
 
-    <div class="card">
-        <div class="header">
-            <span> Total proveedores</span>
-            <i class="fa-regular" ></i>
-        </div>
-        <h2 id="totalproveedores">0</h2>
-        <p>Proveedores Registrados</p>
-    </div>
+                    <h5>Activos</h5>
 
-    <br>
+                    <h2 id="activos">0</h2>
 
-    <div class="card">
-        <div class="header">
-            <span>Activos</span>
-            <i class="fa-solid"></i>
-        </div>
-        <h2 id="Activos">0</h2>
-        <p>Proveedor Activos</p>
-    </div>
+                </div>
 
-    <br>
+            </div>
 
-    <div class="card">
-        <div class="header">
-            <span>En revisión</span>
-            <i class="fa-solid "></i>
-        </div>
-        <h2 id="revicion">0</h2>
-        <p>Pendientes De Aprobación</p>
-    </div>
+            <div class="col-md-4">
 
-</div>
+                <div class="card p-3 text-white">
 
-<div class="tabla-contenedor">
+                    <h5>Pendientes</h5>
 
-    <div class="card shadow">
-        <div class="card-header">
-            <h3 class="mb-0">Gestión de Proveedores</h3>
+                    <h2 id="pendientes">0</h2>
+
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="card-body">
+        <div class="card p-3">
 
-            <table id="tablaProveedores" class="table table-hover nowrap">
-                <thead class="table">
+            <table id="tablaProveedores"
+                class="table table-dark table-hover">
+
+                <thead>
+
                     <tr>
+
                         <th>ID</th>
+
                         <th>Proveedor</th>
+
                         <th>Teléfono</th>
+
                         <th>Correo</th>
+
                         <th>Ciudad</th>
+
                         <th>Estado</th>
+
                         <th>Acciones</th>
+
                     </tr>
+
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td>001</td>
-                        <td>Distribuciones Andina SAS</td>
-                        <td>310 4567890</td>
-                        <td>contacto@andina.com</td>
-                        <td>Bogotá</td>
-                        <td><span class="badge bg-success">Activo</span></td>
-                        <td>
-                            <button class="btn btn-sm btn-editar"><i class="fa-solid fa-pen"></i></button>
-                            <button class="btn btn-sm btn-eliminar"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                    </tr>
 
-                    <tr>
-                        <td>002</td>
-                        <td>Suministros Betancourth</td>
-                        <td>320 1234567</td>
-                        <td>ventas@betancourth.com</td>
-                        <td>Medellín</td>
-                        <td><span class="badge bg-success">Activo</span></td>
-                        <td>
-                            <button class="btn btn-sm btn-editar"><i class="fa-solid fa-pen"></i></button>
-                            <button class="btn btn-sm btn-eliminar"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>003</td>
-                        <td>Repuestos Industriales SAS</td>
-                        <td>315 9876543</td>
-                        <td>info@repuestos.com</td>
-                        <td>Cali</td>
-                        <td><span class="badge bg-danger">Inactivo</span></td>
-                        <td>
-                            <button class="btn btn-sm btn-editar"><i class="fa-solid fa-pen"></i></button>
-                            <button class="btn btn-sm btn-eliminar"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>004</td>
-                        <td>Ferretería Central</td>
-                        <td>301 4567890</td>
-                        <td>central@gmail.com</td>
-                        <td>Barranquilla</td>
-                        <td><span class="badge bg-success">Activo</span></td>
-                        <td>
-                            <button class="btn btn-sm btn-editar"><i class="fa-solid fa-pen"></i></button>
-                            <button class="btn btn-sm btn-eliminar"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>005</td>
-                        <td>Materiales del Norte</td>
-                        <td>311 2345678</td>
-                        <td>materiales@norte.com</td>
-                        <td>Bucaramanga</td>
-                        <td><span class="badge bg-warning text-dark">Pendiente</span></td>
-                        <td>
-                            <button class="btn btn-sm btn-editar"><i class="fa-solid fa-pen"></i></button>
-                            <button class="btn btn-sm btn-eliminar"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                    </tr>
                 </tbody>
 
             </table>
 
-            <button class="btn btn-registrar" data-bs-toggle="modal" data-bs-target="#modalProveedor">
-                <i class="fa-solid fa-plus"></i> Registrar Proveedor
-            </button>
-
-            <div class="modal fade" id="modalProveedor">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-
-                        <div class="modal-header">
-                            <h5 class="modal-title">Registrar Proveedor</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-
-                        <div class="modal-body">
-
-                            <input type="text" id="proveedor" class="form-control mb-2" placeholder="Proveedor">
-                            <input type="text" id="telefono" class="form-control mb-2" placeholder="Teléfono">
-                            <input type="email" id="correo" class="form-control mb-2" placeholder="Correo">
-                            <input type="text" id="ciudad" class="form-control mb-2" placeholder="Ciudad">
-
-                            <select id="estado" class="form-select">
-                                <option value="Activo">Activo</option>
-                                <option value="Inactivo">Inactivo</option>
-                                <option value="Pendiente">Pendiente</option>
-                            </select>
-
-                        </div>
-
-                        <div class="modal-footer">
-                            <button class="btn" id="guardarProveedor">Guardar</button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
         </div>
+
     </div>
 
-</div>
-</div>
-
+<!-- JS -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.datatables.net/2.3.4/js/dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/2.3.4/js/dataTables.bootstrap5.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<script src="../js/proveedores.js"></script>
+<script src="../JS/Proveedores.js"></script>
 
 </body>
 </html>
