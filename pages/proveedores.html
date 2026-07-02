@@ -3,188 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Proveedores - ERP Kronos</title>
-
-    <!-- Bootstrap 5.3.3 -->
+    <title>Gestión de Proveedores</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- FontAwesome 6 (Iconos) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-size/6.4.0/css/all.min.css">
-    
-    <!-- DataTables Responsive -->
+
+    <script src="https://kit.fontawesome.com/a0994db117.js" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.4/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.2/css/responsive.bootstrap5.min.css">
-    
-    <!-- SweetAlert2 (Alertas Pro) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    
-    <!-- CSS Propio -->
+
     <link rel="stylesheet" href="../css/Proveedores.css">
 </head>
 <body>
 
-    <!-- SIDEBAR FIJO Y COLAPSABLE -->
     <div class="sidebar" id="sidebar">
-        <div class="sidebar-brand">
-            <i class="fa-solid fa-cubes-stacked brand-icon"></i>
-            <span class="brand-name">ERP Kronos</span>
+
+        <div class="sidebar-header">
+            <button class="btn-hamburger" id="btnToggleSidebar">
+                <img src="../img/logo.png" alt="">
+            </button>
+            <span class="menu-title">Taller Batancourt</span>
         </div>
-        <hr class="text-secondary my-2">
-        <ul class="nav flex-column px-2">
-            <li class="nav-item">
-                <a href="#" class="nav-link active">
-                    <i class="fa-solid fa-truck"></i>
-                    <span>Proveedores</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="fa-solid fa-tags"></i>
-                    <span>Clasificación</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="fa-solid fa-file-invoice-dollar"></i>
-                    <span>Facturas</span>
-                </a>
-            </li>
-            <li class="nav-item mt-4">
-                <a href="#" class="nav-link text-danger">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                    <span>Salir</span>
-                </a>
-            </li>
-        </ul>
+        <hr class="sidebar-divider">
+        
+        <div class="sidebar-menu">
+
+            <a href="proveedores.html" class="menu-item active">
+                <span class="menu-icon"><i class="fa-solid fa-people-group"></i></span>
+                <span class="menu-text"> Proveedores</span>
+            </a>
+            <a href="Pro_Facturas.html" class="menu-item">
+                <span class="menu-icon"><i class="fa-solid fa-receipt"></i></span>
+                <span class="menu-text">Facturas</span>
+            </a>
+            <a href="./Pro_Calificacion.html" class="menu-item">
+                <span class="menu-icon"><i class="fa-solid fa-ranking-star"></i></span>
+                <span class="menu-text">Calificación</span>
+            </a>
+            <a href="#" class="menu-item">
+                <span class="menu-icon"><i class="fa-solid fa-right-to-bracket"></i></span>
+                <span class="menu-text">Salir</span>
+            </a>
+        </div>
     </div>
 
-    <!-- CONTENIDO PRINCIPAL (Alineado con el Sidebar) -->
     <div class="main-content" id="mainContent">
         
-        <!-- NAVBAR SUPERIOR -->
-        <nav class="navbar navbar-expand px-4 py-3 mb-4">
-            <button class="btn btn-toggle-sidebar text-white me-3" id="btnToggleSidebar">
-                <i class="fa-solid fa-bars-staggered"></i>
-            </button>
-            <span class="navbar-title d-none d-sm-inline">Módulo de Adquisiciones</span>
-            <div class="ms-auto d-flex align-items-center">
-                <span class="text-white-50 me-2">Administrador</span>
-                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=40&h=40&q=80" alt="Avatar" class="rounded-circle border border-2 border-primary" width="35" height="35">
-            </div>
-        </nav>
-
-        <!-- DASHBOARD CONTAINER -->
-        <div class="container-fluid px-4 animate-fade-in">
-            
-            <!-- Encabezado de Sección -->
-            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-3 mb-4">
+        <div class="cuadros mb-4">
+            <div class="encabezado shadow d-flex align-items-center gap-3 p-3">
+                
                 <div>
-                    <h2 class="page-title m-0">Gestión de Proveedores</h2>
-                    <p class="text-muted small m-0">Administración general, estados y registros comerciales.</p>
+                    <h2>Gestión de Proveedores</h2>
+                    <h5>Registro y validación de proveedores</h5>
                 </div>
-                <button class="btn btn-registrar shadow-sm" id="btnNuevoProveedor">
-                    <i class="fa-solid fa-circle-plus me-2"></i>Registrar proveedor
-                </button>
             </div>
+        </div>
 
-            <!-- TARJETAS DINÁMICAS -->
-            <div class="row g-3 mb-4">
-                <div class="col-12 col-sm-6 col-xl-4">
-                    <div class="card card-dashboard p-3 border-left-primary">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                                <h6 class="text-muted text-uppercase small">Total Proveedores</h6>
-                                <h2 class="m-0" id="total">0</h2>
-                            </div>
-                            <div class="card-icon bg-primary-subtle text-primary">
-                                <i class="fa-solid fa-truck-ramp-box"></i>
-                            </div>
+
+        <div class="busquedar container-fluid px-0">
+
+            <div class="contenedor-cards row g-3 mb-4">
+                <div class="col-md-4">
+                    <div class="card p-3">
+                        <div class="header d-flex justify-content-between">
+                            <span>Total proveedores</span>
+                            <i class="fa-solid fa-people-line"></i>
                         </div>
+                        <h2 id="totalproveedores" class="mt-2">0</h2>
+                        <p class="mb-0  small">Proveedores Registrados</p>
                     </div>
                 </div>
-                <div class="col-12 col-sm-6 col-xl-4">
-                    <div class="card card-dashboard p-3 border-left-success">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                                <h6 class="text-muted text-uppercase small">Activos</h6>
-                                <h2 class="m-0 text-success" id="activos">0</h2>
-                            </div>
-                            <div class="card-icon bg-success-subtle text-success">
-                                <i class="fa-solid fa-circle-check"></i>
-                            </div>
+                <div class="col-md-4">
+                    <div class="card p-3">
+                        <div class="header d-flex justify-content-between">
+                            <span>Activos</span>
+                            <i class="fa-solid fa-user-check"></i>
                         </div>
+                        <h2 id="Activos" class="mt-2 text-success">0</h2>
+                        <p class="mb-0 small">Proveedores Activos</p>
                     </div>
                 </div>
-                <div class="col-12 col-xl-4">
-                    <div class="card card-dashboard p-3 border-left-warning">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                                <h6 class="text-muted text-uppercase small">Pendientes</h6>
-                                <h2 class="m-0 text-warning" id="pendientes">0</h2>
-                            </div>
-                            <div class="card-icon bg-warning-subtle text-warning">
-                                <i class="fa-solid fa-clock-rotate-left"></i>
-                            </div>
+                <div class="col-md-4">
+                    <div class="card p-3">
+                        <div class="header d-flex justify-content-between">
+                            <span>En revisión</span>
+                            <i class="fa-solid fa-code-compare"></i>
                         </div>
+                        <h2 id="revicion" class="mt-2 text-warning">0</h2>
+                        <p class="mb-0 small">Pendientes De Aprobación</p>
                     </div>
                 </div>
             </div>
 
-            <!-- CONTENEDOR DE LA TABLA RESPONSIVE -->
-            <div class="card card-table p-4 shadow-sm mb-5">
-                <div class="table-responsive w-100">
-                    <table id="tablaProveedores" class="table table-hover w-100 style-table">
-                        <thead>
-                            <tr>
-                                <th class="all">ID</th>
-                                <th class="all">Proveedor</th>
-                                <th class="min-tablet">Teléfono</th>
-                                <th class="min-desktop">Correo</th>
-                                <th class="min-tablet">Ciudad</th>
-                                <th class="all">Estado</th>
-                                <th class="all">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Inyección dinámica de filas via JS -->
-                        </tbody>
-                    </table>
+            <div class="tabla-contenedor">
+                <div class="card shadow p-3">
+                    <div class="card-header bg-transparent border-0 d-flex justify-content-between align-items-center px-0 mb-3">
+                        <h3 class="mb-0 text-white">Listado de Proveedores</h3>
+                        <button class="btn btn-registrar" data-bs-toggle="modal" data-bs-target="#modalProveedor">
+                            <i class="fa-solid fa-plus"></i> Registrar Proveedor
+                        </button>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table id="tablaProveedores" class="table table-hover nowrap w-100">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Proveedor</th>
+                                    <th>Teléfono</th>
+                                    <th>Correo</th>
+                                    <th>Ciudad</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-
         </div>
     </div>
 
-    <!-- MODAL PARA REGISTRAR / EDITAR -->
-    <div class="modal fade" id="modalProveedor" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="modalProveedor" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header border-bottom-0">
-                    <h5 class="modal-title fw-bold" id="modalTitle">Registrar Proveedor</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-content text-bg-dark border-secondary">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Registrar Proveedor</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body py-3">
-                    <form id="formProveedor" novalidate>
-                        <div class="mb-3">
-                            <label class="form-label text-white-50 small">Nombre de la Empresa</label>
-                            <input type="text" id="proveedor" class="form-control" placeholder="Ej. Distribuciones del Norte" required>
+                <div class="modal-body">
+                    <form id="formProveedor">
+                        <div class="mb-2">
+                            <input type="text" id="proveedor" class="form-control" placeholder="Proveedor" required>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label text-white-50 small">Teléfono</label>
-                                <input type="tel" id="telefono" class="form-control" placeholder="Ej. 3101234567" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label text-white-50 small">Ciudad</label>
-                                <input type="text" id="ciudad" class="form-control" placeholder="Ej. Bogotá" required>
-                            </div>
+                        <div class="mb-2">
+                            <input type="text" id="telefono" class="form-control" placeholder="Teléfono" required>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label text-white-50 small">Correo Electrónico</label>
-                            <input type="email" id="correo" class="form-control" placeholder="correo@empresa.com" required>
+                        <div class="mb-2">
+                            <input type="email" id="correo" class="form-control" placeholder="Correo" required>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label text-white-50 small">Estado Comercial</label>
+                        <div class="mb-2">
+                            <input type="text" id="ciudad" class="form-control" placeholder="Ciudad" required>
+                        </div>
+                        <div class="mb-2">
                             <select id="estado" class="form-select">
                                 <option value="Activo">Activo</option>
                                 <option value="Pendiente">Pendiente</option>
@@ -193,23 +156,21 @@
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer border-top-0 d-flex gap-2">
-                    <button type="button" class="btn btn-secondary flex-grow-1" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" id="guardarProveedor" class="btn btn-registrar flex-grow-1">Guardar Registro</button>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-registrar" id="guardarProveedor">Guardar</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- SCRIPTS -->
+
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.datatables.net/2.3.4/js/dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/2.3.4/js/dataTables.bootstrap5.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/3.0.2/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/3.0.2/js/responsive.bootstrap5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
-    <script src="../js/Proveedores.js"></script>
+    <script src="../js/proveedores.js"></script>
 </body>
 </html>
