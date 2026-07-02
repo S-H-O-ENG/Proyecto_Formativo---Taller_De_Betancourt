@@ -1,226 +1,306 @@
-:root{
-    --oscuro-fondo:#0f0f12;
-    --morado-principal:#5f1ed7;
-    --morado-secundario:#6f42c1;
-    --blanco:#ffffff;
-    --blanco-suave:#f1f1f4;
-    --gris:#a3a3b8;
-    --gris-claro:#2b2b35;
+:root {
+    --oscuro-fondo: #0a0a0f;
+    --oscuro-panel: #13131c;
+    --morado-principal: #5f1ed7;
+    --morado-glow: rgba(95, 30, 215, 0.4);
+    --blanco-suave: #f1f1f4;
+    --text-muted: #88889b;
+    --border-color: #242433;
+    
+    --sidebar-width: 260px;
+    --sidebar-collapsed-width: 70px;
 }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-    background:var(--oscuro-fondo);
-    color:var(--blanco-suave);
-    font-family:Arial, Helvetica, sans-serif;
+body {
+    background: var(--oscuro-fondo);
+    color: var(--blanco-suave);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
 }
 
-
-.navbar{
-    background:linear-gradient(90deg,#4c1d95,#5f1ed7);
+/* --- ANIMACIONES --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+    animation: fadeIn 0.4s ease forwards;
 }
 
-.navbar span{
-    font-size:22px;
-    font-weight:bold;
+/* --- SIDEBAR --- */
+.sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: var(--oscuro-panel);
+    border-right: 1px solid var(--border-color);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1045;
+    overflow-y: auto;
 }
 
-
-.offcanvas{
-    background:#181822;
-    color:white;
+.sidebar.collapsed {
+    width: var(--sidebar-collapsed-width);
 }
 
-.offcanvas a{
-    color:white;
-    text-decoration:none;
-    padding:12px;
-    border-radius:8px;
-    display:block;
-    transition:.3s;
+.sidebar-brand {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    gap: 12px;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
-.offcanvas a:hover{
-    background:var(--morado-principal);
+.brand-icon {
+    font-size: 24px;
+    color: var(--morado-principal);
+    min-width: 30px;
 }
 
-
-h2{
-    color:white;
-    font-weight:bold;
+.brand-name {
+    font-size: 19px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.5px;
 }
 
-.card{
-    background:#181822;
-    border:2px solid var(--morado-principal);
-    border-radius:15px;
-    transition:.3s;
+.sidebar.collapsed .brand-name,
+.sidebar.collapsed .sidebar .nav-link span {
+    display: none;
 }
 
-.card:hover{
-    transform:translateY(-4px);
-    box-shadow:0 0 20px rgba(95,30,215,.4);
+.sidebar .nav-link {
+    color: var(--text-muted);
+    padding: 12px 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 5px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
-.card h5{
-    color:#cfcfe8;
+.sidebar .nav-link i {
+    font-size: 18px;
+    min-width: 25px;
+    text-align: center;
 }
 
-.card h2{
-    font-size:40px;
-    color:white;
+.sidebar .nav-link:hover, 
+.sidebar .nav-link.active {
+    background: linear-gradient(90deg, rgba(95, 30, 215, 0.15), transparent);
+    color: white;
 }
 
-
-.table{
-    margin-bottom:0;
+.sidebar .nav-link.active i {
+    color: #8d62ff;
 }
 
-.table thead th{
-    background:var(--morado-principal);
-    color:white;
-    text-align:center;
-    border:none;
+/* --- CONTENIDO PRINCIPAL Y NAVBAR --- */
+.main-content {
+    margin-left: var(--sidebar-width);
+    min-height: 100vh;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.table tbody td{
-    text-align:center;
-    vertical-align:middle;
+.main-content.expanded {
+    margin-left: var(--sidebar-collapsed-width);
 }
 
-.table-hover tbody tr:hover{
-    background:#2d1b69;
+.navbar {
+    background: rgba(19, 19, 28, 0.75);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    height: 70px;
 }
 
-
-.dataTables_wrapper{
-    color:white;
+.btn-toggle-sidebar {
+    background: none;
+    border: none;
+    font-size: 20px;
 }
 
-.dataTables_wrapper .dataTables_filter input{
-    background:#222;
-    color:white;
-    border:1px solid var(--morado-principal);
-    border-radius:8px;
-    padding:5px 10px;
+.navbar-title {
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
 }
 
-.dataTables_wrapper .dataTables_length select{
-    background:#222;
-    color:white;
-    border:1px solid var(--morado-principal);
-    border-radius:8px;
+/* --- DASHBOARD & TARJETAS --- */
+.page-title {
+    font-weight: 700;
+    color: white;
 }
 
-.dataTables_wrapper .dataTables_info{
-    color:white;
+.card-dashboard {
+    background: var(--oscuro-panel);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-.dataTables_wrapper .page-link{
-    background:#222;
-    color:white;
-    border:none;
+.card-dashboard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
 }
 
-.dataTables_wrapper .page-item.active .page-link{
-    background:var(--morado-principal);
-    border:none;
+.border-left-primary { border-left: 4px solid var(--morado-principal); }
+.border-left-success { border-left: 4px solid #198754; }
+.border-left-warning { border-left: 4px solid #ffc107; }
+
+.card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
 }
 
+.bg-primary-subtle { background: rgba(95, 30, 215, 0.15); }
+.bg-success-subtle { background: rgba(25, 135, 84, 0.15); }
+.bg-warning-subtle { background: rgba(255, 193, 7, 0.15); }
 
-.btn-editar{
-    background:#ffc107;
-    color:black;
-    border:none;
+/* --- CONTENEDOR DE TABLA (NUNCA SE SALE) --- */
+.card-table {
+    background: var(--oscuro-panel);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
 }
 
-.btn-editar:hover{
-    background:#ffca2c;
+.table-responsive {
+    overflow-x: auto !important;
+    width: 100% !important;
 }
 
-.btn-eliminar{
-    background:#dc3545;
-    color:white;
-    border:none;
+table.dataTable {
+    width: 100% !important;
+    margin: 0 !important;
 }
 
-.btn-eliminar:hover{
-    background:#bb2d3b;
+.style-table thead th {
+    background-color: #1a1a26 !important;
+    color: white !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--border-color) !important;
+    padding: 14px 10px !important;
 }
 
-.btn-registrar{
-    background:linear-gradient(90deg,#5f1ed7,#7d4ef7);
-    color:white;
-    border:none;
-    border-radius:8px;
-    padding:10px 20px;
-    transition:.3s;
+.style-table tbody td {
+    background-color: transparent !important;
+    color: #cfcfe8 !important;
+    vertical-align: middle;
+    padding: 12px 10px !important;
+    border-bottom: 1px solid var(--border-color) !important;
 }
 
-.btn-registrar:hover{
-    transform:translateY(-2px);
-    box-shadow:0 0 15px rgba(95,30,215,.5);
+.style-table.table-hover tbody tr:hover td {
+    background-color: rgba(255, 255, 255, 0.02) !important;
+    color: white !important;
 }
 
-
-.modal-content{
-    background:#181822;
-    color:white;
-    border:2px solid var(--morado-principal);
+/* Estilos de DataTables Filtros */
+.dt-search input {
+    background: #1a1a26 !important;
+    color: white !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    padding: 6px 12px !important;
+}
+.dt-length select {
+    background: #1a1a26 !important;
+    color: white !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px !important;
+}
+.dt-paging .page-link {
+    background: #1a1a26 !important;
+    color: white !important;
+    border: 1px solid var(--border-color) !important;
+}
+.dt-paging .page-item.active .page-link {
+    background: var(--morado-principal) !important;
+    border-color: var(--morado-principal) !important;
 }
 
-.modal-header{
-    border-bottom:1px solid #333;
+/* --- BOTONES Y BADGES --- */
+.btn-registrar {
+    background: var(--morado-principal);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 500;
+    transition: all 0.2s ease;
 }
 
-.modal-footer{
-    border-top:1px solid #333;
+.btn-registrar:hover {
+    background: #6f32e6;
+    box-shadow: 0 0 15px var(--morado-glow);
+    color: white;
 }
 
-.modal .form-control,
-.modal .form-select{
-    background:#2b2b35;
-    color:white;
-    border:1px solid var(--morado-principal);
+.badge {
+    font-weight: 500;
+    padding: 6px 10px;
+    border-radius: 6px;
 }
 
-.modal .form-control:focus,
-.modal .form-select:focus{
-    border-color:#8d62ff;
-    box-shadow:0 0 8px rgba(95,30,215,.5);
-    background:#2b2b35;
-    color:white;
+/* --- MODAL --- */
+.modal-content {
+    background: var(--oscuro-panel);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-
-
-.badge{
-    font-size:13px;
-    padding:8px 12px;
+.modal .form-control, .modal .form-select {
+    background: #1a1a26;
+    color: white;
+    border: 1px solid var(--border-color);
+    padding: 10px 12px;
+    border-radius: 8px;
 }
 
+.modal .form-control:focus, .modal .form-select:focus {
+    background: #1a1a26;
+    color: white;
+    border-color: var(--morado-principal);
+    box-shadow: 0 0 8px var(--morado-glow);
+}
 
-@media(max-width:768px){
-
-    h2{
-        font-size:24px;
+/* --- ADAPTACIÓN RESPONSIVE FLUIDA --- */
+@media (max-width: 991.98px) {
+    .sidebar {
+        left: -100%;
     }
-
-    .card h2{
-        font-size:30px;
+    .sidebar.show-mobile {
+        left: 0;
+        width: var(--sidebar-width) !important;
     }
-
-    .table{
-        font-size:13px;
+    .sidebar.show-mobile .brand-name, 
+    .sidebar.show-mobile .nav-link span {
+        display: inline !important;
     }
-
-    .navbar span{
-        font-size:18px;
+    .main-content {
+        margin-left: 0 !important;
     }
-
 }

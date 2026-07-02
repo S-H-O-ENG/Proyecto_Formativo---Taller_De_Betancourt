@@ -1,241 +1,249 @@
 let tabla;
 let contador = 1;
 let filaEditar = null;
+const bootstrapModal = new bootstrap.Modal(document.getElementById('modalProveedor'));
 
 $(document).ready(function () {
+    
+    // 1. MANEJO DEL SIDEBAR RESPONSIVE / COLAPSABLE
+    $("#btnToggleSidebar").on("click", function() {
+        if ($(window).width() > 991.98) {
+            // Desktop: Colapsar/Expandir de forma fija
+            $("#sidebar").toggleClass("collapsed");
+            $("#mainContent").toggleClass("expanded");
+        } else {
+            // Mobile: Aparecer/Desaparecer lateralmente
+            $("#sidebar").toggleClass("show-mobile");
+        }
+    });
 
-    tabla = $("#tablaProveedores").DataTable({
-        language: {
-            search: "Buscar:",
-            lengthMenu: "Mostrar _MENU_ registros",
-            info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
-            infoEmpty: "Mostrando 0 a 0 de 0 registros",
-            zeroRecords: "No se encontraron resultados",
-            emptyTable: "No hay proveedores registrados",
-            paginate: {
-                first: "Primero",
-                last: "Último",
-                next: "Siguiente",
-                previous: "Anterior"
+    // Cerrar sidebar al hacer clic afuera en móviles
+    $(document).on("click", function(e) {
+        if ($(window).width() <= 991.98) {
+            if (!$(e.target).closest('#sidebar, #btnToggleSidebar').length) {
+                $("#sidebar").removeClass("show-mobile");
             }
         }
     });
 
-    agregarProveedor(
-        "Distribuciones Andina SAS",
-        "3104567890",
-        "contacto@andina.com",
-        "Bogotá",
-        "Activo"
-    );
+    // 2. INICIALIZACIÓN DE DATATABLES RESPONSIVE
+    tabla = $("#tablaProveedores").DataTable({
+        responsive: true,
+        autoWidth: false,
+        columnDefs: [
+            { className: "text-center align-middle", targets: "_all" },
+            { orderable: false, targets: [5, 6] }
+        ],
+        language: {
+            search: "_INPUT_",
+            searchPlaceholder: "Buscar proveedor...",
+            lengthMenu: "Mostrar _MENU_",
+            info: "Mostrando _START_ a _END_ de _TOTAL_",
+            infoEmpty: "Sin registros",
+            zeroRecords: "No se encontraron resultados matching",
+            emptyTable: "No hay proveedores registrados",
+            paginate: {
+                first: "<i class='fa-solid fa-angles-left'></i>",
+                last: "<i class='fa-solid fa-angles-right'></i>",
+                next: "<i class='fa-solid fa-angle-right'></i>",
+                previous: "<i class='fa-solid fa-angle-left'></i>"
+            }
+        }
+    });
 
-    agregarProveedor(
-        "Comercial ABC",
-        "3204561234",
-        "ventas@abc.com",
-        "Medellín",
-        "Pendiente"
-    );
-
+    // 3. PRE-CARGA DE DATOS SEGUROS
+    agregarProveedor("Distribuciones Andina SAS", "3104567890", "contacto@andina.com", "Bogotá", "Activo");
+    agregarProveedor("Comercial ABC", "3204561234", "ventas@abc.com", "Medellín", "Pendiente");
     actualizarContadores();
+
+    // 4. INVOCAR MODAL PARA REGISTRO NUEVO
+    $("#btnNuevoProveedor").on("click", function() {
+        filaEditar = null;
+        $("#formProveedor")[0].reset();
+        $("#estado").val("Activo");
+        $("#modalTitle").text("Registrar Proveedor");
+        bootstrapModal.show();
+    });
 });
 
-function crearBadge(estado){
-
-    if(estado==="Activo"){
-
-        return '<span class="badge bg-success">Activo</span>';
-
-    }
-
-    if(estado==="Pendiente"){
-
-        return '<span class="badge bg-warning text-dark">Pendiente</span>';
-
-    }
-
-    return '<span class="badge bg-danger">Inactivo</span>';
-
+// --- COMPONENTES UI REUTILIZABLES ---
+function crearBadge(estado) {
+    if (estado === "Activo") return '<span class="badge bg-success-subtle text-success"><i class="fa-solid fa-circle shadow-sm me-1 small"></i>Activo</span>';
+    if (estado === "Pendiente") return '<span class="badge bg-warning-subtle text-warning"><i class="fa-solid fa-spinner fa-spin me-1 small"></i>Pendiente</span>';
+    return '<span class="badge bg-danger-subtle text-danger"><i class="fa-solid fa-circle-xmark me-1 small"></i>Inactivo</span>';
 }
 
-function botonesAcciones(){
-
+function botonesAcciones() {
     return `
-        <button class="btn btn-warning btn-sm btn-editar me-1">
-            <i class="fa-solid fa-pen"></i>
-        </button>
-
-        <button class="btn btn-danger btn-sm btn-eliminar">
-            <i class="fa-solid fa-trash"></i>
-        </button>
+        <div class="d-flex justify-content-center gap-1">
+            <button class="btn btn-warning btn-sm btn-editar" title="Editar Registro">
+                <i class="fa-solid fa-pen-to-square text-dark"></i>
+            </button>
+            <button class="btn btn-danger btn-sm btn-eliminar" title="Eliminar Registro">
+                <i class="fa-solid fa-trash-can"></i>
+            </button>
+        </div>
     `;
-
 }
 
-function agregarProveedor(nombre,telefono,correo,ciudad,estado){
-
+// --- LOGICA CRUD ---
+function agregarProveedor(nombre, telefono, correo, ciudad, estado) {
     tabla.row.add([
-
-        String(contador).padStart(3,"0"),
-
+        String(contador).padStart(3, "0"),
         nombre,
-
         telefono,
-
         correo,
-
         ciudad,
-
         crearBadge(estado),
-
         botonesAcciones()
-
     ]).draw(false);
-
     contador++;
-
 }
 
-function actualizarContadores(){
-
+function actualizarContadores() {
     let total = tabla.rows().count();
-
     let activos = 0;
-
     let pendientes = 0;
 
-    tabla.rows().every(function(){
-
+    tabla.rows().every(function () {
         let datos = this.data();
+        let contenedorTemporal = document.createElement("div");
+        contenedorTemporal.innerHTML = datos[5];
+        let estadoStr = contenedorTemporal.textContent.trim();
 
-        let estado = $("<div>"+datos[5]+"</div>").text().trim();
-
-        if(estado==="Activo") activos++;
-
-        if(estado==="Pendiente") pendientes++;
-
+        if (estadoStr.includes("Activo")) activos++;
+        if (estadoStr.includes("Pendiente")) pendientes++;
     });
 
     $("#total").text(total);
-
     $("#activos").text(activos);
-
     $("#pendientes").text(pendientes);
-
 }
 
-$("#tablaProveedores tbody").on("click",".btn-eliminar",function(){
-
-    if(confirm("¿Desea eliminar este proveedor?")){
-
-        tabla.row($(this).parents("tr")).remove().draw();
-
-        actualizarContadores();
-
-    }
-
+// ACCIÓN ELIMINAR CON SWEETALERT2
+$("#tablaProveedores tbody").on("click", ".btn-eliminar", function () {
+    let filaDOM = $(this).closest("tr");
+    
+    Swal.fire({
+        title: '¿Eliminar proveedor?',
+        text: "Esta acción no se puede revertir de forma directa.",
+        icon: 'warning',
+        showCancelButton: true,
+        background: '#13131c',
+        color: '#f1f1f4',
+        confirmButtonColor: '#dc3545',
+        cancelButtonColor: '#242433',
+        confirmButtonText: 'Sí, borrar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            tabla.row(filaDOM).remove().draw(false);
+            actualizarContadores();
+            
+            Swal.fire({
+                title: 'Eliminado',
+                text: 'El proveedor ha sido borrado.',
+                icon: 'success',
+                background: '#13131c',
+                color: '#f1f1f4',
+                timer: 1500,
+                showConfirmButton: false
+            });
+        }
+    });
 });
 
-$("#tablaProveedores tbody").on("click",".btn-editar",function(){
-
-    filaEditar = tabla.row($(this).parents("tr"));
-
+// ACCIÓN EDITAR
+$("#tablaProveedores tbody").on("click", ".btn-editar", function () {
+    let filaDOM = $(this).closest("tr");
+    filaEditar = tabla.row(filaDOM);
     let datos = filaEditar.data();
 
     $("#proveedor").val(datos[1]);
-
     $("#telefono").val(datos[2]);
-
     $("#correo").val(datos[3]);
-
     $("#ciudad").val(datos[4]);
+    
+    let divTemp = document.createElement("div");
+    divTemp.innerHTML = datos[5];
+    let estadoLimpio = divTemp.textContent.trim();
+    $("#estado").val(estadoLimpio);
 
-    $("#estado").val($("<div>"+datos[5]+"</div>").text());
-
-    new bootstrap.Modal(
-        document.getElementById("modalProveedor")
-    ).show();
-
+    $("#modalTitle").text("Modificar Proveedor");
+    bootstrapModal.show();
 });
 
-$("#guardarProveedor").on("click",function(){
-
+// VALIDACIONES Y PROCESO DE GUARDAR
+$("#guardarProveedor").on("click", function () {
     let proveedor = $("#proveedor").val().trim();
-
     let telefono = $("#telefono").val().trim();
-
     let correo = $("#correo").val().trim();
-
     let ciudad = $("#ciudad").val().trim();
-
     let estado = $("#estado").val();
 
-    if(
-
-        proveedor===""
-
-        || telefono===""
-
-        || correo===""
-
-        || ciudad===""
-
-    ){
-
-        alert("Complete todos los campos.");
-
+    // Validar Vacíos
+    if (proveedor === "" || telefono === "" || correo === "" || ciudad === "") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Campos Incompletos',
+            text: 'Por favor, diligencie toda la información solicitada.',
+            background: '#13131c',
+            color: '#f1f1f4',
+            confirmButtonColor: '#5f1ed7'
+        });
         return;
-
     }
 
-    let fila=[
+    // RegEx para estructura de Email estándar
+    let regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!regexCorreo.test(correo)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Correo Inválido',
+            text: 'Escriba una estructura de correo legítima (ejemplo@dominio.com).',
+            background: '#13131c',
+            color: '#f1f1f4',
+            confirmButtonColor: '#5f1ed7'
+        });
+        return;
+    }
 
-        filaEditar
-        ? filaEditar.data()[0]
-        : String(contador).padStart(3,"0"),
-
+    let filaNueva = [
+        filaEditar ? filaEditar.data()[0] : String(contador).padStart(3, "0"),
         proveedor,
-
         telefono,
-
         correo,
-
         ciudad,
-
         crearBadge(estado),
-
         botonesAcciones()
-
     ];
 
-    if(filaEditar){
-
-        filaEditar.data(fila).draw(false);
-
-        filaEditar=null;
-
-    }else{
-
-        tabla.row.add(fila).draw(false);
-
+    if (filaEditar) {
+        filaEditar.data(filaNueva).draw(false);
+        filaEditar = null;
+        Swal.fire({
+            icon: 'success',
+            title: 'Registro Actualizado',
+            text: 'Los cambios fueron guardados exitosamente.',
+            background: '#13131c',
+            color: '#f1f1f4',
+            timer: 1800,
+            showConfirmButton: false
+        });
+    } else {
+        tabla.row.add(filaNueva).draw(false);
         contador++;
-
+        Swal.fire({
+            icon: 'success',
+            title: 'Proveedor Registrado',
+            text: 'La empresa se añadió correctamente al sistema.',
+            background: '#13131c',
+            color: '#f1f1f4',
+            timer: 1800,
+            showConfirmButton: false
+        });
     }
 
     actualizarContadores();
-
-    document.getElementById("proveedor").value="";
-
-    document.getElementById("telefono").value="";
-
-    document.getElementById("correo").value="";
-
-    document.getElementById("ciudad").value="";
-
-    document.getElementById("estado").value="Activo";
-
-    bootstrap.Modal.getInstance(
-        document.getElementById("modalProveedor")
-    ).hide();
-
+    bootstrapModal.hide();
 });
