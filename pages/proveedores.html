@@ -3,25 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>Gestión de Proveedores</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <script src="https://kit.fontawesome.com/a0994db117.js" crossorigin="Anonymous"></script>
+    <script src="https://kit.fontawesome.com/a0994db117.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="../css/Proveedores.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.4/css/dataTables.bootstrap5.min.css">
 
-
-
 </head>
-<body>
-    <div class="d-flex">
 
+<body>
+
+    <!-- Barra lateral -->
     <div class="sidebar">
 
-        <h3 class="logo">Sistema</h3>
+        <h2 class="mb-4">Sistema</h2>
 
         <a href="#">
             <i class="fa-solid fa-house"></i> Inicio
@@ -49,75 +47,95 @@
 
     </div>
 
-    <div class="cuadros">
+    <div class="contenido">
 
-        <div class="encabezado shadow">
-            <div>
-                <h2>Gestión de Proveedores</h2>
-                <h5>Registro y validación de proveedores</h5>
+        <div class="cuadros">
+
+            <div class="encabezado shadow">
+
+                <div>
+                    <h2>Gestión de Proveedores</h2>
+                    <h5>Registro y validación de proveedores</h5>
+                </div>
+
             </div>
-        </div>
-    </div>
-</div>
-<br><br>
 
-<div class="busquedar">
-<div class="contenedor-cards">
-
-    <div class="card">
-        <div class="header">
-            <span> Total proveedores</span>
-            <i class="fa-regular" ></i>
-        </div>
-        <h2 id="totalproveedores">0</h2>
-        <p>Proveedores Registrados</p>
-    </div>
-
-    <br>
-
-    <div class="card">
-        <div class="header">
-            <span>Activos</span>
-            <i class="fa-solid"></i>
-        </div>
-        <h2 id="Activos">0</h2>
-        <p>Proveedor Activos</p>
-    </div>
-    <br>
-    <div class="card">
-        <div class="header">
-            <span>En revisión</span>
-            <i class="fa-solid "></i>
-        </div>
-        <h2 id="revicion">0</h2>
-        <p>Pendientes De Aprobación</p>
-    </div>
-
-    </div>
-
-<div class="tabla-contenedor">
-
-    <div class="card shadow">
-        <div class="card-header">
-            <h3 class="mb-0">Gestión de Proveedores</h3>
         </div>
 
+        <br>
 
-        <div class="card-body">
+        <div class="busquedar">
 
-            <table id="tablaProveedores" class="table table-hover nowrap">
-                <thead class="table">
-                    <tr>
-                        <th>ID</th>
-                        <th>Proveedor</th>
-                        <th>Teléfono</th>
-                        <th>Correo</th>
-                        <th>Ciudad</th>
-                        <th>Estado</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
+            <div class="contenedor-cards">
 
+                <div class="card">
+
+                    <div class="header">
+                        <span>Total proveedores</span>
+                        <i class="fa-solid "></i>
+                    </div>
+
+                    <h2 id="totalproveedores">0</h2>
+
+                    <p>Proveedores Registrados</p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="header">
+                        <span>Activos</span>
+                        <i class="fa-solid "></i>
+                    </div>
+
+                    <h2 id="Activos">0</h2>
+
+                    <p>Proveedor Activos</p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="header">
+                        <span>En revisión</span>
+                        <i class="fa-solid "></i>
+                    </div>
+
+                    <h2 id="revicion">0</h2>
+
+                    <p>Pendientes De Aprobación</p>
+
+                </div>
+
+            </div>
+
+            <div class="tabla-contenedor">
+
+                <div class="card shadow">
+
+                    <div class="card-header">
+                        <h3 class="mb-0">Gestión de Proveedores</h3>
+                    </div>
+
+                    <div class="card-body">
+
+                        <table id="tablaProveedores" class="table table-hover nowrap">
+
+                            <thead class="table">
+
+                                <tr>
+
+                                    <th>ID</th>
+                                    <th>Proveedor</th>
+                                    <th>Teléfono</th>
+                                    <th>Correo</th>
+                                    <th>Ciudad</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+
+                                </tr>
+
+                            </thead>
                 <tbody>
                     <tr>
                         <td>001</td>
@@ -129,9 +147,11 @@
                             <span class="badge bg-success">Activo</span>
                         </td>
                         <td>
-                                    <button class="btn btn-sm btn-editar"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="btn btn-sm btn-editar">
+                                    <i class="fa-solid fa-pen"></i></button>
 
-                                    <button class="btn btn-sm btn-eliminar"><i class="fa-solid fa-trash"></i></button>
+                                    <button class="btn btn-sm btn-eliminar">
+                                        <i class="fa-solid fa-trash"></i></button>
                         </td>
                     </tr>
 
