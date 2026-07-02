@@ -3,139 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Proveedores</title>
+    <title>Document</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <script src="https://kit.fontawesome.com/a0994db117.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a0994db117.js" crossorigin="Anonymous"></script>
 
     <link rel="stylesheet" href="../css/Proveedores.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.4/css/dataTables.bootstrap5.min.css">
 
 </head>
-
 <body>
 
-    <!-- Barra lateral -->
-    <div class="sidebar">
+    <button class="btn btn-dark m-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
+    <i class="fa-solid fa-bars"></i>
+</button>
 
-        <h2 class="mb-4">Sistema</h2>
+    <aside class="sidebar offcanvas offcanvas-start" data-bs-backdrop="false" tabindex="-1" id="sidebarMenu">
+        <div class="sidebar-logo">
+            <img src="../img/logo.png" alt="Logo Taller">
+            <br><br>
+            <h2>Taller De Betancourt</h2>
+        </div>
+        <nav class="sidebar-menu">
+            <a href="proveedores.html">
+                <i class="fa-solid fa-truck"></i>
+                Proveedores
+            </a>
+            <a href="clientes.html" class="active">
+                <i class="fa-regular fa-user"></i>
+                Clasificacion
+            </a>
+            <a href="pedidos.html">
+                <i class="fa-solid fa-clipboard-list"></i>
+                Factura
+            </a>
+            <a href="../index.html">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                Salir
+            </a>
+        </nav>    
+    </aside>
 
-        <a href="#">
-            <i class="fa-solid fa-house"></i> Inicio
-        </a>
+    <div class="cuadros">
 
-        <a href="#">
-            <i class="fa-solid fa-users"></i> Clientes
-        </a>
-
-        <a href="#" class="activo">
-            <i class="fa-solid fa-truck"></i> Proveedores
-        </a>
-
-        <a href="#">
-            <i class="fa-solid fa-box"></i> Productos
-        </a>
-
-        <a href="#">
-            <i class="fa-solid fa-file-invoice"></i> Facturas
-        </a>
-
-        <a href="#">
-            <i class="fa-solid fa-right-from-bracket"></i> Salir
-        </a>
-
+        <div class="encabezado shadow">
+            <div>
+                <h2>Gestión de Proveedores</h2>
+                <h5>Registro y validación de proveedores</h5>
+            </div>
+        </div>
     </div>
 
-    <div class="contenido">
+<br><br>
 
-        <div class="cuadros">
+<div class="busquedar">
+<div class="contenedor-cards">
 
-            <div class="encabezado shadow">
+    <div class="card">
+        <div class="header">
+            <span> Total proveedores</span>
+            <i class="fa-regular" ></i>
+        </div>
+        <h2 id="totalproveedores">0</h2>
+        <p>Proveedores Registrados</p>
+    </div>
 
-                <div>
-                    <h2>Gestión de Proveedores</h2>
-                    <h5>Registro y validación de proveedores</h5>
-                </div>
+    <br>
 
-            </div>
+    <div class="card">
+        <div class="header">
+            <span>Activos</span>
+            <i class="fa-solid"></i>
+        </div>
+        <h2 id="Activos">0</h2>
+        <p>Proveedor Activos</p>
+    </div>
 
+    <br>
+
+    <div class="card">
+        <div class="header">
+            <span>En revisión</span>
+            <i class="fa-solid "></i>
+        </div>
+        <h2 id="revicion">0</h2>
+        <p>Pendientes De Aprobación</p>
+    </div>
+
+</div>
+
+<div class="tabla-contenedor">
+
+    <div class="card shadow">
+        <div class="card-header">
+            <h3 class="mb-0">Gestión de Proveedores</h3>
         </div>
 
-        <br>
+        <div class="card-body">
 
-        <div class="busquedar">
+            <table id="tablaProveedores" class="table table-hover nowrap">
+                <thead class="table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Proveedor</th>
+                        <th>Teléfono</th>
+                        <th>Correo</th>
+                        <th>Ciudad</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
 
-            <div class="contenedor-cards">
-
-                <div class="card">
-
-                    <div class="header">
-                        <span>Total proveedores</span>
-                        <i class="fa-solid "></i>
-                    </div>
-
-                    <h2 id="totalproveedores">0</h2>
-
-                    <p>Proveedores Registrados</p>
-
-                </div>
-
-                <div class="card">
-
-                    <div class="header">
-                        <span>Activos</span>
-                        <i class="fa-solid "></i>
-                    </div>
-
-                    <h2 id="Activos">0</h2>
-
-                    <p>Proveedor Activos</p>
-
-                </div>
-
-                <div class="card">
-
-                    <div class="header">
-                        <span>En revisión</span>
-                        <i class="fa-solid "></i>
-                    </div>
-
-                    <h2 id="revicion">0</h2>
-
-                    <p>Pendientes De Aprobación</p>
-
-                </div>
-
-            </div>
-
-            <div class="tabla-contenedor">
-
-                <div class="card shadow">
-
-                    <div class="card-header">
-                        <h3 class="mb-0">Gestión de Proveedores</h3>
-                    </div>
-
-                    <div class="card-body">
-
-                        <table id="tablaProveedores" class="table table-hover nowrap">
-
-                            <thead class="table">
-
-                                <tr>
-
-                                    <th>ID</th>
-                                    <th>Proveedor</th>
-                                    <th>Teléfono</th>
-                                    <th>Correo</th>
-                                    <th>Ciudad</th>
-                                    <th>Estado</th>
-                                    <th>Acciones</th>
-
-                                </tr>
-
-                            </thead>
                 <tbody>
                     <tr>
                         <td>001</td>
@@ -143,15 +122,10 @@
                         <td>310 4567890</td>
                         <td>contacto@andina.com</td>
                         <td>Bogotá</td>
+                        <td><span class="badge bg-success">Activo</span></td>
                         <td>
-                            <span class="badge bg-success">Activo</span>
-                        </td>
-                        <td>
-                                    <button class="btn btn-sm btn-editar">
-                                    <i class="fa-solid fa-pen"></i></button>
-
-                                    <button class="btn btn-sm btn-eliminar">
-                                        <i class="fa-solid fa-trash"></i></button>
+                            <button class="btn btn-sm btn-editar"><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn btn-sm btn-eliminar"><i class="fa-solid fa-trash"></i></button>
                         </td>
                     </tr>
 
@@ -161,13 +135,10 @@
                         <td>320 1234567</td>
                         <td>ventas@betancourth.com</td>
                         <td>Medellín</td>
+                        <td><span class="badge bg-success">Activo</span></td>
                         <td>
-                            <span class="badge bg-success">Activo</span>
-                        </td>
-                        <td>
-                                    <button class="btn btn-sm btn-editar"><i class="fa-solid fa-pen"></i></button>
-
-                                    <button class="btn btn-sm btn-eliminar"><i class="fa-solid fa-trash"></i></button>
+                            <button class="btn btn-sm btn-editar"><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn btn-sm btn-eliminar"><i class="fa-solid fa-trash"></i></button>
                         </td>
                     </tr>
 
@@ -177,13 +148,10 @@
                         <td>315 9876543</td>
                         <td>info@repuestos.com</td>
                         <td>Cali</td>
+                        <td><span class="badge bg-danger">Inactivo</span></td>
                         <td>
-                            <span class="badge bg-danger">Inactivo</span>
-                        </td>
-                        <td>
-                                    <button class="btn btn-sm btn-editar"><i class="fa-solid fa-pen"></i></button>
-
-                                    <button class="btn btn-sm btn-eliminar"><i class="fa-solid fa-trash"></i></button>
+                            <button class="btn btn-sm btn-editar"><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn btn-sm btn-eliminar"><i class="fa-solid fa-trash"></i></button>
                         </td>
                     </tr>
 
@@ -193,13 +161,10 @@
                         <td>301 4567890</td>
                         <td>central@gmail.com</td>
                         <td>Barranquilla</td>
+                        <td><span class="badge bg-success">Activo</span></td>
                         <td>
-                            <span class="badge bg-success">Activo</span>
-                        </td>
-                        <td>
-                                    <button class="btn btn-sm btn-editar"><i class="fa-solid fa-pen"></i></button>
-
-                                    <button class="btn btn-sm btn-eliminar"><i class="fa-solid fa-trash"></i></button>
+                            <button class="btn btn-sm btn-editar"><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn btn-sm btn-eliminar"><i class="fa-solid fa-trash"></i></button>
                         </td>
                     </tr>
 
@@ -211,75 +176,62 @@
                         <td>Bucaramanga</td>
                         <td><span class="badge bg-warning text-dark">Pendiente</span></td>
                         <td>
-                                    <button class="btn btn-sm btn-editar"><i class="fa-solid fa-pen"></i></button>
-
-                                    <button class="btn btn-sm btn-eliminar"><i class="fa-solid fa-trash"></i></button>
+                            <button class="btn btn-sm btn-editar"><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn btn-sm btn-eliminar"><i class="fa-solid fa-trash"></i></button>
                         </td>
                     </tr>
                 </tbody>
 
             </table>
-            <button class="btn btn-registrar " data-bs-toggle="modal" data-bs-target="#modalProveedor">
-            <i class="fa-solid fa-plus"></i> Registrar Proveedor
+
+            <button class="btn btn-registrar" data-bs-toggle="modal" data-bs-target="#modalProveedor">
+                <i class="fa-solid fa-plus"></i> Registrar Proveedor
             </button>
 
             <div class="modal fade" id="modalProveedor">
-    <div class="modal-dialog">
-        <div class="modal-content">
+                <div class="modal-dialog">
+                    <div class="modal-content">
 
-            <div class="modal-header">
-                <h5 class="modal-title">Registrar Proveedor</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <div class="modal-header">
+                            <h5 class="modal-title">Registrar Proveedor</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <div class="modal-body">
+
+                            <input type="text" id="proveedor" class="form-control mb-2" placeholder="Proveedor">
+                            <input type="text" id="telefono" class="form-control mb-2" placeholder="Teléfono">
+                            <input type="email" id="correo" class="form-control mb-2" placeholder="Correo">
+                            <input type="text" id="ciudad" class="form-control mb-2" placeholder="Ciudad">
+
+                            <select id="estado" class="form-select">
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                                <option value="Pendiente">Pendiente</option>
+                            </select>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="btn" id="guardarProveedor">Guardar</button>
+                        </div>
+
+                    </div>
+                </div>
             </div>
-
-            <div class="modal-body">
-
-                <input type="text" id="proveedor" class="form-control mb-2" placeholder="Proveedor">
-
-                <input type="text" id="telefono" class="form-control mb-2" placeholder="Teléfono">
-
-                <input type="email" id="correo" class="form-control mb-2" placeholder="Correo">
-
-                <input type="text" id="ciudad" class="form-control mb-2" placeholder="Ciudad">
-
-                <select id="estado" class="form-select">
-                    <option value="Activo">Activo</option>
-                    <option value="Inactivo">Inactivo</option>
-                    <option value="Pendiente">Pendiente</option>
-                </select>
-
-            </div>
-
-            <div class="modal-footer">
-                <button class="btn" id="guardarProveedor">
-                    Guardar
-                </button>
-            </div>
-
-        </div>
-    </div>
-</div>
 
         </div>
     </div>
 
 </div>
 </div>
-
-
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-   
-    <script src="https://cdn.datatables.net/2.3.4/js/dataTables.min.js"></script>
- 
-    <script src="https://cdn.datatables.net/2.3.4/js/dataTables.bootstrap5.min.js"></script>
- 
- 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
+<script src="https://cdn.datatables.net/2.3.4/js/dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/2.3.4/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script src="../js/proveedores.js"></script>
 
-    
 </body>
 </html>
