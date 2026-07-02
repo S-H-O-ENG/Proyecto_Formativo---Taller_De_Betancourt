@@ -32,7 +32,6 @@ window.addEventListener("click", (e) => {
     }
 });
 
-// ... El resto de tus funciones de cálculo de facturas se mantiene intacto ...
 function actualizarResumen() {
     let porPagar = 0;
     let pagadas = 0;
