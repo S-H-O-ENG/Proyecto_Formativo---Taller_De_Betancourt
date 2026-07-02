@@ -1,17 +1,25 @@
 let tabla;
-let contador = 6;
+let contador = 1;
 let filaEditar = null;
 
 $(document).ready(function () {
 
+
+    $("#btnToggleSidebar").on("click", function() {
+        $("#sidebar").toggleClass("collapsed");
+        $("#mainContent").toggleClass("expanded");
+    });
+
+
     tabla = $("#tablaProveedores").DataTable({
+        responsive: true,
         language: {
-            search: "Buscar",
-            lengthMenu: "Mostrar _MENU_ Registro",
-            info: "Mostrar _START_ a _END_ de _TOTAL_ registros",
+            search: "Buscar:",
+            lengthMenu: "Mostrar _MENU_ registros",
+            info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
             infoEmpty: "Mostrando 0 a 0 de 0 registros",
             zeroRecords: "No se encontraron resultados",
-            emptyTable: "No hay datos disponibles en la tabla",
+            emptyTable: "No hay proveedores registrados",
             paginate: {
                 first: "Primero",
                 last: "Último",
@@ -24,115 +32,139 @@ $(document).ready(function () {
     actualizarContadores();
 });
 
-function actualizarContadores() {
-
-    const filas = document.querySelectorAll("#tablaProveedores tbody tr");
-
-    let total = filas.length;
-    let activos = 0;
-    let revision = 0;
-
-    filas.forEach(fila => {
-
-        const estado = fila.cells[5].textContent.trim();
-
-        if (estado === "Activo") activos++;
-        if (estado === "Pendiente") revision++;
-
-    });
-
-    document.getElementById("totalproveedores").textContent = total;
-    document.getElementById("Activos").textContent = activos;
-    document.getElementById("revicion").textContent = revision;
+function crearBadge(estado){
+    if(estado==="Activo"){
+        return '<span class="badge bg-success">Activo</span>';
+    }
+    if(estado==="Pendiente" || estado==="En revisión"){
+        return '<span class="badge bg-warning text-dark">Pendiente</span>';
+    }
+    return '<span class="badge bg-danger">Inactivo</span>';
 }
 
-$("#tablaProveedores tbody").on("click", ".btn-eliminar", function () {
+function botonesAcciones(){
+    return `
+        <button class="btn btn-warning btn-sm btn-editar me-1">
+            <i class="fa-solid fa-pen"></i>
+        </button>
+        <button class="btn btn-danger btn-sm btn-eliminar">
+            <i class="fa-solid fa-trash"></i>
+        </button>
+    `;
+}
 
-    if (confirm("¿Desea eliminar este proveedor?")) {
+function agregarProveedor(nombre, telefono, correo, ciudad, estado){
+    tabla.row.add([
+        String(contador).padStart(3,"0"),
+        nombre,
+        telefono,
+        correo,
+        ciudad,
+        crearBadge(estado),
+        botonesAcciones()
+    ]).draw(false);
+    contador++;
+}
 
-        tabla.row($(this).parents("tr")).remove().draw();
+function actualizarContadores(){
+    let total = tabla.rows().count();
+    let activos = 0;
+    let pendientes = 0;
 
-        actualizarContadores();
-    }
+    tabla.rows().every(function(){
+        let datos = this.data();
+        let estado = $("<div>"+datos[5]+"</div>").text().trim();
+        if(estado==="Activo") activos++;
+        if(estado==="Pendiente" || estado==="En revisión") pendientes++;
+    });
 
+    $("#totalproveedores").text(total);
+    $("#Activos").text(activos);
+    $("#revicion").text(pendientes);
+}
+
+$("#tablaProveedores tbody").on("click", ".btn-eliminar", function(){
+    let fila = $(this).parents("tr");
+    
+    Swal.fire({
+        title: '¿Desea eliminar este proveedor?',
+        text: "Esta acción no se puede deshacer.",
+        icon: 'warning',
+        showCancelButton: true,
+        background: '#0d0d11',
+        color: '#fff',
+        confirmButtonColor: '#dc3545',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            tabla.row(fila).remove().draw();
+            actualizarContadores();
+            Swal.fire({
+                title: 'Eliminado',
+                icon: 'success',
+                background: '#0d0d11',
+                color: '#fff',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+    });
 });
 
-$("#tablaProveedores tbody").on("click", ".btn-editar", function () {
-
+$("#tablaProveedores tbody").on("click", ".btn-editar", function(){
     filaEditar = tabla.row($(this).parents("tr"));
-
     let datos = filaEditar.data();
 
     $("#proveedor").val(datos[1]);
     $("#telefono").val(datos[2]);
     $("#correo").val(datos[3]);
     $("#ciudad").val(datos[4]);
+    $("#estado").val($("<div>"+datos[5]+"</div>").text().trim() === "Pendiente" ? "Pendiente" : $("<div>"+datos[5]+"</div>").text().trim());
 
-    let estado = $(datos[5]).text().trim();
-    $("#estado").val(estado);
-
+    $("#modalTitle").text("Modificar Proveedor");
     new bootstrap.Modal(document.getElementById("modalProveedor")).show();
-
 });
 
-document.getElementById("guardarProveedor").addEventListener("click", () => {
+$("#guardarProveedor").on("click", function(){
+    let proveedor = $("#proveedor").val().trim();
+    let telefono = $("#telefono").val().trim();
+    let correo = $("#correo").val().trim();
+    let ciudad = $("#ciudad").val().trim();
+    let estado = $("#estado").val();
 
-    const proveedor = document.getElementById("proveedor").value;
-    const telefono = document.getElementById("telefono").value;
-    const correo = document.getElementById("correo").value;
-    const ciudad = document.getElementById("ciudad").value;
-    const estado = document.getElementById("estado").value;
-
-    let badge = "";
-
-    if (estado === "Activo") {
-        badge = '<span class="badge bg-success">Activo</span>';
-    } else if (estado === "Inactivo") {
-        badge = '<span class="badge bg-danger">Inactivo</span>';
-    } else {
-        badge = '<span class="badge bg-warning text-dark">Pendiente</span>';
+    if(proveedor==="" || telefono==="" || correo==="" || ciudad===""){
+        Swal.fire({
+            icon: 'error',
+            title: 'Campos vacíos',
+            text: 'Por favor complete todos los campos.',
+            background: '#0d0d11',
+            color: '#fff',
+            confirmButtonColor: '#5f1ed7'
+        });
+        return;
     }
 
-    const nuevaFila = [
-        filaEditar ? filaEditar.data()[0] : String(contador).padStart(3, "0"),
+    let fila = [
+        filaEditar ? filaEditar.data()[0] : String(contador).padStart(3,"0"),
         proveedor,
         telefono,
         correo,
         ciudad,
-        badge,
-        `
-        <button class="btn btn-sm btn-editar">
-            <i class="fa-solid fa-pen"></i>
-        </button>
-
-        <button class="btn btn-sm btn-eliminar">
-            <i class="fa-solid fa-trash"></i>
-        </button>
-        `
+        crearBadge(estado),
+        botonesAcciones()
     ];
 
-    if (filaEditar) {
-
-        filaEditar.data(nuevaFila).draw(false);
+    if(filaEditar){
+        filaEditar.data(fila).draw(false);
         filaEditar = null;
-
     } else {
-
-        tabla.row.add(nuevaFila).draw(false);
+        tabla.row.add(fila).draw(false);
         contador++;
-
     }
 
     actualizarContadores();
-
-    bootstrap.Modal.getInstance(
-        document.getElementById("modalProveedor")
-    ).hide();
-
-    
-    document.getElementById("proveedor").value = "";
-    document.getElementById("telefono").value = "";
-    document.getElementById("correo").value = "";
-    document.getElementById("ciudad").value = "";
-    document.getElementById("estado").value = "Activo";
+    $("#formProveedor")[0].reset();
+    bootstrap.Modal.getInstance(document.getElementById("modalProveedor")).hide();
 });
