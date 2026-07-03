@@ -130,7 +130,9 @@ body {
     padding: 6px 10px;
 }
 
-
+.custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(241, 241, 244, 0.95)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
 
 .banner-taller {
     min-height: 450px; 
@@ -244,7 +246,7 @@ footer {
 }
 
 .modal-login{
-    background-image: url(/img/log.jpg);
+    background-image: url(../img/log.jpg);
     color: #F1EAFF;
 }
 
@@ -252,21 +254,8 @@ footer {
     color: rgba(255, 255, 255, 0.4);
 }
 
-.cita input::placeholder{
-    color: var(--blanco-suave);
-    opacity: 0.6;
-    text-shadow: 0 0 6px rgba(95, 30, 215, 0.8);
-}
-
-.cita textarea.form-control::placeholder{
-    color: var(--blanco-suave);
-    opacity: 0.6;
-    text-shadow: 0 0 6px rgba(95, 30, 215, 0.8);
-}
-
 .modal-login button{
     background-color: #ff005577;
-    color: white;
 }
 
 .link-login{
@@ -275,14 +264,5 @@ footer {
 
 .btn-enviarS{
     background-color: #5f1ed7;
-    color: white;
-    box-shadow: 0 4px 14px rgba(95, 30, 215, 0.4);
-    transition: 0.3s;
+    color: #F1EAFF;
 }
-
-.btn-enviarS:hover{
-    background-color: var(--blanco-suave);
-    color: var(--morado-clarito);
-    box-shadow: 0 6px 20px rgba(95, 30, 215, 0.7);
-}
-
