@@ -1,20 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="author" content="WB DataDic" />
     <meta name="description" content="mydb Data Dictionary." />
     <link rel="stylesheet" href="./css/style.css">
-    <title>Taller de Betancourt</title>
+    <link rel="shortcut icon" href="./img/icono.png" type="image/x-icon">
+    <title>Taller de Betancourt - Diccionario de Datos</title>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            var tables = document.querySelectorAll("table");
+            document.querySelectorAll(".indice-lista a").forEach(function(link) {
+                link.addEventListener("click", function() {
+                    tables.forEach(function(table) {
+                        table.classList.remove("focused");
+                    });
+                    var targetTable = document.querySelector(this.hash);
+                    if(targetTable) {
+                        targetTable.classList.add("focused");
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 
 <body>
     <div class="contenedor-principal">
 
-
         <header class="header-taller">
-            <div class="logo-titulo" >
+            <div class="logo-titulo">
                 <img src="img/logo.png" class="logo-taller" alt="Logo">
                 <div class="texto-header">
                     <h1>Taller de Betancourt</h1>
@@ -28,33 +45,35 @@
 
             <div class="info-diccionario">
                 <p><strong>Base de Datos:</strong> mydb</p>
-                <p><strong>Generado:</strong> 2026-06-26</p>
+                <p><strong>Generado:</strong> 2026-07-02</p>
             </div>
         </header>
-        <h2>Indice</h2>
+
+        <h2>Índice</h2>
         <ul class="indice-lista">
-            <li><a href='#asignacionservicio'>asignacionservicio</a></li>
-            <li><a href='#clientes'>clientes</a></li>
-            <li><a href='#cotizacion'>cotizacion</a></li>
-            <li><a href='#cotizacion_has_producto'>cotizacion_has_producto</a></li>
-            <li><a href='#movimientoinventario'>movimientoinventario</a></li>
-            <li><a href='#pedidos'>pedidos</a></li>
-            <li><a href='#pedidos_has_producto'>pedidos_has_producto</a></li>
-            <li><a href='#producto'>producto</a></li>
-            <li><a href='#proveedor'>proveedor</a></li>
-            <li><a href='#servicio'>servicio</a></li>
-            <li><a href='#trabajador'>trabajador</a></li>
-            <li><a href='#usuario'>usuario</a></li>
+            <li><a href='#asignacionservicio'>Asignacionservicio</a></li>
+            <li><a href='#clientes'>Clientes</a></li>
+            <li><a href='#cotizacion'>Cotizacion</a></li>
+            <li><a href='#cotizacion_has_producto'>Cotizacion_has_producto</a></li>
+            <li><a href='#movimientoinventario'>Movimientoinventario</a></li>
+            <li><a href='#pedidos'>Pedidos</a></li>
+            <li><a href='#pedidos_has_producto'>Pedidos_has_producto</a></li>
+            <li><a href='#producto'>Producto</a></li>
+            <li><a href='#proveedor'>Proveedor</a></li>
+            <li><a href='#rol'>Rol</a></li>
+            <li><a href='#servicio'>Servicio</a></li>
+            <li><a href='#trabajador'>Trabajador</a></li>
+            <li><a href='#usuario'>Usuario</a></li>
         </ul>
+
         <table id='asignacionservicio'>
             <caption>asignacionservicio</caption>
-            <tr>
-                <td colspan='11'></td>
-            </tr>
+            <tr><td colspan='12'></td></tr>
             <tr>
                 <th>Column name</th>
                 <th>DataType</th>
                 <th><abbr title='Primary Key'>PK</abbr></th>
+                <th><abbr title='Foreign Key'>FK</abbr></th>
                 <th><abbr title='Not Null'>NN</abbr></th>
                 <th><abbr title='Unique'>UQ</abbr></th>
                 <th><abbr title='Binary'>BIN</abbr></th>
@@ -67,995 +86,1072 @@
             <tr>
                 <td>idasignacionservicio</td>
                 <td>INT</td>
-                <td>&#10004;</td>
-                <td>&#10004;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
-                <td class='attr'>&nbsp;</td>
+                <td>&nbsp;</td>
                 <td></td>
-                <td></td>
+                <td>llave primaria de la tabla asignacionservicio</td>
             </tr>
             <tr>
                 <td>fecha</td>
                 <td>DATE</td>
                 <td>&nbsp;</td>
-                <td>&#10004;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
-                <td class='attr'>&nbsp;</td>
+                <td>&nbsp;</td>
                 <td></td>
-                <td></td>
+                <td>fecha en la que se asigna algun servicio a un empleado</td>
             </tr>
             <tr>
                 <td>horainicio</td>
                 <td>TIME</td>
                 <td>&nbsp;</td>
-                <td>&#10004;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
-                <td class='attr'>&nbsp;</td>
+                <td>&nbsp;</td>
                 <td></td>
-                <td></td>
+                <td>hora de inicio de cualquier servicio</td>
             </tr>
             <tr>
-                <td>horafinalizacion</td>
+                <td>horafinal</td>
                 <td>TIME</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
-                <td class='attr'>&nbsp;</td>
+                <td>&nbsp;</td>
                 <td></td>
+                <td>hora de finalizacion del servicio</td>
+            </tr>
+            <tr>
+                <td>observaciones</td>
+                <td>VARCHAR(45)</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
                 <td></td>
+                <td>observaciones referentes al servicio realizado</td>
+            </tr>
+            <tr>
+                <td>trabajador_idtrabajador</td>
+                <td>INT</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>relacion 1:n con la tabla trabajador</td>
+            </tr>
+            <tr>
+                <td>servicio_idservicio</td>
+                <td>INT</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>relacion 1:n con la tabla servicio</td>
+            </tr>
+        </table>
+
+        <table id='clientes'>
+            <caption>clientes</caption>
+            <tr><td colspan='12'></td></tr>
+            <tr>
+                <th>Column name</th>
+                <th>DataType</th>
+                <th><abbr title='Primary Key'>PK</abbr></th>
+                <th><abbr title='Foreign Key'>FK</abbr></th>
+                <th><abbr title='Not Null'>NN</abbr></th>
+                <th><abbr title='Unique'>UQ</abbr></th>
+                <th><abbr title='Binary'>BIN</abbr></th>
+                <th><abbr title='Unsigned'>UN</abbr></th>
+                <th><abbr title='Zero Fill'>ZF</abbr></th>
+                <th><abbr title='Auto Increment'>AI</abbr></th>
+                <th>Default</th>
+                <th>Comment</th>
+            </tr>
+            <tr>
+                <td>idclientes</td>
+                <td>INT</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>llave primaria de la tabla clientes</td>
+            </tr>
+            <tr>
+                <td>tipocliente</td>
+                <td>VARCHAR(45)</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>tipo de cliente (normal, vip, etc)</td>
+            </tr>
+        </table>
+
+        <table id='cotizacion'>
+            <caption>cotizacion</caption>
+            <tr><td colspan='12'></td></tr>
+            <tr>
+                <th>Column name</th>
+                <th>DataType</th>
+                <th><abbr title='Primary Key'>PK</abbr></th>
+                <th><abbr title='Foreign Key'>FK</abbr></th>
+                <th><abbr title='Not Null'>NN</abbr></th>
+                <th><abbr title='Unique'>UQ</abbr></th>
+                <th><abbr title='Binary'>BIN</abbr></th>
+                <th><abbr title='Unsigned'>UN</abbr></th>
+                <th><abbr title='Zero Fill'>ZF</abbr></th>
+                <th><abbr title='Auto Increment'>AI</abbr></th>
+                <th>Default</th>
+                <th>Comment</th>
+            </tr>
+            <tr>
+                <td>idcotizacion</td>
+                <td>INT</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>llave primaria de la tabla cotizacion</td>
+            </tr>
+            <tr>
+                <td>estado</td>
+                <td>VARCHAR(45)</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>Estado de la cotizacion (pagada, pendiente, etc)</td>
+            </tr>
+            <tr>
+                <td>fecha</td>
+                <td>DATE</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>Fecha de generacion de la cotizacion</td>
+            </tr>
+            <tr>
+                <td>total</td>
+                <td>VARCHAR(45)</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>Total de la cotizacion de los servicios</td>
+            </tr>
+        </table>
+
+        <table id='cotizacion_has_producto'>
+            <caption>cotizacion_has_producto</caption>
+            <tr><td colspan='12'></td></tr>
+            <tr>
+                <th>Column name</th>
+                <th>DataType</th>
+                <th><abbr title='Primary Key'>PK</abbr></th>
+                <th><abbr title='Foreign Key'>FK</abbr></th>
+                <th><abbr title='Not Null'>NN</abbr></th>
+                <th><abbr title='Unique'>UQ</abbr></th>
+                <th><abbr title='Binary'>BIN</abbr></th>
+                <th><abbr title='Unsigned'>UN</abbr></th>
+                <th><abbr title='Zero Fill'>ZF</abbr></th>
+                <th><abbr title='Auto Increment'>AI</abbr></th>
+                <th>Default</th>
+                <th>Comment</th>
+            </tr>
+            <tr>
+                <td>cotizacion_idcotizacion</td>
+                <td>INT</td>
+                <td class="checkmark">&#10004;</td>
+                <td class="checkmark">&#10004;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>llave foranea con la tabla cotizacion</td>
+            </tr>
+            <tr>
+                <td>producto_idproducto</td>
+                <td>INT</td>
+                <td class="checkmark">&#10004;</td>
+                <td class="checkmark">&#10004;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>llave foranea con la tabla producto</td>
+            </tr>
+            <tr>
+                <td>atributo</td>
+                <td>VARCHAR(45)</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>representa los productos elegidos en una cotizacion</td>
+            </tr>
+            <tr>
+                <td>preciounitario</td>
+                <td>DOUBLE</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>precio unitario de cada producto</td>
+            </tr>
+            <tr>
+                <td>precioventa</td>
+                <td>DOUBLE</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>precio de venta recomendado para cada producto</td>
+            </tr>
+            <tr>
+                <td>subtotal</td>
+                <td>DOUBLE</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>subtotal de los productos</td>
+            </tr>
+        </table>
+
+        <table id='movimientoinventario'>
+            <caption>movimientoinventario</caption>
+            <tr><td colspan='12'></td></tr>
+            <tr>
+                <th>Column name</th>
+                <th>DataType</th>
+                <th><abbr title='Primary Key'>PK</abbr></th>
+                <th><abbr title='Foreign Key'>FK</abbr></th>
+                <th><abbr title='Not Null'>NN</abbr></th>
+                <th><abbr title='Unique'>UQ</abbr></th>
+                <th><abbr title='Binary'>BIN</abbr></th>
+                <th><abbr title='Unsigned'>UN</abbr></th>
+                <th><abbr title='Zero Fill'>ZF</abbr></th>
+                <th><abbr title='Auto Increment'>AI</abbr></th>
+                <th>Default</th>
+                <th>Comment</th>
+            </tr>
+            <tr>
+                <td>idmovimientoinventario</td>
+                <td>INT</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>llave primaria de la tabla movimientoinventario</td>
+            </tr>
+            <tr>
+                <td>fecha</td>
+                <td>DATE</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>fecha en la que se realizo cada uno de los movimientos de inventario</td>
+            </tr>
+            <tr>
+                <td>cantidad</td>
+                <td>INT</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>cantidad de elementos movidos, vendidos, etc</td>
             </tr>
             <tr>
                 <td>observacion</td>
                 <td>VARCHAR(45)</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
-                <td class='attr'>&nbsp;</td>
+                <td>&nbsp;</td>
                 <td></td>
+                <td>observaciones del movimiento</td>
+            </tr>
+            <tr>
+                <td>producto_idproducto</td>
+                <td>INT</td>
+                <td class="checkmark">&#10004;</td>
+                <td class="checkmark">&#10004;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
                 <td></td>
+                <td>relacion 1:n con la tabla producto</td>
+            </tr>
+        </table>
+
+        <table id='pedidos'>
+            <caption>pedidos</caption>
+            <tr><td colspan='12'></td></tr>
+            <tr>
+                <th>Column name</th>
+                <th>DataType</th>
+                <th><abbr title='Primary Key'>PK</abbr></th>
+                <th><abbr title='Foreign Key'>FK</abbr></th>
+                <th><abbr title='Not Null'>NN</abbr></th>
+                <th><abbr title='Unique'>UQ</abbr></th>
+                <th><abbr title='Binary'>BIN</abbr></th>
+                <th><abbr title='Unsigned'>UN</abbr></th>
+                <th><abbr title='Zero Fill'>ZF</abbr></th>
+                <th><abbr title='Auto Increment'>AI</abbr></th>
+                <th>Default</th>
+                <th>Comment</th>
+            </tr>
+            <tr>
+                <td>idpedidos</td>
+                <td>INT</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>llave primaria de la tabla proveedor</td>
+            </tr>
+            <tr>
+                <td>estado</td>
+                <td>VARCHAR(45)</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>estado de cada pedido hecho (pedniente, entregado, cancelado)</td>
+            </tr>
+            <tr>
+                <td>fechapedido</td>
+                <td>DATE</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>fecha en la que se realizo el pedido</td>
+            </tr>
+            <tr>
+                <td>totalpedidos</td>
+                <td>DOUBLE</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>total de pedidos que se realizaron</td>
+            </tr>
+            <tr>
+                <td>proveedor_idproveedor</td>
+                <td>INT</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>relacion 1:n con la tabla proveedor</td>
+            </tr>
+        </table>
+
+        <table id='pedidos_has_producto'>
+            <caption>pedidos_has_producto</caption>
+            <tr><td colspan='12'></td></tr>
+            <tr>
+                <th>Column name</th>
+                <th>DataType</th>
+                <th><abbr title='Primary Key'>PK</abbr></th>
+                <th><abbr title='Foreign Key'>FK</abbr></th>
+                <th><abbr title='Not Null'>NN</abbr></th>
+                <th><abbr title='Unique'>UQ</abbr></th>
+                <th><abbr title='Binary'>BIN</abbr></th>
+                <th><abbr title='Unsigned'>UN</abbr></th>
+                <th><abbr title='Zero Fill'>ZF</abbr></th>
+                <th><abbr title='Auto Increment'>AI</abbr></th>
+                <th>Default</th>
+                <th>Comment</th>
+            </tr>
+            <tr>
+                <td>pedidos_idpedidos</td>
+                <td>INT</td>
+                <td class="checkmark">&#10004;</td>
+                <td class="checkmark">&#10004;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>llave foranea con la tabla pedidos</td>
+            </tr>
+            <tr>
+                <td>producto_idproducto</td>
+                <td>INT</td>
+                <td class="checkmark">&#10004;</td>
+                <td class="checkmark">&#10004;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>llave foranea con la tabla producto</td>
+            </tr>
+        </table>
+
+        <table id='producto'>
+            <caption>producto</caption>
+            <tr><td colspan='12'></td></tr>
+            <tr>
+                <th>Column name</th>
+                <th>DataType</th>
+                <th><abbr title='Primary Key'>PK</abbr></th>
+                <th><abbr title='Foreign Key'>FK</abbr></th>
+                <th><abbr title='Not Null'>NN</abbr></th>
+                <th><abbr title='Unique'>UQ</abbr></th>
+                <th><abbr title='Binary'>BIN</abbr></th>
+                <th><abbr title='Unsigned'>UN</abbr></th>
+                <th><abbr title='Zero Fill'>ZF</abbr></th>
+                <th><abbr title='Auto Increment'>AI</abbr></th>
+                <th>Default</th>
+                <th>Comment</th>
+            </tr>
+            <tr>
+                <td>idproducto</td>
+                <td>INT</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>llave primaria de la tabla producto</td>
+            </tr>
+            <tr>
+                <td>nombre</td>
+                <td>VARCHAR(45)</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>nombre de el producto (aceite rin etc)</td>
+            </tr>
+            <tr>
+                <td>descripcion</td>
+                <td>VARCHAR(45)</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>descripcion de el producto y sus especificaciones</td>
+            </tr>
+            <tr>
+                <td>stock</td>
+                <td>INT</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>cantidad almacenada disponible de cada producto</td>
+            </tr>
+            <tr>
+                <td>precio</td>
+                <td>DOUBLE</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>precio unitario de cada producto</td>
+            </tr>
+        </table>
+
+        <table id='proveedor'>
+            <caption>proveedor</caption>
+            <tr><td colspan='12'></td></tr>
+            <tr>
+                <th>Column name</th>
+                <th>DataType</th>
+                <th><abbr title='Primary Key'>PK</abbr></th>
+                <th><abbr title='Foreign Key'>FK</abbr></th>
+                <th><abbr title='Not Null'>NN</abbr></th>
+                <th><abbr title='Unique'>UQ</abbr></th>
+                <th><abbr title='Binary'>BIN</abbr></th>
+                <th><abbr title='Unsigned'>UN</abbr></th>
+                <th><abbr title='Zero Fill'>ZF</abbr></th>
+                <th><abbr title='Auto Increment'>AI</abbr></th>
+                <th>Default</th>
+                <th>Comment</th>
+            </tr>
+            <tr>
+                <td>idproveedor</td>
+                <td>INT</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>ID identificador del proveedor</td>
+            </tr>
+            <tr>
+                <td>nombreempresa</td>
+                <td>VARCHAR(45)</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>Nombre de la empresa a la que pertenece cada proveedor</td>
+            </tr>
+            <tr>
+                <td>calificacion</td>
+                <td>INT</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>Calificacion que recibe cada proveedor</td>
+            </tr>
+        </table>
+
+        <table id='rol'>
+            <caption>rol</caption>
+            <tr><td colspan='12'></td></tr>
+            <tr>
+                <th>Column name</th>
+                <th>DataType</th>
+                <th><abbr title='Primary Key'>PK</abbr></th>
+                <th><abbr title='Foreign Key'>FK</abbr></th>
+                <th><abbr title='Not Null'>NN</abbr></th>
+                <th><abbr title='Unique'>UQ</abbr></th>
+                <th><abbr title='Binary'>BIN</abbr></th>
+                <th><abbr title='Unsigned'>UN</abbr></th>
+                <th><abbr title='Zero Fill'>ZF</abbr></th>
+                <th><abbr title='Auto Increment'>AI</abbr></th>
+                <th>Default</th>
+                <th>Comment</th>
+            </tr>
+            <tr>
+                <td>idrol</td>
+                <td>INT</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>llave primaria de la tabla rol, encargada de identificar el valor</td>
+            </tr>
+            <tr>
+                <td>nombrerol</td>
+                <td>VARCHAR(45)</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>Nombre del rol correspondinete al usuario, (trabajador, cliente proveedor, etc)</td>
+            </tr>
+            <tr>
+                <td>usuario_idusuario</td>
+                <td>INT</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>Relacion 1:n con la tabla usuario</td>
+            </tr>
+        </table>
+
+        <table id='servicio'>
+            <caption>servicio</caption>
+            <tr><td colspan='12'></td></tr>
+            <tr>
+                <th>Column name</th>
+                <th>DataType</th>
+                <th><abbr title='Primary Key'>PK</abbr></th>
+                <th><abbr title='Foreign Key'>FK</abbr></th>
+                <th><abbr title='Not Null'>NN</abbr></th>
+                <th><abbr title='Unique'>UQ</abbr></th>
+                <th><abbr title='Binary'>BIN</abbr></th>
+                <th><abbr title='Unsigned'>UN</abbr></th>
+                <th><abbr title='Zero Fill'>ZF</abbr></th>
+                <th><abbr title='Auto Increment'>AI</abbr></th>
+                <th>Default</th>
+                <th>Comment</th>
+            </tr>
+            <tr>
+                <td>idservicio</td>
+                <td>INT</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>llave primaria de la tabla servicio</td>
+            </tr>
+            <tr>
+                <td>nombre</td>
+                <td>VARCHAR(45)</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>Nombre del servicio que requiere</td>
+            </tr>
+            <tr>
+                <td>descripcion</td>
+                <td>VARCHAR(45)</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>Descripcion del servicio que se requiere</td>
+            </tr>
+            <tr>
+                <td>duracion</td>
+                <td>VARCHAR(45)</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>Duracion del servicio</td>
+            </tr>
+            <tr>
+                <td>clientes_idclientes</td>
+                <td>INT</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>relacion 1:n con la tabla clientes</td>
+            </tr>
+            <tr>
+                <td>cotizacion_idcotizacion</td>
+                <td>INT</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>relacion 1:n con la tabla cotizacion</td>
+            </tr>
+        </table>
+
+        <table id='trabajador'>
+            <caption>trabajador</caption>
+            <tr><td colspan='12'></td></tr>
+            <tr>
+                <th>Column name</th>
+                <th>DataType</th>
+                <th><abbr title='Primary Key'>PK</abbr></th>
+                <th><abbr title='Foreign Key'>FK</abbr></th>
+                <th><abbr title='Not Null'>NN</abbr></th>
+                <th><abbr title='Unique'>UQ</abbr></th>
+                <th><abbr title='Binary'>BIN</abbr></th>
+                <th><abbr title='Unsigned'>UN</abbr></th>
+                <th><abbr title='Zero Fill'>ZF</abbr></th>
+                <th><abbr title='Auto Increment'>AI</abbr></th>
+                <th>Default</th>
+                <th>Comment</th>
+            </tr>
+            <tr>
+                <td>idtrabajador</td>
+                <td>INT</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>llave primaria de la tabla trabajdor</td>
+            </tr>
+            <tr>
+                <td>cargo</td>
+                <td>VARCHAR(45)</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>Cargo correspondiente al empleado (jefe del taller, mecanico, etc)</td>
+            </tr>
+            <tr>
+                <td>salario</td>
+                <td>DOUBLE</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>salario mensual correspondinete al empleado</td>
+            </tr>
+        </table>
+
+        <table id='usuario'>
+            <caption>usuario</caption>
+            <tr><td colspan='12'></td></tr>
+            <tr>
+                <th>Column name</th>
+                <th>DataType</th>
+                <th><abbr title='Primary Key'>PK</abbr></th>
+                <th><abbr title='Foreign Key'>FK</abbr></th>
+                <th><abbr title='Not Null'>NN</abbr></th>
+                <th><abbr title='Unique'>UQ</abbr></th>
+                <th><abbr title='Binary'>BIN</abbr></th>
+                <th><abbr title='Unsigned'>UN</abbr></th>
+                <th><abbr title='Zero Fill'>ZF</abbr></th>
+                <th><abbr title='Auto Increment'>AI</abbr></th>
+                <th>Default</th>
+                <th>Comment</th>
+            </tr>
+            <tr>
+                <td>idusuario</td>
+                <td>INT</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>llave primaria de la tabla usuario</td>
+            </tr>
+            <tr>
+                <td>nombre</td>
+                <td>VARCHAR(45)</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>Nombre del usuario</td>
+            </tr>
+            <tr>
+                <td>apellido</td>
+                <td>VARCHAR(45)</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>Apellido del usuario</td>
+            </tr>
+            <tr>
+                <td>telefono</td>
+                <td>INT(10)</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>Telefono del usuario</td>
+            </tr>
+            <tr>
+                <td>correo</td>
+                <td>VARCHAR(45)</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>Correo electronico del usuario</td>
+            </tr>
+            <tr>
+                <td>direccion</td>
+                <td>VARCHAR(45)</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>Direccion del usuario</td>
             </tr>
             <tr>
                 <td>trabajador_idtrabajador</td>
                 <td>INT</td>
                 <td>&nbsp;</td>
-                <td>&#10004;</td>
+                <td class="checkmark">&#10004;</td>
+                <td class="checkmark">&#10004;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
-                <td class='attr'>&nbsp;</td>
+                <td>&nbsp;</td>
                 <td></td>
-                <td></td>
+                <td>Relacion 1:n con la tabla trabajador</td>
             </tr>
             <tr>
-                <td>servicio_idservicio</td>
+                <td>clientes_idclientes</td>
                 <td>INT</td>
                 <td>&nbsp;</td>
-                <td>&#10004;</td>
+                <td class="checkmark">&#10004;</td>
+                <td class="checkmark">&#10004;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
-                <td class='attr'>&nbsp;</td>
+                <td>&nbsp;</td>
                 <td></td>
-                <td></td>
+                <td>Relacion 1:n con la tabla clientes</td>
             </tr>
-            <table id='clientes'>
-                <caption>clientes</caption>
-                <tr>
-                    <td colspan='11'></td>
-                </tr>
-                <tr>
-                    <th>Column name</th>
-                    <th>DataType</th>
-                    <th><abbr title='Primary Key'>PK</abbr></th>
-                    <th><abbr title='Not Null'>NN</abbr></th>
-                    <th><abbr title='Unique'>UQ</abbr></th>
-                    <th><abbr title='Binary'>BIN</abbr></th>
-                    <th><abbr title='Unsigned'>UN</abbr></th>
-                    <th><abbr title='Zero Fill'>ZF</abbr></th>
-                    <th><abbr title='Auto Increment'>AI</abbr></th>
-                    <th>Default</th>
-                    <th>Comment</th>
-                </tr>
-                <tr>
-                    <td>idclientes</td>
-                    <td>INT</td>
-                    <td>&#10004;</td>
-                    <td>&#10004;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td class='attr'>&nbsp;</td>
-                    <td></td>
-                    <td>ID identificador del cliente</td>
-                </tr>
-                <tr>
-                    <td>tipocliente</td>
-                    <td>VARCHAR(45)</td>
-                    <td>&nbsp;</td>
-                    <td>&#10004;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td class='attr'>&nbsp;</td>
-                    <td></td>
-                    <td>Tipo de cliente</td>
-                </tr>
-                <table id='cotizacion'>
-                    <caption>cotizacion</caption>
-                    <tr>
-                        <td colspan='11'></td>
-                    </tr>
-                    <tr>
-                        <th>Column name</th>
-                        <th>DataType</th>
-                        <th><abbr title='Primary Key'>PK</abbr></th>
-                        <th><abbr title='Not Null'>NN</abbr></th>
-                        <th><abbr title='Unique'>UQ</abbr></th>
-                        <th><abbr title='Binary'>BIN</abbr></th>
-                        <th><abbr title='Unsigned'>UN</abbr></th>
-                        <th><abbr title='Zero Fill'>ZF</abbr></th>
-                        <th><abbr title='Auto Increment'>AI</abbr></th>
-                        <th>Default</th>
-                        <th>Comment</th>
-                    </tr>
-                    <tr>
-                        <td>idcotizacion</td>
-                        <td>INT</td>
-                        <td>&#10004;</td>
-                        <td>&#10004;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td class='attr'>&nbsp;</td>
-                        <td></td>
-                        <td>ID identificador de la cotizacion</td>
-                    </tr>
-                    <tr>
-                        <td>estado</td>
-                        <td>VARCHAR(45)</td>
-                        <td>&nbsp;</td>
-                        <td>&#10004;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td class='attr'>&nbsp;</td>
-                        <td></td>
-                        <td>Estado de la cotizacion</td>
-                    </tr>
-                    <tr>
-                        <td>fecha</td>
-                        <td>DATE</td>
-                        <td>&nbsp;</td>
-                        <td>&#10004;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td class='attr'>&nbsp;</td>
-                        <td></td>
-                        <td>Fecha de generacion de la cotizacion</td>
-                    </tr>
-                    <tr>
-                        <td>total</td>
-                        <td>VARCHAR(45)</td>
-                        <td>&nbsp;</td>
-                        <td>&#10004;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td class='attr'>&nbsp;</td>
-                        <td></td>
-                        <td>Total de la cotizacion</td>
-                    </tr>
-                    <table id='cotizacion_has_producto'>
-                        <caption>cotizacion_has_producto</caption>
-                        <tr>
-                            <td colspan='11'></td>
-                        </tr>
-                        <tr>
-                            <th>Column name</th>
-                            <th>DataType</th>
-                            <th><abbr title='Primary Key'>PK</abbr></th>
-                            <th><abbr title='Not Null'>NN</abbr></th>
-                            <th><abbr title='Unique'>UQ</abbr></th>
-                            <th><abbr title='Binary'>BIN</abbr></th>
-                            <th><abbr title='Unsigned'>UN</abbr></th>
-                            <th><abbr title='Zero Fill'>ZF</abbr></th>
-                            <th><abbr title='Auto Increment'>AI</abbr></th>
-                            <th>Default</th>
-                            <th>Comment</th>
-                        </tr>
-                        <tr>
-                            <td>cotizacion_idcotizacion</td>
-                            <td>INT</td>
-                            <td>&#10004;</td>
-                            <td>&#10004;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td class='attr'>&nbsp;</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>producto_idproducto</td>
-                            <td>INT</td>
-                            <td>&#10004;</td>
-                            <td>&#10004;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td class='attr'>&nbsp;</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>atributo</td>
-                            <td>VARCHAR(45)</td>
-                            <td>&nbsp;</td>
-                            <td>&#10004;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td class='attr'>&nbsp;</td>
-                            <td></td>
-                            <td>Representa los productos incluidos en una cotizacion</td>
-                        </tr>
-                        <tr>
-                            <td>preciounitario</td>
-                            <td>DOUBLE</td>
-                            <td>&nbsp;</td>
-                            <td>&#10004;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td class='attr'>&nbsp;</td>
-                            <td></td>
-                            <td>Precio unitario x producto</td>
-                        </tr>
-                        <tr>
-                            <td>precioventa</td>
-                            <td>DOUBLE</td>
-                            <td>&nbsp;</td>
-                            <td>&#10004;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td class='attr'>&nbsp;</td>
-                            <td></td>
-                            <td>precio de venta recomendado para el producto</td>
-                        </tr>
-                        <tr>
-                            <td>subtotal</td>
-                            <td>DOUBLE</td>
-                            <td>&nbsp;</td>
-                            <td>&#10004;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td class='attr'>&nbsp;</td>
-                            <td></td>
-                            <td>subtotal de a cotizacion</td>
-                        </tr>
-                        <table id='movimientoinventario'>
-                            <caption>movimientoinventario</caption>
-                            <tr>
-                                <td colspan='11'></td>
-                            </tr>
-                            <tr>
-                                <th>Column name</th>
-                                <th>DataType</th>
-                                <th><abbr title='Primary Key'>PK</abbr></th>
-                                <th><abbr title='Not Null'>NN</abbr></th>
-                                <th><abbr title='Unique'>UQ</abbr></th>
-                                <th><abbr title='Binary'>BIN</abbr></th>
-                                <th><abbr title='Unsigned'>UN</abbr></th>
-                                <th><abbr title='Zero Fill'>ZF</abbr></th>
-                                <th><abbr title='Auto Increment'>AI</abbr></th>
-                                <th>Default</th>
-                                <th>Comment</th>
-                            </tr>
-                            <tr>
-                                <td>idmovimientoinventario</td>
-                                <td>INT</td>
-                                <td>&#10004;</td>
-                                <td>&#10004;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td class='attr'>&nbsp;</td>
-                                <td></td>
-                                <td>ID que identifica el movimiento realizado en el inventario</td>
-                            </tr>
-                            <tr>
-                                <td>fecha</td>
-                                <td>DATE</td>
-                                <td>&nbsp;</td>
-                                <td>&#10004;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td class='attr'>&nbsp;</td>
-                                <td></td>
-                                <td>fecha en que se realizo el movimiento</td>
-                            </tr>
-                            <tr>
-                                <td>cantidad</td>
-                                <td>INT</td>
-                                <td>&nbsp;</td>
-                                <td>&#10004;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td class='attr'>&nbsp;</td>
-                                <td></td>
-                                <td>cantidad de elementos que fueron actualizados, movidos, borrados, etc</td>
-                            </tr>
-                            <tr>
-                                <td>observacion</td>
-                                <td>VARCHAR(45)</td>
-                                <td>&nbsp;</td>
-                                <td>&#10004;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td class='attr'>&nbsp;</td>
-                                <td></td>
-                                <td>observaciones generales de los movimientos</td>
-                            </tr>
-                            <tr>
-                                <td>producto_idproducto</td>
-                                <td>INT</td>
-                                <td>&#10004;</td>
-                                <td>&#10004;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td class='attr'>&nbsp;</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <table id='pedidos'>
-                                <caption>pedidos</caption>
-                                <tr>
-                                    <td colspan='11'></td>
-                                </tr>
-                                <tr>
-                                    <th>Column name</th>
-                                    <th>DataType</th>
-                                    <th><abbr title='Primary Key'>PK</abbr></th>
-                                    <th><abbr title='Not Null'>NN</abbr></th>
-                                    <th><abbr title='Unique'>UQ</abbr></th>
-                                    <th><abbr title='Binary'>BIN</abbr></th>
-                                    <th><abbr title='Unsigned'>UN</abbr></th>
-                                    <th><abbr title='Zero Fill'>ZF</abbr></th>
-                                    <th><abbr title='Auto Increment'>AI</abbr></th>
-                                    <th>Default</th>
-                                    <th>Comment</th>
-                                </tr>
-                                <tr>
-                                    <td>idpedidos</td>
-                                    <td>INT</td>
-                                    <td>&#10004;</td>
-                                    <td>&#10004;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td class='attr'>&nbsp;</td>
-                                    <td></td>
-                                    <td>ID identificador de el pedido realizado</td>
-                                </tr>
-                                <tr>
-                                    <td>fechapedido</td>
-                                    <td>DATE</td>
-                                    <td>&nbsp;</td>
-                                    <td>&#10004;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td class='attr'>&nbsp;</td>
-                                    <td></td>
-                                    <td>fecha en la que se realiza el pedido</td>
-                                </tr>
-                                <tr>
-                                    <td>estado</td>
-                                    <td>VARCHAR(45)</td>
-                                    <td>&nbsp;</td>
-                                    <td>&#10004;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td class='attr'>&nbsp;</td>
-                                    <td></td>
-                                    <td>estado del pedido</td>
-                                </tr>
-                                <tr>
-                                    <td>totalpedidos</td>
-                                    <td>VARCHAR(45)</td>
-                                    <td>&nbsp;</td>
-                                    <td>&#10004;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td class='attr'>&nbsp;</td>
-                                    <td></td>
-                                    <td>costo total de los pedidos</td>
-                                </tr>
-                                <tr>
-                                    <td>proveedor_idproveedor</td>
-                                    <td>INT</td>
-                                    <td>&nbsp;</td>
-                                    <td>&#10004;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td class='attr'>&nbsp;</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <table id='pedidos_has_producto'>
-                                    <caption>pedidos_has_producto</caption>
-                                    <tr>
-                                        <td colspan='11'></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Column name</th>
-                                        <th>DataType</th>
-                                        <th><abbr title='Primary Key'>PK</abbr></th>
-                                        <th><abbr title='Not Null'>NN</abbr></th>
-                                        <th><abbr title='Unique'>UQ</abbr></th>
-                                        <th><abbr title='Binary'>BIN</abbr></th>
-                                        <th><abbr title='Unsigned'>UN</abbr></th>
-                                        <th><abbr title='Zero Fill'>ZF</abbr></th>
-                                        <th><abbr title='Auto Increment'>AI</abbr></th>
-                                        <th>Default</th>
-                                        <th>Comment</th>
-                                    </tr>
-                                    <tr>
-                                        <td>pedidos_idpedidos</td>
-                                        <td>INT</td>
-                                        <td>&#10004;</td>
-                                        <td>&#10004;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td class='attr'>&nbsp;</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>producto_idproducto</td>
-                                        <td>INT</td>
-                                        <td>&#10004;</td>
-                                        <td>&#10004;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td class='attr'>&nbsp;</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>cantidad</td>
-                                        <td>INT</td>
-                                        <td>&nbsp;</td>
-                                        <td>&#10004;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td class='attr'>&nbsp;</td>
-                                        <td></td>
-                                        <td>Cantidad de productos</td>
-                                    </tr>
-                                    <tr>
-                                        <td>preciounitario</td>
-                                        <td>DOUBLE</td>
-                                        <td>&nbsp;</td>
-                                        <td>&#10004;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td class='attr'>&nbsp;</td>
-                                        <td></td>
-                                        <td>precio x unidad de cada producto</td>
-                                    </tr>
-                                    <tr>
-                                        <td>subtotal</td>
-                                        <td>DOUBLE</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td class='attr'>&nbsp;</td>
-                                        <td></td>
-                                        <td>subtotal del pedido</td>
-                                    </tr>
-                                    <table id='producto'>
-                                        <caption>producto</caption>
-                                        <tr>
-                                            <td colspan='11'></td>
-                                        </tr>
-                                        <tr>
-                                            <th>Column name</th>
-                                            <th>DataType</th>
-                                            <th><abbr title='Primary Key'>PK</abbr></th>
-                                            <th><abbr title='Not Null'>NN</abbr></th>
-                                            <th><abbr title='Unique'>UQ</abbr></th>
-                                            <th><abbr title='Binary'>BIN</abbr></th>
-                                            <th><abbr title='Unsigned'>UN</abbr></th>
-                                            <th><abbr title='Zero Fill'>ZF</abbr></th>
-                                            <th><abbr title='Auto Increment'>AI</abbr></th>
-                                            <th>Default</th>
-                                            <th>Comment</th>
-                                        </tr>
-                                        <tr>
-                                            <td>idproducto</td>
-                                            <td>INT</td>
-                                            <td>&#10004;</td>
-                                            <td>&#10004;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td class='attr'>&nbsp;</td>
-                                            <td></td>
-                                            <td>ID que identifica el producto</td>
-                                        </tr>
-                                        <tr>
-                                            <td>nombre</td>
-                                            <td>VARCHAR(45)</td>
-                                            <td>&nbsp;</td>
-                                            <td>&#10004;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td class='attr'>&nbsp;</td>
-                                            <td></td>
-                                            <td>Nombre del producto</td>
-                                        </tr>
-                                        <tr>
-                                            <td>descripcion</td>
-                                            <td>VARCHAR(45)</td>
-                                            <td>&nbsp;</td>
-                                            <td>&#10004;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td class='attr'>&nbsp;</td>
-                                            <td></td>
-                                            <td>descripcion del producto</td>
-                                        </tr>
-                                        <tr>
-                                            <td>stock</td>
-                                            <td>INT</td>
-                                            <td>&nbsp;</td>
-                                            <td>&#10004;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td class='attr'>&nbsp;</td>
-                                            <td></td>
-                                            <td>cantidad de productos en stock</td>
-                                        </tr>
-                                        <tr>
-                                            <td>precio</td>
-                                            <td>DOUBLE</td>
-                                            <td>&nbsp;</td>
-                                            <td>&#10004;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td class='attr'>&nbsp;</td>
-                                            <td></td>
-                                            <td>precio de producto x unidad</td>
-                                        </tr>
-                                        <tr>
-                                            <td>proveedor_idproveedor</td>
-                                            <td>INT</td>
-                                            <td>&nbsp;</td>
-                                            <td>&#10004;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td class='attr'>&nbsp;</td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <table id='proveedor'>
-                                            <caption>proveedor</caption>
-                                            <tr>
-                                                <td colspan='11'></td>
-                                            </tr>
-                                            <tr>
-                                                <th>Column name</th>
-                                                <th>DataType</th>
-                                                <th><abbr title='Primary Key'>PK</abbr></th>
-                                                <th><abbr title='Not Null'>NN</abbr></th>
-                                                <th><abbr title='Unique'>UQ</abbr></th>
-                                                <th><abbr title='Binary'>BIN</abbr></th>
-                                                <th><abbr title='Unsigned'>UN</abbr></th>
-                                                <th><abbr title='Zero Fill'>ZF</abbr></th>
-                                                <th><abbr title='Auto Increment'>AI</abbr></th>
-                                                <th>Default</th>
-                                                <th>Comment</th>
-                                            </tr>
-                                            <tr>
-                                                <td>idproveedor</td>
-                                                <td>INT</td>
-                                                <td>&#10004;</td>
-                                                <td>&#10004;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td class='attr'>&nbsp;</td>
-                                                <td></td>
-                                                <td>ID identificador del proveedor</td>
-                                            </tr>
-                                            <tr>
-                                                <td>nombreempresa</td>
-                                                <td>VARCHAR(45)</td>
-                                                <td>&nbsp;</td>
-                                                <td>&#10004;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td class='attr'>&nbsp;</td>
-                                                <td></td>
-                                                <td>Nombre de la empresa del proveedor</td>
-                                            </tr>
-                                            <tr>
-                                                <td>calificacion</td>
-                                                <td>INT</td>
-                                                <td>&nbsp;</td>
-                                                <td>&#10004;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td class='attr'>&nbsp;</td>
-                                                <td></td>
-                                                <td>Calificacion que recibe el proveedor</td>
-                                            </tr>
-                                            <table id='servicio'>
-                                                <caption>servicio</caption>
-                                                <tr>
-                                                    <td colspan='11'></td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Column name</th>
-                                                    <th>DataType</th>
-                                                    <th><abbr title='Primary Key'>PK</abbr></th>
-                                                    <th><abbr title='Not Null'>NN</abbr></th>
-                                                    <th><abbr title='Unique'>UQ</abbr></th>
-                                                    <th><abbr title='Binary'>BIN</abbr></th>
-                                                    <th><abbr title='Unsigned'>UN</abbr></th>
-                                                    <th><abbr title='Zero Fill'>ZF</abbr></th>
-                                                    <th><abbr title='Auto Increment'>AI</abbr></th>
-                                                    <th>Default</th>
-                                                    <th>Comment</th>
-                                                </tr>
-                                                <tr>
-                                                    <td>idservicio</td>
-                                                    <td>INT</td>
-                                                    <td>&#10004;</td>
-                                                    <td>&#10004;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td class='attr'>&nbsp;</td>
-                                                    <td></td>
-                                                    <td>ID correspondiente al servicio</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>nombre</td>
-                                                    <td>VARCHAR(45)</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&#10004;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td class='attr'>&nbsp;</td>
-                                                    <td></td>
-                                                    <td>Nombre del servicio que requiere</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>descripcion</td>
-                                                    <td>VARCHAR(45)</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&#10004;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td class='attr'>&nbsp;</td>
-                                                    <td></td>
-                                                    <td>Descripcion del servicio que se requiere</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>duracion</td>
-                                                    <td>VARCHAR(45)</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&#10004;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td class='attr'>&nbsp;</td>
-                                                    <td></td>
-                                                    <td>Duracion del servicio</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>clientes_idclientes</td>
-                                                    <td>INT</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&#10004;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td class='attr'>&nbsp;</td>
-                                                    <td></td>
-                                                    <td></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>cotizacion_idcotizacion</td>
-                                                    <td>INT</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&#10004;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td class='attr'>&nbsp;</td>
-                                                    <td></td>
-                                                    <td></td>
-                                                </tr>
-                                                <table id='trabajador'>
-                                                    <caption>trabajador</caption>
-                                                    <tr>
-                                                        <td colspan='11'></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Column name</th>
-                                                        <th>DataType</th>
-                                                        <th><abbr title='Primary Key'>PK</abbr></th>
-                                                        <th><abbr title='Not Null'>NN</abbr></th>
-                                                        <th><abbr title='Unique'>UQ</abbr></th>
-                                                        <th><abbr title='Binary'>BIN</abbr></th>
-                                                        <th><abbr title='Unsigned'>UN</abbr></th>
-                                                        <th><abbr title='Zero Fill'>ZF</abbr></th>
-                                                        <th><abbr title='Auto Increment'>AI</abbr></th>
-                                                        <th>Default</th>
-                                                        <th>Comment</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>idtrabajador</td>
-                                                        <td>INT</td>
-                                                        <td>&#10004;</td>
-                                                        <td>&#10004;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td class='attr'>&nbsp;</td>
-                                                        <td></td>
-                                                        <td>ID identificador del empleado</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>cargo</td>
-                                                        <td>VARCHAR(45)</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>&#10004;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td class='attr'>&nbsp;</td>
-                                                        <td></td>
-                                                        <td>Cargo correspondiente al empleado</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>salario</td>
-                                                        <td>DOUBLE</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>&#10004;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td class='attr'>&nbsp;</td>
-                                                        <td></td>
-                                                        <td>Salario del empleado</td>
-                                                    </tr>
-                                                    <table id='usuario'>
-                                                        <caption>usuario</caption>
-                                                        <tr>
-                                                            <td colspan='11'></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Column name</th>
-                                                            <th>DataType</th>
-                                                            <th><abbr title='Primary Key'>PK</abbr></th>
-                                                            <th><abbr title='Not Null'>NN</abbr></th>
-                                                            <th><abbr title='Unique'>UQ</abbr></th>
-                                                            <th><abbr title='Binary'>BIN</abbr></th>
-                                                            <th><abbr title='Unsigned'>UN</abbr></th>
-                                                            <th><abbr title='Zero Fill'>ZF</abbr></th>
-                                                            <th><abbr title='Auto Increment'>AI</abbr></th>
-                                                            <th>Default</th>
-                                                            <th>Comment</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>idusuario</td>
-                                                            <td>INT</td>
-                                                            <td>&#10004;</td>
-                                                            <td>&#10004;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td class='attr'>&nbsp;</td>
-                                                            <td></td>
-                                                            <td>ID identificador</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>nombre</td>
-                                                            <td>VARCHAR(45)</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&#10004;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td class='attr'>&nbsp;</td>
-                                                            <td></td>
-                                                            <td>Nombre del usuario</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>apellido</td>
-                                                            <td>VARCHAR(45)</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&#10004;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td class='attr'>&nbsp;</td>
-                                                            <td></td>
-                                                            <td>Apellido del usuario</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>telefono</td>
-                                                            <td>INT(10)</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&#10004;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td class='attr'>&nbsp;</td>
-                                                            <td></td>
-                                                            <td>Telefono del usuario</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>correo</td>
-                                                            <td>VARCHAR(45)</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&#10004;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td class='attr'>&nbsp;</td>
-                                                            <td></td>
-                                                            <td>Correo electronico del usuario</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>direccion</td>
-                                                            <td>VARCHAR(45)</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&#10004;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td class='attr'>&nbsp;</td>
-                                                            <td></td>
-                                                            <td>Direccion del usuario</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>trabajador_idtrabajador</td>
-                                                            <td>INT</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&#10004;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td class='attr'>&nbsp;</td>
-                                                            <td></td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>clientes_idclientes</td>
-                                                            <td>INT</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&#10004;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td class='attr'>&nbsp;</td>
-                                                            <td></td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>proveedor_idproveedor</td>
-                                                            <td>INT</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&#10004;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td class='attr'>&nbsp;</td>
-                                                            <td></td>
-                                                            <td></td>
-                                                        </tr>
-                                                    </table>
+            <tr>
+                <td>proveedor_idproveedor</td>
+                <td>INT</td>
+                <td>&nbsp;</td>
+                <td class="checkmark">&#10004;</td>
+                <td class="checkmark">&#10004;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>Relacion 1:n con la tabla proveedor</td>
+            </tr>
+        </table>
     </div>
 </body>
 
