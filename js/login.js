@@ -43,7 +43,7 @@ if(email === 'Jefe@tallerbetancourt.com' && password === '12345'){
         text: 'Bienvenido Asistente',
         confirmButtonColor: '#5f1ed7'
     }).then(() =>{
-    window.location.href='./pages/clientes.html';})
+    window.location.href='./pages/Gestion_Clientes.html';})
 
     }else if(email==='auxiliar@tallerbetancourt.com' && password === '12345'){
     Swal.fire({
