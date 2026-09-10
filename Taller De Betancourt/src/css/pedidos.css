@@ -77,6 +77,10 @@ body {
     width: 65px;
 }
 
+.input-placeholder-blanco::placeholder {
+  color: #ffffff !important;
+  opacity: 0.8;
+}
 .sidebar-logo h2 {
     color: var(--gris-texto);
     font-size: 38px;

@@ -1,19 +1,108 @@
-import logoImg from './assets/logo.png'
-import suprsImg from './assets/suprs.png'
-import './App.css'
+import { useState } from 'react';
+import Swal from 'sweetalert2';
+import logoImg from './assets/logo.png';
+import suprsImg from './assets/suprs.png';
+import './App.css';
+import Pedidos from './pages/pedidos';
 
 function App() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [vistaActual, setVistaActual] = useState('home');
+
   const handleSubmitCita = (e) => {
     e.preventDefault();
+    Swal.fire({
+      icon: 'success',
+      title: 'Cita Solicitada',
+      text: 'Nos pondremos en contacto contigo pronto.',
+      confirmButtonColor: '#5f1ed7',
+    });
   };
 
-  const handleSubmitLogin = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
+
+    const cleanEmail = email.trim();
+    const cleanPassword = password.trim();
+
+    if (cleanEmail === '' || cleanPassword === '') {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Campos Vacíos',
+        text: 'Por favor complete los campos',
+        confirmButtonColor: '#5f1ed7',
+      });
+      return;
+    }
+
+    if (cleanEmail === 'Jefe@tallerbetancourt.com' && cleanPassword === '12345') {
+      Swal.fire({
+        icon: 'success',
+        title: 'Inicio Exitoso',
+        text: 'Bienvenido Jefe',
+        confirmButtonColor: '#5f1ed7',
+      }).then(() => {
+        // Limpia clases/capas de Bootstrap si quedaron activas
+        document.querySelectorAll('.modal-backdrop').forEach((el) => el.remove());
+        document.body.classList.remove('modal-open');
+        document.body.style.overflow = 'auto';
+
+        setVistaActual('pedidos'); // Cambia a la vista de Pedidos
+      });
+    } else if (cleanEmail === 'mecanico@tallerbetancourt.com' && cleanPassword === '123456') {
+      Swal.fire({
+        icon: 'success',
+        title: 'Inicio Exitoso',
+        text: 'Bienvenido Mecánico',
+        confirmButtonColor: '#5f1ed7',
+      }).then(() => {
+        window.location.href = './pages/inventario.html';
+      });
+    } else if (cleanEmail === 'asistente@tallerbetancourt.com' && cleanPassword === '12345') {
+      Swal.fire({
+        icon: 'success',
+        title: 'Inicio Exitoso',
+        text: 'Bienvenido Asistente',
+        confirmButtonColor: '#5f1ed7',
+      }).then(() => {
+        window.location.href = './pages/Gestion_Clientes.html';
+      });
+    } else if (cleanEmail === 'auxiliar@tallerbetancourt.com' && cleanPassword === '12345') {
+      Swal.fire({
+        icon: 'success',
+        title: 'Inicio Exitoso',
+        text: 'Bienvenido Auxiliar',
+        confirmButtonColor: '#5f1ed7',
+      }).then(() => {
+        window.location.href = './pages/proveedores.html';
+      });
+    } else if (cleanEmail === 'Trabajador@tallerbetancourt.com' && cleanPassword === '98765') {
+      Swal.fire({
+        icon: 'success',
+        title: 'Inicio Exitoso',
+        text: 'Bienvenido Trabajador',
+        confirmButtonColor: '#5f1ed7',
+      }).then(() => {
+        window.location.href = './pages/trabajador.html';
+      });
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Credenciales incorrectas',
+        text: 'Correo o contraseña inválidos',
+        confirmButtonColor: '#5f1ed7',
+      });
+    }
   };
+
+  // CONDICIONAL DE NAVEGACIÓN (Va fuera del handleLogin, en la raíz del componente):
+  if (vistaActual === 'pedidos') {
+    return <Pedidos />;
+  }
 
   return (
     <>
-      {/* HEADER */}
       <header className="header-principal navbar navbar-expand-lg">
         <div className="container-fluid container-header">
           <div className="logo-marca-wrapper d-flex align-items-center">
@@ -62,7 +151,6 @@ function App() {
         </div>
       </header>
 
-      {/* MODAL LOGIN */}
       <div className="modal fade" id="loginModal" tabIndex="-1" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content modal-login">
@@ -71,7 +159,7 @@ function App() {
               <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
-              <form onSubmit={handleSubmitLogin}>
+              <form onSubmit={handleLogin}>
                 <div className="mb-3">
                   <label htmlFor="email" className="form-label">Correo Electrónico:</label>
                   <input
@@ -79,6 +167,8 @@ function App() {
                     className="form-control"
                     id="email"
                     placeholder="Ingresa tu correo"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                   />
                 </div>
@@ -90,6 +180,8 @@ function App() {
                     className="form-control"
                     id="password"
                     placeholder="Ingresa tu contraseña"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     required
                   />
                 </div>
@@ -104,21 +196,16 @@ function App() {
         </div>
       </div>
 
-      {/* BANNER PRINCIPAL */}
       <section className="banner-taller text-center d-flex flex-column justify-content-center align-items-center">
         <img src={suprsImg} alt="supra" className="carro-animado" />
         <h1>Potencia y Rendimiento</h1>
         <p>Tu vehículo en manos de verdaderos profesionales</p>
       </section>
 
-      {/* SECCIONES PRINCIPALES */}
       <main className="container my-5 contenido-principal">
         <section className="seccion-contenedor p-4 mb-5 text-center" id="Nosotros">
           <h2>¿Quiénes somos?</h2>
-          <p
-            className="mx-auto mt-3"
-            style={{ maxWidth: '800px', color: 'var(--gris-texto)' }}
-          >
+          <p className="mx-auto mt-3" style={{ maxWidth: '800px', color: 'var(--gris-texto)' }}>
             Somos un taller automotriz comprometido con la excelencia mecánica. Contamos con tecnología de
             vanguardia y un equipo de técnicos altamente calificados para ofrecerte soluciones confiables y seguras.
           </p>
@@ -199,7 +286,7 @@ function App() {
         </section>
       </main>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
