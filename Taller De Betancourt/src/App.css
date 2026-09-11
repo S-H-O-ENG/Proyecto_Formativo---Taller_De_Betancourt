@@ -18,11 +18,9 @@
 
 body {
     min-height: 100vh;
-    background-color: var(--oscuro-fondo);
-    background: linear-gradient(135deg, #0f0f12 0%, #1a122c 50%, #251244 100%);
+    background: linear-gradient(135deg, #0f0f12 0%, #1a122c 50%, #251244 100%) fixed;
     font-family: var(--fuente-textos);
     color: var(--blanco-suave);
-    background-attachment: fixed;
     line-height: 1.6;
 }
 
@@ -33,13 +31,12 @@ body {
     flex-direction: column;
 }
 
-/* Header */
 .header-principal {
     position: sticky;
     top: 0;
     z-index: 1000;
     padding: 15px 0;
-    background: rgba(15, 15, 18, 0.75) !important; 
+    background: rgba(15, 15, 18, 0.75) !important;
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(111, 66, 193, 0.2);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
@@ -58,14 +55,13 @@ body {
 .logo-header {
     height: 45px;
     object-fit: contain;
-    filter: drop-shadow(0px 2px 8px rgba(95, 30, 215, 0.3)); 
+    filter: drop-shadow(0px 2px 8px rgba(95, 30, 215, 0.3));
 }
 
 .marca {
     font-family: var(--fuente-titulos);
     font-size: 36px;
     letter-spacing: 2px;
-    color: var(--blanco-suave);
     background: linear-gradient(to right, #ffffff, var(--morado-clarito));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -74,12 +70,11 @@ body {
 .navegar .navbar-nav {
     display: flex;
     align-items: center;
-    gap: 30px; 
+    gap: 30px;
 }
 
 .navegar .nav-link {
     color: var(--blanco-suave) !important;
-    text-decoration: none;
     font-size: 18px;
     font-weight: 500;
     transition: 0.3s ease;
@@ -102,21 +97,7 @@ body {
     width: 100%;
 }
 
-.header-principal .btn-cita-nav {
-    background-color: var(--morado-principal);
-    padding: 8px 20px !important;
-    border-radius: 25px;
-    font-weight: 700 !important;
-    color: white !important;
-    white-space: nowrap;
-    box-shadow: 0 4px 10px rgba(95, 30, 215, 0.3);
-}
-
-.header-principal .btn-cita-nav:hover {
-    background-color: var(--morado-clarito);
-    box-shadow: 0 0 15px rgba(111, 66, 193, 0.6);
-}
-
+.header-principal .btn-cita-nav,
 .btn-login-nav {
     background-color: var(--morado-principal);
     padding: 8px 20px !important;
@@ -125,6 +106,15 @@ body {
     color: white !important;
     box-shadow: 0 4px 10px rgba(95, 30, 215, 0.3);
     border: none;
+}
+
+.header-principal .btn-cita-nav {
+    white-space: nowrap;
+}
+
+.header-principal .btn-cita-nav:hover {
+    background-color: var(--morado-clarito);
+    box-shadow: 0 0 15px rgba(111, 66, 193, 0.6);
 }
 
 .custom-toggler.navbar-toggler {
@@ -136,15 +126,12 @@ body {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(241, 241, 244, 0.95)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
-/* Banner */
 .banner-taller {
-    min-height: 450px; 
-    background: linear-gradient(rgba(15, 15, 18, 0.5), rgba(15, 15, 18, 0.85)), url("./assets/banner.jpg");
-    background-size: cover;
-    background-position: center;
-    padding: 60px 20px 40px 20px;
+    min-height: 450px;
+    background: linear-gradient(rgba(15, 15, 18, 0.5), rgba(15, 15, 18, 0.85)), url("./assets/banner.jpg") center/cover;
+    padding: 60px 20px 40px;
     border-bottom: 2px solid var(--morado-principal);
-    gap: 15px; 
+    gap: 15px;
 }
 
 .banner-taller h1 {
@@ -161,7 +148,6 @@ body {
     color: var(--gris-texto);
 }
 
-/* Animación Carro */
 .carro-animado {
     max-width: 420px;
     height: auto;
@@ -170,11 +156,15 @@ body {
 }
 
 @keyframes moverAuto {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-40px); }
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-40px);
+    }
 }
 
-/* Contenedores */
 .seccion-contenedor {
     padding: 35px;
     background: rgba(24, 24, 31, 0.6);
@@ -191,8 +181,12 @@ body {
     letter-spacing: 1px;
 }
 
-/* Formularios */
-.form-control, .form-select {
+.seccion-contenedor ::placeholder {
+    color: white;
+}
+
+.form-control,
+.form-select {
     padding: 11px 14px !important;
     background-color: #0f0f12 !important;
     border: 1px solid #262633 !important;
@@ -202,22 +196,16 @@ body {
     transition: 0.3s !important;
 }
 
-.form-control:focus, .form-select:focus {
+.form-control:focus,
+.form-select:focus {
     border-color: var(--morado-clarito) !important;
     box-shadow: 0 0 8px rgba(111, 66, 193, 0.4) !important;
     outline: none !important;
 }
 
-/* Modal Login */
 .modal-login {
-    background-image: url(./assets/log.jpg);
-    background-size: cover;
-    background-position: center;
+    background: url(./assets/log.jpg) center/cover;
     color: #F1EAFF;
-}
-
-.modal-login ::placeholder {
-    color: rgba(255, 255, 255, 0.4);
 }
 
 .modal-login button.btn-ingresar {
@@ -231,7 +219,7 @@ body {
 }
 
 .link-login {
-    color: #FF007F;
+    color: #faf4f7;
     text-decoration: none;
 }
 
@@ -245,11 +233,19 @@ body {
     color: white;
 }
 
-/* Responsive */
+.modal-body ::placeholder{
+    color: white;
+}
+
 @media (max-width: 768px) {
-    .banner-taller h1 { font-size: 38px; }
-    .seccion-contenedor { padding: 20px; }
-    
+    .banner-taller h1 {
+        font-size: 38px;
+    }
+
+    .seccion-contenedor {
+        padding: 20px;
+    }
+
     .navegar ul {
         padding-top: 15px;
         flex-direction: column;

@@ -22,11 +22,10 @@ function App() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-
     const cleanEmail = email.trim();
     const cleanPassword = password.trim();
 
-    if (cleanEmail === '' || cleanPassword === '') {
+    if (!cleanEmail || !cleanPassword) {
       Swal.fire({
         icon: 'warning',
         title: 'Campos Vacíos',
@@ -36,55 +35,30 @@ function App() {
       return;
     }
 
-    if (cleanEmail === 'Jefe@tallerbetancourt.com' && cleanPassword === '12345') {
-      Swal.fire({
-        icon: 'success',
-        title: 'Inicio Exitoso',
-        text: 'Bienvenido Jefe',
-        confirmButtonColor: '#5f1ed7',
-      }).then(() => {
-        // Limpia clases/capas de Bootstrap si quedaron activas
-        document.querySelectorAll('.modal-backdrop').forEach((el) => el.remove());
-        document.body.classList.remove('modal-open');
-        document.body.style.overflow = 'auto';
+    const roles = {
+      'Jefe@tallerbetancourt.com': { pass: '12345', action: () => setVistaActual('pedidos'), cleanModal: true },
+      'mecanico@tallerbetancourt.com': { pass: '123456', redirect: './pages/inventario.html' },
+      'asistente@tallerbetancourt.com': { pass: '12345', redirect: './pages/Gestion_Clientes.html' },
+      'auxiliar@tallerbetancourt.com': { pass: '12345', redirect: './pages/proveedores.html' },
+      'Trabajador@tallerbetancourt.com': { pass: '98765', redirect: './pages/trabajador.html' },
+    };
 
-        setVistaActual('pedidos'); // Cambia a la vista de Pedidos
-      });
-    } else if (cleanEmail === 'mecanico@tallerbetancourt.com' && cleanPassword === '123456') {
+    const user = roles[cleanEmail];
+
+    if (user && user.pass === cleanPassword) {
       Swal.fire({
         icon: 'success',
         title: 'Inicio Exitoso',
-        text: 'Bienvenido Mecánico',
+        text: 'Bienvenido',
         confirmButtonColor: '#5f1ed7',
       }).then(() => {
-        window.location.href = './pages/inventario.html';
-      });
-    } else if (cleanEmail === 'asistente@tallerbetancourt.com' && cleanPassword === '12345') {
-      Swal.fire({
-        icon: 'success',
-        title: 'Inicio Exitoso',
-        text: 'Bienvenido Asistente',
-        confirmButtonColor: '#5f1ed7',
-      }).then(() => {
-        window.location.href = './pages/Gestion_Clientes.html';
-      });
-    } else if (cleanEmail === 'auxiliar@tallerbetancourt.com' && cleanPassword === '12345') {
-      Swal.fire({
-        icon: 'success',
-        title: 'Inicio Exitoso',
-        text: 'Bienvenido Auxiliar',
-        confirmButtonColor: '#5f1ed7',
-      }).then(() => {
-        window.location.href = './pages/proveedores.html';
-      });
-    } else if (cleanEmail === 'Trabajador@tallerbetancourt.com' && cleanPassword === '98765') {
-      Swal.fire({
-        icon: 'success',
-        title: 'Inicio Exitoso',
-        text: 'Bienvenido Trabajador',
-        confirmButtonColor: '#5f1ed7',
-      }).then(() => {
-        window.location.href = './pages/trabajador.html';
+        if (user.cleanModal) {
+          document.querySelectorAll('.modal-backdrop').forEach((el) => el.remove());
+          document.body.classList.remove('modal-open');
+          document.body.style.overflow = 'auto';
+        }
+        if (user.action) user.action();
+        if (user.redirect) window.location.href = user.redirect;
       });
     } else {
       Swal.fire({
@@ -96,7 +70,6 @@ function App() {
     }
   };
 
-  // CONDICIONAL DE NAVEGACIÓN (Va fuera del handleLogin, en la raíz del componente):
   if (vistaActual === 'pedidos') {
     return <Pedidos />;
   }
@@ -124,25 +97,12 @@ function App() {
 
           <nav className="collapse navbar-collapse navegar" id="navbarNav">
             <ul className="navbar-nav ms-auto align-items-center">
+              <li className="nav-item"><a className="nav-link" href="#Nosotros">Sobre Nosotros</a></li>
+              <li className="nav-item"><a className="nav-link" href="#donde">Encuéntranos</a></li>
+              <li className="nav-item"><a className="nav-link" href="#nuestrosProductos">Productos</a></li>
+              <li className="nav-item"><a className="nav-link btn-cita-nav" href="#agendacita">Agenda tu Cita</a></li>
               <li className="nav-item">
-                <a className="nav-link" href="#Nosotros">Sobre Nosotros</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#donde">Encuéntranos</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#nuestrosProductos">Productos</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link btn-cita-nav" href="#agendacita">Agenda tu Cita</a>
-              </li>
-              <li className="nav-item">
-                <button
-                  type="button"
-                  className="btn btn-login-nav"
-                  data-bs-toggle="modal"
-                  data-bs-target="#loginModal"
-                >
+                <button type="button" className="btn btn-login-nav" data-bs-toggle="modal" data-bs-target="#loginModal">
                   Login
                 </button>
               </li>
@@ -232,54 +192,27 @@ function App() {
             <form onSubmit={handleSubmitCita} className="mx-auto" style={{ maxWidth: '600px' }}>
               <div className="mb-3">
                 <label htmlFor="nombreCita" className="form-label">Nombre Completo:</label>
-                <input
-                  type="text"
-                  id="nombreCita"
-                  className="form-control"
-                  placeholder="Ingrese su nombre"
-                  required
-                />
+                <input type="text" id="nombreCita" className="form-control" placeholder="Ingrese su nombre" required />
               </div>
 
               <div className="row mb-3">
                 <div className="col-md-6 mb-3 mb-md-0">
                   <label htmlFor="telefonoCita" className="form-label">Teléfono de Contacto:</label>
-                  <input
-                    type="tel"
-                    id="telefonoCita"
-                    className="form-control"
-                    placeholder="Ingrese número telefónico"
-                    required
-                  />
+                  <input type="tel" id="telefonoCita" className="form-control" placeholder="Ingrese número telefónico" required />
                 </div>
                 <div className="col-md-6">
                   <label htmlFor="fechaCita" className="form-label">Fecha Solicitada:</label>
-                  <input
-                    type="date"
-                    id="fechaCita"
-                    className="form-control"
-                    required
-                  />
+                  <input type="date" id="fechaCita" className="form-control" required />
                 </div>
               </div>
 
               <div className="mb-4">
-                <label htmlFor="motivoCita" className="form-label">
-                  Motivo del Servicio / Falla del Vehículo:
-                </label>
-                <textarea
-                  id="motivoCita"
-                  className="form-control"
-                  rows="4"
-                  placeholder="Ej: Cambio de aceite, ruido en la suspensión..."
-                  required
-                ></textarea>
+                <label htmlFor="motivoCita" className="form-label">Motivo del Servicio / Falla del Vehículo:</label>
+                <textarea id="motivoCita" className="form-control" rows="4" placeholder="Ej: Cambio de aceite, ruido en la suspensión..." required></textarea>
               </div>
 
               <div className="text-center">
-                <button type="submit" className="btn px-5 py-2 border-0 btn-enviarS">
-                  Enviar Solicitud
-                </button>
+                <button type="submit" className="btn px-5 py-2 border-0 btn-enviarS">Enviar Solicitud</button>
               </div>
             </form>
           </div>
