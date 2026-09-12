@@ -4,6 +4,7 @@ import logoImg from './assets/logo.png';
 import suprsImg from './assets/suprs.png';
 import './App.css';
 import Pedidos from './pages/pedidos';
+import Proveedores from "./pages/Proveedores";
 
 function App() {
   const [email, setEmail] = useState('');
@@ -39,7 +40,7 @@ function App() {
       'Jefe@tallerbetancourt.com': { pass: '12345', action: () => setVistaActual('pedidos'), cleanModal: true },
       'mecanico@tallerbetancourt.com': { pass: '123456', redirect: './pages/inventario.html' },
       'asistente@tallerbetancourt.com': { pass: '12345', redirect: './pages/Gestion_Clientes.html' },
-      'auxiliar@tallerbetancourt.com': { pass: '12345', redirect: './pages/proveedores.html' },
+      'auxiliar@tallerbetancourt.com': { pass: '12345', action: () => setVistaActual('Proveedores'), cleanModal: true },
       'Trabajador@tallerbetancourt.com': { pass: '98765', redirect: './pages/trabajador.html' },
     };
 

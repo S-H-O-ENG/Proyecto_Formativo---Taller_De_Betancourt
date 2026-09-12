@@ -89,7 +89,7 @@ export default function Pedidos() {
         </div>
 
         <nav className="sidebar-menu">
-          <a href="/pages/proveedores.html">
+          <a href="./Proveedores.jsx">
             <i className="fa-solid fa-truck"></i> Proveedores
           </a>
           <a href="/pages/Gestion_Clientes.html">
