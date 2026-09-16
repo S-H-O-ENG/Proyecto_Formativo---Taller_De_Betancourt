@@ -71,8 +71,13 @@ function App() {
     }
   };
 
-  if (vistaActual === 'pedidos') {
+   if (vistaActual === 'pedidos') {
+    alert("aca");
     return <Pedidos />;
+  }
+
+  if(vistaActual === 'Proveedores'){
+    return <Proveedores/>;
   }
 
   return (
