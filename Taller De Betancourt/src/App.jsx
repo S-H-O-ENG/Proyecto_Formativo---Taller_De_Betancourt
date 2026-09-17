@@ -44,11 +44,7 @@ function App() {
       'mecanico@tallerbetancourt.com': { pass: '123456', redirect: './pages/inventario.html' },
       'asistente@tallerbetancourt.com': { pass: '12345', redirect: './pages/Gestion_Clientes.html' },
       'auxiliar@tallerbetancourt.com': { pass: '12345', action: () => setVistaActual('Proveedores'), cleanModal: true },
-<<<<<<< HEAD
-      'Trabajador@tallerbetancourt.com': { pass: '98765', action: () => setVistaActual('trabajador'), cleanModal: true },
-=======
       'Trabajador@tallerbetancourt.com': { pass: '98765', action: () => setVistaActual('Trabajador'), cleanModal: true },
->>>>>>> 53de420c44a53b0946940871852c44a7f7163c9b
     };
 
     const user = roles[cleanEmail];
