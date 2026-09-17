@@ -1,11 +1,7 @@
-<<<<<<< HEAD
+
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
-=======
-import React, { useState, useEffect } from 'react';
-import Swal from 'sweetalert2';
-import '../css/trabajor.css'
->>>>>>> 53de420c44a53b0946940871852c44a7f7163c9b
+
 
 function Trabajador() {
   const nombreTrabajador = "Carlos Betancourt";
