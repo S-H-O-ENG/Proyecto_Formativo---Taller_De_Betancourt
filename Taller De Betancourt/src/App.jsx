@@ -6,7 +6,7 @@ import './App.css';
 import Pedidos from './pages/pedidos';
 import Proveedores from "./pages/Proveedores";
 import AsignarServicios from './pages/AsignarServicios';
-import trabajador from './pages/trabajador';
+import Trabajador from './pages/Trabajador';
 
 function App() {
   const [email, setEmail] = useState('');
@@ -44,7 +44,7 @@ function App() {
       'mecanico@tallerbetancourt.com': { pass: '123456', redirect: './pages/inventario.html' },
       'asistente@tallerbetancourt.com': { pass: '12345', redirect: './pages/Gestion_Clientes.html' },
       'auxiliar@tallerbetancourt.com': { pass: '12345', action: () => setVistaActual('Proveedores'), cleanModal: true },
-      'Trabajador@tallerbetancourt.com': { pass: '98765', action: () => setVistaActual('trabajadores'), cleanModal: true },
+      'Trabajador@tallerbetancourt.com': { pass: '98765', action: () => setVistaActual('Trabajador'), cleanModal: true },
     };
 
     const user = roles[cleanEmail];
@@ -80,15 +80,19 @@ function App() {
   }
 
   if(vistaActual === 'Proveedores'){
+        alert("aca");
     return <Proveedores/>;
   }
+
   if(vistaActual === 'AsignarServicios'){
     alert("aca");
     return <AsignarServicios/>;
   }
-  if(vistaActual === 'trabajador'){
-    return <trabajador/>;
+
+  if(vistaActual === 'Trabajador'){
+    return <Trabajador/>;
   }
+
   return (
     <>
       <header className="header-principal navbar navbar-expand-lg">
