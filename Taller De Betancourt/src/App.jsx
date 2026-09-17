@@ -39,7 +39,7 @@ function App() {
 
     const roles = {
       'Jefe@tallerbetancourt.com': { pass: '12345', action: () => setVistaActual('pedidos'), cleanModal: true },
-       'asignarP@tallerbetancourt.com': { pass: '123456', redirect: './pages/AsignarServicios' },
+       'asignarP@tallerbetancourt.com': { pass: '123456', action: () => setVistaActual('AsignarServicios'), cleanModal: true },
       'mecanico@tallerbetancourt.com': { pass: '123456', redirect: './pages/inventario.html' },
       'asistente@tallerbetancourt.com': { pass: '12345', redirect: './pages/Gestion_Clientes.html' },
       'auxiliar@tallerbetancourt.com': { pass: '12345', action: () => setVistaActual('Proveedores'), cleanModal: true },
@@ -79,6 +79,7 @@ function App() {
   }
 
   if(vistaActual === 'Proveedores'){
+    alert("aca");
     return <Proveedores/>;
   }
   if(vistaActual === 'AsignarServicios'){
