@@ -191,7 +191,6 @@ tbody tr:hover {
   background: #202027;
 }
 
-/* ESTADÍSTICAS */
 .estadisticas {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -215,7 +214,7 @@ tbody tr:hover {
   font-size: 55px;
 }
 
-/* RESPONSIVO */
+
 @media (max-width: 900px) {
   header {
     flex-direction: column;
