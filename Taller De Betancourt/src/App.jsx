@@ -6,6 +6,7 @@ import './App.css';
 import Pedidos from './pages/pedidos';
 import Proveedores from "./pages/Proveedores";
 import AsignarServicios from './pages/AsignarServicios';
+import trabajador from './pages/trabajador';
 
 function App() {
   const [email, setEmail] = useState('');
@@ -43,7 +44,7 @@ function App() {
       'mecanico@tallerbetancourt.com': { pass: '123456', redirect: './pages/inventario.html' },
       'asistente@tallerbetancourt.com': { pass: '12345', redirect: './pages/Gestion_Clientes.html' },
       'auxiliar@tallerbetancourt.com': { pass: '12345', action: () => setVistaActual('Proveedores'), cleanModal: true },
-      'Trabajador@tallerbetancourt.com': { pass: '98765', redirect: './pages/trabajador.html' },
+      'Trabajador@tallerbetancourt.com': { pass: '98765', action: () => setVistaActual('trabajadores'), cleanModal: true },
     };
 
     const user = roles[cleanEmail];
@@ -82,7 +83,11 @@ function App() {
     return <Proveedores/>;
   }
   if(vistaActual === 'AsignarServicios'){
+    alert("aca");
     return <AsignarServicios/>;
+  }
+  if(vistaActual === 'trabajador'){
+    return <trabajador/>;
   }
   return (
     <>
