@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import '../css/proveedores.css'; 
 import logoImg from '../assets/logo.png';
+import Facturas from './Pro_Facturas';
+import Calificacion from './Pro_Calificacion';
 
 function Proveedores() {
     const [proveedores, setProveedores] = useState([]);
@@ -221,7 +223,7 @@ const API = "http://localhost:5000/Proveedores";
                     </a>
 
                     <a
-                        href="/Pro_Facturas"
+                        href="Pro_Facturas"
                         className="menu-item"
                     >
                         <span className="menu-icon">
@@ -234,7 +236,7 @@ const API = "http://localhost:5000/Proveedores";
                     </a>
 
                     <a
-                        href="/Pro_Calificacion"
+                        href="Pro_Calificacion"
                         className="menu-item"
                     >
                         <span className="menu-icon">
