@@ -1,14 +1,15 @@
+<<<<<<< HEAD
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
+=======
+import React, { useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
+import '../css/trabajor.css'
+>>>>>>> 53de420c44a53b0946940871852c44a7f7163c9b
 
-
-export default function Trabajador() {
+function Trabajador() {
   const nombreTrabajador = "Carlos Betancourt";
-
-
   const [esActivo, setEsActivo] = useState(true);
-
-  
   const [saludo, setSaludo] = useState("");
 
   useEffect(() => {
@@ -25,12 +26,10 @@ export default function Trabajador() {
 
     setSaludo(saludoCalculado);
 
-   
     console.log(`${saludoCalculado} Bienvenido al perfil de ${nombreTrabajador}.`);
     console.log("Fecha:", new Date().toLocaleDateString());
     console.log("Hora:", new Date().toLocaleTimeString());
   }, [nombreTrabajador]);
-
 
   const toggleEstado = () => {
     setEsActivo(!esActivo);
@@ -55,10 +54,10 @@ export default function Trabajador() {
         </div>
 
         <nav>
-          <Link to="/">Servicios</Link>
-          <Link to="/">
+          <a href="/">Servicios</a>
+          <a href="/">
             <button type="button">Inicio</button>
-          </Link>
+          </a>
         </nav>
       </header>
 
@@ -81,7 +80,12 @@ export default function Trabajador() {
               style={{
                 backgroundColor: esActivo ? "#1d8b38" : "#d97706",
                 cursor: "pointer",
-                userSelect: "none"
+                userSelect: "none",
+                display: "inline-block",
+                padding: "5px 10px",
+                color: "white",
+                borderRadius: "5px",
+                marginTop: "10px"
               }}
             >
               {esActivo ? "● Activo" : "● En descanso"}
@@ -163,3 +167,5 @@ export default function Trabajador() {
     </div>
   );
 }
+
+export default Trabajador;

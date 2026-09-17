@@ -1,1 +1,13 @@
-{}
+{
+  "Proveedores": [
+    {
+      "id": "awGM1EQRzQA",
+      "proveedor": "ghjsdgj",
+      "telefono": "gfjsj",
+      "correo": "dftgjstj@ghjdj",
+      "ciudad": "ghjdgj",
+      "estado": "Inactivo"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
