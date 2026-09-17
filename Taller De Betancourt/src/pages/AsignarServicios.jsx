@@ -12,7 +12,7 @@ export default function AsignarServicios() {
 
   const handleAsignarServicio = () => {
     if (!servicio || !descripcion || !trabajador || !fecha) {
-      Swal.fire('Error', 'Complete todos los campos', 'error');
+      alert('Complete todos los campos');
       return;
     }
 
@@ -26,6 +26,7 @@ export default function AsignarServicios() {
     };
 
     setServicios([...servicios, nuevoServicio]);
+
     setServicio('');
     setDescripcion('');
     setTrabajador('');
@@ -43,16 +44,13 @@ export default function AsignarServicios() {
   const finalizados = servicios.filter(s => s.estado === 'Finalizado').length;
 
   return (
-    <div className="pagina-servicios">
+    <div>
       <div className="encabezado">
-        <button onClick={(e) => e.preventDefault()}>Trabajadores</button>
-        <button className="activo" onClick={(e) => e.preventDefault()}>Servicios</button>
-        <button onClick={(e) => e.preventDefault()}>Asignaciones</button>
-        <button onClick={(e) => e.preventDefault()}>Informes</button>
+        <a href="#" onClick={(e) => e.preventDefault()}>Inicio</a>
+        <a href="#" onClick={(e) => e.preventDefault()}>Atrás</a>
       </div>
 
       <div className="modulo">
-        <img src="/logo.png" alt="Logo" /> {/* Cambia esta ruta por la de tu imagen */}
         <div className="textmodulo">
           <h2>ASIGNAR SERVICIOS</h2>
           <p>Gestión y asignación de trabajos a empleados</p>
@@ -65,10 +63,12 @@ export default function AsignarServicios() {
             <h3>Servicios Pendientes</h3>
             <span>{pendientes}</span>
           </div>
+
           <div className="card">
             <h3>Asignados</h3>
             <span>{asignados}</span>
           </div>
+
           <div className="card">
             <h3>Finalizados</h3>
             <span>{finalizados}</span>
@@ -83,12 +83,14 @@ export default function AsignarServicios() {
               value={servicio}
               onChange={(e) => setServicio(e.target.value)}
             />
+
             <input
               type="text"
               placeholder="Descripción del servicio"
               value={descripcion}
               onChange={(e) => setDescripcion(e.target.value)}
             />
+
             <select
               value={trabajador}
               onChange={(e) => setTrabajador(e.target.value)}
@@ -96,12 +98,15 @@ export default function AsignarServicios() {
               <option value="">Seleccionar trabajador</option>
               <option value="trabajador 1">trabajador 1</option>
               <option value="trabajador 2">trabajador 2</option>
+              <option value="trabajador 3">trabajador 3</option>
             </select>
+
             <input
               type="date"
               value={fecha}
               onChange={(e) => setFecha(e.target.value)}
             />
+
             <button className="asignar" onClick={handleAsignarServicio}>
               Asignar Servicio
             </button>
