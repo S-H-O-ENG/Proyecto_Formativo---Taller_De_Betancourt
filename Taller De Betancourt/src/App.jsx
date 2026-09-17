@@ -79,7 +79,6 @@ function App() {
   }
 
   if(vistaActual === 'Proveedores'){
-    alert("aca");
     return <Proveedores/>;
   }
   if(vistaActual === 'AsignarServicios'){

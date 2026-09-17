@@ -12,7 +12,7 @@ function Proveedores() {
     const [estado, setEstado] = useState("Activo");
     const [editando, setEditando] = useState(null);
 
-const API = "http://localhost:5174";
+const API = "http://localhost:5000/Proveedores";
 
     useEffect(() => {
         cargarProveedores();
