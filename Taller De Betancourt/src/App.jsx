@@ -5,6 +5,7 @@ import suprsImg from './assets/suprs.png';
 import './App.css';
 import Pedidos from './pages/pedidos';
 import Proveedores from "./pages/Proveedores";
+import AsignarServicios from './pages/AsignarServicios';
 
 function App() {
   const [email, setEmail] = useState('');
@@ -38,6 +39,7 @@ function App() {
 
     const roles = {
       'Jefe@tallerbetancourt.com': { pass: '12345', action: () => setVistaActual('pedidos'), cleanModal: true },
+       'asignarP@tallerbetancourt.com': { pass: '123456', redirect: './pages/AsignarServicios' },
       'mecanico@tallerbetancourt.com': { pass: '123456', redirect: './pages/inventario.html' },
       'asistente@tallerbetancourt.com': { pass: '12345', redirect: './pages/Gestion_Clientes.html' },
       'auxiliar@tallerbetancourt.com': { pass: '12345', action: () => setVistaActual('Proveedores'), cleanModal: true },
@@ -79,7 +81,9 @@ function App() {
   if(vistaActual === 'Proveedores'){
     return <Proveedores/>;
   }
-
+  if(vistaActual === 'AsignarServicios'){
+    return <AsignarServicios/>;
+  }
   return (
     <>
       <header className="header-principal navbar navbar-expand-lg">
