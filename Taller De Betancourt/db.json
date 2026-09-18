@@ -17,8 +17,13 @@
       "estado": "Pendiente"
     }
   ],
-  "AsignarServicios": [],
-  "Pro_Facturas": [],
-  "Pro_Calificacion": [],
-  "$schema": "./node_modules/json-server/schema.json"
+  "AsignarServicios": [
+
+  ],
+  "Pro_Facturas": [
+
+  ],
+  "Pro_Calificacion": [
+    
+  ]
 }

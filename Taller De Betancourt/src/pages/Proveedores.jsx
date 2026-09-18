@@ -17,7 +17,7 @@ function Proveedores() {
     // Estado para controlar si el sidebar está colapsado
     const [sidebarColapsado, setSidebarColapsado] = useState(false);
 
-    const API = "http://localhost:5000/Proveedores";
+    const API = "http://localhost:5000";
 
     useEffect(() => {
         cargarProveedores();
