@@ -5,8 +5,9 @@ import suprsImg from './assets/suprs.png';
 import './App.css';
 import Pedidos from './pages/pedidos';
 import Proveedores from "./pages/Proveedores";
+import Pro_Facturas from './pages/Pro_Facturas';
+import Pro_Calificacion from './pages/Pro_Calificacion';
 import AsignarServicios from './pages/AsignarServicios';
-import Trabajador from './pages/Trabajador';
 
 function App() {
   const [email, setEmail] = useState('');
@@ -45,6 +46,9 @@ function App() {
       'asistente@tallerbetancourt.com': { pass: '12345', redirect: './pages/Gestion_Clientes.html' },
       'auxiliar@tallerbetancourt.com': { pass: '12345', action: () => setVistaActual('Proveedores'), cleanModal: true },
       'Trabajador@tallerbetancourt.com': { pass: '98765', action: () => setVistaActual('Trabajador'), cleanModal: true },
+      'Facturas@tallerbetancourt.com': { pass: '12345', action: () => setVistaActual('Pro_Facturas'), cleanModal: true },
+      'Calificacion@tallerbetancourt.com': { pass: '123456', action: () => setVistaActual('Pro_Calificacion'), cleanModal: true },
+
     };
 
     const user = roles[cleanEmail];
@@ -75,17 +79,20 @@ function App() {
   };
 
    if (vistaActual === 'pedidos') {
-    alert("aca");
     return <Pedidos />;
   }
 
   if(vistaActual === 'Proveedores'){
-        alert("aca");
     return <Proveedores/>;
+  }
+    if(vistaActual === 'Pro_Facturas'){
+    return <Pro_Facturas/>;
+  }
+    if(vistaActual === 'Pro_Calificacion'){
+    return <Pro_Calificacion/>;
   }
 
   if(vistaActual === 'AsignarServicios'){
-    alert("aca");
     return <AsignarServicios/>;
   }
 

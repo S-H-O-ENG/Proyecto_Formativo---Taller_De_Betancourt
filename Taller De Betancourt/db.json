@@ -7,11 +7,18 @@
       "correo": "dftgjstj@ghjdj",
       "ciudad": "ghjdgj",
       "estado": "Inactivo"
+    },
+    {
+      "id": "CpETkHoM-3M",
+      "proveedor": "dghsrth",
+      "telefono": "hstfh",
+      "correo": "trhsrtjh@hrfh",
+      "ciudad": "hdfh",
+      "estado": "Pendiente"
     }
   ],
-  "AsignarServicios":[
-    
-  ],
-
+  "AsignarServicios": [],
+  "Pro_Facturas": [],
+  "Pro_Calificacion": [],
   "$schema": "./node_modules/json-server/schema.json"
 }

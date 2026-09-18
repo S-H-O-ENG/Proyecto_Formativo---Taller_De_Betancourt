@@ -14,11 +14,18 @@ function Proveedores() {
     const [estado, setEstado] = useState("Activo");
     const [editando, setEditando] = useState(null);
 
-const API = "http://localhost:5000/Proveedores";
+    // Estado para controlar si el sidebar está colapsado
+    const [sidebarColapsado, setSidebarColapsado] = useState(false);
+
+    const API = "http://localhost:5000/Proveedores";
 
     useEffect(() => {
         cargarProveedores();
     }, []);
+
+    const toggleSidebar = () => {
+        setSidebarColapsado(!sidebarColapsado);
+    };
 
     const cargarProveedores = async () => {
         try {
@@ -97,11 +104,8 @@ const API = "http://localhost:5000/Proveedores";
             cargarProveedores();
 
             const modal = document.getElementById("modalProveedor");
-
-            if (modal) {
-                const instancia =
-                    window.bootstrap.Modal.getInstance(modal);
-
+            if (modal && window.bootstrap) {
+                const instancia = window.bootstrap.Modal.getInstance(modal);
                 if (instancia) {
                     instancia.hide();
                 }
@@ -123,11 +127,12 @@ const API = "http://localhost:5000/Proveedores";
         setCiudad(p.ciudad);
         setEstado(p.estado);
 
-        const modal = new window.bootstrap.Modal(
-            document.getElementById("modalProveedor")
-        );
-
-        modal.show();
+        if (window.bootstrap) {
+            const modal = new window.bootstrap.Modal(
+                document.getElementById("modalProveedor")
+            );
+            modal.show();
+        }
     };
 
     const eliminarProveedor = async (id) => {
@@ -174,7 +179,8 @@ const API = "http://localhost:5000/Proveedores";
         setEditando(null);
     };
 
-    const cerrarSesion = () => {
+    const cerrarSesion = (e) => {
+        if (e) e.preventDefault();
         localStorage.removeItem("usuario");
         localStorage.removeItem("token");
         window.location.href = "/";
@@ -190,18 +196,21 @@ const API = "http://localhost:5000/Proveedores";
 
     return (
         <>
-            <div className="sidebar" id="sidebar">
+            {/* Clases dinámicas aplicadas según el estado de colapso */}
+            <div className={`sidebar ${sidebarColapsado ? "collapsed" : ""}`} id="sidebar">
 
                 <div className="sidebar-header">
                     <button
+                        type="button"
                         className="btn-hamburger"
                         id="btnToggleSidebar"
+                        onClick={toggleSidebar}
                     >
-                        <img src="/img/logo.png" alt="" />
+                        <img src="/img/logo.png" alt="Logo Taller" />
                     </button>
 
                     <span className="menu-title">
-                        Taller Batancourt
+                        Taller Betancourt
                     </span>
                 </div>
 
@@ -223,7 +232,7 @@ const API = "http://localhost:5000/Proveedores";
                     </a>
 
                     <a
-                        href="Pro_Facturas"
+                        href="Facturas"
                         className="menu-item"
                     >
                         <span className="menu-icon">
@@ -236,7 +245,7 @@ const API = "http://localhost:5000/Proveedores";
                     </a>
 
                     <a
-                        href="Pro_Calificacion"
+                        href="Calificacion"
                         className="menu-item"
                     >
                         <span className="menu-icon">
@@ -249,7 +258,7 @@ const API = "http://localhost:5000/Proveedores";
                     </a>
 
                     <a
-                        href="#"
+                        href="#salir"
                         className="menu-item"
                         onClick={cerrarSesion}
                     >
@@ -266,10 +275,9 @@ const API = "http://localhost:5000/Proveedores";
             </div>
 
             <div
-                className="main-content"
+                className={`main-content ${sidebarColapsado ? "expanded" : ""}`}
                 id="mainContent"
             >
-
                 <div className="cuadros mb-4">
 
                     <div className="encabezado shadow d-flex align-items-center gap-3 p-3">
@@ -383,6 +391,7 @@ const API = "http://localhost:5000/Proveedores";
                                 </h3>
 
                                 <button
+                                    type="button"
                                     className="btn btn-registrar"
                                     data-bs-toggle="modal"
                                     data-bs-target="#modalProveedor"
@@ -456,6 +465,7 @@ const API = "http://localhost:5000/Proveedores";
                                                 <td>
 
                                                     <button
+                                                        type="button"
                                                         className="btn btn-sm btn-warning me-2"
                                                         onClick={() =>
                                                             editarProveedor(p)
@@ -465,6 +475,7 @@ const API = "http://localhost:5000/Proveedores";
                                                     </button>
 
                                                     <button
+                                                        type="button"
                                                         className="btn btn-sm btn-danger"
                                                         onClick={() =>
                                                             eliminarProveedor(
@@ -508,9 +519,7 @@ const API = "http://localhost:5000/Proveedores";
 
                         <div className="modal-header">
 
-                            <h5
-                                className="modal-title"
-                            >
+                            <h5 className="modal-title">
                                 {editando
                                     ? "Editar Proveedor"
                                     : "Registrar Proveedor"}
@@ -527,7 +536,7 @@ const API = "http://localhost:5000/Proveedores";
 
                         <div className="modal-body">
 
-                            <form>
+                            <form onSubmit={(e) => e.preventDefault()}>
 
                                 <div className="mb-2">
 
@@ -632,6 +641,7 @@ const API = "http://localhost:5000/Proveedores";
                         <div className="modal-footer">
 
                             <button
+                                type="button"
                                 className="btn btn-secondary"
                                 data-bs-dismiss="modal"
                                 onClick={limpiarFormulario}
@@ -640,6 +650,7 @@ const API = "http://localhost:5000/Proveedores";
                             </button>
 
                             <button
+                                type="button"
                                 className="btn btn-registrar"
                                 onClick={guardarProveedor}
                             >
@@ -658,4 +669,3 @@ const API = "http://localhost:5000/Proveedores";
 }
 
 export default Proveedores;
-
