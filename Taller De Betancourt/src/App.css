@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@300;400;700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@300;400;700&display=swap");
 :root {
     --oscuro-fondo: #0f0f12;
     --morado-principal: #5f1ed7;
@@ -10,7 +9,7 @@
     --fuente-textos: 'Lato', sans-serif;
 }
 
-* {
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -18,17 +17,12 @@
 
 body {
     min-height: 100vh;
-    background: linear-gradient(135deg, #0f0f12 0%, #1a122c 50%, #251244 100%) fixed;
+    background-color: var(--oscuro-fondo);
+    background: linear-gradient(135deg, #0f0f12 0%, #1a122c 50%, #251244 100%);
     font-family: var(--fuente-textos);
     color: var(--blanco-suave);
+    background-attachment: fixed;
     line-height: 1.6;
-}
-
-#root {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
 }
 
 .header-principal {
@@ -36,10 +30,19 @@ body {
     top: 0;
     z-index: 1000;
     padding: 15px 0;
-    background: rgba(15, 15, 18, 0.75) !important;
+    background: rgba(15, 15, 18, 0.75) !important; 
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(111, 66, 193, 0.2);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.header-principal .btn-cita-nav {
+    padding: 8px 20px !important;
+    border-radius: 25px;
+    font-weight: 700 !important;
+    color: white !important;
+    white-space: nowrap; 
+    box-shadow: 0 4px 10px rgba(95, 30, 215, 0.3);
 }
 
 .container-header {
@@ -55,7 +58,7 @@ body {
 .logo-header {
     height: 45px;
     object-fit: contain;
-    filter: drop-shadow(0px 2px 8px rgba(95, 30, 215, 0.3));
+    filter: drop-shadow(0px 2px 8px rgba(95, 30, 215, 0.3)); 
 }
 
 .marca {
@@ -64,17 +67,18 @@ body {
     letter-spacing: 2px;
     background: linear-gradient(to right, #ffffff, var(--morado-clarito));
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent !important;
 }
 
 .navegar .navbar-nav {
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 30px; 
 }
 
 .navegar .nav-link {
     color: var(--blanco-suave) !important;
+    text-decoration: none;
     font-size: 18px;
     font-weight: 500;
     transition: 0.3s ease;
@@ -97,24 +101,28 @@ body {
     width: 100%;
 }
 
-.header-principal .btn-cita-nav,
-.btn-login-nav {
+
+.header-principal .btn-cita-nav {
     background-color: var(--morado-principal);
     padding: 8px 20px !important;
     border-radius: 25px;
     font-weight: 700 !important;
     color: white !important;
     box-shadow: 0 4px 10px rgba(95, 30, 215, 0.3);
-    border: none;
-}
-
-.header-principal .btn-cita-nav {
-    white-space: nowrap;
 }
 
 .header-principal .btn-cita-nav:hover {
     background-color: var(--morado-clarito);
     box-shadow: 0 0 15px rgba(111, 66, 193, 0.6);
+}
+
+.btn-login-nav{
+    background-color: var(--morado-principal);
+    padding: 8px 20px !important;
+    border-radius: 25px;
+    font-weight: 700 !important;
+    color: white !important;
+    box-shadow: 0 4px 10px rgba(95, 30, 215, 0.3);
 }
 
 .custom-toggler.navbar-toggler {
@@ -127,11 +135,13 @@ body {
 }
 
 .banner-taller {
-    min-height: 450px;
-    background: linear-gradient(rgba(15, 15, 18, 0.5), rgba(15, 15, 18, 0.85)), url("./assets/banner.jpg") center/cover;
-    padding: 60px 20px 40px;
+    min-height: 450px; 
+    background: linear-gradient(rgba(15, 15, 18, 0.5), rgba(15, 15, 18, 0.85)), url("../img/banner.jpg");
+    background-size: cover;
+    background-position: center;
+    padding: 60px 20px 40px 20px;
     border-bottom: 2px solid var(--morado-principal);
-    gap: 15px;
+    gap: 15px; 
 }
 
 .banner-taller h1 {
@@ -146,23 +156,6 @@ body {
 .banner-taller p {
     font-size: 20px;
     color: var(--gris-texto);
-}
-
-.carro-animado {
-    max-width: 420px;
-    height: auto;
-    object-fit: contain;
-    animation: moverAuto 2.0s ease-in-out infinite alternate;
-}
-
-@keyframes moverAuto {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-40px);
-    }
 }
 
 .seccion-contenedor {
@@ -181,12 +174,31 @@ body {
     letter-spacing: 1px;
 }
 
-.seccion-contenedor ::placeholder {
-    color: white;
+.col-texto h3 {
+    font-family: var(--fuente-titulos);
+    font-size: 28px;
+    margin-top: 20px;
+    color: var(--blanco-suave);
 }
 
-.form-control,
-.form-select {
+.resaltado-telefono b {
+    color: var(--morado-clarito);
+    font-size: 22px;
+}
+
+.carro-animado{
+    max-width: 700px;
+    height: auto;
+    object-fit: contain;
+    animation: moverAuto 2.0s ease-in-out infinite alternate;
+}
+
+@keyframes moverAuto {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-40px); }
+}
+
+.form-control, .form-select {
     padding: 11px 14px !important;
     background-color: #0f0f12 !important;
     border: 1px solid #262633 !important;
@@ -196,59 +208,64 @@ body {
     transition: 0.3s !important;
 }
 
-.form-control:focus,
-.form-select:focus {
+.form-control:focus, .form-select:focus {
     border-color: var(--morado-clarito) !important;
     box-shadow: 0 0 8px rgba(111, 66, 193, 0.4) !important;
     outline: none !important;
 }
 
-.modal-login {
-    background: url(./assets/log.jpg) center/cover;
-    color: #F1EAFF;
+footer {
+    background-color: #09090b;
+    padding: 30px;
+    text-align: center;
+    border-top: 1px solid rgba(111, 66, 193, 0.2);
+    margin-top: 60px;
 }
 
-.modal-login button.btn-ingresar {
-    background-color: #ff005577;
-    color: white;
-    border: none;
+.footer-contenido p {
+    color: var(--gris-texto);
+    font-size: 15px;
 }
 
-.modal-login button.btn-ingresar:hover {
-    background-color: #ff0055aa;
+.footer-contenido .ficha {
+    font-size: 13px;
+    margin-top: 5px;
+    color: var(--morado-clarito);
 }
 
-.link-login {
-    color: #faf4f7;
-    text-decoration: none;
-}
-
-.btn-enviarS {
-    background-color: #5f1ed7;
-    color: #F1EAFF;
-}
-
-.btn-enviarS:hover {
-    background-color: #6f42c1;
-    color: white;
-}
-
-.modal-body ::placeholder{
-    color: white;
-}
 
 @media (max-width: 768px) {
-    .banner-taller h1 {
-        font-size: 38px;
-    }
-
-    .seccion-contenedor {
-        padding: 20px;
-    }
-
+    .banner-taller h1 { font-size: 38px; }
+    .seccion-contenedor { padding: 20px; }
+    
     .navegar ul {
         padding-top: 15px;
         flex-direction: column;
         gap: 15px;
     }
+}
+
+.modal-login{
+    background-image: url('./assets/log.jpg');
+    background-position: center;
+    background-size: cover;
+    color: white;
+}
+
+
+.modal-login ::placeholder{
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.modal-login button{
+    background-color: #ff005577;
+}
+
+.link-login{
+    color: #FF007F;
+}
+
+.btn-enviarS{
+    background-color: #5f1ed7;
+    color: #F1EAFF;
 }
