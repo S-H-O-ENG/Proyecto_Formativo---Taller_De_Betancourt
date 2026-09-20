@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 
 import Inventario from './pages/Inventario.jsx';
 import GestionClientes from './pages/GestionClientes.jsx';
+import Pedidos from './pages/Pedidos.jsx';
 import logo from './assets/logo.png';
 import supra from './assets/supra.png';
 import './App.css';
@@ -17,6 +18,7 @@ function App() {
 
   const [vistaActual, setVistaActual] = useState("login");
 
+  const API_URL = 'http://localhost:3000/users';
 
   async function login(e) {
     e.preventDefault();
@@ -28,7 +30,7 @@ function App() {
     try {
       //await = para que la pagina espere el resultado de la consulta
       //axios.get... = se comunica con axios que es el puente  entre el back y front y busca los campos del correo
-      const consulta = await axios.get(`http://localhost:3000/usuarios?email=${email}`);
+    const consulta = await axios.get(API_URL);
 
       //consulta.data.length === 0 = en el db.json los campos son arreglos, entonces un arreglo vacio o uno donde no
       //coincide el usuario es 0 - por eso el .leght, consulta la cantidad de catacteres y si no existe manda el msj
@@ -55,7 +57,7 @@ function App() {
       }
 
 
-      Swal.fire(`¡Bienvenido/a ${usuario.nombre}!`);
+      Swal.fire(`¡Bienvenido/a ${usuario.name}!`);
 
       document.body.classList.remove('modal-open');
       document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
@@ -66,7 +68,7 @@ function App() {
       //si el rol del usuario es igual a admin entonces la variable set vista asignele paneljefe que es igual a la pagina
       //pq arriba se importo
       if (usuario.role === "admin") {
-        setVistaActual("PanelJefe")
+        setVistaActual("Pedidos")
       } else if (usuario.role === "administrativo") {
         setVistaActual("Inventario")
       } else if (usuario.role === "auxiliar") {
@@ -82,8 +84,8 @@ function App() {
     }
   };
   //si la vista actual = anel jefe retorne panel jefe, para q se muestre xd
-  if (vistaActual === "PanelJefe") {
-    return <PanelJefe />;
+  if (vistaActual === "Pedidos") {
+    return <Pedidos />;
   } 
   if (vistaActual === "Inventario") {
     return <Inventario />
