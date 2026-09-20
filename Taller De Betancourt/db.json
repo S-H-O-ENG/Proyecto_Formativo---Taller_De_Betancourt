@@ -1,21 +1,21 @@
 {
   "users": [
     {
-      "email": "jefe@betancorut.com",
+      "email": "jefe@betancourt.com",
       "password": "$2a$10$Fe8zKxVg9LNKYrFyyQg1NuSZ2deKStg3bHn2u5YSkeiUrubgWT8re",
       "name": "Jefe",
       "role": "admin",
       "id": "1"
     },
     {
-      "email": "administrativo@betancorut.com",
+      "email": "administrativo@betancourt.com",
       "password": "$2a$10$kfqyreisbFXuF2Ip1a6AEOX82.Smk8b7rN5k0ccIrC62p2rrxYKsG",
       "name": "Asistente Administrativo",
       "role": "administrativo",
       "id": "2"
     },
     {
-      "email": "auxiliar@betancorut.com",
+      "email": "auxiliar@betancourt.com",
       "password": "$2a$10$L1kkvcRCA73oHwiRcTTLM.PgO1wgVi/aPTLQesr7EK6if9A0XNW4G",
       "name": "Auxiliar De Datos",
       "role": "auxdatos",
