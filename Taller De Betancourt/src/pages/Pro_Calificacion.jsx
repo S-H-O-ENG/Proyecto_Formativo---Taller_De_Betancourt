@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import '../css/Pro_Clasificacion.css'; 
 
-function Pro_Calificacion() {
-  const API = 'http://localhost:5000';
+const API = 'http://localhost:5000';
 
+function Pro_Calificacion() {
   const [calificaciones, setCalificaciones] = useState([]);
   const [modal, setModal] = useState(false);
   const [editando, setEditando] = useState(null);
@@ -37,7 +37,35 @@ function Pro_Calificacion() {
   };
 
   useEffect(() => {
-    cargarDatos();
+    let cancelado = false;
+
+    const cargarDatosIniciales = async () => {
+      try {
+        const respuesta = await fetch(`${API}/calificaciones`);
+        const datos = await respuesta.json();
+
+        if (!cancelado) {
+          setCalificaciones(Array.isArray(datos) ? datos : []);
+        }
+      } catch (error) {
+        if (!cancelado) {
+          console.error(error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error de conexión',
+            text: 'No se pudieron cargar los datos desde el servidor.',
+            background: '#18181d',
+            color: '#ffffff'
+          });
+        }
+      }
+    };
+
+    cargarDatosIniciales();
+
+    return () => {
+      cancelado = true;
+    };
   }, []);
 
   const promedio =
@@ -233,7 +261,7 @@ function Pro_Calificacion() {
     <div className="container-fluid py-4">
       <div className="cuadros mb-4">
         <div className="encabezado shadow p-3">
-          <h2>Calificación de Proveedores</h2>
+          <h1>Calificación de Proveedores</h1>
           <h5>Evaluación y seguimiento del desempeño</h5>
         </div>
       </div>

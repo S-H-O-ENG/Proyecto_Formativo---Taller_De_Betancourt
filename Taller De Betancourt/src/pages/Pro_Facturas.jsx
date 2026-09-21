@@ -4,7 +4,7 @@ import '../css/Pro_Facturas.css';
 
 
 function Pro_Facturas() {
-  const API = 'http://localhost:5000/Pro_Facturas';
+  const API = 'http://localhost:3000/Pro_Facturas';
 
   const [facturas, setFacturas] = useState([]);
   const [modal, setModal] = useState(false);
@@ -22,11 +22,8 @@ function Pro_Facturas() {
 
   const cargarDatos = async () => {
     try {
-      const respuestaFacturas = await fetch(`${API}/facturas`);
+      const respuestaFacturas = await fetch(API);
       const datosFacturas = await respuestaFacturas.json();
-      const datos = await respuesta.json();
-      setFacturas(Array.isArray(datos) ? datos : []);
-
       setFacturas(Array.isArray(datosFacturas) ? datosFacturas : []);
     } catch (error) {
       console.error(error);
@@ -41,7 +38,35 @@ function Pro_Facturas() {
   };
 
   useEffect(() => {
-    cargarDatos();
+    let cancelado = false;
+
+    const cargarDatosIniciales = async () => {
+      try {
+        const respuesta = await fetch(API);
+        const datos = await respuesta.json();
+
+        if (!cancelado) {
+          setFacturas(Array.isArray(datos) ? datos : []);
+        }
+      } catch (error) {
+        if (!cancelado) {
+          console.error(error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error de conexión',
+            text: 'No se pudieron cargar los datos del servidor.',
+            background: '#18181d',
+            color: '#ffffff'
+          });
+        }
+      }
+    };
+
+    cargarDatosIniciales();
+
+    return () => {
+      cancelado = true;
+    };
   }, []);
 
   const subtotal = Number(formulario.subtotal) || 0;
@@ -100,7 +125,7 @@ function Pro_Facturas() {
       };
 
       if (editando) {
-        await fetch(`${API}/facturas/${editando.id}`, {
+        await fetch(`${API}/${editando.id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ id: editando.id, ...datos })
@@ -122,7 +147,7 @@ function Pro_Facturas() {
             ? Math.max(...facturas.map((f) => Number(f.id) || 0)) + 1
             : 1;
 
-        await fetch(`${API}/facturas`, {
+        await fetch(API, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ id: nuevoId, ...datos })
@@ -184,7 +209,7 @@ function Pro_Facturas() {
     if (!confirmacion.isConfirmed) return;
 
     try {
-      await fetch(`${API}/facturas/${id}`, { method: 'DELETE' });
+      await fetch(`${API}/${id}`, { method: 'DELETE' });
 
       Swal.fire({
         toast: true,
@@ -234,11 +259,11 @@ function Pro_Facturas() {
   );
 
   return (
-    <div className="container-fluid py-4">
+    <div className="facturas-page">
       <div className="cuadros mb-4">
         <div className="encabezado shadow p-3">
-          <h2>Gestión de Facturas</h2>
-          <h5>Registro y control de facturas de proveedores</h5>
+           <h2>Gestión de Facturas</h2>
+           <h5>Registro y control de facturas de proveedores</h5>
         </div>
       </div>
 
@@ -349,15 +374,7 @@ function Pro_Facturas() {
                       <td>${Number(f.total || 0).toLocaleString('es-CO')}</td>
                       <td>{f.formaPago}</td>
                       <td>
-                        <span
-                          className={
-                            f.estado === 'Pagada'
-                              ? 'badge bg-success'
-                              : f.estado === 'Pendiente'
-                              ? 'badge bg-warning text-dark'
-                              : 'badge bg-danger'
-                          }
-                        >
+                        <span className={`estado-badge estado-${(f.estado || 'anulada').toLowerCase()}`}>
                           {f.estado}
                         </span>
                       </td>
@@ -388,9 +405,8 @@ function Pro_Facturas() {
 
       {modal && (
         <div
-          className="modal fade show d-block"
+          className="modal-facturas-backdrop modal fade show d-block"
           tabIndex="-1"
-          style={{ backgroundColor: 'rgba(0,0,0,0.7)' }}
         >
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content text-bg-dark border-secondary">
