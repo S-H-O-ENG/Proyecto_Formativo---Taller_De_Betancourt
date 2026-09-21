@@ -12,24 +12,7 @@ function Proveedores() {
     const [estado, setEstado] = useState("Activo");
     const [editando, setEditando] = useState(null);
 
-    // Estado para controlar si el sidebar está colapsado
-    const [sidebarColapsado, setSidebarColapsado] = useState(false);
-
-    const API = "http://localhost:3000/proveedores";
-
-    const cargarProveedores = async () => {
-        try {
-            const respuesta = await fetch(API);
-            const datos = await respuesta.json();
-            setProveedores(datos);
-        } catch {
-            Swal.fire(
-                "Error",
-                "No se pudo conectar con la base de datos",
-                "error"
-            );
-        }
-    };
+    const API = "http://localhost:3000/Proveedores";
 
     useEffect(() => {
         let cancelado = false;
@@ -60,8 +43,18 @@ function Proveedores() {
         };
     }, []);
 
-    const toggleSidebar = () => {
-        setSidebarColapsado(!sidebarColapsado);
+    const cargarProveedores = async () => {
+        try {
+            const respuesta = await fetch(API);
+            const datos = await respuesta.json();
+            setProveedores(datos);
+        } catch {
+            Swal.fire(
+                "Error",
+                "No se pudo conectar con la base de datos",
+                "error"
+            );
+        }
     };
 
     const guardarProveedor = async () => {
@@ -127,8 +120,11 @@ function Proveedores() {
             cargarProveedores();
 
             const modal = document.getElementById("modalProveedor");
+
             if (modal && window.bootstrap) {
-                const instancia = window.bootstrap.Modal.getInstance(modal);
+                const instancia =
+                    window.bootstrap.Modal.getInstance(modal);
+
                 if (instancia) {
                     instancia.hide();
                 }
@@ -154,6 +150,7 @@ function Proveedores() {
             const modal = new window.bootstrap.Modal(
                 document.getElementById("modalProveedor")
             );
+
             modal.show();
         }
     };
@@ -202,13 +199,6 @@ function Proveedores() {
         setEditando(null);
     };
 
-    const cerrarSesion = (e) => {
-        if (e) e.preventDefault();
-        localStorage.removeItem("usuario");
-        localStorage.removeItem("token");
-        window.location.href = "/";
-    };
-
     const activos = proveedores.filter(
         (p) => p.estado === "Activo"
     ).length;
@@ -219,452 +209,200 @@ function Proveedores() {
 
     return (
         <>
-            {/* Clases dinámicas aplicadas según el estado de colapso */}
-            <div className={`sidebar ${sidebarColapsado ? "collapsed" : ""}`} id="sidebar">
-
-                <div className="sidebar-header">
-                    <button
-                        type="button"
-                        className="btn-hamburger"
-                        id="btnToggleSidebar"
-                        onClick={toggleSidebar}
-                    >
-                        <img src="/img/logo.png" alt="Logo Taller" />
-                    </button>
-
-                    <span className="menu-title">
-                        Taller Betancourt
-                    </span>
-                </div>
-
-                <hr className="sidebar-divider" />
-
-                <div className="sidebar-menu">
-
-                    <a
-                        href="/proveedores"
-                        className="menu-item active"
-                    >
-                        <span className="menu-icon">
-                            <i className="fa-solid fa-people-group"></i>
-                        </span>
-
-                        <span className="menu-text">
-                            Proveedores
-                        </span>
-                    </a>
-
-                    <a
-                        href="Facturas"
-                        className="menu-item"
-                    >
-                        <span className="menu-icon">
-                            <i className="fa-solid fa-receipt"></i>
-                        </span>
-
-                        <span className="menu-text">
-                            Facturas
-                        </span>
-                    </a>
-
-                    <a
-                        href="Calificacion"
-                        className="menu-item"
-                    >
-                        <span className="menu-icon">
-                            <i className="fa-solid fa-ranking-star"></i>
-                        </span>
-
-                        <span className="menu-text">
-                            Calificación
-                        </span>
-                    </a>
-
-                    <a
-                        href="#salir"
-                        className="menu-item"
-                        onClick={cerrarSesion}
-                    >
-                        <span className="menu-icon">
-                            <i className="fa-solid fa-right-from-bracket"></i>
-                        </span>
-
-                        <span className="menu-text">
-                            Salir
-                        </span>
-                    </a>
-
+            <div className="encabezado d-flex align-items-center gap-3 p-3">
+                <div>
+                    <h2>Gestión de Proveedores</h2>
+                    <h5>Registro y validación de proveedores</h5>
                 </div>
             </div>
 
-            <div
-                className={`main-content ${sidebarColapsado ? "expanded" : ""}`}
-                id="mainContent"
-            >
-                <div className="cuadros mb-4">
-
-                    <div className="encabezado shadow d-flex align-items-center gap-3 p-3">
-
-                        <div>
-                            <h2>
-                                Gestión de Proveedores
-                            </h2>
-
-                            <h5>
-                                Registro y validación de proveedores
-                            </h5>
+            <div className="busquedar container-fluid px-0">
+                <div className="contenedor-cards row g-3 mb-4">
+                    <div className="col-md-4">
+                        <div className="card p-3">
+                            <div className="header d-flex justify-content-between">
+                                <span>Total proveedores</span>
+                                <i className="fa-solid fa-people-line"></i>
+                            </div>
+                            <h2 className="mt-2">{proveedores.length}</h2>
+                            <p className="mb-0 small">Proveedores Registrados</p>
                         </div>
-
                     </div>
 
+                    <div className="col-md-4">
+                        <div className="card p-3">
+                            <div className="header d-flex justify-content-between">
+                                <span>Activos</span>
+                                <i className="fa-solid fa-user-check"></i>
+                            </div>
+                            <h2 className="mt-2 text-success">{activos}</h2>
+                            <p className="mb-0 small">Proveedores Activos</p>
+                        </div>
+                    </div>
+
+                    <div className="col-md-4">
+                        <div className="card p-3">
+                            <div className="header d-flex justify-content-between">
+                                <span>En revisión</span>
+                                <i className="fa-solid fa-code-compare"></i>
+                            </div>
+                            <h2 className="mt-2 text-warning">{pendientes}</h2>
+                            <p className="mb-0 small">Pendientes De Aprobación</p>
+                        </div>
+                    </div>
                 </div>
 
-                <div className="busquedar container-fluid px-0">
-
-                    <div className="contenedor-cards row g-3 mb-4">
-
-                        <div className="col-md-4">
-
-                            <div className="card p-3">
-
-                                <div className="header d-flex justify-content-between">
-
-                                    <span>
-                                        Total proveedores
-                                    </span>
-
-                                    <i className="fa-solid fa-people-line"></i>
-
-                                </div>
-
-                                <h2 className="mt-2">
-                                    {proveedores.length}
-                                </h2>
-
-                                <p className="mb-0 small">
-                                    Proveedores Registrados
-                                </p>
-
-                            </div>
-
+                <div className="tabla-contenedor">
+                    <div className="card shadow p-3">
+                        <div className="card-header bg-transparent border-0 d-flex justify-content-between align-items-center px-0 mb-3">
+                            <h3 className="mb-0 text-white">Listado de Proveedores</h3>
+                            <button
+                                className="btn btn-registrar"
+                                data-bs-toggle="modal"
+                                data-bs-target="#modalProveedor"
+                                onClick={limpiarFormulario}
+                            >
+                                <i className="fa-solid fa-plus"></i>
+                                {" "}Registrar Proveedor
+                            </button>
                         </div>
 
-                        <div className="col-md-4">
+                        <div className="table-responsive">
+                            <table id="tablaProveedores" className="table table-hover nowrap w-100">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Proveedor</th>
+                                        <th>Teléfono</th>
+                                        <th>Correo</th>
+                                        <th>Ciudad</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
 
-                            <div className="card p-3">
+                                <tbody>
+                                    {proveedores.map((p) => (
+                                        <tr key={p.id}>
+                                            <td>{p.id}</td>
+                                            <td>{p.proveedor}</td>
+                                            <td>{p.telefono}</td>
+                                            <td>{p.correo}</td>
+                                            <td>{p.ciudad}</td>
+                                            <td>
+                                                <span
+                                                    className={
+                                                        p.estado === "Activo"
+                                                            ? "badge bg-success"
+                                                            : p.estado === "Pendiente"
+                                                            ? "badge bg-warning text-dark"
+                                                            : "badge bg-danger"
+                                                    }
+                                                >
+                                                    {p.estado}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <button
+                                                    className="btn btn-sm btn-warning me-2"
+                                                    onClick={() => editarProveedor(p)}
+                                                >
+                                                    <i className="fa-solid fa-pen"></i>
+                                                </button>
 
-                                <div className="header d-flex justify-content-between">
-
-                                    <span>
-                                        Activos
-                                    </span>
-
-                                    <i className="fa-solid fa-user-check"></i>
-
-                                </div>
-
-                                <h2 className="mt-2 text-success">
-                                    {activos}
-                                </h2>
-
-                                <p className="mb-0 small">
-                                    Proveedores Activos
-                                </p>
-
-                            </div>
-
-                        </div>
-
-                        <div className="col-md-4">
-
-                            <div className="card p-3">
-
-                                <div className="header d-flex justify-content-between">
-
-                                    <span>
-                                        En revisión
-                                    </span>
-
-                                    <i className="fa-solid fa-code-compare"></i>
-
-                                </div>
-
-                                <h2 className="mt-2 text-warning">
-                                    {pendientes}
-                                </h2>
-
-                                <p className="mb-0 small">
-                                    Pendientes De Aprobación
-                                </p>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div className="tabla-contenedor">
-
-                        <div className="card shadow p-3">
-
-                            <div className="card-header bg-transparent border-0 d-flex justify-content-between align-items-center px-0 mb-3">
-
-                                <h3 className="mb-0 text-white">
-                                    Listado de Proveedores
-                                </h3>
-
-                                <button
-                                    type="button"
-                                    className="btn btn-registrar"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#modalProveedor"
-                                    onClick={limpiarFormulario}
-                                >
-                                    <i className="fa-solid fa-plus"></i>
-                                    {" "}Registrar Proveedor
-                                </button>
-
-                            </div>
-
-                            <div className="table-responsive">
-
-                                <table
-                                    id="tablaProveedores"
-                                    className="table table-hover nowrap w-100"
-                                >
-
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Proveedor</th>
-                                            <th>Teléfono</th>
-                                            <th>Correo</th>
-                                            <th>Ciudad</th>
-                                            <th>Estado</th>
-                                            <th>Acciones</th>
+                                                <button
+                                                    className="btn btn-sm btn-danger"
+                                                    onClick={() => eliminarProveedor(p.id)}
+                                                >
+                                                    <i className="fa-solid fa-trash"></i>
+                                                </button>
+                                            </td>
                                         </tr>
-                                    </thead>
-
-                                    <tbody>
-
-                                        {proveedores.map((p) => (
-
-                                            <tr key={p.id}>
-
-                                                <td>
-                                                    {p.id}
-                                                </td>
-
-                                                <td>
-                                                    {p.proveedor}
-                                                </td>
-
-                                                <td>
-                                                    {p.telefono}
-                                                </td>
-
-                                                <td>
-                                                    {p.correo}
-                                                </td>
-
-                                                <td>
-                                                    {p.ciudad}
-                                                </td>
-
-                                                <td>
-                                                    <span
-                                                        className={
-                                                            p.estado === "Activo"
-                                                                ? "badge bg-success"
-                                                                : p.estado === "Pendiente"
-                                                                ? "badge bg-warning text-dark"
-                                                                : "badge bg-danger"
-                                                        }
-                                                    >
-                                                        {p.estado}
-                                                    </span>
-                                                </td>
-
-                                                <td>
-
-                                                    <button
-                                                        type="button"
-                                                        className="btn btn-sm btn-warning me-2"
-                                                        onClick={() =>
-                                                            editarProveedor(p)
-                                                        }
-                                                    >
-                                                        <i className="fa-solid fa-pen"></i>
-                                                    </button>
-
-                                                    <button
-                                                        type="button"
-                                                        className="btn btn-sm btn-danger"
-                                                        onClick={() =>
-                                                            eliminarProveedor(
-                                                                p.id
-                                                            )
-                                                        }
-                                                    >
-                                                        <i className="fa-solid fa-trash"></i>
-                                                    </button>
-
-                                                </td>
-
-                                            </tr>
-
-                                        ))}
-
-                                    </tbody>
-
-                                </table>
-
-                            </div>
-
+                                    ))}
+                                </tbody>
+                            </table>
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
 
-            <div
-                className="modal fade"
-                id="modalProveedor"
-                tabIndex="-1"
-                aria-hidden="true"
-            >
-
+            <div className="modal fade" id="modalProveedor" tabIndex="-1" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered">
-
                     <div className="modal-content text-bg-dark border-secondary">
-
                         <div className="modal-header">
-
                             <h5 className="modal-title">
-                                {editando
-                                    ? "Editar Proveedor"
-                                    : "Registrar Proveedor"}
+                                {editando ? "Editar Proveedor" : "Registrar Proveedor"}
                             </h5>
-
                             <button
                                 type="button"
                                 className="btn-close btn-close-white"
                                 data-bs-dismiss="modal"
                                 onClick={limpiarFormulario}
                             ></button>
-
                         </div>
 
                         <div className="modal-body">
-
-                            <form onSubmit={(e) => e.preventDefault()}>
-
+                            <form>
                                 <div className="mb-2">
-
                                     <input
                                         type="text"
                                         className="form-control"
                                         placeholder="Proveedor"
                                         value={proveedor}
-                                        onChange={(e) =>
-                                            setProveedor(
-                                                e.target.value
-                                            )
-                                        }
+                                        onChange={(e) => setProveedor(e.target.value)}
                                         required
                                     />
-
                                 </div>
 
                                 <div className="mb-2">
-
                                     <input
                                         type="text"
                                         className="form-control"
                                         placeholder="Teléfono"
                                         value={telefono}
-                                        onChange={(e) =>
-                                            setTelefono(
-                                                e.target.value
-                                            )
-                                        }
+                                        onChange={(e) => setTelefono(e.target.value)}
                                         required
                                     />
-
                                 </div>
 
                                 <div className="mb-2">
-
                                     <input
                                         type="email"
                                         className="form-control"
                                         placeholder="Correo"
                                         value={correo}
-                                        onChange={(e) =>
-                                            setCorreo(
-                                                e.target.value
-                                            )
-                                        }
+                                        onChange={(e) => setCorreo(e.target.value)}
                                         required
                                     />
-
                                 </div>
 
                                 <div className="mb-2">
-
                                     <input
                                         type="text"
                                         className="form-control"
                                         placeholder="Ciudad"
                                         value={ciudad}
-                                        onChange={(e) =>
-                                            setCiudad(
-                                                e.target.value
-                                            )
-                                        }
+                                        onChange={(e) => setCiudad(e.target.value)}
                                         required
                                     />
-
                                 </div>
 
                                 <div className="mb-2">
-
                                     <select
                                         className="form-select"
                                         value={estado}
-                                        onChange={(e) =>
-                                            setEstado(
-                                                e.target.value
-                                            )
-                                        }
+                                        onChange={(e) => setEstado(e.target.value)}
                                     >
-
-                                        <option value="Activo">
-                                            Activo
-                                        </option>
-
-                                        <option value="Pendiente">
-                                            Pendiente
-                                        </option>
-
-                                        <option value="Inactivo">
-                                            Inactivo
-                                        </option>
-
+                                        <option value="Activo">Activo</option>
+                                        <option value="Pendiente">Pendiente</option>
+                                        <option value="Inactivo">Inactivo</option>
                                     </select>
-
                                 </div>
-
                             </form>
-
                         </div>
 
                         <div className="modal-footer">
-
                             <button
-                                type="button"
                                 className="btn btn-secondary"
                                 data-bs-dismiss="modal"
                                 onClick={limpiarFormulario}
@@ -672,20 +410,12 @@ function Proveedores() {
                                 Cancelar
                             </button>
 
-                            <button
-                                type="button"
-                                className="btn btn-registrar"
-                                onClick={guardarProveedor}
-                            >
+                            <button className="btn btn-registrar" onClick={guardarProveedor}>
                                 Guardar
                             </button>
-
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
         </>
     );

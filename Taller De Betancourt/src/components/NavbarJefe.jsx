@@ -16,7 +16,7 @@ function NavbarJefe() {
 
                     <button className="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                        aria-="Toggle navigation">
+                        aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
 
@@ -25,6 +25,7 @@ function NavbarJefe() {
                             <NavLink className='nav-link' to='/Inicio'>Inicio</NavLink>
                             <NavLink className='nav-link' to='/Pedidos'>Pedidos</NavLink>
                             <NavLink className='nav-link' to='/ProveedoresGestion'>Gestion De Proveedores</NavLink>
+                            
 
                             <li className="nav-item">
                                 <button className="btn btn-login-nav" data-bs-toggle="modal" data-bs-target="#loginModal">Cerrar Sesion
