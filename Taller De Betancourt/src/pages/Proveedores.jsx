@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import '../css/proveedores.css'; 
-import logoImg from '../assets/logo.png';
-import Facturas from './Pro_Facturas';
-import Calificacion from './Pro_Calificacion';
+
 
 function Proveedores() {
     const [proveedores, setProveedores] = useState([]);
@@ -17,28 +15,53 @@ function Proveedores() {
     // Estado para controlar si el sidebar está colapsado
     const [sidebarColapsado, setSidebarColapsado] = useState(false);
 
-    const API = "http://localhost:5000";
-
-    useEffect(() => {
-        cargarProveedores();
-    }, []);
-
-    const toggleSidebar = () => {
-        setSidebarColapsado(!sidebarColapsado);
-    };
+    const API = "http://localhost:3000/proveedores";
 
     const cargarProveedores = async () => {
         try {
             const respuesta = await fetch(API);
             const datos = await respuesta.json();
             setProveedores(datos);
-        } catch (error) {
+        } catch {
             Swal.fire(
                 "Error",
                 "No se pudo conectar con la base de datos",
                 "error"
             );
         }
+    };
+
+    useEffect(() => {
+        let cancelado = false;
+
+        const cargarInicialmente = async () => {
+            try {
+                const respuesta = await fetch(API);
+                const datos = await respuesta.json();
+
+                if (!cancelado) {
+                    setProveedores(datos);
+                }
+            } catch {
+                if (!cancelado) {
+                    Swal.fire(
+                        "Error",
+                        "No se pudo conectar con la base de datos",
+                        "error"
+                    );
+                }
+            }
+        };
+
+        cargarInicialmente();
+
+        return () => {
+            cancelado = true;
+        };
+    }, []);
+
+    const toggleSidebar = () => {
+        setSidebarColapsado(!sidebarColapsado);
     };
 
     const guardarProveedor = async () => {
@@ -110,7 +133,7 @@ function Proveedores() {
                     instancia.hide();
                 }
             }
-        } catch (error) {
+        } catch {
             Swal.fire(
                 "Error",
                 "No se pudo guardar la información",
@@ -161,7 +184,7 @@ function Proveedores() {
             );
 
             cargarProveedores();
-        } catch (error) {
+        } catch {
             Swal.fire(
                 "Error",
                 "No se pudo eliminar el proveedor",
