@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 import NavbarJefe from '../components/NavbarJefe';
 import '../css/Pro_Facturas.css';
 
-const API = 'http://localhost:5000/Pro_Facturas/facturas';
+const API = 'http://localhost:3000/Pro_Facturas';
 const FORMULARIO_INICIAL = {
   proveedor: '',
   numeroFactura: '',

@@ -142,6 +142,7 @@ function Proveedores() {
     return (
         <>
         <NavbarJefe />
+        <div className="page-proveedores">
             <div className="encabezado d-flex align-items-center gap-3 p-3">
                 <div>
                     <h2>Gestión de Proveedores</h2>
@@ -339,6 +340,7 @@ function Proveedores() {
                     </div>
                 </div>
             )}
+        </div>
         </>
     );
 }

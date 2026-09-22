@@ -105,13 +105,38 @@
     }
   ],
   "Proveedores": [
-
+    {
+      "proveedor": "ajencia1",
+      "telefono": "3023633215",
+      "correo": "mstjsgnk@gmail.com",
+      "ciudad": "SOACHA",
+      "estado": "Activo",
+      "id": 1
+    }
   ],
   "Pro_Facturas": [
-
+    {
+      "proveedor": "fffffff",
+      "numeroFactura": "3",
+      "fecha": "2026-09-22",
+      "subtotal": 754545,
+      "iva": 143363.55,
+      "total": 897908.55,
+      "formaPago": "Transferencia",
+      "estado": "Pendiente",
+      "id": 1
+    }
   ],
   "Pro_Calificacion": [
-
+    {
+      "proveedor": "ajencia1",
+      "fecha": "2026-09-22",
+      "tiempo": 5,
+      "calidad": 5,
+      "cumplimiento": 5,
+      "precio": 5,
+      "promedio": 5,
+      "id": 1
+    }
   ]
-
 }

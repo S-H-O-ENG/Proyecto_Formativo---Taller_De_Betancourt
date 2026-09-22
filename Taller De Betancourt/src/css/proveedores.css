@@ -114,3 +114,76 @@ code {
     padding: 4px 8px;
     background: var(--code-bg);
 }
+
+.page-proveedores {
+    min-height: 100vh;
+    padding: 24px 10px 40px;
+    background: #09090f;
+    color: #f1f1f4;
+}
+
+.page-proveedores .encabezado {
+    max-width: 1200px;
+    margin: 0 auto 24px;
+    background: #12121f;
+    border: 1px solid #2b2152;
+    border-radius: 12px;
+}
+
+.page-proveedores .encabezado h2,
+.page-proveedores .encabezado h5 {
+    color: #f1f1f4;
+}
+
+.page-proveedores .busquedar {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-proveedores .card {
+    background: #12121f;
+    border: 1px solid #2b2152;
+    border-radius: 12px;
+    color: #f1f1f4;
+}
+
+.page-proveedores .card span,
+.page-proveedores .card p {
+    color: #a3a3b8;
+}
+
+.page-proveedores .card h2 {
+    color: #f1f1f4;
+}
+
+.page-proveedores .table {
+    color: #f1f1f4;
+    margin-bottom: 0;
+}
+
+.page-proveedores .table th {
+    background: #181824;
+    color: #a3a3b8;
+    border-bottom: 1px solid #2b2152;
+}
+
+.page-proveedores .table td {
+    background: #12121f;
+    color: #f1f1f4;
+    border-bottom: 1px solid #2b2152;
+}
+
+.page-proveedores .table-hover tbody tr:hover td {
+    background: #191926;
+}
+
+.page-proveedores .btn-registrar {
+    background: #5f1ed7;
+    color: white;
+    border: none;
+}
+
+.page-proveedores .btn-registrar:hover {
+    background: #6f42c1;
+    color: white;
+}
