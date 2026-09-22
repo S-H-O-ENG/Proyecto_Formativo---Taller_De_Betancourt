@@ -19,10 +19,6 @@
   box-sizing: border-box;
 }
 
-.page-facturas img {
-  width: 60px;
-  height: 70px;
-}
 
 .facturas-page .layout-wrapper,
 .page-facturas .layout-wrapper {
