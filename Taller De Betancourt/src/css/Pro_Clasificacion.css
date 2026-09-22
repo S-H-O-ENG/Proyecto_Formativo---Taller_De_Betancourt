@@ -20,6 +20,7 @@ body {
   font-family: var(--fuente-textos);
 }
 
+
 .layout-wrapper {
   display: flex;
   min-height: 100vh;
@@ -153,14 +154,14 @@ body {
 
 .encabezado h2 {
   font-family: var(--fuente-titulos);
-  font-size: 32px;
+  font-size: 25px;
   color: var(--blanco-suave);
   margin-bottom: 2px;
 }
 
 .encabezado h5 {
   color: var(--gris-texto);
-  font-size: 15px;
+  font-size: 20px;
   margin: 0;
 }
 
@@ -203,6 +204,17 @@ body {
 
 .card span, .card p {
   color: var(--gris-texto);
+}
+
+.contenedor-cards .header {
+  position: relative;
+  justify-content: center !important;
+  text-align: center;
+}
+
+.contenedor-cards .header i {
+  position: absolute;
+  right: 0;
 }
 
 .table {
