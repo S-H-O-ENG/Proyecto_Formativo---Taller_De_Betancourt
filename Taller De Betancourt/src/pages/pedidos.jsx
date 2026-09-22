@@ -1,269 +1,160 @@
 import { useState } from 'react';
+import axios from 'axios';
 import Swal from 'sweetalert2';
-import logoImg from '../assets/logo.png';
-import '../css/pedidos.css'; 
+import NavbarJefe from '../components/NavbarJefe';
+import '../css/Pedidos.css';
 
-export default function Pedidos() {
-  const [formData, setFormData] = useState({
-    nombre: '',
-    apellido: '',
-    rol: 'Jefe del taller',
-    proveedor: '',
-    tipoRepuesto: '',
-    cantidad: 50,
-    importancia: 'Media',
-    metodoPago: '',
-  });
 
-  const [listaPedidos, setListaPedidos] = useState(() => {
-    const pedidosGuardados = localStorage.getItem('pedidos_taller');
-    if (pedidosGuardados) {
-      return JSON.parse(pedidosGuardados);
-    } else {
-      return [];
-    }
-  });
+function Pedidos() {
+    const API_URL = 'http://localhost:3000/pedidos';
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+    const [carga, setCarga] = useState(false); //esta es una constante que se usa para evitar que se dupliquen lo datos al enviarlos a la bd,json (esto es una variable boolenao, por eso el estado inicial es falso)
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+    const [rangeValue, setRangeValue] = useState(50);
 
-    if (!formData.nombre || !formData.apellido || !formData.proveedor || !formData.tipoRepuesto || !formData.metodoPago) {
-      Swal.fire({
-        icon: 'warning',
-        title: 'Campos incompletos',
-        text: 'Por favor complete todos los campos del formulario.',
-        confirmButtonColor: '#5f1ed7',
-      });
-      return;
-    }
+    //como usar use state, como hacer crud funcinal, etc
+    //creamos una constante que se va a encargar e almacenar ls datos para luegon pasarlos al db.json
 
-    const nuevoPedido = { ...formData, id: Date.now() };
-    const nuevaLista = [...listaPedidos, nuevoPedido];
-
-    setListaPedidos(nuevaLista);
-    localStorage.setItem('pedidos_taller', JSON.stringify(nuevaLista));
-
-    Swal.fire({
-      icon: 'success',
-      title: 'Pedido Registrado',
-      text: 'El pedido ha sido guardado exitosamente.',
-      confirmButtonColor: '#5f1ed7',
+    const [datos, setDatos] = useState({
+        nombre: '',
+        apellido: '',
+        rol: '',
+        proveedor: '',
+        repuesto: '',
+        cantidad: '',
+        importancia: '',
+        metodopago: '',
+        estado: 'Pendiente'
     });
+    //cons = constante, datos = nombre que le damos a la constante, setDatos = es la manera de modificar datos, osea si ponemos datos = 1, no va a funcionar,setDatos es la unnica autorizada a modificar el campo, mas abajo estan todos los campos que se van a recibir, nombre apellido repuesto etc, y de ultimas el estado en pendiente, siempre nace en pendiennte pq un pedido recien hecho siempre es un pedido pendiente
 
-    setFormData({
-      nombre: '',
-      apellido: '',
-      rol: 'Jefe del taller',
-      proveedor: '',
-      tipoRepuesto: '',
-      cantidad: 50,
-      importancia: 'Media',
-      metodoPago: '',
-    });
-  };
 
-  const handleEliminar = (id) => {
-    const listaFiltrada = listaPedidos.filter((pedido) => pedido.id !== id);
-    setListaPedidos(listaFiltrada);
-    localStorage.setItem('pedidos_taller', JSON.stringify(listaFiltrada));
-  };
 
-  const handleSalir = (e) => {
-    e.preventDefault();
-    window.location.href = '/';
-  };
+    //funcion que se usa para enviar los datos anteriores a la constante
+    //(e) dice que la funcion recibe un evento
+    function actualizardatos(e){
+        //aqui llamamos a setdatos para copiar todo el conetnido de esa constante a esa constante, por eso el setdatos, pq estamos modificando esa constante
+        //el ... antes de datos es un operador que copia todo el contenido que ya tenia la constante, para evitar que se pierdan datos
+        //e.target.name captura el atributo name de el html, ese atributo es el que disparo el cambio
+        //e.target.value captura el texto que el usuario escribio o selecciono
+        setDatos({
+            ...datos,
+            [e.target.name]: e.target.value
+        });
+    }
 
-  return (
-    <div className="dashboard-layout">
-      {/* Sidebar Lateral */}
-      <aside className="sidebar offcanvas offcanvas-start show" tabIndex="-1" id="sidebarMenu">
-        <div className="sidebar-logo">
-          <img src={logoImg} alt="Logo Taller" />
-          <h2>Taller De Betancourt</h2>
-          <p>Gestión De inventarios</p>
-        </div>
 
-        <nav className="sidebar-menu">
-          <a href="./Proveedores.jsx">
-            <i className="fa-solid fa-truck"></i> Proveedores
-          </a>
-          <a href="/pages/Gestion_Clientes.html">
-            <i className="fa-regular fa-user"></i> Clientes
-          </a>
-          <a href="/pages/inventario.html">
-            <i className="fa-solid fa-clipboard-list"></i> Inventario
-          </a>
-          <a href="/pages/Asignacio.html">
-            <i className="fa-solid fa-clipboard-list"></i> Asignación Servicios
-          </a>
-          <a href="/" onClick={handleSalir}>
-            <i className="fa-solid fa-arrow-right-from-bracket"></i> Salir
-          </a>
-        </nav>
-      </aside>
+     //async = indica que la funcion es asincroniza pq las conecciones entre una pagina y la bd tardan
+     //esta funcion va a ser la encargada de enviar los datos de la constante a la bd.json, tambien recibe un evento, por eso el (e)
+    async function enviardatos(e){
+        e.preventDefault(); //es una funcion que evita que la pagina se recargue o se pierdan datos
 
-      {/* Contenido Principal */}
-      <div className="container py-4">
-        <header className="topbar mb-4">
-          <div>
-            <p className="m-0 fw-bold">Bienvenido</p>
-          </div>
-          <div className="inventario-info">
-            <i className="fa-regular fa-user me-2"></i>
-            <span>Gestión de Pedidos</span>
-          </div>
-        </header>
+        //la primera barrera de segurida
+        //entonces cmo definimos carrgando como falsa si el usuario hace un doble click o se detecta un segundo envio antes de que la funcion halla terminado su recorrido lo que pasa es esto;
+        //en el primer envio que es el correcto como la condicion es falsa la funcion simplemente continnua y define el carga cmo verdadero, entonces ai justo aqui se hace otro envio sin que el primero halla terminado, como la funcion ahora si es verdadera pq ya se habia definifo el carga entrue el va a hacer un return, y la funcion se va a detener
+        // y abajo del todo volvemos a definir carga como falso para que se puefan seguir haciendo pedidos
 
-        {/* Formulario */}
-        <form className="formulario mb-5" onSubmit={handleSubmit}>
-          {/* Inputs con texto de placeholder en blanco mediante estilo directo */}
-          <div className="input-group mb-3">
-            <span className="input-group-text">Nombres y apellidos</span>
-            <input
-              type="text"
-              name="nombre"
-              className="form-control input-placeholder-blanco"
-              placeholder="Nombre"
-              value={formData.nombre}
-              onChange={handleChange}
-            />
-            <input
-              type="text"
-              name="apellido"
-              className="form-control input-placeholder-blanco"
-              placeholder="Apellido"
-              value={formData.apellido}
-              onChange={handleChange}
-            />
-          </div>
+        
+        //aqui usamos axios entonces, primero un try para verificar si hay o no errores, para que la funcion registre errores basicamente
+        //axios.post(api, datos) = aqui es como hacer un post en postman xd, osea vamos a registrar datos y le estamos pasando primero la url de la bd, y segundo los campos que va a registar, que son los de la primera constante y pues si es correcto le sacamos la alerta
+        //cons respuesta = await ... = esto sirve para que axios al enviar el pedido no nos de solo lo que guaradmos si no mas datos de la coneccion con el servidor utiles, por ejemplo, el status headers etc
 
-          {/* Selector de Rol corregido a solo Jefe del taller */}
-          <div className="rol mb-3">
-            <label htmlFor="selectRol" className="form-label">Seleccione su rol en el taller</label>
-            <select id="selectRol" name="rol" className="form-select" value={formData.rol} onChange={handleChange}>
-              <option value="Jefe del taller">Jefe del taller</option>
-            </select>
-          </div>
 
-          <div className="proveedor mb-3">
-            <label htmlFor="selectProveedor" className="form-label">Seleccione un proveedor</label>
-            <select id="selectProveedor" name="proveedor" className="form-select" value={formData.proveedor} onChange={handleChange}>
-              <option value="">Seleccione una opción</option>
-              <option value="Proveedor 1">Proveedor 1</option>
-              <option value="Proveedor 2">Proveedor 2</option>
-              <option value="Proveedor 3">Proveedor 3</option>
-            </select>
-          </div>
+        try{
+            const respuesta = await axios.post(API_URL, datos);
+            Swal.fire(`Pedido Creado Con Exito`);
+        }catch (error){
+            Swal.fire(`No Se Ha Podido Crear El Pedido`);
+        }
+        
+    }
+    
+    return (
+        <>
+            <NavbarJefe />
+            <div className="container">
 
-          <div className="repuesto mb-3">
-            <label htmlFor="selectTipoRepuesto" className="form-label">Tipo de repuesto requerido</label>
-            <select id="selectTipoRepuesto" name="tipoRepuesto" className="form-select" value={formData.tipoRepuesto} onChange={handleChange}>
-              <option value="">Seleccione el tipo de repuesto</option>
-              <option value="Aceite de Motor">Aceite de Motor</option>
-              <option value="Rines">Rines</option>
-              <option value="Llantas">Llantas</option>
-              <option value="Filtros de Aire/Aceite">Filtros de Aire/Aceite</option>
-              <option value="Pastillas de Freno">Pastillas de Freno</option>
-              <option value="Amortiguadores">Amortiguadores</option>
-              <option value="Baterías">Baterías</option>
-            </select>
-          </div>
+                
+                {/*aqui agregamos on submit al formulario para que permita que todo lo que se haga aca sea enviado a la funcion designada*/}
 
-          <div className="mb-3">
-            <label htmlFor="range4" className="form-label">
-              Cantidad de repuestos requerida: <strong>{formData.cantidad}</strong>
-            </label>
-            <input
-              type="range"
-              name="cantidad"
-              className="form-range"
-              min="1"
-              max="100"
-              value={formData.cantidad}
-              onChange={handleChange}
-              id="range4"
-            />
-          </div>
+                <form className="formulario" onSubmit={enviardatos}>
 
-          <div className="importancia mb-3">
-            <label className="form-label">Seleccione la importancia del pedido</label>
-            <br />
-            {['Alta', 'Media', 'Baja'].map((nivel) => (
-              <div className="form-check form-check-inline" key={nivel}>
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="importancia"
-                  id={nivel}
-                  value={nivel}
-                  checked={formData.importancia === nivel}
-                  onChange={handleChange}
-                />
-                <label className="form-check-label" htmlFor={nivel}>{nivel}</label>
-              </div>
-            ))}
-          </div>
+                    <div className="input-group">
+                        <span className="input-group-text">Nombres y apellidos</span>
+                        <input type="text" aria-label="First name" className="form-control" name='nombre' value={datos.nombre} onChange={actualizardatos} required/>
+                        <input type="text" aria-label="Last name" className="form-control" name='apellido' value={datos.apellido} onChange={actualizardatos} required/>
+                    </div>
 
-          <div className="pagom mb-4">
-            <label htmlFor="selectPago" className="form-label">Seleccione un método de pago</label>
-            <select id="selectPago" name="metodoPago" className="form-select" value={formData.metodoPago} onChange={handleChange}>
-              <option value="">Seleccione una opción</option>
-              <option value="Transferencia">Transferencia</option>
-              <option value="Efectivo">Efectivo</option>
-            </select>
-          </div>
+                    <div className="rol">
+                        <label htmlFor="">Seleccione su rol en el taller</label>
+                        <select className="form-select" name='rol' aria-label="Default select example" value={datos.rol} onChange={actualizardatos} required>
+                            <option selected>Seleccione una opcion</option>
+                            <option >Jefe del taller</option>
+                        </select>
+                    </div>
 
-          <button type="submit" className="btn-enviar w-100">Solicitar Pedido</button>
-        </form>
+                    <div className="proveedor">
+                        <label htmlFor="">Seleccione un proveedor </label>
+                        <select className="form-select" name='proveedor' aria-label="Default select example" value={datos.proveedor} onChange={actualizardatos} required>
+                            <option selected>Seleccione una opcion</option>
+                            <option >Proveedor 1</option>
+                            <option >Proveedor 2</option>
+                            <option >Proveedor 3</option>
+                        </select>
+                    </div>
 
-        {/* Tabla de historial */}
-        {listaPedidos.length > 0 && (
-          <div className="seccion-contenedor p-4 rounded text-white" style={{ backgroundColor: 'rgba(23, 15, 38, 0.95)' }}>
-            <h3 className="mb-3">Historial de Pedidos Guardados</h3>
-            <div className="table-responsive">
-              <table className="table table-dark table-striped align-middle">
-                <thead>
-                  <tr>
-                    <th>Solicitante</th>
-                    <th>Proveedor</th>
-                    <th>Repuesto</th>
-                    <th>Cant.</th>
-                    <th>Importancia</th>
-                    <th>Pago</th>
-                    <th>Acción</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {listaPedidos.map((pedido) => (
-                    <tr key={pedido.id}>
-                      <td>{pedido.nombre} {pedido.apellido}</td>
-                      <td>{pedido.proveedor}</td>
-                      <td>{pedido.tipoRepuesto}</td>
-                      <td>{pedido.cantidad}</td>
-                      <td>
-                        <span className={`badge ${pedido.importancia === 'Alta' ? 'bg-danger' : pedido.importancia === 'Media' ? 'bg-warning text-dark' : 'bg-secondary'}`}>
-                          {pedido.importancia}
-                        </span>
-                      </td>
-                      <td>{pedido.metodoPago}</td>
-                      <td>
-                        <button className="btn btn-sm btn-outline-danger" onClick={() => handleEliminar(pedido.id)}>
-                          Eliminar
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                    <div className="input-group">
+                        <span className="input-group-text">Repuesto Requerido</span>
+                        <input type="text" aria-label="First name" className="form-control" name='repuesto' value={datos.repuesto} onChange={actualizardatos} required/>
+                    </div>
+
+
+                    <label htmlFor="range4" className="form-label">Cantidad de repuestos requerida:  <strong>{datos.cantidad}</strong></label>
+                    <input type="range" name='cantidad' className="form-range" min="0" max="100" value={datos.cantidad} id="range4" onChange={actualizardatos} required/>
+
+
+                    <div className="importancia">
+                        <label htmlFor="">Seleccione la importancia del pedido</label> <br />
+                        <div className="form-check form-check-inline">
+                            <input className="form-check-input" type="radio" name="importancia" id="alta"
+                                value='alta' checked={datos.importancia === 'alta'}onChange={actualizardatos} required/>
+                            <label className="form-check-label" htmlFor="inlineRadio1">Alta</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <input className="form-check-input" type="radio" name="importancia" id="media"
+                                value='media' checked={datos.importancia === 'media'} onChange={actualizardatos} required/>
+                            <label className="form-check-label" htmlFor="inlineRadio2">Media</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <input className="form-check-input" type="radio" name="importancia" id="baja"
+                                value='baja' checked={datos.importancia === 'baja'} onChange={actualizardatos} required/>
+                            <label className="form-check-label" htmlFor="inlineRadio2">Baja</label>
+                        </div>
+                    </div>
+
+                    <div className="pagom">
+                        <label htmlFor="">Seleccione un metodo de pago</label>
+                        <select className="form-select" name='metodopago' aria-label="Default select example" value={datos.metodopago} onChange={actualizardatos} required>
+                            <option selected>Seleccione una opcion</option>
+                            <option value="transferencia">Transferencia</option>
+                            <option value="efectivo">Efectivo</option>
+                        </select>
+                    </div>
+
+                    {/*en todos loa campos anteriores se agegaron
+                    value.datos... lo que hace es vincular ese campo de la constante con el input o la linea donde se halla puesto, para eso TODOS LOS INPUT O LABEL ETC, DEBEN DE TENER UN ATRIBUTO NAME CON EL MISMO NOMBRE QUE EL CAMPO DE LA CONSTANTE, OSEA si es datos.metodopago, el form debe tener name='metodopago'
+                    onchange(actualizardatos) = aqui es una funncion que dice que cuando detecte cualquier cambio llame a la funcion que va entre las {}, este y el de arriba trabajan juntos 
+                    */}
+
+
+
+                    {/*aqui se le pone tipo submit al boton pq anteriomente en la funcion y la variable quedamos en que recibian un evento, y el submit es un evento, entonces gracias a este boton todo el formulario lo escucha y llama a la funcinn que le asignamos osea enviardatos, pero ES IMPORANTE PQ ESTO SOLO FUNCIONA SIEMPRE Y CUANDO TDO ESTE DENTRO DE UNA ETIQUETA FORM, no sirve en divs ni main ni nada*/}
+                    <button type="submit" className="btn-enviar">Solicitar Pedido</button>
+                </form>
+
             </div>
-          </div>
-        )}
-      </div>
-    </div>
-  );
+        </>
+    )
 }
+
+export default Pedidos;
