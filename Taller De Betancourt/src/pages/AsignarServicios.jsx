@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Swal from 'sweetalert2';
-import "../css/stilo.css";
+import '../css/Asignarservicio.css';
+
 
 export default function AsignarServicios() {
   const [servicio, setServicio] = useState('');
