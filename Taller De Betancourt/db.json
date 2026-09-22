@@ -67,9 +67,41 @@
     }
   ],
   "pedidos": [
-    
-  ],
-  "Proveedores":[
-
+    {
+      "nombre": "test",
+      "apellido": "testape",
+      "rol": "Jefe",
+      "proveedor": "proveedor 1",
+      "repuesto": "test",
+      "cantidad": "33",
+      "importancia": "media",
+      "metodopago": "efectivo",
+      "estado": "Recibido",
+      "id": "1"
+    },
+    {
+      "nombre": "test",
+      "apellido": "testape",
+      "rol": "Jefe",
+      "proveedor": "proveedor 1",
+      "repuesto": "test",
+      "cantidad": "33",
+      "importancia": "media",
+      "metodopago": "efectivo",
+      "estado": "Cancelado",
+      "id": "2"
+    },
+    {
+      "nombre": "test",
+      "apellido": "testape",
+      "rol": "Jefe",
+      "proveedor": "proveedor 1",
+      "repuesto": "test",
+      "cantidad": "33",
+      "importancia": "media",
+      "metodopago": "efectivo",
+      "estado": "Recibido",
+      "id": "3"
+    }
   ]
 }

@@ -1,0 +1,63 @@
+.tabla-pedidos-container {
+    max-width: 950px;
+    margin: 20px auto;
+    background-color: rgba(255, 255, 255, 0.04);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.encabezado-tabla {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #9ea0a5;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+
+.fila-pedido {
+    font-size: 0.875rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: background-color 0.2s ease;
+}
+
+.fila-pedido:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.badge-estado {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: inline-block;
+    text-align: center;
+    min-width: 80px;
+}
+
+.badge-pendiente {
+    background-color: #6c757d22;
+    color: #adb5bd;
+    border: 1px solid #6c757d55;
+}
+
+.badge-recibido {
+    background-color: #19875422;
+    color: #2eca8b;
+    border: 1px solid #19875455;
+}
+
+.badge-cancelado {
+    background-color: #dc354522;
+    color: #ff6b6b;
+    border: 1px solid #dc354555;
+}
+
+.btn-micro {
+    font-size: 0.75rem;
+    padding: 2px 10px;
+    border-radius: 6px;
+    font-weight: 500;
+}

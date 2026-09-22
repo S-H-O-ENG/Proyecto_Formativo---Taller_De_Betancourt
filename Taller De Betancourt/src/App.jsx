@@ -2,10 +2,16 @@ import { useState } from 'react';
 import axios from 'axios';
 import bcrypt from 'bcryptjs';
 import Swal from 'sweetalert2';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import Inventario from './pages/Inventario.jsx';
 import GestionClientes from './pages/GestionClientes.jsx';
+import InicioJefe from './pages/InicioJefe.jsx';
 import Pedidos from './pages/Pedidos.jsx';
+import Proveedores from './pages/Proveedores.jsx';
+import Pro_Facturas from './pages/Pro_Facturas';
+import Pro_Calificacion from './pages/Pro_Calificacion';
+
 import logo from './assets/logo.png';
 import supra from './assets/supra.png';
 import './App.css';
@@ -16,7 +22,14 @@ function App() {
   const [password, setPassword] = useState("");
   const [mensaje, setMensaje] = useState("");
 
-  const [vistaActual, setVistaActual] = useState("login");
+  // Leemos si ya había una sesión iniciada guardada en el navegador al recargar 
+  const [vistaActual, setVistaActual] = useState(() => {
+    const rolGuardado = localStorage.getItem("userRole");
+    if (rolGuardado === "admin") return "router";
+    if (rolGuardado === "administrativo") return "Inventario";
+    if (rolGuardado === "auxdatos") return "Clientes";
+    return "login";
+  });
 
   const API_URL = 'http://localhost:3000/users';
 
@@ -64,17 +77,20 @@ function App() {
       document.body.style.overflow = 'unset';
       document.body.style.paddingRight = '';
 
+      // Guardamos la sesión en el almacenamiento local del navegador
+      localStorage.setItem("userRole", usuario.role);
+
       //redireccionamiento a paginas
       //si el rol del usuario es igual a admin entonces la variable set vista asignele paneljefe que es igual a la pagina
       //pq arriba se importo
       if (usuario.role === "admin") {
-        setVistaActual("Pedidos")
+        setVistaActual("router")
       } else if (usuario.role === "administrativo") {
         setVistaActual("Inventario")
       } else if (usuario.role === "auxdatos") {
         setVistaActual("Clientes")
       } else {
-        setMensaje("El usuario no esta registrado")
+        setMensaje("El usuario no está registrado")
       }
 
 
@@ -83,15 +99,34 @@ function App() {
       console.error(error);
     }
   };
+
+  // Función para cerrar sesión y borrar el almacenamiento local
+  const cerrarSesion = () => {
+    localStorage.removeItem("userRole");
+    setVistaActual("login");
+  };
+
   //si la vista actual = anel jefe retorne panel jefe, para q se muestre xd
-  if (vistaActual === "Pedidos") {
-    return <Pedidos />;
-  }
   if (vistaActual === "Inventario") {
     return <Inventario />
   }
   if (vistaActual === "Clientes") {
-    return <GestionClientes alSalir={() => setVistaActual("App.jsx")} />;
+    return <GestionClientes alSalir={cerrarSesion} />;
+  }
+
+  if (vistaActual === "router") {
+    return (
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Navigate to="/Inicio" />} />
+          <Route path="/Inicio" element={<InicioJefe />} />
+          <Route path="/Pedidos" element={<Pedidos />} />
+          <Route path="/ProveedoresGestion" element={<Proveedores />} />
+          <Route path="/Facturas" element={<Pro_Facturas />} />
+          <Route path="/Calificaciones" element={<Pro_Calificacion />} />
+        </Routes>
+      </BrowserRouter>
+    );
   }
 
   return (
@@ -106,7 +141,7 @@ function App() {
 
           <button className="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-            aria-="Toggle navigation">
+            aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
 
@@ -157,7 +192,7 @@ function App() {
                   <a href="#" className="link-login">¿Olvidaste tu contraseña?</a>
                 </div>
               </form>
-              <p>{mensaje}</p>
+              {mensaje && <p className="text-danger text-center mt-2">{mensaje}</p>}
             </div>
 
 
@@ -190,7 +225,9 @@ function App() {
           <div className="ratio ratio-21x9 mx-auto" style={{ maxWidth: "1000px", borderRadius: "8px", overflow: "hidden" }}>
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.974443187212!2d-74.093416!3d4.60001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNC淡MzYnMDAuMCJOIDc0wrA1NSczNi4zIlc!5e0!3m2!1ses!2sco!4v1700000000000!5m2!1ses!2sco"
-              style={{ border: "0", loading: "lazy", referrerPolicy: "no-referrer-when-downgrade" }}>
+              style={{ border: "0" }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade">
             </iframe>
           </div>
         </section>
@@ -202,27 +239,26 @@ function App() {
           <div className="cita">
             <form action="#" method="POST" className="mx-auto" style={{ maxWidth: "600px" }}>
               <div className="mb-3">
-                <label htmlFor="nombreCita" className="form- text-secondary">Nombre Completo:</label>
+                <label htmlFor="nombreCita" className="form-label text-secondary">Nombre Completo:</label>
                 <input type="text" id="nombreCita" className="form-control bg-dark text-white border-secondary"
                   placeholder="Ingrese su nombre" required />
               </div>
 
               <div className="row mb-3">
                 <div className="col-md-6 mb-3 mb-md-0">
-                  <label htmlFor="telefonoCita" className="form- text-secondary">Teléfono de Contacto:</label>
+                  <label htmlFor="telefonoCita" className="form-label text-secondary">Teléfono de Contacto:</label>
                   <input type="tel" id="telefonoCita" className="form-control bg-dark text-white border-secondary"
                     placeholder="Ingrese numero telefonico" required />
                 </div>
                 <div className="col-md-6">
-                  <label htmlFor="fechaCita" className="form- text-secondary">Fecha Solicitada:</label>
+                  <label htmlFor="fechaCita" className="form-label text-secondary">Fecha Solicitada:</label>
                   <input type="date" id="fechaCita" className="form-control bg-dark text-white border-secondary"
                     required />
                 </div>
               </div>
 
               <div className="mb-4">
-                <label htmlFor="motivoCita" className="form- text-secondary">Motivo del Servicio / Falla del
-                  Vehículo:</label>
+                <label htmlFor="motivoCita" className="form-label text-secondary">Motivo del Servicio / Falla del Vehículo:</label>
                 <textarea id="motivoCita" className="form-control text-white border-secondary" rows="4"
                   placeholder="Ej: Cambio de aceite, ruido en la suspensión..." required></textarea>
               </div>
@@ -237,7 +273,7 @@ function App() {
       </main>
 
     </>
-  )
+  );
 
 }
 
