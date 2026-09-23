@@ -5,8 +5,9 @@ import NavbarJefe from '../components/NavbarJefe';
 import '../css/Pedidos.css';
 
 
-function Pedidos() {
+function Pedidos() {    
     const API_URL = 'http://localhost:3000/pedidos';
+    const API_URL_PRO = 'http://localhost:3000/productos';
 
     const [carga, setCarga] = useState(false); //esta es una constante que se usa para evitar que se dupliquen lo datos al enviarlos a la bd,json (esto es una variable boolenao, por eso el estado inicial es falso)
 
@@ -103,9 +104,22 @@ function Pedidos() {
                         </select>
                     </div>
 
-                    <div className="input-group">
-                        <span className="input-group-text">Repuesto Requerido</span>
-                        <input type="text" aria-label="First name" className="form-control" name='repuesto' value={datos.repuesto} onChange={actualizardatos} required/>
+                    <div className="pagom">
+                        <label htmlFor="">Repuesto Requerido</label>
+                        <select name="repuesto" className='form-select' required value={datos.repuesto} onChange={actualizardatos} >
+                            <option value="">Seleccione una opcion</option>
+                            <option value="1">Aceite Sintético 10W40"</option>
+                            <option value="2">Filtro de Aceite</option>
+                            <option value="3">Filtro de Aire</option>
+                            <option value="4">Pastillas de Freno Delanteras</option>
+                            <option value="5">Discos de Freno</option>
+                            <option value="6">Batería 12V 800A</option>
+                            <option value="7">Líquido de Frenos DOT4</option>
+                            <option value="8">Amortiguador Delantero</option>
+                            <option value="9">Liquido Refrigerante</option>
+                            <option value="10">Bujía de Iridio</option>
+                        </select>
+                        
                     </div>
 
 

@@ -16,7 +16,6 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
 }
 
-
 .fila-pedido {
     font-size: 0.875rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -60,4 +59,45 @@
     padding: 2px 10px;
     border-radius: 6px;
     font-weight: 500;
+}
+
+.tabla-pedidos-container {
+    overflow-x: auto !important;
+    width: 100%;
+}
+
+.encabezado-tabla,
+.fila-pedido {
+    min-width: 650px !important;
+    white-space: nowrap !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+}
+
+.encabezado-tabla > *,
+.fila-pedido > * {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+@media (max-width: 768px) {
+    .tabla-pedidos-container {
+        padding: 12px;
+        margin: 10px auto;
+    }
+
+    .encabezado-tabla, 
+    .fila-pedido {
+        font-size: 0.75rem;
+    }
+
+    .badge-estado {
+        padding: 3px 6px;
+        min-width: 65px;
+    }
+
+    .btn-micro {
+        padding: 2px 6px;
+    }
 }
