@@ -1,18 +1,34 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import '../css/Asignarservicio.css';
 
 
-export default function AsignarServicios() {
+export default function AsignarServicios({ onNavigate }) {
   const [servicio, setServicio] = useState('');
   const [descripcion, setDescripcion] = useState('');
   const [trabajador, setTrabajador] = useState('');
   const [fecha, setFecha] = useState('');
   const [servicios, setServicios] = useState([]);
 
-  const handleAsignarServicio = () => {
+  const API = 'http://localhost:3000/AsignarServicios';
+
+  useEffect(() => {
+    const cargarServicios = async () => {
+      try {
+        const respuesta = await fetch(API);
+        const datos = await respuesta.json();
+        setServicios(Array.isArray(datos) ? datos : []);
+      } catch (error) {
+        Swal.fire('Error', 'No se pudieron cargar los servicios', 'error');
+      }
+    };
+
+    cargarServicios();
+  }, []);
+
+  const handleAsignarServicio = async () => {
     if (!servicio || !descripcion || !trabajador || !fecha) {
-      alert('Complete todos los campos');
+      Swal.fire('Campos incompletos', 'Complete todos los campos', 'warning');
       return;
     }
 
@@ -25,18 +41,50 @@ export default function AsignarServicios() {
       estado: 'Pendiente'
     };
 
-    setServicios([...servicios, nuevoServicio]);
+    try {
+      const respuesta = await fetch(API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(nuevoServicio)
+      });
 
-    setServicio('');
-    setDescripcion('');
-    setTrabajador('');
-    setFecha('');
+      if (!respuesta.ok) {
+        throw new Error('No se pudo guardar el servicio');
+      }
+
+      const servicioGuardado = await respuesta.json();
+      setServicios((serviciosActuales) => [...serviciosActuales, servicioGuardado]);
+      setServicio('');
+      setDescripcion('');
+      setTrabajador('');
+      setFecha('');
+    } catch (error) {
+      Swal.fire('Error', 'No se pudo guardar el servicio', 'error');
+    }
   };
 
-  const handleCambiarEstado = (id, nuevoEstado) => {
-    setServicios(
-      servicios.map(s => (s.id === id ? { ...s, estado: nuevoEstado } : s))
-    );
+  const handleCambiarEstado = async (id, nuevoEstado) => {
+    try {
+      const respuesta = await fetch(`${API}/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ estado: nuevoEstado })
+      });
+
+      if (!respuesta.ok) {
+        throw new Error('No se pudo actualizar el estado');
+      }
+
+      setServicios((serviciosActuales) =>
+        serviciosActuales.map((servicioActual) => (
+          servicioActual.id === id
+            ? { ...servicioActual, estado: nuevoEstado }
+            : servicioActual
+        ))
+      );
+    } catch (error) {
+      Swal.fire('Error', 'No se pudo actualizar el estado', 'error');
+    }
   };
 
   const pendientes = servicios.filter(s => s.estado === 'Pendiente').length;
@@ -44,10 +92,9 @@ export default function AsignarServicios() {
   const finalizados = servicios.filter(s => s.estado === 'Finalizado').length;
 
   return (
-    <div>
+        <div className="pantalla-servicios">
       <div className="encabezado">
-        <a href="#" onClick={(e) => e.preventDefault()}>Inicio</a>
-        <a href="#" onClick={(e) => e.preventDefault()}>Atrás</a>
+          <button type="button" onClick={() => onNavigate?.('home')}>Inicio</button>
       </div>
 
       <div className="modulo">

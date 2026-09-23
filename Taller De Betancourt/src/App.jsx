@@ -12,6 +12,7 @@ import Proveedores from './pages/Proveedores.jsx';
 import Pro_Facturas from './pages/Pro_Facturas';
 import Pro_Calificacion from './pages/Pro_Calificacion';
 import AsignarServicios from './pages/AsignarServicios.jsx';
+import Trabajador from './pages/trabajador.jsx';
 
 import logo from './assets/logo.png';
 import supra from './assets/supra.png';
@@ -118,7 +119,18 @@ function App() {
   }
 
   if (vistaActual === "AsignarServicios") {
-    return <AsignarServicios />;
+    return (
+      <AsignarServicios
+        onNavigate={(vista) => setVistaActual(vista === "home" ? "login" : vista)}
+      />
+    );
+  }
+  if (vistaActual === "Trabajador") {
+    return (
+      <Trabajador
+        onNavigate={(vista) => setVistaActual(vista === "home" ? "login" : vista)}
+      />
+    );
   }
 
   if (vistaActual === "router") {
@@ -271,7 +283,7 @@ function App() {
               </div>
 
               <div className="text-center">
-                <button type="submit" className="btn px-5 py-2 border-0 btn-enviarS">Enviar Solicitud</button>
+                <button type="button" onClick={() => setVistaActual("Trabajador")} className="btn px-5 py-2 border-0 btn-enviarS">Enviar Solicitud</button>
               </div>
             </form>
           </div>

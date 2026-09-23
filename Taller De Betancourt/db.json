@@ -395,5 +395,87 @@
       "promedio": 4.5,
       "id": 4
     }
+  ],
+  "AsignarServicios": [
+    {
+      "id": 1790203449156,
+      "servicio": "Cambio de aceite y filtro",
+      "descripcion": "Cambio de aceite de motor y filtro de aceite",
+      "trabajador": "trabajador 1",
+      "fecha": "2004-08-22",
+      "estado": "Finalizado"
+    },
+    {
+      "id": 1790203483244,
+      "servicio": "Alineación y balanceo",
+      "descripcion": "Ajuste de ángulos de dirección y balanceo de las llantas",
+      "trabajador": "trabajador 3",
+      "fecha": "2009-12-07",
+      "estado": "Asignado"
+    },
+    {
+      "id": 1790203539502,
+      "servicio": "Cambio de pastillas de freno",
+      "descripcion": "Reemplazo de pastillas y revisión del sistema de frenos",
+      "trabajador": "trabajador 3",
+      "fecha": "2001-09-11",
+      "estado": "Finalizado"
+    },
+    {
+      "id": 1790203567030,
+      "servicio": "Revisión de suspensión",
+      "descripcion": "Inspección y cambio de amortiguadores, rótulas y terminales",
+      "trabajador": "trabajador 2",
+      "fecha": "2006-09-29",
+      "estado": "Pendiente"
+    },
+    {
+      "id": 1790203631904,
+      "servicio": "Sincronización del motor",
+      "descripcion": "Cambio de bujías, filtros y ajuste general del motor",
+      "trabajador": "trabajador 2",
+      "fecha": "2022-07-30",
+      "estado": "Pendiente"
+    },
+    {
+      "id": 1790203683881,
+      "servicio": "Diagnóstico con escáner",
+      "descripcion": "Lectura de códigos de falla y revisión electrónica del vehículo",
+      "trabajador": "trabajador 3",
+      "fecha": "2020-01-03",
+      "estado": "Asignado"
+    },
+    {
+      "id": 1790203734970,
+      "servicio": "Cambio de kit de embrague",
+      "descripcion": "Reemplazo de disco, prensa y balinera del embrague",
+      "trabajador": "trabajador 1",
+      "fecha": "2016-05-08",
+      "estado": "Pendiente"
+    },
+    {
+      "id": 1790203766403,
+      "servicio": "Cambio de correa de repartición",
+      "descripcion": "Sustitución de correa de tiempo, tensores y bomba de agua",
+      "trabajador": "trabajador 2",
+      "fecha": "2012-03-22",
+      "estado": "Finalizado"
+    },
+    {
+      "id": 1790203809340,
+      "servicio": "Servicio de aire acondicionado",
+      "descripcion": "Recarga de gas, revisión de fugas y limpieza del sistema",
+      "trabajador": "trabajador 1",
+      "fecha": "2023-04-16",
+      "estado": "Pendiente"
+    },
+    {
+      "id": 1790203858325,
+      "servicio": "Mantenimiento de batería y sistema eléctrico",
+      "descripcion": "Prueba de batería, alternador y motor de arranque",
+      "trabajador": "trabajador 1",
+      "fecha": "2019-11-18",
+      "estado": "Asignado"
+    }
   ]
 }
