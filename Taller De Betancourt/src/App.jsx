@@ -11,6 +11,7 @@ import Pedidos from './pages/Pedidos.jsx';
 import Proveedores from './pages/Proveedores.jsx';
 import Pro_Facturas from './pages/Pro_Facturas';
 import Pro_Calificacion from './pages/Pro_Calificacion';
+import AsignarServicios from './pages/AsignarServicios.jsx';
 
 import logo from './assets/logo.png';
 import supra from './assets/supra.png';
@@ -28,6 +29,7 @@ function App() {
     if (rolGuardado === "admin") return "router";
     if (rolGuardado === "administrativo") return "Inventario";
     if (rolGuardado === "auxdatos") return "Clientes";
+    if (rolGuardado === "asignador") return "AsignarServicios";
     return "login";
   });
 
@@ -89,6 +91,8 @@ function App() {
         setVistaActual("Inventario")
       } else if (usuario.role === "auxdatos") {
         setVistaActual("Clientes")
+      } else if (usuario.role === "asignador") {
+        setVistaActual("AsignarServicios")
       } else {
         setMensaje("El usuario no está registrado")
       }
@@ -112,6 +116,9 @@ function App() {
   }
   if (vistaActual === "Clientes") {
     return <GestionClientes alSalir={cerrarSesion} />;
+  }
+  if (vistaActual === "AsignarServicios") {
+    return <AsignarServicios />;
   }
 
   if (vistaActual === "router") {

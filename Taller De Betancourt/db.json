@@ -20,6 +20,13 @@
       "name": "Auxiliar De Datos",
       "role": "auxdatos",
       "id": "3"
+    },
+    {
+      "email": "asignador@betancourt.com",
+      "password": "$2b$10$LWreKuEpWX0JBI0ytDEtAOaLmojIzZn8oOoD0lku8guz08x5uSG/.",
+      "name": "Asignador de Servicios",
+      "role": "asignador",
+      "id": "4"
     }
   ],
   "productos": [
