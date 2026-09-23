@@ -26,7 +26,7 @@
     {
       "id": "1",
       "Lproducto": "Aceite Sintético 10W40",
-      "cantidad": 21,
+      "cantidad": 20,
       "estado": "Activo",
       "claseBadge": "bg-success"
     }
