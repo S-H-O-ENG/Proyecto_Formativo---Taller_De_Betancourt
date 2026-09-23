@@ -2,21 +2,17 @@
    RESET GENERAL
 ================================ */
 
-* {
+.trabajador-wrapper,
+.trabajador-wrapper * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-html,
-body,
-#root {
+.trabajador-wrapper {
     width: 100%;
-    min-height: 100%;
-}
-
-body {
+    min-height: 100vh;
     background: #0f0f12;
     color: white;
 }
@@ -36,7 +32,7 @@ body {
    HEADER
 ================================ */
 
-header {
+.trabajador-wrapper header {
     width: 100%;
     min-height: 65px;
     background: #141418;
@@ -50,39 +46,39 @@ header {
     border-bottom: 2px solid #5f1ed7;
 }
 
-.logo {
+.trabajador-wrapper .logo {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
-.logo h2 {
+.trabajador-wrapper .logo h2 {
     font-size: 21px;
     white-space: nowrap;
 }
 
-.logo h2 span {
+.trabajador-wrapper .logo h2 span {
     color: #8a3ffc;
 }
 
-nav {
+.trabajador-wrapper nav {
     display: flex;
     align-items: center;
     gap: 25px;
 }
 
-nav a {
+.trabajador-wrapper nav a {
     color: white;
     text-decoration: none;
     font-size: 14px;
     transition: 0.3s;
 }
 
-nav a:hover {
+.trabajador-wrapper nav a:hover {
     color: #8a3ffc;
 }
 
-nav button {
+.trabajador-wrapper nav button {
     background: transparent;
     color: white;
 
@@ -97,16 +93,16 @@ nav button {
     font-size: 14px;
 }
 
-nav button:hover {
+.trabajador-wrapper nav button:hover {
     background: rgba(255, 255, 255, 0.1);
 }
 
-.btn-volver {
+.trabajador-wrapper .btn-volver {
     background: #5f1ed7;
     border-radius: 8px;
 }
 
-.btn-volver:hover {
+.trabajador-wrapper .btn-volver:hover {
     background: #6f42c1;
 }
 
@@ -121,7 +117,7 @@ nav button:hover {
    el main en flex y comprima las secciones.
 */
 
-main.contenedor {
+.trabajador-wrapper main.contenedor {
     display: block !important;
 
     width: 90%;
@@ -137,7 +133,7 @@ main.contenedor {
    PERFIL
 ================================ */
 
-.perfil {
+.trabajador-wrapper .perfil {
     width: 100%;
 
     display: flex;
@@ -159,20 +155,20 @@ main.contenedor {
 
 /* FOTO */
 
-.foto {
+.trabajador-wrapper .foto {
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 12px;
 
 }
-.fotoMeca{
+.trabajador-wrapper .fotoMeca{
     border-radius: 12px;
     high: 180px;
     width: 250px;
 }
 
-.foto-placeholder {
+.trabajador-wrapper .foto-placeholder {
     width: 180px;
     height: 180px;
 
@@ -195,7 +191,7 @@ main.contenedor {
 
 /* DATOS */
 
-.datos {
+.trabajador-wrapper .datos {
     flex: 1;
 
     display: flex;
@@ -205,20 +201,20 @@ main.contenedor {
     min-width: 0;
 }
 
-.saludo-texto {
+.trabajador-wrapper .saludo-texto {
     font-size: 14px;
     color: #a0a0a0;
 
     margin-bottom: 5px;
 }
 
-.datos h1 {
+.trabajador-wrapper .datos h1 {
     font-size: 32px;
 
     margin-bottom: 7px;
 }
 
-.datos h3 {
+.trabajador-wrapper .datos h3 {
     color: #8a3ffc;
 
     margin-bottom: 12px;
@@ -229,7 +225,7 @@ main.contenedor {
 
 /* ESTADO */
 
-.activo {
+.trabajador-wrapper .activo {
     display: inline-block;
 
     width: 97px;
@@ -247,15 +243,15 @@ main.contenedor {
     font-size: 13px;
 }
 
-.activo-activo {
+.trabajador-wrapper .activo-activo {
     background: #1d8b38;
 }
 
-.activo-descanso {
+.trabajador-wrapper .activo-descanso {
     background: #8b3c1d;
 }
 
-.datos p {
+.trabajador-wrapper .datos p {
     font-size: 14px;
 
     margin-bottom: 5px;
@@ -268,7 +264,7 @@ main.contenedor {
    INFORMACIÓN / ESPECIALIDAD
 ================================ */
 
-.info {
+.trabajador-wrapper .info {
     width: 100%;
 
     display: grid !important;
@@ -280,56 +276,96 @@ main.contenedor {
     margin-bottom: 24px;
 }
 
-.card {
+.trabajador-wrapper .card {
     width: 100%;
 
-    background: #18181d;
+    background: linear-gradient(145deg, #1d1d24, #17171c);
 
     border: 1px solid #5f1ed7;
     border-radius: 15px;
 
-    padding: 20px;
+    padding: 24px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
 }
 
-.card h2 {
+.trabajador-wrapper .card h2 {
     color: #8a3ffc;
 
-    margin-bottom: 18px;
+    margin-bottom: 22px;
 
-    font-size: 20px;
+    font-size: 22px;
+    font-weight: 700;
 }
 
-.card p {
-    margin: 12px 0;
+.trabajador-wrapper .card p {
+    margin: 0;
+    padding: 12px 0;
 
-    font-size: 14px;
+    color: #d8d8e2;
+    font-size: 15px;
+    line-height: 1.4;
 
     display: flex;
     align-items: center;
 
     gap: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.card p i {
-    color: #6f42c1;
+.trabajador-wrapper .card p:last-child {
+    border-bottom: none;
 }
 
-.card ul {
-    padding-left: 18px;
+.trabajador-wrapper .card p i {
+    width: 20px;
+    color: #a875ff;
+    font-size: 15px;
+    text-align: center;
 }
 
-.card li {
-    margin: 10px 0;
-
-    font-size: 14px;
+.trabajador-wrapper .card ul {
+    display: grid;
+    gap: 10px;
+    padding-left: 0;
+    list-style: none;
 }
+
+.trabajador-wrapper .card li {
+    position: relative;
+    padding: 10px 12px 10px 30px;
+    color: #d8d8e2;
+    font-size: 15px;
+    background: rgba(95, 30, 215, 0.1);
+    border-left: 3px solid #8a3ffc;
+    border-radius: 6px;
+}
+
+.trabajador-wrapper .card li::before {
+    content: "";
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    background: #a875ff;
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+.cardQ{
+    width: 100%;
+    background: #18181d;
+    border: 1px solid #5f1ed7;
+    border-radius: 15px;
+    padding: 20px;
+}
+
 
 
 /* ================================
    HORARIO
 ================================ */
 
-.horario {
+.trabajador-wrapper .horario {
     width: 100%;
 
     background: #18181d;
@@ -342,7 +378,7 @@ main.contenedor {
     margin-bottom: 28px;
 }
 
-.horario h2 {
+.trabajador-wrapper .horario h2 {
     color: #8a3ffc;
 
     margin-bottom: 18px;
@@ -350,7 +386,7 @@ main.contenedor {
     font-size: 20px;
 }
 
-.horario table {
+.trabajador-wrapper .horario table {
     width: 100%;
 
     border-collapse: collapse;
@@ -358,17 +394,17 @@ main.contenedor {
     table-layout: fixed;
 }
 
-.horario thead {
+.trabajador-wrapper .horario thead {
     background: #5f1ed7;
 }
 
-.horario th {
+.trabajador-wrapper .horario th {
     padding: 12px;
 
     font-size: 14px;
 }
 
-.horario td {
+.trabajador-wrapper .horario td {
     padding: 11px;
 
     text-align: center;
@@ -378,7 +414,7 @@ main.contenedor {
     font-size: 14px;
 }
 
-.horario tbody tr:hover {
+.trabajador-wrapper .horario tbody tr:hover {
     background: #202027;
 }
 
@@ -387,7 +423,7 @@ main.contenedor {
    ESTADÍSTICAS
 ================================ */
 
-.estadisticas {
+.trabajador-wrapper .estadisticas {
     width: 100%;
 
     display: grid !important;
@@ -397,7 +433,7 @@ main.contenedor {
     gap: 20px;
 }
 
-.stat {
+.trabajador-wrapper .stat {
     width: 100%;
 
     background: #18181d;
@@ -411,7 +447,7 @@ main.contenedor {
     text-align: center;
 }
 
-.stat h3 {
+.trabajador-wrapper .stat h3 {
     color: #8a3ffc;
 
     margin-bottom: 12px;
@@ -419,7 +455,7 @@ main.contenedor {
     font-size: 17px;
 }
 
-.stat h1 {
+.trabajador-wrapper .stat h1 {
     font-size: 45px;
 
     margin: 0;
@@ -434,29 +470,29 @@ main.contenedor {
 
 @media (max-width: 1000px) {
 
-    header {
+    .trabajador-wrapper header {
         padding: 15px 20px;
     }
 
-    main.contenedor {
+    .trabajador-wrapper main.contenedor {
         width: 92%;
     }
 
-    .perfil {
+    .trabajador-wrapper .perfil {
         flex-direction: column;
 
         text-align: center;
     }
 
-    .datos {
+    .trabajador-wrapper .datos {
         align-items: center;
     }
 
-    .info {
+    .trabajador-wrapper .info {
         grid-template-columns: 1fr;
     }
 
-    .estadisticas {
+    .trabajador-wrapper .estadisticas {
         grid-template-columns: repeat(2, 1fr);
     }
 }
@@ -464,40 +500,40 @@ main.contenedor {
 
 @media (max-width: 600px) {
 
-    header {
+    .trabajador-wrapper header {
         flex-direction: column;
 
         gap: 15px;
     }
 
-    nav {
+    .trabajador-wrapper nav {
         gap: 15px;
     }
 
-    .perfil {
+    .trabajador-wrapper .perfil {
         padding: 20px;
     }
 
-    .foto-placeholder {
+    .trabajador-wrapper .foto-placeholder {
         width: 150px;
         height: 150px;
 
         font-size: 45px;
     }
 
-    .datos h1 {
+    .trabajador-wrapper .datos h1 {
         font-size: 27px;
     }
 
-    .estadisticas {
+    .trabajador-wrapper .estadisticas {
         grid-template-columns: 1fr;
     }
 
-    .horario {
+    .trabajador-wrapper .horario {
         overflow-x: auto;
     }
 
-    .horario table {
+    .trabajador-wrapper .horario table {
         min-width: 500px;
     }
 }
