@@ -2,8 +2,23 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import logoImg from '../assets/logo.png';
 import '../css/Inventario.css';
+import NavbarInventario from '../components/NavbarInventario';
 
 const API_URL = "http://localhost:3000/productos";
+
+
+const OPCIONES_REPUESTOS = [
+  "Aceite Sintético 10W40",
+  "Filtro de Aceite",
+  "Filtro de Aire",
+  "Pastillas de Freno Delanteras",
+  "Discos de Freno",
+  "Batería 12V 800A",
+  "Líquido de Frenos DOT4",
+  "Amortiguador Delantero",
+  "Líquido Refrigerante",
+  "Bujía de Iridio"
+];
 
 function Inventario({ setVistaActual }) {
   const [productos, setProductos] = useState([]);
@@ -12,20 +27,6 @@ function Inventario({ setVistaActual }) {
     Lproducto: "",
     cantidad: ""
   });
-
-
-  const listaProductos = [
-    "Aceite Sintético 10W40",
-    "Filtro de Aceite",
-    "Filtro de Aire",
-    "Pastillas de Freno Delanteras",
-    "Discos de Freno",
-    "Batería 12V 800A",
-    "Líquido de Frenos DOT4",
-    "Amortiguador Delantero",
-    "Liquido Refrigerante",
-    "Bujía de Iridio"
-  ];
 
   const consultarP = async () => {
     try {
@@ -62,7 +63,7 @@ function Inventario({ setVistaActual }) {
     const { estado, claseBadge } = obtenerEstadoYBadge(cantidadNum);
 
     const nuevoProducto = {
-      id: formData.id || String(Date.now()),
+      id: String(Date.now()),
       Lproducto: formData.Lproducto,
       cantidad: cantidadNum,
       estado,
@@ -132,123 +133,109 @@ function Inventario({ setVistaActual }) {
 
   return (
     <>
-      <div className="dashboard-layout">
-        <aside className="sidebar offcanvas offcanvas-start show" tabIndex="-1" id="sidebarMenu">
-          <div className="sidebar-logo">
-            <img src={logoImg} alt="Logo Taller De Betancourt" />
-            <h2>Taller De Betancourt</h2>
-            <p>Gestión De Inventarios</p>
-          </div>
-          <nav className="sidebar-menu">
-            <button onClick={() => setVistaActual && setVistaActual('Inventario')} className="btn text-start text-white w-100">
-              <i className="fa-solid fa-boxes-stacked"></i> Inventario
-            </button>
-            <button onClick={() => setVistaActual && setVistaActual('./App')} className="btn text-start text-white w-100">
-              <i className="fa-solid fa-right-from-bracket"></i> Salir
-            </button>
-          </nav>
-        </aside>
+      <div className="d-flex">
+        <NavbarInventario setVistaActual={setVistaActual} />
 
-        <main className="dashboard-main">
-          <header className="topbar">
-            <div>
-              <p>Bienvenido</p>
-            </div>
-            <div className="inventario-info">
-              <i className="fa-solid fa-boxes-stacked"></i>
-              <span>Gestión Inventario</span>
-            </div>
-          </header>
-
-          <section className="row g-4 mb-4">
-            <div className="col-lg-4 col-md-4">
-              <div className="card-resumen">
-                <i className="fa-solid fa-check-to-slot"></i>
-                <div>
-                  <h3>{activos}</h3>
-                  <p>Productos activos</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-4 col-md-4">
-              <div className="card-resumen">
-                <i className="fa-solid fa-triangle-exclamation"></i>
-                <div>
-                  <h3>{bajoStock}</h3>
-                  <p>Productos con bajo stock</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-4 col-md-4">
-              <div className="card-resumen">
-                <i className="fa-solid fa-ban"></i>
-                <div>
-                  <h3>{sinStock}</h3>
-                  <p>Productos sin stock</p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section className="panel-table container-fluid">
-            <div className="cabecera-tabla d-flex justify-content-between align-items-center mb-3">
+        <div className="dashboard-layout">
+          <main className="dashboard-main">
+            <header className="topbar">
               <div>
-                <span>Productos</span>
+                <p>Bienvenido</p>
               </div>
-              <button 
-                className="btn btn-inventario" 
-                data-bs-toggle="modal" 
-                data-bs-target="#modalProducto"
-                onClick={() => setFormData({ id: "", Lproducto: "", cantidad: "" })}
-              >
-                <i className="fa-solid fa-plus"></i> Agregar
-              </button>
-            </div>
-          </section>
+              <div className="inventario-info">
+                <i className="fa-solid fa-boxes-stacked"></i>
+                <span>Gestión Inventario</span>
+              </div>
+            </header>
 
-          <div className="tabla-inventario">
-            <table id="tablaProductos" className="table align-middle">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Nombre Producto</th>
-                  <th>Cantidad</th>
-                  <th>Estado</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                {productos.map((prod) => (
-                  <tr key={prod.id}>
-                    <td>{prod.id}</td>
-                    <td>{prod.Lproducto}</td>
-                    <td>{prod.cantidad}</td>
-                    <td>
-                      <span className={`badge ${prod.claseBadge}`}>
-                        {prod.estado}
-                      </span>
-                    </td>
-                    <td>
-                      <button 
-                        className="btn btn-sm btn-warning me-2"
-                        data-bs-toggle="modal" 
-                        data-bs-target="#modalModificar"
-                        onClick={() => prepararModificacion(prod)}
-                      >
-                        <i className="fa-solid fa-pen-to-square"></i>
-                      </button>
-                      <button className="btn btn-sm btn-outline-danger me-2" onClick={() => eliminarProducto(prod)}>
-                        <i className="fa-solid fa-trash"></i>
-                      </button>
-                    </td>
+            <section className="row g-4 mb-4">
+              <div className="col-lg-4 col-md-4">
+                <div className="card-resumen">
+                  <i className="fa-solid fa-check-to-slot"></i>
+                  <div>
+                    <h3>{activos}</h3>
+                    <p>Productos activos</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-lg-4 col-md-4">
+                <div className="card-resumen">
+                  <i className="fa-solid fa-triangle-exclamation"></i>
+                  <div>
+                    <h3>{bajoStock}</h3>
+                    <p>Productos con bajo stock</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-lg-4 col-md-4">
+                <div className="card-resumen">
+                  <i className="fa-solid fa-ban"></i>
+                  <div>
+                    <h3>{sinStock}</h3>
+                    <p>Productos sin stock</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section className="panel-table container-fluid">
+              <div className="cabecera-tabla d-flex justify-content-between align-items-center mb-3">
+                <div>
+                  <span>Productos</span>
+                </div>
+                <button 
+                  className="btn btn-inventario" 
+                  data-bs-toggle="modal" 
+                  data-bs-target="#modalProducto"
+                  onClick={() => setFormData({ id: "", Lproducto: "", cantidad: "" })}
+                >
+                  <i className="fa-solid fa-plus"></i> Agregar
+                </button>
+              </div>
+            </section>
+
+            <div className="tabla-inventario">
+              <table id="tablaProductos" className="table align-middle">
+                <thead>
+                  <tr>
+                    <th>Nombre Producto</th>
+                    <th>Cantidad</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </main>
+                </thead>
+                <tbody>
+                  {productos.map((prod) => (
+                    <tr key={prod.id}>
+                      <td>{prod.Lproducto}</td>
+                      <td>{prod.cantidad}</td>
+                      <td>
+                        <span className={`badge ${prod.claseBadge}`}>
+                          {prod.estado}
+                        </span>
+                      </td>
+                      <td>
+                        <button 
+                          className="btn btn-sm btn-warning me-2"
+                          data-bs-toggle="modal" 
+                          data-bs-target="#modalModificar"
+                          onClick={() => prepararModificacion(prod)}
+                        >
+                          <i className="fa-solid fa-pen-to-square"></i>
+                        </button>
+                        <button className="btn btn-sm btn-outline-danger me-2" onClick={() => eliminarProducto(prod)}>
+                          <i className="fa-solid fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </main>
+        </div>
       </div>
 
       {}
@@ -263,43 +250,35 @@ function Inventario({ setVistaActual }) {
             </div>
             <div className="modal-body">
               <form id="formProducto" onSubmit={handleSubmit}>
-                <input
-                  type="number"
-                  name="id"
-                  className="form-control mb-3"
-                  placeholder="ID Producto"
-                  value={formData.id || ''}
-                  onChange={handleChange}
-                  required
-                />
-                
-                <select
-                  name="Lproducto"
-                  value={formData.Lproducto}
-                  onChange={handleChange}
-                  className="form-select bg-dark text-white border-secondary mb-3"
-                  required
-                >
-                  <option value="" disabled hidden>
-                    Nombre del Producto
-                  </option>
-                  {listaProductos.map((prod, idx) => (
-                    <option key={idx} value={prod} style={{ backgroundColor: '#212529', color: '#fff' }}>
-                      {prod}
-                    </option>
-                  ))}
-                </select>
+                <div className="mb-3">
+                  <select 
+                    name="Lproducto" 
+                    className="form-select bg-dark text-white border-secondary" 
+                    required 
+                    value={formData.Lproducto} 
+                    onChange={handleChange}
+                  >
+                    <option value="" disabled hidden>Seleccione una opción</option>
+                    {OPCIONES_REPUESTOS.map((item, idx) => (
+                      <option key={idx} value={item} style={{ backgroundColor: '#212529', color: '#fff' }}>
+                        {item}
+                      </option>
+                    ))}
+                  </select>
+                </div>
 
-                <input
-                  type="number"
-                  name="cantidad"
-                  className="form-control mb-3"
-                  placeholder="Cantidad Inicial"
-                  min="0"
-                  value={formData.cantidad || ''}
-                  onChange={handleChange}
-                  required
-                />
+                <div className="mb-3">
+                  <input
+                    type="number"
+                    name="cantidad"
+                    className="form-control"
+                    placeholder="Cantidad Inicial"
+                    min="0"
+                    value={formData.cantidad || ''}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
 
                 <button type="submit" className="btn btn-registrar w-100">
                   Guardar Producto
@@ -316,7 +295,7 @@ function Inventario({ setVistaActual }) {
           <div className="modal-content modal-login text-bg-dark border-secondary">
             <div className="modal-header border-0">
               <h2 className="modal-title w-100 text-center" id="modalModificarLabel">
-                Modificar Producto #{formData.id}
+                Modificar Producto
               </h2>
               <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -332,9 +311,9 @@ function Inventario({ setVistaActual }) {
                     required
                   >
                     <option value="" disabled hidden>
-                      Nombre del Producto
+                      Seleccione Nombre del Producto
                     </option>
-                    {listaProductos.map((prod, idx) => (
+                    {OPCIONES_REPUESTOS.map((prod, idx) => (
                       <option key={idx} value={prod} style={{ backgroundColor: '#212529', color: '#fff' }}>
                         {prod}
                       </option>
