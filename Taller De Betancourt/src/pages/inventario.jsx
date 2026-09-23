@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import logoImg from '../assets/logo.png';
 import '../css/Inventario.css';
+import NavbarInventario from '../components/NavbarInventario';
 
 const API_URL = "http://localhost:3000/productos";
 
@@ -12,7 +13,6 @@ function Inventario({ setVistaActual }) {
     Lproducto: "",
     cantidad: ""
   });
-
 
   const listaProductos = [
     "Aceite Sintético 10W40",
@@ -132,126 +132,113 @@ function Inventario({ setVistaActual }) {
 
   return (
     <>
-      <div className="dashboard-layout">
-        <aside className="sidebar offcanvas offcanvas-start show" tabIndex="-1" id="sidebarMenu">
-          <div className="sidebar-logo">
-            <img src={logoImg} alt="Logo Taller De Betancourt" />
-            <h2>Taller De Betancourt</h2>
-            <p>Gestión De Inventarios</p>
-          </div>
-          <nav className="sidebar-menu">
-            <button onClick={() => setVistaActual && setVistaActual('Inventario')} className="btn text-start text-white w-100">
-              <i className="fa-solid fa-boxes-stacked"></i> Inventario
-            </button>
-            <button onClick={() => setVistaActual && setVistaActual('./App')} className="btn text-start text-white w-100">
-              <i className="fa-solid fa-right-from-bracket"></i> Salir
-            </button>
-          </nav>
-        </aside>
+      <div className="d-flex">
+        <NavbarInventario setVistaActual={setVistaActual} />
 
-        <main className="dashboard-main">
-          <header className="topbar">
-            <div>
-              <p>Bienvenido</p>
-            </div>
-            <div className="inventario-info">
-              <i className="fa-solid fa-boxes-stacked"></i>
-              <span>Gestión Inventario</span>
-            </div>
-          </header>
-
-          <section className="row g-4 mb-4">
-            <div className="col-lg-4 col-md-4">
-              <div className="card-resumen">
-                <i className="fa-solid fa-check-to-slot"></i>
-                <div>
-                  <h3>{activos}</h3>
-                  <p>Productos activos</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-4 col-md-4">
-              <div className="card-resumen">
-                <i className="fa-solid fa-triangle-exclamation"></i>
-                <div>
-                  <h3>{bajoStock}</h3>
-                  <p>Productos con bajo stock</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-4 col-md-4">
-              <div className="card-resumen">
-                <i className="fa-solid fa-ban"></i>
-                <div>
-                  <h3>{sinStock}</h3>
-                  <p>Productos sin stock</p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section className="panel-table container-fluid">
-            <div className="cabecera-tabla d-flex justify-content-between align-items-center mb-3">
+        <div className="dashboard-layout">
+          <main className="dashboard-main">
+            <header className="topbar">
               <div>
-                <span>Productos</span>
+                <p>Bienvenido</p>
               </div>
-              <button 
-                className="btn btn-inventario" 
-                data-bs-toggle="modal" 
-                data-bs-target="#modalProducto"
-                onClick={() => setFormData({ id: "", Lproducto: "", cantidad: "" })}
-              >
-                <i className="fa-solid fa-plus"></i> Agregar
-              </button>
-            </div>
-          </section>
+              <div className="inventario-info">
+                <i className="fa-solid fa-boxes-stacked"></i>
+                <span>Gestión Inventario</span>
+              </div>
+            </header>
 
-          <div className="tabla-inventario">
-            <table id="tablaProductos" className="table align-middle">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Nombre Producto</th>
-                  <th>Cantidad</th>
-                  <th>Estado</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                {productos.map((prod) => (
-                  <tr key={prod.id}>
-                    <td>{prod.id}</td>
-                    <td>{prod.Lproducto}</td>
-                    <td>{prod.cantidad}</td>
-                    <td>
-                      <span className={`badge ${prod.claseBadge}`}>
-                        {prod.estado}
-                      </span>
-                    </td>
-                    <td>
-                      <button 
-                        className="btn btn-sm btn-warning me-2"
-                        data-bs-toggle="modal" 
-                        data-bs-target="#modalModificar"
-                        onClick={() => prepararModificacion(prod)}
-                      >
-                        <i className="fa-solid fa-pen-to-square"></i>
-                      </button>
-                      <button className="btn btn-sm btn-outline-danger me-2" onClick={() => eliminarProducto(prod)}>
-                        <i className="fa-solid fa-trash"></i>
-                      </button>
-                    </td>
+            <section className="row g-4 mb-4">
+              <div className="col-lg-4 col-md-4">
+                <div className="card-resumen">
+                  <i className="fa-solid fa-check-to-slot"></i>
+                  <div>
+                    <h3>{activos}</h3>
+                    <p>Productos activos</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-lg-4 col-md-4">
+                <div className="card-resumen">
+                  <i className="fa-solid fa-triangle-exclamation"></i>
+                  <div>
+                    <h3>{bajoStock}</h3>
+                    <p>Productos con bajo stock</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-lg-4 col-md-4">
+                <div className="card-resumen">
+                  <i className="fa-solid fa-ban"></i>
+                  <div>
+                    <h3>{sinStock}</h3>
+                    <p>Productos sin stock</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section className="panel-table container-fluid">
+              <div className="cabecera-tabla d-flex justify-content-between align-items-center mb-3">
+                <div>
+                  <span>Productos</span>
+                </div>
+                <button 
+                  className="btn btn-inventario" 
+                  data-bs-toggle="modal" 
+                  data-bs-target="#modalProducto"
+                  onClick={() => setFormData({ id: "", Lproducto: "", cantidad: "" })}
+                >
+                  <i className="fa-solid fa-plus"></i> Agregar
+                </button>
+              </div>
+            </section>
+
+            <div className="tabla-inventario">
+              <table id="tablaProductos" className="table align-middle">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nombre Producto</th>
+                    <th>Cantidad</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </main>
+                </thead>
+                <tbody>
+                  {productos.map((prod) => (
+                    <tr key={prod.id}>
+                      <td>{prod.id}</td>
+                      <td>{prod.Lproducto}</td>
+                      <td>{prod.cantidad}</td>
+                      <td>
+                        <span className={`badge ${prod.claseBadge}`}>
+                          {prod.estado}
+                        </span>
+                      </td>
+                      <td>
+                        <button 
+                          className="btn btn-sm btn-warning me-2"
+                          data-bs-toggle="modal" 
+                          data-bs-target="#modalModificar"
+                          onClick={() => prepararModificacion(prod)}
+                        >
+                          <i className="fa-solid fa-pen-to-square"></i>
+                        </button>
+                        <button className="btn btn-sm btn-outline-danger me-2" onClick={() => eliminarProducto(prod)}>
+                          <i className="fa-solid fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </main>
+        </div>
       </div>
 
-      {}
       <div className="modal fade" id="modalProducto" tabIndex="-1" aria-labelledby="modalProductoLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content modal-login text-bg-dark border-secondary">
@@ -310,7 +297,6 @@ function Inventario({ setVistaActual }) {
         </div>
       </div>
 
-      {}
       <div className="modal fade" id="modalModificar" tabIndex="-1" aria-labelledby="modalModificarLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content modal-login text-bg-dark border-secondary">
