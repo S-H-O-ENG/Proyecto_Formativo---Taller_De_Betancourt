@@ -6,6 +6,20 @@ import NavbarInventario from '../components/NavbarInventario';
 
 const API_URL = "http://localhost:3000/productos";
 
+
+const OPCIONES_REPUESTOS = [
+  "Aceite Sintético 10W40",
+  "Filtro de Aceite",
+  "Filtro de Aire",
+  "Pastillas de Freno Delanteras",
+  "Discos de Freno",
+  "Batería 12V 800A",
+  "Líquido de Frenos DOT4",
+  "Amortiguador Delantero",
+  "Líquido Refrigerante",
+  "Bujía de Iridio"
+];
+
 function Inventario({ setVistaActual }) {
   const [productos, setProductos] = useState([]);
   const [formData, setFormData] = useState({
@@ -13,19 +27,6 @@ function Inventario({ setVistaActual }) {
     Lproducto: "",
     cantidad: ""
   });
-
-  const listaProductos = [
-    "Aceite Sintético 10W40",
-    "Filtro de Aceite",
-    "Filtro de Aire",
-    "Pastillas de Freno Delanteras",
-    "Discos de Freno",
-    "Batería 12V 800A",
-    "Líquido de Frenos DOT4",
-    "Amortiguador Delantero",
-    "Liquido Refrigerante",
-    "Bujía de Iridio"
-  ];
 
   const consultarP = async () => {
     try {
@@ -62,7 +63,7 @@ function Inventario({ setVistaActual }) {
     const { estado, claseBadge } = obtenerEstadoYBadge(cantidadNum);
 
     const nuevoProducto = {
-      id: formData.id || String(Date.now()),
+      id: String(Date.now()),
       Lproducto: formData.Lproducto,
       cantidad: cantidadNum,
       estado,
@@ -199,7 +200,6 @@ function Inventario({ setVistaActual }) {
               <table id="tablaProductos" className="table align-middle">
                 <thead>
                   <tr>
-                    <th>ID</th>
                     <th>Nombre Producto</th>
                     <th>Cantidad</th>
                     <th>Estado</th>
@@ -209,7 +209,6 @@ function Inventario({ setVistaActual }) {
                 <tbody>
                   {productos.map((prod) => (
                     <tr key={prod.id}>
-                      <td>{prod.id}</td>
                       <td>{prod.Lproducto}</td>
                       <td>{prod.cantidad}</td>
                       <td>
@@ -239,6 +238,7 @@ function Inventario({ setVistaActual }) {
         </div>
       </div>
 
+      {}
       <div className="modal fade" id="modalProducto" tabIndex="-1" aria-labelledby="modalProductoLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content modal-login text-bg-dark border-secondary">
@@ -250,43 +250,35 @@ function Inventario({ setVistaActual }) {
             </div>
             <div className="modal-body">
               <form id="formProducto" onSubmit={handleSubmit}>
-                <input
-                  type="number"
-                  name="id"
-                  className="form-control mb-3"
-                  placeholder="ID Producto"
-                  value={formData.id || ''}
-                  onChange={handleChange}
-                  required
-                />
-                
-                <select
-                  name="Lproducto"
-                  value={formData.Lproducto}
-                  onChange={handleChange}
-                  className="form-select bg-dark text-white border-secondary mb-3"
-                  required
-                >
-                  <option value="" disabled hidden>
-                    Nombre del Producto
-                  </option>
-                  {listaProductos.map((prod, idx) => (
-                    <option key={idx} value={prod} style={{ backgroundColor: '#212529', color: '#fff' }}>
-                      {prod}
-                    </option>
-                  ))}
-                </select>
+                <div className="mb-3">
+                  <select 
+                    name="Lproducto" 
+                    className="form-select bg-dark text-white border-secondary" 
+                    required 
+                    value={formData.Lproducto} 
+                    onChange={handleChange}
+                  >
+                    <option value="" disabled hidden>Seleccione una opción</option>
+                    {OPCIONES_REPUESTOS.map((item, idx) => (
+                      <option key={idx} value={item} style={{ backgroundColor: '#212529', color: '#fff' }}>
+                        {item}
+                      </option>
+                    ))}
+                  </select>
+                </div>
 
-                <input
-                  type="number"
-                  name="cantidad"
-                  className="form-control mb-3"
-                  placeholder="Cantidad Inicial"
-                  min="0"
-                  value={formData.cantidad || ''}
-                  onChange={handleChange}
-                  required
-                />
+                <div className="mb-3">
+                  <input
+                    type="number"
+                    name="cantidad"
+                    className="form-control"
+                    placeholder="Cantidad Inicial"
+                    min="0"
+                    value={formData.cantidad || ''}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
 
                 <button type="submit" className="btn btn-registrar w-100">
                   Guardar Producto
@@ -297,12 +289,13 @@ function Inventario({ setVistaActual }) {
         </div>
       </div>
 
+      {}
       <div className="modal fade" id="modalModificar" tabIndex="-1" aria-labelledby="modalModificarLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content modal-login text-bg-dark border-secondary">
             <div className="modal-header border-0">
               <h2 className="modal-title w-100 text-center" id="modalModificarLabel">
-                Modificar Producto #{formData.id}
+                Modificar Producto
               </h2>
               <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -318,9 +311,9 @@ function Inventario({ setVistaActual }) {
                     required
                   >
                     <option value="" disabled hidden>
-                      Nombre del Producto
+                      Seleccione Nombre del Producto
                     </option>
-                    {listaProductos.map((prod, idx) => (
+                    {OPCIONES_REPUESTOS.map((prod, idx) => (
                       <option key={idx} value={prod} style={{ backgroundColor: '#212529', color: '#fff' }}>
                         {prod}
                       </option>
