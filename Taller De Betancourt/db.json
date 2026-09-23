@@ -66,42 +66,126 @@
       "claseBadge": "bg-success"
     }
   ],
-  "pedidos": [
+    "pedidos": [
     {
-      "nombre": "test",
-      "apellido": "testape",
-      "rol": "Jefe",
-      "proveedor": "proveedor 1",
-      "repuesto": "test",
-      "cantidad": "33",
+      "nombre": "Jefe",
+      "apellido": "Taller",
+      "rol": "Jefe del taller",
+      "proveedor": "Proveedor 1",
+      "repuesto": "Aceite",
+      "cantidad": "25",
       "importancia": "media",
       "metodopago": "efectivo",
-      "estado": "Recibido",
-      "id": "1"
+      "estado": "Pendiente",
+      "id": 1
     },
     {
-      "nombre": "test",
-      "apellido": "testape",
-      "rol": "Jefe",
-      "proveedor": "proveedor 1",
-      "repuesto": "test",
-      "cantidad": "33",
+      "nombre": "Jefe",
+      "apellido": "Taller",
+      "rol": "Jefe del taller",
+      "proveedor": "Proveedor 1",
+      "repuesto": "Bujias",
+      "cantidad": "67",
       "importancia": "media",
-      "metodopago": "efectivo",
-      "estado": "Cancelado",
-      "id": "2"
+      "metodopago": "transferencia",
+      "estado": "Pendiente",
+      "id": 2
     },
     {
-      "nombre": "test",
-      "apellido": "testape",
-      "rol": "Jefe",
-      "proveedor": "proveedor 1",
-      "repuesto": "test",
-      "cantidad": "33",
-      "importancia": "media",
+      "nombre": "Jefe",
+      "apellido": "Taller",
+      "rol": "Jefe del taller",
+      "proveedor": "Proveedor 1",
+      "repuesto": "Filtros de aceite",
+      "cantidad": "88",
+      "importancia": "alta",
       "metodopago": "efectivo",
-      "estado": "Recibido",
-      "id": "3"
+      "estado": "Pendiente",
+      "id": 3
+    },
+    {
+      "nombre": "Jefe",
+      "apellido": "Taller",
+      "rol": "Jefe del taller",
+      "proveedor": "Proveedor 1",
+      "repuesto": "Filtros de aire",
+      "cantidad": "59",
+      "importancia": "alta",
+      "metodopago": "efectivo",
+      "estado": "Pendiente",
+      "id": 4
+    },
+    {
+      "nombre": "Jefe",
+      "apellido": "Taller",
+      "rol": "Jefe del taller",
+      "proveedor": "Proveedor 3",
+      "repuesto": "Cadenas",
+      "cantidad": "37",
+      "importancia": "media",
+      "metodopago": "transferencia",
+      "estado": "Pendiente",
+      "id": 5
+    },
+    {
+      "nombre": "Jefe",
+      "apellido": "Taller",
+      "rol": "Jefe del taller",
+      "proveedor": "Proveedor 2",
+      "repuesto": "Discos de freno",
+      "cantidad": "16",
+      "importancia": "baja",
+      "metodopago": "efectivo",
+      "estado": "Pendiente",
+      "id": 6
+    },
+    {
+      "nombre": "Jefe",
+      "apellido": "Taller",
+      "rol": "Jefe del taller",
+      "proveedor": "Proveedor 2",
+      "repuesto": "Amortiguadores",
+      "cantidad": "16",
+      "importancia": "baja",
+      "metodopago": "efectivo",
+      "estado": "Pendiente",
+      "id": 7
+    },
+    {
+      "nombre": "Jefe",
+      "apellido": "Taller",
+      "rol": "Jefe del taller",
+      "proveedor": "Proveedor 3",
+      "repuesto": "Baterias",
+      "cantidad": "51",
+      "importancia": "media",
+      "metodopago": "transferencia",
+      "estado": "Pendiente",
+      "id": 8
+    },
+    {
+      "nombre": "Jefe",
+      "apellido": "Taller",
+      "rol": "Jefe del taller",
+      "proveedor": "Proveedor 3",
+      "repuesto": "Fusibles",
+      "cantidad": "58",
+      "importancia": "baja",
+      "metodopago": "transferencia",
+      "estado": "Pendiente",
+      "id": 9
+    },
+    {
+      "nombre": "Jefe",
+      "apellido": "Taller",
+      "rol": "Jefe del taller",
+      "proveedor": "Proveedor 2",
+      "repuesto": "Espejos",
+      "cantidad": "24",
+      "importancia": "baja",
+      "metodopago": "efectivo",
+      "estado": "Pendiente",
+      "id": 10
     }
   ],
   "Proveedores": [
