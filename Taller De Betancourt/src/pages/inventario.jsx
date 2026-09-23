@@ -3,18 +3,30 @@ import axios from 'axios';
 import logoImg from '../assets/logo.png';
 import '../css/Inventario.css';
 
-
 const API_URL = "http://localhost:3000/productos";
 
 function Inventario({ setVistaActual }) {
   const [productos, setProductos] = useState([]);
   const [formData, setFormData] = useState({
     id: "",
-    nombre: "",
+    Lproducto: "",
     cantidad: ""
   });
 
- 
+
+  const listaProductos = [
+    "Aceite Sintético 10W40",
+    "Filtro de Aceite",
+    "Filtro de Aire",
+    "Pastillas de Freno Delanteras",
+    "Discos de Freno",
+    "Batería 12V 800A",
+    "Líquido de Frenos DOT4",
+    "Amortiguador Delantero",
+    "Liquido Refrigerante",
+    "Bujía de Iridio"
+  ];
+
   const consultarP = async () => {
     try {
       const respuesta = await axios.get(API_URL);
@@ -28,7 +40,6 @@ function Inventario({ setVistaActual }) {
     consultarP();
   }, []);
 
-  
   const obtenerEstadoYBadge = (cantidadNum) => {
     if (cantidadNum === 0) {
       return { estado: "Sin Stock", claseBadge: "bg-danger" };
@@ -45,7 +56,6 @@ function Inventario({ setVistaActual }) {
     });
   };
 
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const cantidadNum = parseInt(formData.cantidad, 10) || 0;
@@ -53,7 +63,7 @@ function Inventario({ setVistaActual }) {
 
     const nuevoProducto = {
       id: formData.id || String(Date.now()),
-      nombre: formData.nombre,
+      Lproducto: formData.Lproducto,
       cantidad: cantidadNum,
       estado,
       claseBadge
@@ -62,18 +72,7 @@ function Inventario({ setVistaActual }) {
     try {
       await axios.post(API_URL, nuevoProducto);
       await consultarP();
-      setFormData({ id: "", nombre: "", cantidad: "" });
-
-      try {
-    await axios.post(API_URL, nuevoProducto);
-    await consultarP(); 
-    setFormData({ id: "", nombre: "", cantidad: "" }); 
-    const botonCerrar = document.querySelector("#modalProducto .btn-close");
-    if (botonCerrar) botonCerrar.click();
-  } catch (error) {
-    console.error("Error al guardar producto:", error);
-  };
-
+      setFormData({ id: "", Lproducto: "", cantidad: "" });
 
       const botonCerrar = document.querySelector("#modalProducto .btn-close");
       if (botonCerrar) botonCerrar.click();
@@ -82,16 +81,14 @@ function Inventario({ setVistaActual }) {
     }
   };
 
-  
   const prepararModificacion = (producto) => {
     setFormData({
       id: producto.id,
-      nombre: producto.nombre,
+      Lproducto: producto.Lproducto,
       cantidad: producto.cantidad
     });
   };
 
- 
   const handleUpdate = async (e) => {
     e.preventDefault();
     const cantidadNum = parseInt(formData.cantidad, 10) || 0;
@@ -99,7 +96,7 @@ function Inventario({ setVistaActual }) {
 
     const productoActualizado = {
       id: formData.id,
-      nombre: formData.nombre,
+      Lproducto: formData.Lproducto,
       cantidad: cantidadNum,
       estado,
       claseBadge
@@ -108,7 +105,7 @@ function Inventario({ setVistaActual }) {
     try {
       await axios.put(`${API_URL}/${formData.id}`, productoActualizado);
       await consultarP();
-      setFormData({ id: "", nombre: "", cantidad: "" });
+      setFormData({ id: "", Lproducto: "", cantidad: "" });
 
       const botonCerrar = document.querySelector("#modalModificar .btn-close");
       if (botonCerrar) botonCerrar.click();
@@ -117,7 +114,18 @@ function Inventario({ setVistaActual }) {
     }
   };
 
-  
+  const eliminarProducto = async (producto) => {
+    if (window.confirm(`¿Desea eliminar este producto? ${producto.Lproducto}`)) {
+      try {
+        await axios.delete(`${API_URL}/${producto.id}`);
+        consultarP();
+      } catch (error) {
+        console.error("Error al eliminar:", error);
+        alert("Ocurrió un error al eliminar.");
+      }
+    }
+  };
+
   const activos = productos.filter((p) => p.estado === "Activo").length;
   const bajoStock = productos.filter((p) => p.estado === "Bajo Stock").length;
   const sinStock = productos.filter((p) => p.estado === "Sin Stock").length;
@@ -135,7 +143,7 @@ function Inventario({ setVistaActual }) {
             <button onClick={() => setVistaActual && setVistaActual('Inventario')} className="btn text-start text-white w-100">
               <i className="fa-solid fa-boxes-stacked"></i> Inventario
             </button>
-            <button onClick={() => setVistaActual && setVistaActual('App')} className="btn text-start text-white w-100">
+            <button onClick={() => setVistaActual && setVistaActual('./App')} className="btn text-start text-white w-100">
               <i className="fa-solid fa-right-from-bracket"></i> Salir
             </button>
           </nav>
@@ -168,7 +176,7 @@ function Inventario({ setVistaActual }) {
                 <i className="fa-solid fa-triangle-exclamation"></i>
                 <div>
                   <h3>{bajoStock}</h3>
-                  <p>Productos Con bajo Stock</p>
+                  <p>Productos con bajo stock</p>
                 </div>
               </div>
             </div>
@@ -178,7 +186,7 @@ function Inventario({ setVistaActual }) {
                 <i className="fa-solid fa-ban"></i>
                 <div>
                   <h3>{sinStock}</h3>
-                  <p>Productos Sin Stock</p>
+                  <p>Productos sin stock</p>
                 </div>
               </div>
             </div>
@@ -193,7 +201,7 @@ function Inventario({ setVistaActual }) {
                 className="btn btn-inventario" 
                 data-bs-toggle="modal" 
                 data-bs-target="#modalProducto"
-                onClick={() => setFormData({ id: "", nombre: "", cantidad: "" })}
+                onClick={() => setFormData({ id: "", Lproducto: "", cantidad: "" })}
               >
                 <i className="fa-solid fa-plus"></i> Agregar
               </button>
@@ -215,7 +223,7 @@ function Inventario({ setVistaActual }) {
                 {productos.map((prod) => (
                   <tr key={prod.id}>
                     <td>{prod.id}</td>
-                    <td>{prod.nombre}</td>
+                    <td>{prod.Lproducto}</td>
                     <td>{prod.cantidad}</td>
                     <td>
                       <span className={`badge ${prod.claseBadge}`}>
@@ -224,12 +232,15 @@ function Inventario({ setVistaActual }) {
                     </td>
                     <td>
                       <button 
-                        className="btn btn-sm btn-warning"
+                        className="btn btn-sm btn-warning me-2"
                         data-bs-toggle="modal" 
                         data-bs-target="#modalModificar"
                         onClick={() => prepararModificacion(prod)}
                       >
-                        <i className="fa-solid fa-pen-to-square"></i> Modificar
+                        <i className="fa-solid fa-pen-to-square"></i>
+                      </button>
+                      <button className="btn btn-sm btn-outline-danger me-2" onClick={() => eliminarProducto(prod)}>
+                        <i className="fa-solid fa-trash"></i>
                       </button>
                     </td>
                   </tr>
@@ -261,17 +272,24 @@ function Inventario({ setVistaActual }) {
                   onChange={handleChange}
                   required
                 />
-                <input
-                  type="text"
-                  name="nombre"
-                  className="form-control mb-3"
-                  placeholder="Nombre del Producto"
-                  minLength={3}
-                  maxLength={20}
-                  value={formData.nombre || ''}
+                
+                <select
+                  name="Lproducto"
+                  value={formData.Lproducto}
                   onChange={handleChange}
+                  className="form-select bg-dark text-white border-secondary mb-3"
                   required
-                />
+                >
+                  <option value="" disabled hidden>
+                    Nombre del Producto
+                  </option>
+                  {listaProductos.map((prod, idx) => (
+                    <option key={idx} value={prod} style={{ backgroundColor: '#212529', color: '#fff' }}>
+                      {prod}
+                    </option>
+                  ))}
+                </select>
+
                 <input
                   type="number"
                   name="cantidad"
@@ -306,17 +324,22 @@ function Inventario({ setVistaActual }) {
               <form id="formModificar" onSubmit={handleUpdate}>
                 <div className="mb-3">
                   <label className="form-label text-white-50">Nombre del Producto</label>
-                  <input
-                    type="text"
-                    name="nombre"
-                    className="form-control"
-                    placeholder="Nombre del Producto"
-                    minLength={3}
-                    maxLength={20}
-                    value={formData.nombre || ''}
+                  <select
+                    name="Lproducto"
+                    value={formData.Lproducto}
                     onChange={handleChange}
+                    className="form-select bg-dark text-white border-secondary mb-3"
                     required
-                  />
+                  >
+                    <option value="" disabled hidden>
+                      Nombre del Producto
+                    </option>
+                    {listaProductos.map((prod, idx) => (
+                      <option key={idx} value={prod} style={{ backgroundColor: '#212529', color: '#fff' }}>
+                        {prod}
+                      </option>
+                    ))}
+                  </select>
                 </div>
                 <div className="mb-3">
                   <label className="form-label text-white-50">Cantidad</label>
