@@ -90,8 +90,6 @@ function App() {
         setVistaActual("Inventario")
       } else if (usuario.role === "auxdatos") {
         setVistaActual("Clientes")
-      } else if (usuario.role === "asignador") {
-        setVistaActual("AsignarServicios")
       } else if (usuario.role === "Asignador") {
         setVistaActual("AsignarServicios");
       } else {

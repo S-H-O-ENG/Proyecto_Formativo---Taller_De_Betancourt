@@ -33,16 +33,9 @@
     {
       "id": "1",
       "Lproducto": "Aceite Sintético 10W40",
-      "cantidad": 20,
+      "cantidad": 21,
       "estado": "Activo",
       "claseBadge": "bg-success"
-    },
-    {
-      "id": "1790196402589",
-      "Lproducto": "Filtro de Aceite",
-      "cantidad": 4,
-      "estado": "Bajo Stock",
-      "claseBadge": "bg-warning text-dark"
     }
   ],
   "pedidos": [
