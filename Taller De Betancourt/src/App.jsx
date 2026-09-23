@@ -29,7 +29,6 @@ function App() {
     if (rolGuardado === "admin") return "router";
     if (rolGuardado === "administrativo") return "Inventario";
     if (rolGuardado === "auxdatos") return "Clientes";
-    if (rolGuardado === "asignador") return "AsignarServicios";
     return "login";
   });
 
@@ -93,6 +92,8 @@ function App() {
         setVistaActual("Clientes")
       } else if (usuario.role === "asignador") {
         setVistaActual("AsignarServicios")
+      } else if (usuario.role === "Asignador") {
+        setVistaActual("AsignarServicios");
       } else {
         setMensaje("El usuario no está registrado")
       }
@@ -117,6 +118,7 @@ function App() {
   if (vistaActual === "Clientes") {
     return <GestionClientes alSalir={cerrarSesion} />;
   }
+
   if (vistaActual === "AsignarServicios") {
     return <AsignarServicios />;
   }

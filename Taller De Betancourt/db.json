@@ -22,11 +22,11 @@
       "id": "3"
     },
     {
-      "email": "asignador@betancourt.com",
-      "password": "$2b$10$LWreKuEpWX0JBI0ytDEtAOaLmojIzZn8oOoD0lku8guz08x5uSG/.",
-      "name": "Asignador de Servicios",
-      "role": "asignador",
-      "id": "4"
+      "email": "Asignador@betancourt.com",
+      "password": "$2a$10$8owQNGvaC42D7kudHWRc9.Hbi4rU0PvXElgee.wrixggFEFmD2lgC",
+      "name": "Asignador De Servicio",
+      "role": "Asignador",
+      "id": "Hf6mKId"
     }
   ],
   "productos": [
