@@ -162,37 +162,238 @@
   ],
   "Proveedores": [
     {
-      "proveedor": "ajencia1",
-      "telefono": "3023633215",
-      "correo": "mstjsgnk@gmail.com",
-      "ciudad": "SOACHA",
+      "proveedor": "Repuestos AutoMotor S.A.S.",
+      "telefono": "6014567821",
+      "correo": "ventas@automotor.com",
+      "ciudad": "Bogotá",
       "estado": "Activo",
       "id": 1
+    },
+    {
+      "proveedor": "Distribuciones El Motor",
+      "telefono": "3104567892",
+      "correo": "contacto@elmotor.com",
+      "ciudad": "Bogotá",
+      "estado": "Pendiente",
+      "id": 2
+    },
+    {
+      "proveedor": "Autopartes del Centro",
+      "telefono": "3205678912",
+      "correo": "ventas@autopartescentro.com",
+      "ciudad": "Bogotá",
+      "estado": "Inactivo",
+      "id": 3
+    },
+    {
+      "proveedor": "Frenos y Suspensión Colombia",
+      "telefono": "3156782345",
+      "correo": "comercial@frenoscolombia.com",
+      "ciudad": "Bogotá",
+      "estado": "Pendiente",
+      "id": 4
+    },
+    {
+      "proveedor": "Lubricantes y Filtros S.A.S.",
+      "telefono": "3007894561",
+      "correo": "ventas@lubrifiltros.com",
+      "ciudad": "Bogotá",
+      "estado": "Activo",
+      "id": 5
+    },
+    {
+      "proveedor": "Baterías Colombia",
+      "telefono": "3112345678",
+      "correo": "pedidos@bateriascolombia.com",
+      "ciudad": "Bogotá",
+      "estado": "Activo",
+      "id": 6
+    },
+    {
+      "proveedor": "Repuestos La 68",
+      "telefono": "3123456789",
+      "correo": "repuestosla68@gmail.com",
+      "ciudad": "Bogotá",
+      "estado": "Pendiente",
+      "id": 7
+    },
+    {
+      "proveedor": "Autopartes Nacionales",
+      "telefono": "3167891234",
+      "correo": "ventas@autopartesnacionales.com",
+      "ciudad": "Medellín",
+      "estado": "Activo",
+      "id": 8
+    },
+    {
+      "proveedor": "Motores y Repuestos J&A",
+      "telefono": "3015678234",
+      "correo": "contacto@motoresya.com",
+      "ciudad": "Cali",
+      "estado": "Inactivo",
+      "id": 9
+    },
+    {
+      "proveedor": "Importadora AutoPartes",
+      "telefono": "3184567290",
+      "correo": "ventas@importadoraautopartes.com",
+      "ciudad": "Bogotá",
+      "estado": "Activo",
+      "id": 10
     }
   ],
   "Pro_Facturas": [
     {
-      "proveedor": "fffffff",
-      "numeroFactura": "3",
+      "proveedor": "Repuestos AutoMotor S.A.S.",
+      "numeroFactura": "01",
       "fecha": "2026-09-22",
-      "subtotal": 754545,
-      "iva": 143363.55,
-      "total": 897908.55,
+      "subtotal": 300000,
+      "iva": 57000,
+      "total": 357000,
+      "formaPago": "Efectivo",
+      "estado": "Pagada",
+      "id": 1
+    },
+    {
+      "proveedor": "Distribuciones El Motor",
+      "numeroFactura": "2",
+      "fecha": "2026-09-23",
+      "subtotal": 50000000,
+      "iva": 9500000,
+      "total": 59500000,
+      "formaPago": "Tarjeta",
+      "estado": "Anulada",
+      "id": 2
+    },
+    {
+      "proveedor": "Autopartes del Centro",
+      "numeroFactura": "3",
+      "fecha": "2026-09-23",
+      "subtotal": 750000,
+      "iva": 142500,
+      "total": 892500,
       "formaPago": "Transferencia",
       "estado": "Pendiente",
-      "id": 1
+      "id": 3
+    },
+    {
+      "proveedor": "Frenos y Suspensión Colombia",
+      "numeroFactura": "4",
+      "fecha": "2026-09-20",
+      "subtotal": 2000000,
+      "iva": 380000,
+      "total": 2380000,
+      "formaPago": "Efectivo",
+      "estado": "Pagada",
+      "id": 4
+    },
+    {
+      "proveedor": "Lubricantes y Filtros S.A.S.",
+      "numeroFactura": "5",
+      "fecha": "2026-09-23",
+      "subtotal": 1500000,
+      "iva": 285000,
+      "total": 1785000,
+      "formaPago": "Transferencia",
+      "estado": "Pendiente",
+      "id": 5
+    },
+    {
+      "proveedor": "Baterías Colombia",
+      "numeroFactura": "6",
+      "fecha": "2026-09-18",
+      "subtotal": 15000000,
+      "iva": 2850000,
+      "total": 17850000,
+      "formaPago": "Efectivo",
+      "estado": "Anulada",
+      "id": 6
+    },
+    {
+      "proveedor": "Repuestos La 68",
+      "numeroFactura": "7",
+      "fecha": "2026-09-23",
+      "subtotal": 500000,
+      "iva": 95000,
+      "total": 595000,
+      "formaPago": "Transferencia",
+      "estado": "Pagada",
+      "id": 7
+    },
+    {
+      "proveedor": "Autopartes Nacionales",
+      "numeroFactura": "8",
+      "fecha": "2026-09-23",
+      "subtotal": 10000000,
+      "iva": 1900000,
+      "total": 11900000,
+      "formaPago": "Tarjeta",
+      "estado": "Pagada",
+      "id": 8
+    },
+    {
+      "proveedor": "Motores y Repuestos J&A",
+      "numeroFactura": "9",
+      "fecha": "2026-09-23",
+      "subtotal": 15000000,
+      "iva": 2850000,
+      "total": 17850000,
+      "formaPago": "Crédito",
+      "estado": "Pendiente",
+      "id": 9
+    },
+    {
+      "proveedor": "Importadora AutoPartes",
+      "numeroFactura": "10",
+      "fecha": "2026-09-23",
+      "subtotal": 9000000,
+      "iva": 1710000,
+      "total": 10710000,
+      "formaPago": "Efectivo",
+      "estado": "Pagada",
+      "id": 10
     }
   ],
   "Pro_Calificacion": [
     {
-      "proveedor": "ajencia1",
-      "fecha": "2026-09-22",
+      "proveedor": "Repuestos AutoMotor S.A.S.",
+      "fecha": "2026-09-23",
+      "tiempo": 4,
+      "calidad": 5,
+      "cumplimiento": 4,
+      "precio": 3,
+      "promedio": 4,
+      "id": 1
+    },
+    {
+      "proveedor": "Distribuciones El Motor",
+      "fecha": "2026-09-23",
       "tiempo": 5,
       "calidad": 5,
       "cumplimiento": 5,
       "precio": 5,
       "promedio": 5,
-      "id": 1
+      "id": 2
+    },
+    {
+      "proveedor": "Autopartes del Centro",
+      "fecha": "2026-09-23",
+      "tiempo": 3,
+      "calidad": 2,
+      "cumplimiento": 2,
+      "precio": 1,
+      "promedio": 2,
+      "id": 3
+    },
+    {
+      "proveedor": "Frenos y Suspensión Colombia",
+      "fecha": "2026-09-23",
+      "tiempo": 5,
+      "calidad": 5,
+      "cumplimiento": 4,
+      "precio": 4,
+      "promedio": 4.5,
+      "id": 4
     }
   ],
   "AsignarServicios": [
