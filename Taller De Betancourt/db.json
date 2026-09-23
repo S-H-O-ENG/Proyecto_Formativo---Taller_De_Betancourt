@@ -29,6 +29,13 @@
       "cantidad": 20,
       "estado": "Activo",
       "claseBadge": "bg-success"
+    },
+    {
+      "id": "1790196402589",
+      "Lproducto": "Filtro de Aceite",
+      "cantidad": 4,
+      "estado": "Bajo Stock",
+      "claseBadge": "bg-warning text-dark"
     }
   ],
   "pedidos": [
