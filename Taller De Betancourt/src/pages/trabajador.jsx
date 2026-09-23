@@ -2,11 +2,29 @@
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import "../css/Trabajadores.css";
+import mecanico from "../assets/macanicoEjemplo.png";
 
-function Trabajador() {
+function Trabajador({ onNavigate = () => {} }) {
   const nombreTrabajador = "Carlos Betancourt";
   const [esActivo, setEsActivo] = useState(true);
   const [saludo, setSaludo] = useState("");
+  const [servicios, setServicios] = useState([]);
+
+  const API = "http://localhost:5000/Trabajadores";
+
+  useEffect(() => {
+    const cargarServicios = async () => {
+      try {
+        const respuesta = await fetch(API);
+        const datos = await respuesta.json();
+        setServicios(Array.isArray(datos) ? datos : []);
+      } catch (error) {
+        Swal.fire("Error", "No se pudieron cargar los servicios", "error");
+      }
+    };
+
+    cargarServicios();
+  }, []);
 
   useEffect(() => {
     const hora = new Date().getHours();
@@ -31,6 +49,10 @@ function Trabajador() {
     setEsActivo(!esActivo);
   };
 
+  const asignados = servicios.filter((servicio) => servicio.estado === "Asignado").length;
+  const finalizados = servicios.filter((servicio) => servicio.estado === "Finalizado").length;
+  const pendientes = servicios.filter((servicio) => servicio.estado === "Pendiente").length;
+
   const horarios = [
     { dia: 'Lunes', entrada: '8:00 AM', salida: '6:00 PM' },
     { dia: 'Martes', entrada: '8:00 AM', salida: '6:00 PM' },
@@ -45,15 +67,17 @@ function Trabajador() {
       <header>
         <div className="logo">
           <h2>
-            TALLER DE <span>BETANCOURT</span>
+            <span>TALLER DE BETANCOURT</span>
           </h2>
         </div>
 
         <nav>
-          <a href="/">Servicios</a>
-          <a href="/">
-            <button type="button">Inicio</button>
-          </a>
+          <button type="button" onClick={() => onNavigate('AsignarServicios')}>
+            Servicios
+          </button>
+          <button type="button" onClick={() => onNavigate('home')}>
+            Inicio
+          </button>
         </nav>
       </header>
 
@@ -61,7 +85,7 @@ function Trabajador() {
         {/* SECCIÓN PERFIL */}
         <section className="perfil">
           <div className="foto">
-            <div className="foto-placeholder">CB</div>
+            <img className="fotoMeca" src={mecanico} alt="foto mecanico" />
           </div>
 
           <div className="datos">
@@ -71,18 +95,8 @@ function Trabajador() {
 
             {/* Botón dinámico de estado */}
             <span
-              className="activo"
+              className={esActivo ? "activo activo-activo" : "activo activo-descanso"}
               onClick={toggleEstado}
-              style={{
-                backgroundColor: esActivo ? "#1d8b38" : "#d97706",
-                cursor: "pointer",
-                userSelect: "none",
-                display: "inline-block",
-                padding: "5px 10px",
-                color: "white",
-                borderRadius: "5px",
-                marginTop: "10px"
-              }}
             >
               {esActivo ? "● Activo" : "● En descanso"}
             </span>
@@ -146,17 +160,17 @@ function Trabajador() {
         <section className="estadisticas">
           <div className="stat">
             <h3>Servicios Asignados</h3>
-            <h1 id="asignados">38</h1>
+            <h1 id="asignados">{asignados}</h1>
           </div>
 
           <div className="stat">
             <h3>Servicios Finalizados</h3>
-            <h1 id="finalizados">124</h1>
+            <h1 id="finalizados">{finalizados}</h1>
           </div>
 
           <div className="stat">
             <h3>Pendientes</h3>
-            <h1 id="pendientes">5</h1>
+            <h1 id="pendientes">{pendientes}</h1>
           </div>
         </section>
       </main>

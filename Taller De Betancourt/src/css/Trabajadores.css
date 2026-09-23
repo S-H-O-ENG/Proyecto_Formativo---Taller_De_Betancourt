@@ -1,381 +1,503 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
+/* ================================
+   RESET GENERAL
+================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-body{
-
-    background:#0f0f12;
-    color:white;
-
+html,
+body,
+#root {
+    width: 100%;
+    min-height: 100%;
 }
 
-
-
-header{
-
-    width:100%;
-    background:#141418;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    padding:15px 40px;
-
-    border-bottom:2px solid #5f1ed7;
-
-}
-
-.logo{
-
-    display:flex;
-    align-items:center;
-    gap:15px;
-}
-.logo img{
-    width:55px;
-    height:55px;
-
-    border-radius:8px;
-}
-
-.logo span{
-
-    color:#6f42c1;
-}
-
-nav{
-
-    display:flex;
-    align-items:center;
-    gap:30px;
-}
-
-nav a{
-
-    color:white;
-    text-decoration:none;
-
-    transition:.3s;
-
-}
-
-nav a:hover{
-
-    color:#6f42c1;
-
-}
-
-nav button{
-
-    background:#5f1ed7;
-
-    color:white;
-
-    border:none;
-
-    padding:12px 25px;
-
-    border-radius:8px;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-}
-
-nav button:hover{
-
-    background:#6f42c1;
-
-}
-
-.contenedor{
-
-    width:90%;
-    margin:40px auto;
-
+body {
+    background: #0f0f12;
+    color: white;
 }
 
 
-.perfil{
+/* ================================
+   CONTENEDOR GENERAL
+================================ */
 
-    display:flex;
-    gap:40px;
-
-    background:#18181d;
-
-    border:1px solid #5f1ed7;
-
-    border-radius:15px;
-
-    padding:30px;
-
-    margin-bottom:30px;
-
-}
-
-.foto img{
-
-    width:220px;
-    height:220px;
-
-    object-fit:cover;
-
-    border-radius:15px;
-
-    border:3px solid #6f42c1;
-
-}
-
-.datos{
-
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-
-}
-
-.datos h1{
-
-    font-size:38px;
-
-    margin-bottom:10px;
-
-}
-
-.datos h3{
-
-    color:#6f42c1;
-
-    margin-bottom:15px;
-
-}
-
-.activo{
-
-    background:#1d8b38;
-
-    width:120px;
-
-    padding:8px;
-
-    text-align:center;
-
-    border-radius:20px;
-
-    margin-bottom:20px;
-
+.trabajador-wrapper {
+    width: 100%;
+    min-height: 100vh;
 }
 
 
+/* ================================
+   HEADER
+================================ */
+
+header {
+    width: 100%;
+    min-height: 65px;
+    background: #141418;
 
-.info{
-
-    display:grid;
-
-    grid-template-columns:repeat(2,1fr);
-
-    gap:25px;
-
-    margin-bottom:30px;
-
-}
-
-.card{
-
-    background:#18181d;
-
-    border:1px solid #5f1ed7;
-
-    border-radius:15px;
-
-    padding:25px;
-
-}
-
-.card h2{
-
-    color:#6f42c1;
-
-    margin-bottom:20px;
-
-}
-
-.card p{
-
-    margin:15px 0;
-
-}
-
-.card ul{
-
-    padding-left:20px;
-
-}
-
-.card li{
-
-    margin:12px 0;
-
-}
-
-
-
-.horario{
-
-    background:#18181d;
-
-    border:1px solid #5f1ed7;
-
-    border-radius:15px;
-
-    padding:25px;
-
-    margin-bottom:35px;
-
-}
-
-.horario h2{
-
-    color:#6f42c1;
-
-    margin-bottom:20px;
-
-}
-
-table{
-
-    width:100%;
-
-    border-collapse:collapse;
-
-}
-
-thead{
-
-    background:#5f1ed7;
-
-}
-
-th{
-
-    padding:15px;
-
-}
-
-td{
-
-    padding:15px;
-
-    text-align:center;
-
-    border-bottom:1px solid #2f2f38;
-
-}
-
-tbody tr:hover{
-
-    background:#202027;
-
-}
-
-
-.estadisticas{
-
-    display:grid;
-
-    grid-template-columns:repeat(3,1fr);
-
-    gap:20px;
-
-}
-
-.stat{
-
-    background:#18181d;
-
-    border:1px solid #5f1ed7;
-
-    border-radius:15px;
-
-    padding:30px;
-
-    text-align:center;
-
-}
-
-.stat h3{
-
-    color:#6f42c1;
-
-    margin-bottom:15px;
-
-}
-
-.stat h1{
-
-    font-size:55px;
-
-}
-
-
-
-@media(max-width:900px){
-
-header{
-
-    flex-direction:column;
-
-    gap:20px;
-
-}
-
-nav{
-
-    flex-wrap:wrap;
-
-    justify-content:center;
-}
-.perfil{
-
-    flex-direction:column;
-
-    align-items:center;
-
-    text-align:center;
-}
-.info{
-
-    grid-template-columns:1fr;
-
-}
-
-.estadisticas{
-
-    grid-template-columns:1fr;
-
-}
-
-.foto img{
-
-    width:180px;
-    height:180px;
-
-}
-
-.datos h1{
-
-    font-size:30px;
-
-}
-
-}
-img{
     display: flex;
-    width: 90px;
-    height: px;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 12px 30px;
+
+    border-bottom: 2px solid #5f1ed7;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo h2 {
+    font-size: 21px;
+    white-space: nowrap;
+}
+
+.logo h2 span {
+    color: #8a3ffc;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #8a3ffc;
+}
+
+nav button {
+    background: transparent;
+    color: white;
+
+    border: none;
+    padding: 10px 20px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+    transition: 0.3s;
+
+    font-size: 14px;
+}
+
+nav button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.btn-volver {
+    background: #5f1ed7;
+    border-radius: 8px;
+}
+
+.btn-volver:hover {
+    background: #6f42c1;
+}
+
+
+/* ================================
+   CONTENEDOR PRINCIPAL
+================================ */
+
+/*
+   IMPORTANTE:
+   Esto evita que otro CSS convierta
+   el main en flex y comprima las secciones.
+*/
+
+main.contenedor {
+    display: block !important;
+
+    width: 90%;
+    max-width: 1500px;
+
+    margin: 32px auto;
+
+    padding: 0;
+}
+
+
+/* ================================
+   PERFIL
+================================ */
+
+.perfil {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    gap: 35px;
+
+    background: #18181d;
+
+    border: 1px solid #5f1ed7;
+    border-radius: 15px;
+
+    padding: 25px;
+
+    margin-bottom: 24px;
+}
+
+
+/* FOTO */
+
+.foto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+
+}
+.fotoMeca{
+    border-radius: 12px;
+    high: 180px;
+    width: 250px;
+}
+
+.foto-placeholder {
+    width: 180px;
+    height: 180px;
+
+    background: #202027;
+
+    border-radius: 12px;
+
+    border: 3px solid #6f42c1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 55px;
+    color: white;
+
+    overflow: hidden;
+}
+
+
+/* DATOS */
+
+.datos {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    min-width: 0;
+}
+
+.saludo-texto {
+    font-size: 14px;
+    color: #a0a0a0;
+
+    margin-bottom: 5px;
+}
+
+.datos h1 {
+    font-size: 32px;
+
+    margin-bottom: 7px;
+}
+
+.datos h3 {
+    color: #8a3ffc;
+
+    margin-bottom: 12px;
+
+    font-size: 16px;
+}
+
+
+/* ESTADO */
+
+.activo {
+    display: inline-block;
+
+    width: 97px;
+
+    padding: 7px 12px;
+
+    text-align: center;
+
+    border-radius: 20px;
+
+    margin-bottom: 15px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+}
+
+.activo-activo {
+    background: #1d8b38;
+}
+
+.activo-descanso {
+    background: #8b3c1d;
+}
+
+.datos p {
+    font-size: 14px;
+
+    margin-bottom: 5px;
+
+    line-height: 1.5;
+}
+
+
+/* ================================
+   INFORMACIÓN / ESPECIALIDAD
+================================ */
+
+.info {
+    width: 100%;
+
+    display: grid !important;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+
+    margin-bottom: 24px;
+}
+
+.card {
+    width: 100%;
+
+    background: #18181d;
+
+    border: 1px solid #5f1ed7;
+    border-radius: 15px;
+
+    padding: 20px;
+}
+
+.card h2 {
+    color: #8a3ffc;
+
+    margin-bottom: 18px;
+
+    font-size: 20px;
+}
+
+.card p {
+    margin: 12px 0;
+
+    font-size: 14px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.card p i {
+    color: #6f42c1;
+}
+
+.card ul {
+    padding-left: 18px;
+}
+
+.card li {
+    margin: 10px 0;
+
+    font-size: 14px;
+}
+
+
+/* ================================
+   HORARIO
+================================ */
+
+.horario {
+    width: 100%;
+
+    background: #18181d;
+
+    border: 1px solid #5f1ed7;
+    border-radius: 15px;
+
+    padding: 20px;
+
+    margin-bottom: 28px;
+}
+
+.horario h2 {
+    color: #8a3ffc;
+
+    margin-bottom: 18px;
+
+    font-size: 20px;
+}
+
+.horario table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    table-layout: fixed;
+}
+
+.horario thead {
+    background: #5f1ed7;
+}
+
+.horario th {
+    padding: 12px;
+
+    font-size: 14px;
+}
+
+.horario td {
+    padding: 11px;
+
+    text-align: center;
+
+    border-bottom: 1px solid #2f2f38;
+
+    font-size: 14px;
+}
+
+.horario tbody tr:hover {
+    background: #202027;
+}
+
+
+/* ================================
+   ESTADÍSTICAS
+================================ */
+
+.estadisticas {
+    width: 100%;
+
+    display: grid !important;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.stat {
+    width: 100%;
+
+    background: #18181d;
+
+    border: 1px solid #5f1ed7;
+
+    border-radius: 15px;
+
+    padding: 25px;
+
+    text-align: center;
+}
+
+.stat h3 {
+    color: #8a3ffc;
+
+    margin-bottom: 12px;
+
+    font-size: 17px;
+}
+
+.stat h1 {
+    font-size: 45px;
+
+    margin: 0;
+}
+
+
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 1000px) {
+
+    header {
+        padding: 15px 20px;
+    }
+
+    main.contenedor {
+        width: 92%;
+    }
+
+    .perfil {
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+    .datos {
+        align-items: center;
+    }
+
+    .info {
+        grid-template-columns: 1fr;
+    }
+
+    .estadisticas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    header {
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    nav {
+        gap: 15px;
+    }
+
+    .perfil {
+        padding: 20px;
+    }
+
+    .foto-placeholder {
+        width: 150px;
+        height: 150px;
+
+        font-size: 45px;
+    }
+
+    .datos h1 {
+        font-size: 27px;
+    }
+
+    .estadisticas {
+        grid-template-columns: 1fr;
+    }
+
+    .horario {
+        overflow-x: auto;
+    }
+
+    .horario table {
+        min-width: 500px;
+    }
 }
