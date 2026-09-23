@@ -309,6 +309,16 @@ table {
     padding: 10px;
 }
 
+option {
+  background-color: #212529 !important; 
+  color: #ffffff !important;           
+  padding: 10px;
+}
+.logoImg{
+    border-radius: 15px;
+}
+
+
 .modal {
     z-index: 1060 !important;
 
