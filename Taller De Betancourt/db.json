@@ -20,98 +20,179 @@
       "name": "Auxiliar De Datos",
       "role": "auxdatos",
       "id": "3"
+    },
+    {
+      "email": "Asignador@betancourt.com",
+      "password": "$2a$10$8owQNGvaC42D7kudHWRc9.Hbi4rU0PvXElgee.wrixggFEFmD2lgC",
+      "name": "Asignador De Servicio",
+      "role": "Asignador",
+      "id": "Hf6mKId"
     }
   ],
-  "inventario": [
+  "productos": [
     {
       "id": "1",
-      "nombre": "Aceite Sintético 10W",
-      "cantidad": 1,
-      "estado": "Bajo Stock",
-      "claseBadge": "bg-warning text-dark"
-    },
-    {
-      "id": "2",
-      "nombre": "Filtro de Aceite",
-      "cantidad": 100,
-      "estado": "Activo",
-      "claseBadge": "bg-success"
-    },
-    {
-      "id": "3",
-      "nombre": "Filtro de Aire",
-      "cantidad": 80,
-      "estado": "Activo",
-      "claseBadge": "bg-success"
-    },
-    {
-      "id": "46",
-      "nombre": "gfdhd",
-      "cantidad": 88,
-      "estado": "Activo",
-      "claseBadge": "bg-success"
-    },
-    {
-      "id": "5",
-      "nombre": "Bujia de Motor",
-      "cantidad": 40,
-      "estado": "Activo",
-      "claseBadge": "bg-success"
-    },
-    {
-      "id": "6",
-      "nombre": "Test",
-      "cantidad": 12,
+      "Lproducto": "Aceite Sintético 10W40",
+      "cantidad": 21,
       "estado": "Activo",
       "claseBadge": "bg-success"
     }
   ],
   "pedidos": [
     {
-      "nombre": "test",
-      "apellido": "testape",
-      "rol": "Jefe",
-      "proveedor": "proveedor 1",
-      "repuesto": "test",
-      "cantidad": "33",
+      "nombre": "Jefe",
+      "apellido": "Taller",
+      "rol": "Jefe del taller",
+      "proveedor": "Proveedor 1",
+      "repuesto": "Aceite",
+      "cantidad": "25",
       "importancia": "media",
       "metodopago": "efectivo",
-      "estado": "Recibido",
-      "id": "1"
+      "estado": "Pendiente",
+      "id": 1
     },
     {
-      "nombre": "test",
-      "apellido": "testape",
-      "rol": "Jefe",
-      "proveedor": "proveedor 1",
-      "repuesto": "test",
-      "cantidad": "33",
+      "nombre": "Jefe",
+      "apellido": "Taller",
+      "rol": "Jefe del taller",
+      "proveedor": "Proveedor 1",
+      "repuesto": "Bujias",
+      "cantidad": "67",
       "importancia": "media",
-      "metodopago": "efectivo",
-      "estado": "Cancelado",
-      "id": "2"
+      "metodopago": "transferencia",
+      "estado": "Pendiente",
+      "id": 2
     },
     {
-      "nombre": "test",
-      "apellido": "testape",
-      "rol": "Jefe",
-      "proveedor": "proveedor 1",
-      "repuesto": "test",
-      "cantidad": "33",
-      "importancia": "media",
+      "nombre": "Jefe",
+      "apellido": "Taller",
+      "rol": "Jefe del taller",
+      "proveedor": "Proveedor 1",
+      "repuesto": "Filtros de aceite",
+      "cantidad": "88",
+      "importancia": "alta",
       "metodopago": "efectivo",
-      "estado": "Recibido",
-      "id": "3"
+      "estado": "Pendiente",
+      "id": 3
+    },
+    {
+      "nombre": "Jefe",
+      "apellido": "Taller",
+      "rol": "Jefe del taller",
+      "proveedor": "Proveedor 1",
+      "repuesto": "Filtros de aire",
+      "cantidad": "59",
+      "importancia": "alta",
+      "metodopago": "efectivo",
+      "estado": "Pendiente",
+      "id": 4
+    },
+    {
+      "nombre": "Jefe",
+      "apellido": "Taller",
+      "rol": "Jefe del taller",
+      "proveedor": "Proveedor 3",
+      "repuesto": "Cadenas",
+      "cantidad": "37",
+      "importancia": "media",
+      "metodopago": "transferencia",
+      "estado": "Pendiente",
+      "id": 5
+    },
+    {
+      "nombre": "Jefe",
+      "apellido": "Taller",
+      "rol": "Jefe del taller",
+      "proveedor": "Proveedor 2",
+      "repuesto": "Discos de freno",
+      "cantidad": "16",
+      "importancia": "baja",
+      "metodopago": "efectivo",
+      "estado": "Pendiente",
+      "id": 6
+    },
+    {
+      "nombre": "Jefe",
+      "apellido": "Taller",
+      "rol": "Jefe del taller",
+      "proveedor": "Proveedor 2",
+      "repuesto": "Amortiguadores",
+      "cantidad": "16",
+      "importancia": "baja",
+      "metodopago": "efectivo",
+      "estado": "Pendiente",
+      "id": 7
+    },
+    {
+      "nombre": "Jefe",
+      "apellido": "Taller",
+      "rol": "Jefe del taller",
+      "proveedor": "Proveedor 3",
+      "repuesto": "Baterias",
+      "cantidad": "51",
+      "importancia": "media",
+      "metodopago": "transferencia",
+      "estado": "Pendiente",
+      "id": 8
+    },
+    {
+      "nombre": "Jefe",
+      "apellido": "Taller",
+      "rol": "Jefe del taller",
+      "proveedor": "Proveedor 3",
+      "repuesto": "Fusibles",
+      "cantidad": "58",
+      "importancia": "baja",
+      "metodopago": "transferencia",
+      "estado": "Pendiente",
+      "id": 9
+    },
+    {
+      "nombre": "Jefe",
+      "apellido": "Taller",
+      "rol": "Jefe del taller",
+      "proveedor": "Proveedor 2",
+      "repuesto": "Espejos",
+      "cantidad": "24",
+      "importancia": "baja",
+      "metodopago": "efectivo",
+      "estado": "Pendiente",
+      "id": 10
     }
   ],
   "Proveedores": [
-
+    {
+      "proveedor": "ajencia1",
+      "telefono": "3023633215",
+      "correo": "mstjsgnk@gmail.com",
+      "ciudad": "SOACHA",
+      "estado": "Activo",
+      "id": 1
+    }
   ],
   "Pro_Facturas": [
-
+    {
+      "proveedor": "fffffff",
+      "numeroFactura": "3",
+      "fecha": "2026-09-22",
+      "subtotal": 754545,
+      "iva": 143363.55,
+      "total": 897908.55,
+      "formaPago": "Transferencia",
+      "estado": "Pendiente",
+      "id": 1
+    }
   ],
   "Pro_Calificacion": [
-
-  ]
+    {
+      "proveedor": "ajencia1",
+      "fecha": "2026-09-22",
+      "tiempo": 5,
+      "calidad": 5,
+      "cumplimiento": 5,
+      "precio": 5,
+      "promedio": 5,
+      "id": 1
+    }
   ]
 }

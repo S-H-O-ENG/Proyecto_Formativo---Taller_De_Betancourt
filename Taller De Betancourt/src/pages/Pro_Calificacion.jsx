@@ -20,7 +20,7 @@ const alertDark = Swal.mixin({
   color: '#ffffff'
 });
 
-const API = 'http://localhost:5000';
+const API = 'http://localhost:3000/Pro_Calificacion';
 function Pro_Calificacion() {
   const [calificaciones, setCalificaciones] = useState([]);
   const [modal, setModal] = useState(false);
@@ -31,7 +31,7 @@ function Pro_Calificacion() {
   // Cargar datos del servidor con soporte de cancelación
   const cargarDatos = useCallback(async (signal) => {
     try {
-      const respuesta = await fetch(`${API}/calificaciones`, { signal });
+      const respuesta = await fetch(API, { signal });
       if (!respuesta.ok) throw new Error('Error al cargar calificaciones');
 
       const datos = await respuesta.json();
