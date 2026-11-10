@@ -1,0 +1,156 @@
+-- =====================================================
+-- SCRIPT COMPLETO ADAPTADO A POSTGRESQL - TALLER DE AUTOS
+-- =====================================================
+
+-- 1. Tabla Clientes
+CREATE TABLE IF NOT EXISTS clientes (
+    cc INT NOT NULL,
+    PRIMARY KEY (cc)
+);
+
+-- 2. Tabla Cotización
+CREATE TABLE IF NOT EXISTS cotizacion (
+    idcotizacion SERIAL NOT NULL,
+    estado VARCHAR(45) NOT NULL,
+    fecha DATE NOT NULL,
+    total VARCHAR(45) NOT NULL,
+    PRIMARY KEY (idcotizacion)
+);
+
+-- 3. Tabla Roles
+CREATE TABLE IF NOT EXISTS roles (
+    idrol SERIAL NOT NULL,
+    administrador VARCHAR(45) NOT NULL,
+    mecanico VARCHAR(45) NOT NULL,
+    asistente_administrativo VARCHAR(45) NOT NULL,
+    auxiliar VARCHAR(45) NOT NULL,
+    asignador VARCHAR(45) NOT NULL,
+    PRIMARY KEY (idrol)
+);
+
+-- 4. Tabla Trabajador (Depende de roles)
+CREATE TABLE IF NOT EXISTS trabajador (
+    idtrabajador SERIAL NOT NULL,
+    cargo VARCHAR(45) NOT NULL,
+    roles_idrol INT NOT NULL,
+    PRIMARY KEY (idtrabajador),
+    CONSTRAINT fk_trabajador_roles FOREIGN KEY (roles_idrol) REFERENCES roles(idrol)
+);
+
+-- 5. Tabla Proveedor
+CREATE TABLE IF NOT EXISTS proveedor (
+    idproveedor SERIAL NOT NULL,
+    nombreempresa VARCHAR(45) NOT NULL,
+    calificacion INT NOT NULL,
+    PRIMARY KEY (idproveedor)
+);
+
+-- 6. Tabla Producto
+CREATE TABLE IF NOT EXISTS producto (
+    idproducto SERIAL NOT NULL,
+    nombre VARCHAR(45) NOT NULL,
+    cantidad INT NOT NULL,
+    estado VARCHAR(30) NOT NULL,
+    precio DOUBLE PRECISION NOT NULL,
+    PRIMARY KEY (idproducto)
+);
+
+-- 7. Tabla Servicio (Depende de clientes y cotizacion)
+CREATE TABLE IF NOT EXISTS servicio (
+    idservicio SERIAL NOT NULL,
+    nombre VARCHAR(45) NOT NULL,
+    descripcion VARCHAR(45) NOT NULL,
+    trabajador_asignado VARCHAR(45) NOT NULL,
+    fecha_asigncion VARCHAR(45) NOT NULL,
+    fecha_finalizacion VARCHAR(45) NOT NULL,
+    estado VARCHAR(45) NOT NULL,
+    clientes_idclientes INT NOT NULL,
+    cotizacion_idcotizacion INT NOT NULL,
+    PRIMARY KEY (idservicio),
+    CONSTRAINT fk_servicio_clientes FOREIGN KEY (clientes_idclientes) REFERENCES clientes(cc),
+    CONSTRAINT fk_servicio_cotizacion FOREIGN KEY (cotizacion_idcotizacion) REFERENCES cotizacion(idcotizacion)
+);
+
+-- 8. Tabla Vehículo (Depende de clientes, placa corregida a VARCHAR)
+CREATE TABLE IF NOT EXISTS vehiculo (
+    placa VARCHAR(10) NOT NULL,
+    tipovehiculo VARCHAR(45) NOT NULL,
+    modelo VARCHAR(45) NOT NULL,
+    marca VARCHAR(45) NOT NULL,
+    cc_cliente INT NOT NULL,
+    PRIMARY KEY (placa),
+    CONSTRAINT fk_vehiculo_clientes FOREIGN KEY (cc_cliente) REFERENCES clientes(cc)
+);
+
+-- 9. Tabla Usuario (Depende de trabajador, clientes y proveedor)
+CREATE TABLE IF NOT EXISTS usuario (
+    idusuario SERIAL NOT NULL,
+    nombre VARCHAR(45) NOT NULL,
+    apellido VARCHAR(45) NOT NULL,
+    telefono INT NOT NULL,
+    correo VARCHAR(45) NOT NULL,
+    trabajador_idtrabajador INT NOT NULL,
+    clientes_idclientes INT NOT NULL,
+    proveedor_idproveedor INT NOT NULL,
+    PRIMARY KEY (idusuario),
+    CONSTRAINT fk_usuario_trabajador FOREIGN KEY (trabajador_idtrabajador) REFERENCES trabajador(idtrabajador),
+    CONSTRAINT fk_usuario_clientes FOREIGN KEY (clientes_idclientes) REFERENCES clientes(cc),
+    CONSTRAINT fk_usuario_proveedor FOREIGN KEY (proveedor_idproveedor) REFERENCES proveedor(idproveedor)
+);
+
+-- 10. Tabla Pedidos (Depende de proveedor)
+CREATE TABLE IF NOT EXISTS pedidos (
+    idpedidos SERIAL NOT NULL,
+    importancia VARCHAR(30) NOT NULL,
+    metodo_pago VARCHAR(45) NOT NULL,
+    proveedor_idproveedor INT NOT NULL,
+    PRIMARY KEY (idpedidos),
+    CONSTRAINT fk_pedidos_proveedor FOREIGN KEY (proveedor_idproveedor) REFERENCES proveedor(idproveedor)
+);
+
+-- 11. Tabla Asignación Servicio (Depende de trabajador y servicio)
+CREATE TABLE IF NOT EXISTS asignacionservicio (
+    idasignacionservicio SERIAL NOT NULL,
+    fecha DATE NOT NULL,
+    horainicio TIME NOT NULL,
+    horafinal TIME NOT NULL,
+    observaciones VARCHAR(45) NOT NULL,
+    trabajador_idtrabajador INT NOT NULL,
+    servicio_idservicio INT NOT NULL,
+    PRIMARY KEY (idasignacionservicio),
+    CONSTRAINT fk_asignacionservicio_trabajador FOREIGN KEY (trabajador_idtrabajador) REFERENCES trabajador(idtrabajador),
+    CONSTRAINT fk_asignacionservicio_servicio FOREIGN KEY (servicio_idservicio) REFERENCES servicio(idservicio)
+);
+
+-- 12. Tabla Intermedia Cotización - Producto
+CREATE TABLE IF NOT EXISTS cotizacion_has_producto (
+    cotizacion_idcotizacion INT NOT NULL,
+    producto_idproducto INT NOT NULL,
+    atributo VARCHAR(45) NOT NULL,
+    preciounitario DOUBLE PRECISION NOT NULL,
+    precioventa DOUBLE PRECISION NOT NULL,
+    subtotal DOUBLE PRECISION NOT NULL,
+    PRIMARY KEY (cotizacion_idcotizacion, producto_idproducto),
+    CONSTRAINT fk_cot_has_prod_cot FOREIGN KEY (cotizacion_idcotizacion) REFERENCES cotizacion(idcotizacion),
+    CONSTRAINT fk_cot_has_prod_prod FOREIGN KEY (producto_idproducto) REFERENCES producto(idproducto)
+);
+
+-- 13. Tabla Intermedia Pedidos - Producto
+CREATE TABLE IF NOT EXISTS pedidos_has_producto (
+    pedidos_idpedidos INT NOT NULL,
+    producto_idproducto INT NOT NULL,
+    PRIMARY KEY (pedidos_idpedidos, producto_idproducto),
+    CONSTRAINT fk_ped_has_prod_ped FOREIGN KEY (pedidos_idpedidos) REFERENCES pedidos(idpedidos),
+    CONSTRAINT fk_ped_has_prod_prod FOREIGN KEY (producto_idproducto) REFERENCES producto(idproducto)
+);
+
+-- 14. Tabla Movimiento Inventario (Depende de producto)
+CREATE TABLE IF NOT EXISTS movimientoinventario (
+    idmovimientoinventario SERIAL NOT NULL,
+    fecha DATE NOT NULL,
+    cantidad INT NOT NULL,
+    observacion VARCHAR(45) NOT NULL,
+    producto_idproducto INT NOT NULL,
+    PRIMARY KEY (idmovimientoinventario, producto_idproducto),
+    CONSTRAINT fk_mov_inv_producto FOREIGN KEY (producto_idproducto) REFERENCES producto(idproducto)
+);
