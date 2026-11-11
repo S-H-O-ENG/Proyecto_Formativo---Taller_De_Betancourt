@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import bcrypt from 'bcryptjs';
 import logoImg from '../assets/logo.png';
 import supraImg from '../assets/supra.png';
 import '../css/Clientes.css';
 
-const API_URL = "http://localhost:3000/clientes";
+const API_CLIENTES = "http://localhost:3000/clientes";
+const API_VEHICULOS = "http://localhost:3000/vehiculos";
 
 const EstadoInicialForm = {
     id: null,
@@ -23,43 +23,87 @@ const EstadoInicialForm = {
 
 function GestionClientes({ alSalir }) {
     const [clientes, setClientes] = useState([]);
+    const [vehiculos, setVehiculos] = useState([]);
     const [formData, setFormData] = useState(EstadoInicialForm);
     const [mostrarModal, setMostrarModal] = useState(false);
+    const [clienteExistenteBloqueado, setClienteExistenteBloqueado] = useState(null);
 
-    const obtenerClientes = async () => {
+    // Cargar clientes y vehículos desde db.json
+    const obtenerDatos = async () => {
         try {
-            const respuesta = await axios.get(API_URL);
-            setClientes(respuesta.data);
+            const respClientes = await axios.get(API_CLIENTES);
+            setClientes(respClientes.data);
+
+            const respVehiculos = await axios.get(API_VEHICULOS);
+            setVehiculos(respVehiculos.data);
         } catch (error) {
-            console.error("Error al cargar clientes desde db.json:", error);
+            console.error("Error al cargar los datos desde db.json:", error);
         }
     };
 
     useEffect(() => {
-        obtenerClientes();
+        obtenerDatos();
     }, []);
 
     const handleChange = (e) => {
         const { id, value } = e.target;
-        setFormData(prev => ({ ...prev, [id]: value }));
+        
+        // Al escribir la cédula en un nuevo registro, validamos si ya existe el cliente
+        if (id === 'cedula' && formData.id === null) {
+            setFormData(prev => ({ ...prev, [id]: value }));
+            
+            if (value.trim() !== '') {
+                const encontrado = clientes.find(c => c.cedula === value);
+
+                if (encontrado) {
+                    // Si el cliente ya existe, rellenamos sus datos, bloqueamos campos y guardamos referencia
+                    setFormData(prev => ({
+                        ...prev,
+                        nombre: encontrado.nombre,
+                        apellido: encontrado.apellido,
+                        telefono: encontrado.telefono,
+                        correo: encontrado.correo
+                    }));
+                    setClienteExistenteBloqueado(encontrado);
+                } else {
+                    setClienteExistenteBloqueado(null);
+                }
+            } else {
+                setClienteExistenteBloqueado(null);
+            }
+        } else {
+            setFormData(prev => ({ ...prev, [id]: value }));
+        }
     };
 
     const abrirNuevoRegistro = () => {
         setFormData(EstadoInicialForm);
+        setClienteExistenteBloqueado(null);
         setMostrarModal(true);
     };
 
-    const abrirEdicion = (cliente) => {
-        // Al editar, se deja el campo cédula vacío por seguridad ya que al estar hasheada con bcrypt no se puede revertir
+    const abrirEdicion = (cliente, vehiculoAsociado) => {
         setFormData({
-            ...cliente,
-            cedula: ''
+            id: cliente.id,
+            cedula: cliente.cedula || '',
+            nombre: cliente.nombre || '',
+            apellido: cliente.apellido || '',
+            telefono: cliente.telefono || '',
+            correo: cliente.correo || '',
+            tipoVehiculo: vehiculoAsociado ? vehiculoAsociado.tipoVehiculo : '',
+            placa: vehiculoAsociado ? vehiculoAsociado.placa : '',
+            marca: vehiculoAsociado ? vehiculoAsociado.marca : '',
+            modelo: vehiculoAsociado ? vehiculoAsociado.modelo : '',
+            color: vehiculoAsociado ? vehiculoAsociado.color : '',
+            vehiculoId: vehiculoAsociado ? vehiculoAsociado.id : null
         });
+        setClienteExistenteBloqueado(null);
         setMostrarModal(true);
     };
 
     const cerrarModal = () => {
         setMostrarModal(false);
+        setClienteExistenteBloqueado(null);
         setFormData(EstadoInicialForm);
     };
 
@@ -67,64 +111,94 @@ function GestionClientes({ alSalir }) {
         e.preventDefault();
 
         try {
-            if (formData.id === null) {
-                // Validar si la placa ya existe
-                const existePlaca = clientes.some(
-                    c => c.placa.toLowerCase() === formData.placa.toLowerCase()
-                );
+            // Validar si la placa ya existe en los vehículos
+            const existePlaca = vehiculos.some(
+                v => v.placa && formData.placa && v.placa.toLowerCase() === formData.placa.toLowerCase() && v.id !== formData.vehiculoId
+            );
 
-                if (existePlaca) {
-                    alert("Atención: Ya existe un registro con esta Placa.");
-                    return;
-                }
-
-                // Se genenera Hash con bcryptjs para la cédula
-                const salt = await bcrypt.genSalt(10);
-                const cedulaEncriptada = await bcrypt.hash(formData.cedula, salt);
-
-                const nuevoCliente = {
-                    ...formData,
-                    cedula: cedulaEncriptada
-                };
-
-                const { id, ...nuevoSinId } = nuevoCliente;
-                await axios.post(API_URL, nuevoSinId);
-            } else {
-                // Si el usuario ingresó una nueva cédula al editar, se encripta; de lo contrario se conserva la actual
-                let cedulaFinal = formData.cedula;
-
-                if (formData.cedula && formData.cedula.trim() !== '') {
-                    const salt = await bcrypt.genSalt(10);
-                    cedulaFinal = await bcrypt.hash(formData.cedula, salt);
-                } else {
-                    const clienteOriginal = clientes.find(c => c.id === formData.id);
-                    cedulaFinal = clienteOriginal ? clienteOriginal.cedula : formData.cedula;
-                }
-
-                const datosActualizados = {
-                    ...formData,
-                    cedula: cedulaFinal
-                };
-
-                await axios.put(`${API_URL}/${formData.id}`, datosActualizados);
+            if (existePlaca) {
+                alert("Atención: Ya existe un vehículo registrado con esta Placa.");
+                return;
             }
 
-            obtenerClientes();
+            if (formData.id === null) {
+                let clienteId;
+
+                if (clienteExistenteBloqueado) {
+                    // El cliente ya existe, usamos su ID existente
+                    clienteId = clienteExistenteBloqueado.id;
+                } else {
+                    // Es un cliente nuevo: lo guardamos en la tabla 'clientes'
+                    const nuevoCliente = {
+                        cedula: formData.cedula,
+                        nombre: formData.nombre,
+                        apellido: formData.apellido,
+                        telefono: formData.telefono,
+                        correo: formData.correo
+                    };
+                    const respuestaCliente = await axios.post(API_CLIENTES, nuevoCliente);
+                    clienteId = respuestaCliente.data.id;
+                }
+
+                // Guardamos el vehículo asociado al ID del cliente en la tabla 'vehiculos'
+                const nuevoVehiculo = {
+                    clienteId: clienteId,
+                    tipoVehiculo: formData.tipoVehiculo,
+                    placa: formData.placa.toUpperCase(),
+                    marca: formData.marca,
+                    modelo: formData.modelo,
+                    color: formData.color
+                };
+                await axios.post(API_VEHICULOS, nuevoVehiculo);
+
+            } else {
+                // Actualizar datos del cliente y su vehículo
+                const clienteActualizado = {
+                    cedula: formData.cedula,
+                    nombre: formData.nombre,
+                    apellido: formData.apellido,
+                    telefono: formData.telefono,
+                    correo: formData.correo
+                };
+                await axios.put(`${API_CLIENTES}/${formData.id}`, clienteActualizado);
+
+                if (formData.vehiculoId) {
+                    const vehiculoActualizado = {
+                        clienteId: formData.id,
+                        tipoVehiculo: formData.tipoVehiculo,
+                        placa: formData.placa.toUpperCase(),
+                        marca: formData.marca,
+                        modelo: formData.modelo,
+                        color: formData.color
+                    };
+                    await axios.put(`${API_VEHICULOS}/${formData.vehiculoId}`, vehiculoActualizado);
+                }
+            }
+
+            obtenerDatos();
             cerrarModal();
         } catch (error) {
-            console.error("Error al guardar cliente en db.json:", error);
-            alert("Ocurrió un error al guardar en la base de datos.");
+            console.error("Error al guardar en la base de datos:", error);
+            alert("Ocurrió un error al procesar el registro.");
         }
     };
 
-    const eliminarCliente = async (cliente) => {
-        if (window.confirm(`¿Estás seguro que deseas eliminar el registro de ${cliente.nombre} ${cliente.apellido}?`)) {
+    const eliminarRegistro = async (cliente, vehiculo) => {
+        if (window.confirm(`¿Deseas eliminar el vehículo con placa ${vehiculo.placa} de ${cliente.nombre}?`)) {
             try {
-                await axios.delete(`${API_URL}/${cliente.id}`);
-                obtenerClientes();
+                // Borramos el vehículo de su tabla
+                await axios.delete(`${API_VEHICULOS}/${vehiculo.id}`);
+                
+                // Opcional: verificar si el cliente se quedó sin vehículos para decidir si eliminarlo también
+                const vehiculosRestantes = vehiculos.filter(v => v.clienteId === cliente.id && v.id !== vehiculo.id);
+                if (vehiculosRestantes.length === 0) {
+                    await axios.delete(`${API_CLIENTES}/${cliente.id}`);
+                }
+
+                obtenerDatos();
             } catch (error) {
-                console.error("Error al eliminar cliente:", error);
-                alert("Ocurrió un error al eliminar el registro.");
+                console.error("Error al eliminar el registro:", error);
+                alert("Ocurrió un error al eliminar.");
             }
         }
     };
@@ -134,8 +208,10 @@ function GestionClientes({ alSalir }) {
             <aside className="sidebar offcanvas">
                 <div className="sidebar-logo">
                     <img src={logoImg} alt="Logo Taller" />
-                    <h2>Taller De Betancourt</h2>
-                    <p>Gestión de Clientes</p>
+                    <div className="sidebar-brand-text">
+                        <h2>Taller De Betancourt</h2>
+                        <p>Gestión de Clientes</p>
+                    </div>
                 </div>
                 <nav className="sidebar-menu">
                     <a href="#gestion-clientes" className="active">
@@ -174,7 +250,7 @@ function GestionClientes({ alSalir }) {
                                 <h2>Clientes y Vehículos</h2>
                             </div>
                             <button className="btn btn-taller" onClick={abrirNuevoRegistro}>
-                                <i className="fa-solid fa-plus"></i> Nuevo Cliente
+                                <i className="fa-solid fa-plus"></i> Nuevo Cliente / Vehículo
                             </button>
                         </div>
 
@@ -192,48 +268,51 @@ function GestionClientes({ alSalir }) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {clientes.length === 0 ? (
+                                    {vehiculos.length === 0 ? (
                                         <tr>
                                             <td colSpan="7" className="text-center text-muted py-4">
-                                                No hay clientes registrados en el sistema.
+                                                No hay vehículos registrados en el sistema.
                                             </td>
                                         </tr>
                                     ) : (
-                                        clientes.map((cliente) => (
-                                            <tr key={cliente.id}>
-                                                <td>
-                                                    <span className="badge bg-dark text-white-50 font-monospace text-truncate" style={{ maxWidth: '140px', display: 'inline-block' }} title={cliente.cedula}>
-                                                        {cliente.cedula ? `${cliente.cedula.substring(0, 15)}...` : ''}
-                                                    </span>
-                                                </td>
-                                                <td>{cliente.nombre} {cliente.apellido}</td>
-                                                <td>
-                                                    <div className="small">
-                                                        <i className="fa-solid fa-phone text-muted me-1"></i> {cliente.telefono}
-                                                    </div>
-                                                    <div className="small correo-tabla">
-                                                        <i className="fa-solid fa-envelope me-1"></i> {cliente.correo}
-                                                    </div>
-                                                </td>
-                                                <td><span className="badge bg-secondary">{cliente.tipoVehiculo}</span></td>
-                                                <td>
-                                                    <span className="badge bg-warning text-dark font-monospace" style={{ letterSpacing: '1px' }}>
-                                                        {cliente.placa ? cliente.placa.toUpperCase() : ''}
-                                                    </span>
-                                                </td>
-                                                <td className="small text-white-50">
-                                                    {cliente.marca} {cliente.modelo} ({cliente.color})
-                                                </td>
-                                                <td>
-                                                    <button className="btn btn-sm btn-outline-info me-1" onClick={() => abrirEdicion(cliente)}>
-                                                        <i className="fa-solid fa-pen"></i>
-                                                    </button>
-                                                    <button className="btn btn-sm btn-outline-danger" onClick={() => eliminarCliente(cliente)}>
-                                                        <i className="fa-solid fa-trash"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        ))
+                                        vehiculos.map((vehiculo) => {
+                                            const propietario = clientes.find(c => c.id === vehiculo.clienteId) || {};
+                                            return (
+                                                <tr key={vehiculo.id}>
+                                                    <td>
+                                                        <span className="badge bg-dark text-white-50 font-monospace">
+                                                            {propietario.cedula || 'N/A'}
+                                                        </span>
+                                                    </td>
+                                                    <td>{propietario.nombre} {propietario.apellido}</td>
+                                                    <td>
+                                                        <div className="small">
+                                                            <i className="fa-solid fa-phone text-muted me-1"></i> {propietario.telefono}
+                                                        </div>
+                                                        <div className="small correo-tabla">
+                                                            <i className="fa-solid fa-envelope me-1"></i> {propietario.correo}
+                                                        </div>
+                                                    </td>
+                                                    <td><span className="badge bg-secondary">{vehiculo.tipoVehiculo}</span></td>
+                                                    <td>
+                                                        <span className="badge bg-warning text-dark font-monospace" style={{ letterSpacing: '1px' }}>
+                                                            {vehiculo.placa ? vehiculo.placa.toUpperCase() : ''}
+                                                        </span>
+                                                    </td>
+                                                    <td className="small text-white-50">
+                                                        {vehiculo.marca} {vehiculo.modelo} ({vehiculo.color})
+                                                    </td>
+                                                    <td>
+                                                        <button className="btn btn-sm btn-outline-info me-1" onClick={() => abrirEdicion(propietario, vehiculo)}>
+                                                            <i className="fa-solid fa-pen"></i>
+                                                        </button>
+                                                        <button className="btn btn-sm btn-outline-danger" onClick={() => eliminarRegistro(propietario, vehiculo)}>
+                                                            <i className="fa-solid fa-trash"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            );
+                                        })
                                     )}
                                 </tbody>
                             </table>
@@ -246,7 +325,7 @@ function GestionClientes({ alSalir }) {
                                 <div className="modal-content">
                                     <div className="modal-header border-0">
                                         <h2 className="modal-title w-100 text-center">
-                                            {formData.id ? "Modificar Datos del Cliente" : "Nuevo Registro de Cliente"}
+                                            {formData.id ? "Modificar Registro" : "Nuevo Registro de Cliente / Vehículo"}
                                         </h2>
                                         <button type="button" className="btn-close" onClick={cerrarModal}></button>
                                     </div>
@@ -258,34 +337,76 @@ function GestionClientes({ alSalir }) {
                                                     <div className="seccion-titulo-modal">Datos del propietario</div>
 
                                                     <div className="mb-3">
-                                                        <label className="form-label text-white-50">
-                                                            {formData.id ? "Cédula (dejar en blanco para mantener la actual):" : "Cédula:"}
-                                                        </label>
+                                                        <label className="form-label text-white-50">Cédula:</label>
                                                         <input
                                                             type="number"
                                                             id="cedula"
                                                             className="form-control"
-                                                            placeholder={formData.id ? "Nueva cédula (opcional)" : "Cédula de ciudadanía"}
+                                                            placeholder="Cédula de ciudadanía"
                                                             value={formData.cedula}
                                                             onChange={handleChange}
-                                                            required={!formData.id}
+                                                            required
+                                                        />
+                                                    </div>
+
+                                                    {clienteExistenteBloqueado && (
+                                                        <div className="alert alert-info py-2 small mb-3">
+                                                            <i className="fa-solid fa-circle-info me-1"></i> 
+                                                            Cliente existente detectado. Sus datos seran autocompletados. Solo se registrará el nuevo vehículo.
+                                                        </div>
+                                                    )}
+
+                                                    <div className="mb-3">
+                                                        <label className="form-label text-white-50">Nombre:</label>
+                                                        <input 
+                                                            type="text" 
+                                                            id="nombre" 
+                                                            className="form-control" 
+                                                            placeholder="Nombres" 
+                                                            value={formData.nombre} 
+                                                            onChange={handleChange} 
+                                                            disabled={clienteExistenteBloqueado !== null}
+                                                            required 
                                                         />
                                                     </div>
                                                     <div className="mb-3">
-                                                        <label className="form-label text-white-50">Nombre:</label>
-                                                        <input type="text" id="nombre" className="form-control" placeholder="Nombres" value={formData.nombre} onChange={handleChange} required />
-                                                    </div>
-                                                    <div className="mb-3">
                                                         <label className="form-label text-white-50">Apellido:</label>
-                                                        <input type="text" id="apellido" className="form-control" placeholder="Apellidos" value={formData.apellido} onChange={handleChange} required />
+                                                        <input 
+                                                            type="text" 
+                                                            id="apellido" 
+                                                            className="form-control" 
+                                                            placeholder="Apellidos" 
+                                                            value={formData.apellido} 
+                                                            onChange={handleChange} 
+                                                            disabled={clienteExistenteBloqueado !== null}
+                                                            required 
+                                                        />
                                                     </div>
                                                     <div className="mb-3">
                                                         <label className="form-label text-white-50">Teléfono:</label>
-                                                        <input type="tel" id="telefono" className="form-control" placeholder="Número de celular" value={formData.telefono} onChange={handleChange} required />
+                                                        <input 
+                                                            type="tel" 
+                                                            id="telefono" 
+                                                            className="form-control" 
+                                                            placeholder="Número de celular" 
+                                                            value={formData.telefono} 
+                                                            onChange={handleChange} 
+                                                            disabled={clienteExistenteBloqueado !== null}
+                                                            required 
+                                                        />
                                                     </div>
                                                     <div className="mb-3">
                                                         <label className="form-label text-white-50">Correo Electrónico:</label>
-                                                        <input type="email" id="correo" className="form-control" placeholder="correo@ejemplo.com" value={formData.correo} onChange={handleChange} required />
+                                                        <input 
+                                                            type="email" 
+                                                            id="correo" 
+                                                            className="form-control" 
+                                                            placeholder="correo@ejemplo.com" 
+                                                            value={formData.correo} 
+                                                            onChange={handleChange} 
+                                                            disabled={clienteExistenteBloqueado !== null}
+                                                            required 
+                                                        />
                                                     </div>
                                                 </div>
 
@@ -324,7 +445,7 @@ function GestionClientes({ alSalir }) {
                                             <div className="row mt-3">
                                                 <div className="col-12">
                                                     <button type="submit" className="btn btn-taller w-100 py-2">
-                                                        {formData.id ? "Actualizar Cambios" : "Guardar Registro"}
+                                                        {formData.id ? "Actualizar Cambios" : (clienteExistenteBloqueado ? "Asociar Nuevo Vehículo" : "Guardar Registro")}
                                                     </button>
                                                 </div>
                                             </div>

@@ -477,5 +477,35 @@
       "fecha": "2019-11-18",
       "estado": "Asignado"
     }
+  ],
+  "clientes": [
+    {
+      "cedula": "1111",
+      "nombre": "robert",
+      "apellido": "Armando",
+      "telefono": "33333",
+      "correo": "armando@gmail.com",
+      "id": 1
+    }
+  ],
+  "vehiculos": [
+    {
+      "clienteId": 1,
+      "tipoVehiculo": "Automóvil",
+      "placa": "123456",
+      "marca": "Mazda",
+      "modelo": "2024",
+      "color": "Gris",
+      "id": 1
+    },
+    {
+      "clienteId": 1,
+      "tipoVehiculo": "Automóvil",
+      "placa": "124ES",
+      "marca": "Ferrari",
+      "modelo": "2026",
+      "color": "Rojo",
+      "id": 2
+    }
   ]
 }
